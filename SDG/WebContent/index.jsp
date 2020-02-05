@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	고상욱 천재
+	고상욱 천
 
 
-	김선일 천재
+	김선일 천
 	ㅎㅇ
 	내가 왔다 JIJUN
 	
