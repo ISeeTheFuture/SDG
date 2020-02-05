@@ -17,5 +17,12 @@
 	계속 왔다
 	
 	지줂형.......너무......멋있네요..ㅅ..ㅂ...
+	
+				<ul class="main-nav">
+					
+					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
+					
+				</ul>
+			
 </body>
 </html>
