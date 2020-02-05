@@ -14,6 +14,11 @@
 
 	
 	내가 왔다 JIJUN
+<<<<<<< HEAD
 
+=======
+	
+	계속 왔다
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 </body>
 </html>
