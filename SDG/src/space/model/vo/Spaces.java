@@ -1,3 +1,4 @@
+
 package space.model.vo;
 
 import java.util.Date;
@@ -129,3 +130,4 @@ public class Spaces {
 	
 	
 }
+
