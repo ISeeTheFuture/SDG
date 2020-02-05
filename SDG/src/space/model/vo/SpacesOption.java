@@ -2,28 +2,29 @@ package space.model.vo;
 
 public class SpacesOption {
 
-	private int spc_detail_no;
-	private int spc_option_no;
+	private int spcDetailNo;
+	private int spcOptionNo;
 	public SpacesOption() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SpacesOption(int spc_detail_no, int spc_option_no) {
+	public SpacesOption(int spcDetailNo, int spcOptionNo) {
 		super();
-		this.spc_detail_no = spc_detail_no;
-		this.spc_option_no = spc_option_no;
+		this.spcDetailNo = spcDetailNo;
+		this.spcOptionNo = spcOptionNo;
 	}
-	public int getSpc_detail_no() {
-		return spc_detail_no;
+	public int getSpcDetailNo() {
+		return spcDetailNo;
 	}
-	public void setSpc_detail_no(int spc_detail_no) {
-		this.spc_detail_no = spc_detail_no;
+	public void setSpcDetailNo(int spcDetailNo) {
+		this.spcDetailNo = spcDetailNo;
 	}
-	public int getSpc_option_no() {
-		return spc_option_no;
+	public int getSpcOptionNo() {
+		return spcOptionNo;
 	}
-	public void setSpc_option_no(int spc_option_no) {
-		this.spc_option_no = spc_option_no;
+	public void setSpcOptionNo(int spcOptionNo) {
+		this.spcOptionNo = spcOptionNo;
 	}
+	
 	
 }

@@ -2,29 +2,31 @@ package space.model.vo;
 
 public class SpacesLocation {
 
-	private int spc_location_no;
-	private String spc_location_name;
+	private int spcLocationNo;
+	private String spcLocationName;
 	public SpacesLocation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SpacesLocation(int spc_location_no, String spc_location_name) {
+	public SpacesLocation(int spcLocationNo, String spcLocationName) {
 		super();
-		this.spc_location_no = spc_location_no;
-		this.spc_location_name = spc_location_name;
+		this.spcLocationNo = spcLocationNo;
+		this.spcLocationName = spcLocationName;
 	}
-	public int getSpc_location_no() {
-		return spc_location_no;
+	public int getSpcLocationNo() {
+		return spcLocationNo;
 	}
-	public void setSpc_location_no(int spc_location_no) {
-		this.spc_location_no = spc_location_no;
+	public void setSpcLocationNo(int spcLocationNo) {
+		this.spcLocationNo = spcLocationNo;
 	}
-	public String getSpc_location_name() {
-		return spc_location_name;
+	public String getSpcLocationName() {
+		return spcLocationName;
 	}
-	public void setSpc_location_name(String spc_location_name) {
-		this.spc_location_name = spc_location_name;
+	public void setSpcLocationName(String spcLocationName) {
+		this.spcLocationName = spcLocationName;
 	}
+	
+	
 	
 	
 }
