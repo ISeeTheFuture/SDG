@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
+	<nav>
+		<form action="<%=request.getContextPath() %>/space/spaceTypeReg" method="GET">
+			<button id="spaceReg">공간 등록</button>
+		</form>
+	</nav>
+=======
 	고상욱 천
 
 
@@ -29,6 +36,7 @@
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/views/res/res.jsp">예약</a></li>
 	</ul>
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 </body>
 </html>
