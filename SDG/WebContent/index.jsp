@@ -36,6 +36,10 @@
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/views/res/res.jsp">예약</a></li>
 	</ul>
+	
+	<ul>
+		<li><a href="<%=request.getContextPath()%>/views/res/res.jsp">사업장_요금</a></li>
+	</ul>
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 </body>
