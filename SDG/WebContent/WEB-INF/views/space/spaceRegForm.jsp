@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+	<%String cat = request.getParameter("cat");%>
+
 	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST">
+		<input type="hidden" name="cat" value="<%=cat %>" />
+		
 		<label for="spcName">공간명 : </label>
 		<br />	
 		<input type="text" name="spcName" id="spcName" />
@@ -126,7 +131,7 @@
 		<br />
 		
 		<label for="spcDetHoliday">공휴일 휴무 여부</label>
-		<input type="checkbox" name="spcDetHoliday" value="false" />
+		<input type="checkbox" name="spcDetHoliday" value="0"/>
 		
 		
 		<br />
@@ -135,5 +140,15 @@
 		<button>등록</button>
 		
 	</form>
+	
+<script>
+$(document).ready(function(){
+    $("#spcDetHoliday").change(function(){
+        if($("#spcDetHoliday").is(":checked")){
+    		$("#spcDateHoliday").val("1");
+        }
+    });
+});
+</script>
 </body>
 </html>

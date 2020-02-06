@@ -26,8 +26,31 @@ public class SpaceRegformEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//1.encoding
+		request.setCharacterEncoding("utf-8");
+		
+		//2.parameter handling
+		String spcName = request.getParameter("spcName");
+		String region = request.getParameter("region");
+		String addr = request.getParameter("addr");
+		String spcContent = request.getParameter("spcContent");
+		String spcDetSize = request.getParameter("spcDetSize");
+		String spcDetStorable = request.getParameter("spcDetStorable");
+		String spcManMin = request.getParameter("spcManMin");
+		String spcManMax = request.getParameter("spcManMax");
+		String spcTimeMin = request.getParameter("spcTimeMin");
+		String spcTimeMax = request.getParameter("spcTimeMax");
+		String spcDateStart = request.getParameter("spcDateStart");
+		String spcDateEnd = request.getParameter("spcDateEnd");
+		String spcDay = request.getParameter("spcDay");
+		String spcHourStart = request.getParameter("spcHourStart");
+		String spcHourEnd = request.getParameter("spcHourEnd");
+		String spcDetHoliday = request.getParameter("spcDetHoliday");
+		String cat = request.getParameter("cat");
+		
+		
+		System.out.println("spcDetHoliday@spaceregformendservlet  : " + spcDetHoliday);
+		
 	}
 
 	/**

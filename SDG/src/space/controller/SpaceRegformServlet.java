@@ -32,7 +32,6 @@ public class SpaceRegformServlet extends HttpServlet {
 		//1. 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
-		
 		//4. 뷰단처리
 		request.getRequestDispatcher("/WEB-INF/views/space/spaceRegForm.jsp")
 			   .forward(request, response);
