@@ -62,6 +62,47 @@
 		<br />	
 		<input type="date" name="spcDateEnd" id="spcDateEnd"/>
 		<br />	
+		
+		<hr />
+		<h3>주중 운영일 : </h3>
+		<hr />
+		월요일 :	
+		<input type="checkbox" name="spcDay" value="mon" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		화요일 :
+		<input type="checkbox" name="spcDay" value="tue" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		수요일 :
+		<input type="checkbox" name="spcDay" value="wed" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		목요일 :
+		<input type="checkbox" name="spcDay" value="thu" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		금요일 :
+		<input type="checkbox" name="spcDay" value="fri" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		토요일 :
+		<input type="checkbox" name="spcDay" value="sat" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		일요일 :
+		<input type="checkbox" name="spcDay" value="sun" />
+		<span style="border-right:2px solid gray;width:1px;"></span>	
+		<br />	
+		<br />	
+		<hr />
+		<label for="spcHourStart">운영 시작 시각</label>
+		<input type="time" name="spcHourStart" id="spcHourStart" />
+		<br />	
+		<label for="spcHourEnd">운영 마감 시각</label>
+		<input type="time" name="spcHourEnd" id="spcHourEnd" />		
+		<hr />			
+		<br />
+		
+		<label for="spcDetHoliday">공휴일 휴무 여부</label>
+		<input type="checkbox" name="spcDetHoliday" value="false" />
+		
+		
+		
 	</form>
 </body>
 </html>
