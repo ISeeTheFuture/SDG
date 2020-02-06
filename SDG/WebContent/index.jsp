@@ -17,5 +17,9 @@
 	계속 왔다
 	
 	지줂형.......너무......멋있네요..ㅅ..ㅂ...
+	
+	<ul>
+		<li><a href="<%=request.getContextPath()%>/views/res/res.jsp">예약</a></li>
+	</ul>
 </body>
 </html>

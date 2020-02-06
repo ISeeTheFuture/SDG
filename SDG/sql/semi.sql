@@ -31,6 +31,26 @@ DROP TABLE spc_opt cascade constraints;
 DROP TABLE field_loc cascade constraints;
 
 --======================================================
+-- 시퀀스 모음
+--======================================================
+
+create SEQUENCE seq_mem_id;
+
+create SEQUENCE seq_review_no;
+create SEQUENCE seq_review_report_no;
+create SEQUENCE seq_comment_no;
+create SEQUENCE seq_comment_report_no;
+
+create SEQUENCE seq_res_no;
+create SEQUENCE seq_res_group_no;
+
+create SEQUENCE seq_spc_no;
+create SEQUENCE seq_spc_detail_no;
+
+
+--======================================================
+-- 여기서부터 테이블
+--======================================================
 
 CREATE TABLE membership (
 	mem_id	varchar2(100)		NOT NULL,
@@ -253,6 +273,11 @@ CREATE TABLE field_loc (
 	spc_location_no	number		NOT NULL,
 	spc_location_name	varchar2(100)		NULL
 );
+
+--======================================================
+-- 여기서부터 제약조건
+--======================================================
+
 
 ALTER TABLE membership ADD CONSTRAINT PK_MEMBERSHIP PRIMARY KEY (
 	mem_id
