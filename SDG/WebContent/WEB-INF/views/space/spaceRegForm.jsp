@@ -8,11 +8,43 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd">
+	
+	<%String cat = request.getParameter("cat");%>
+
+	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST">
+		<input type="hidden" name="cat" value="<%=cat %>" />
+		
 		<label for="spcName">공간명 : </label>
 		<br />	
 		<input type="text" name="spcName" id="spcName" />
 		<br />	
+		
+		<br />
+		<br />
+		<select name="region" id="region">
+			<option disabled selected value>지역</option>
+			<option disabled>----------</option>
+			<option value="seoul">서울특별시</option>
+			<option value="gyeonggi">경기도</option>
+			<option value="incheon">인천광역시</option>
+			<option value="sejong">세종특별시</option>
+			<option value="choongbuk">충청북도</option>
+			<option value="choongnam">충청남도</option>
+			<option value="gangwon">강원도</option>
+			<option value="daejeon">대전광역시</option>
+			<option value="daeggu">대구광역시</option>
+			<option value="gyeongbuk">경상북도</option>
+			<option value="gyeongnam">경상남도</option>
+			<option value="busan">부산광역시</option>
+			<option value="ulsan">울산광역시</option>
+			<option value="jeonbuk">전라북도</option>
+			<option value="jeonnam">전라남도</option>
+			<option value="gwangju">광주광역시</option>
+			<option value="jeju">제주도</option>
+		</select>
+		
+		<br />
+		<br />
 		
 		<label for="addr">주소 : </label>
 		<br />	
@@ -100,11 +132,33 @@
 		<br />
 		
 		<label for="spcDetHoliday">공휴일 휴무 여부</label>
+<<<<<<< HEAD
 		<input type="checkbox" name="spcDetHoliday" id="spcDetHoliday" value=""/>
+=======
+		<input type="checkbox" name="spcDetHoliday" value="0"/>
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		
+<<<<<<< HEAD
 
+=======
+		
+		<br />
+		<br />
+		
+		<button>등록</button>
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		
 	</form>
+	
+<script>
+$(document).ready(function(){
+    $("#spcDetHoliday").change(function(){
+        if($("#spcDetHoliday").is(":checked")){
+    		$("#spcDateHoliday").val("1");
+        }
+    });
+});
+</script>
 </body>
 <script>
 	
