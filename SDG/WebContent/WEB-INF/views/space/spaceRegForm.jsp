@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd">
@@ -99,10 +100,23 @@
 		<br />
 		
 		<label for="spcDetHoliday">공휴일 휴무 여부</label>
-		<input type="checkbox" name="spcDetHoliday" value="false" />
+		<input type="checkbox" name="spcDetHoliday" id="spcDetHoliday" value=""/>
 		
-		
+
 		
 	</form>
 </body>
+<script>
+	
+$(document).ready(function(){
+    $("#spcDetHoliday").change(function(){
+        if($("#spcDetHoliday").is(":checked")){
+    		$("#spcDateHoliday").val(1);
+        }else{
+    		$("#spcDateHoliday").val(0);
+        }
+    });
+});
+
+</script>
 </html>
