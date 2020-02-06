@@ -7,11 +7,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd">
+	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST">
 		<label for="spcName">공간명 : </label>
 		<br />	
 		<input type="text" name="spcName" id="spcName" />
 		<br />	
+		
+		<br />
+		<br />
+		<select name="region" id="region">
+			<option disabled selected value>지역</option>
+			<option disabled>----------</option>
+			<option value="seoul">서울특별시</option>
+			<option value="gyeonggi">경기도</option>
+			<option value="incheon">인천광역시</option>
+			<option value="sejong">세종특별시</option>
+			<option value="choongbuk">충청북도</option>
+			<option value="choongnam">충청남도</option>
+			<option value="gangwon">강원도</option>
+			<option value="daejeon">대전광역시</option>
+			<option value="daeggu">대구광역시</option>
+			<option value="gyeongbuk">경상북도</option>
+			<option value="gyeongnam">경상남도</option>
+			<option value="busan">부산광역시</option>
+			<option value="ulsan">울산광역시</option>
+			<option value="jeonbuk">전라북도</option>
+			<option value="jeonnam">전라남도</option>
+			<option value="gwangju">광주광역시</option>
+			<option value="jeju">제주도</option>
+		</select>
+		
+		<br />
+		<br />
 		
 		<label for="addr">주소 : </label>
 		<br />	
@@ -102,6 +129,10 @@
 		<input type="checkbox" name="spcDetHoliday" value="false" />
 		
 		
+		<br />
+		<br />
+		
+		<button>등록</button>
 		
 	</form>
 </body>
