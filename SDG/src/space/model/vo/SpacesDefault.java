@@ -11,7 +11,13 @@ public class SpacesDefault {
 	private String spcContent;
 	private char spcAvail;
 	private Date spcDate;
+	
+	
 	public SpacesDefault() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public SpacesDefault(String memberId, int spcNo) {
 		super();
 		// TODO Auto-generated constructor stub
 	}
