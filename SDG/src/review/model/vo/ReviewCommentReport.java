@@ -1,9 +1,9 @@
-package board.model.vo;
+package review.model.vo;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class BoardCommentReport implements Serializable {
+public class ReviewCommentReport implements Serializable {
 	
 	/**
 	 * 
@@ -14,67 +14,51 @@ public class BoardCommentReport implements Serializable {
 	private String commentReportReason;
 	private Date commentReportDate;
 	
-	
-	public BoardCommentReport() {
+	public ReviewCommentReport() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public BoardCommentReport(int commentReportNo, int commentNo, String commentReportReason, Date commentReportDate) {
+	public ReviewCommentReport(int commentReportNo, int commentNo, String commentReportReason, Date commentReportDate) {
 		super();
 		this.commentReportNo = commentReportNo;
 		this.commentNo = commentNo;
 		this.commentReportReason = commentReportReason;
 		this.commentReportDate = commentReportDate;
 	}
-
-
 	public int getCommentReportNo() {
 		return commentReportNo;
 	}
-
-
 	public void setCommentReportNo(int commentReportNo) {
 		this.commentReportNo = commentReportNo;
 	}
-
-
 	public int getCommentNo() {
 		return commentNo;
 	}
-
-
 	public void setCommentNo(int commentNo) {
 		this.commentNo = commentNo;
 	}
-
-
 	public String getCommentReportReason() {
 		return commentReportReason;
 	}
-
-
 	public void setCommentReportReason(String commentReportReason) {
 		this.commentReportReason = commentReportReason;
 	}
-
-
 	public Date getCommentReportDate() {
 		return commentReportDate;
 	}
-
-
 	public void setCommentReportDate(Date commentReportDate) {
 		this.commentReportDate = commentReportDate;
 	}
-
-
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public String toString() {
-		return "BoardCommentReport [commentReportNo=" + commentReportNo + ", commentNo=" + commentNo
+		return "ReviewCommentReport [commentReportNo=" + commentReportNo + ", commentNo=" + commentNo
 				+ ", commentReportReason=" + commentReportReason + ", commentReportDate=" + commentReportDate + "]";
 	}
+	
+
 	
 	
 

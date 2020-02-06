@@ -1,27 +1,36 @@
 package space.model.vo;
 
-public class SpacesType extends Spaces{
+public class SpacesType{
 
-	private String spc_type_name;
-
+	private int spcTypeNo;
+	private String spcTypeName;
 	public SpacesType() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public SpacesType(String spc_type_name , int spc_type_no) {
+	public SpacesType(int spcTypeNo, String spcTypeName) {
 		super();
-		this.spc_type_name = spc_type_name;
+		this.spcTypeNo = spcTypeNo;
+		this.spcTypeName = spcTypeName;
 	}
-
-	public String getSpc_type_name() {
-		return spc_type_name;
+	public int getSpcTypeNo() {
+		return spcTypeNo;
 	}
-
-	public void setSpc_type_name(String spc_type_name) {
-		this.spc_type_name = spc_type_name;
+	public void setSpcTypeNo(int spcTypeNo) {
+		this.spcTypeNo = spcTypeNo;
+	}
+	public String getSpcTypeName() {
+		return spcTypeName;
+	}
+	public void setSpcTypeName(String spcTypeName) {
+		this.spcTypeName = spcTypeName;
 	}
 	
+	
+
+	
+	
+
 	
 	
 }
