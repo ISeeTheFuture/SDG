@@ -19,7 +19,7 @@
 	지줂형.......너무......멋있네요..ㅅ..ㅂ...
 	
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/views/res/res.jsp">예약</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
 	</ul>
 </body>
 </html>

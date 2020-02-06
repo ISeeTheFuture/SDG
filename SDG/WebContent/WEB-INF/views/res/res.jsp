@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -10,8 +9,7 @@
 </head>
 <body>
 	
-	<form action="<%=request.getContextPath() %>/res/resForm"
-		method="post">
+	<form action="<%=request.getContextPath() %>/res/resForm" method="post">
 		
 		<label for="resGroupNo">그룹넘버</label>
 		<input type="text" id="resGroupNo" name="resGroupNo" value="1"/>
