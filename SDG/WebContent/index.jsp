@@ -7,15 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	고상욱 비타천
-
-
-	김선일 비타천
-	ㅎㅇ
-	내가 왔다 JIJUN
-	
-	계속 왔다
-	
-	지줂형.......너무......멋있네요..ㅅ..ㅂ...
+	<nav>
+		<form action="<%=request.getContextPath() %>/space/spaceTypeReg" method="GET">
+			<button id="spaceReg">공간 등록</button>
+		</form>
+	</nav>
 </body>
 </html>
