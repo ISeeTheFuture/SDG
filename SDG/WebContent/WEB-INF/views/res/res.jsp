@@ -4,13 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>예약하기</title>
-<link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/custom.css">
 </head>
 <body>
 	
-	<form action="<%=request.getContextPath() %>/res/resForm" method="post">
-		
+	<form action="<%=request.getContextPath()%>/res/resForm" method="post">		
 		<label for="resGroupNo">그룹넘버</label>
 		<input type="text" id="resGroupNo" name="resGroupNo" value="1"/>
 		<br />

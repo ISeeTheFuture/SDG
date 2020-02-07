@@ -20,6 +20,7 @@
 	20200207김원재TEST
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resView2">예약2</a></li>
 	</ul>
 </body>
 </html>
