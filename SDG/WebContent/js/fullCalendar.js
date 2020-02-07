@@ -56,33 +56,33 @@ function calDateWhenResize(event) {
   return newDates;
 }
 
-function calDateWhenDragnDrop(event) {
-  // 드랍시 수정된 날짜반영
-  var newDates = {
-    startDate: '',
-    endDate: ''
-  }
-
-  //하루짜리 all day
-  if (event.allDay && event.end === null) {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
-    newDates.endDate = newDates.startDate;
-  }
-
-  //2일이상 all day
-  else if (event.allDay && event.end !== null) {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
-    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
-  }
-
-  //all day가 아님
-  else if (!event.allDay) {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
-    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
-  }
-
-  return newDates;
-}
+//function calDateWhenDragnDrop(event) {
+//  // 드랍시 수정된 날짜반영
+//  var newDates = {
+//    startDate: '',
+//    endDate: ''
+//  }
+//
+//  //하루짜리 all day
+//  if (event.allDay && event.end === null) {
+//    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+//    newDates.endDate = newDates.startDate;
+//  }
+//
+//  //2일이상 all day
+//  else if (event.allDay && event.end !== null) {
+//    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+//    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
+//  }
+//
+//  //all day가 아님
+//  else if (!event.allDay) {
+//    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+//    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+//  }
+//
+//  return newDates;
+//}
 
 
 var calendar = $('#calendar').fullCalendar({
@@ -207,40 +207,40 @@ var calendar = $('#calendar').fullCalendar({
 
   },
 
-  eventDragStart: function (event, jsEvent, ui, view) {
-    draggedEventIsAllDay = event.allDay;
-  },
+//  eventDragStart: function (event, jsEvent, ui, view) {
+//    draggedEventIsAllDay = event.allDay;
+//  },
 
   //일정 드래그앤드롭
-  eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
-    $('.popover.fade.top').remove();
-
-    //주,일 view일때 종일 <-> 시간 변경불가
-    if (view.type === 'agendaWeek' || view.type === 'agendaDay') {
-      if (draggedEventIsAllDay !== event.allDay) {
-        alert('드래그앤드롭으로 종일<->시간 변경은 불가합니다.');
-        location.reload();
-        return false;
-      }
-    }
-
-    // 드랍시 수정된 날짜반영
-    var newDates = calDateWhenDragnDrop(event);
-
-    //드롭한 일정 업데이트
-    $.ajax({
-      type: "get",
-      url: "",
-      data: {
-        //...
-      },
-      success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
-      }
-    });
-
-  },
-
+//  eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+//    $('.popover.fade.top').remove();
+//
+//    //주,일 view일때 종일 <-> 시간 변경불가
+//    if (view.type === 'agendaWeek' || view.type === 'agendaDay') {
+//      if (draggedEventIsAllDay !== event.allDay) {
+//        alert('드래그앤드롭으로 종일<->시간 변경은 불가합니다.');
+//        location.reload();
+//        return false;
+//      }
+//    }
+//
+//    // 드랍시 수정된 날짜반영
+//    var newDates = calDateWhenDragnDrop(event);
+//
+//    //드롭한 일정 업데이트
+//    $.ajax({
+//      type: "get",
+//      url: "",
+//      data: {
+//        //...
+//      },
+//      success: function (response) {
+//        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+//      }
+//    });
+//
+//  },
+//
   select: function (startDate, endDate, jsEvent, view) {
 
     $(".fc-body").unbind('click');
@@ -323,7 +323,7 @@ var calendar = $('#calendar').fullCalendar({
 //  defaultDate: moment('2020-02'), // 초기 월 고정(테스트용)
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
-  editable: true,
+  editable: false, // 드래그&드랍 편집 기능
   minTime: '00:00:00',
   maxTime: '24:00:00',
   slotLabelFormat: 'HH:mm',

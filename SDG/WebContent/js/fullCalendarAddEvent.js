@@ -21,7 +21,7 @@ var newEvent = function (start, end, eventType) {
 
     $("#contextMenu").hide(); //메뉴 숨김
 
-    modalTitle.html('새로운 일정');
+    modalTitle.html('예약하기');
     editStart.val(start);
     editEnd.val(end);
     editType.val(eventType).prop("selected", true);
@@ -46,7 +46,7 @@ var newEvent = function (start, end, eventType) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '사나',
+            username: 'testid',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
