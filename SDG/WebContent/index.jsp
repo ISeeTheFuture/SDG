@@ -16,8 +16,8 @@
 	
 	계속 왔다
 	
-	지줂형.......너무......멋있네요..ㅅ..ㅂ...
 	
+	20200207김원재TEST
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
 	</ul>
