@@ -132,16 +132,9 @@
 		<br />
 		
 		<label for="spcDetHoliday">공휴일 휴무 여부</label>
-<<<<<<< HEAD
-		<input type="checkbox" name="spcDetHoliday" id="spcDetHoliday" value=""/>
-=======
-		<input type="checkbox" name="spcDetHoliday" value="0"/>
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
-		
-<<<<<<< HEAD
 
-=======
-		
+		<input type="checkbox" name="spcDetHoliday" id="spcDetHoliday" value="0"/>
+
 		<br />
 		<br />
 		
@@ -150,27 +143,6 @@
 		
 	</form>
 	
-<script>
-$(document).ready(function(){
-    $("#spcDetHoliday").change(function(){
-        if($("#spcDetHoliday").is(":checked")){
-    		$("#spcDateHoliday").val("1");
-        }
-    });
-});
-</script>
 </body>
-<script>
-	
-$(document).ready(function(){
-    $("#spcDetHoliday").change(function(){
-        if($("#spcDetHoliday").is(":checked")){
-    		$("#spcDateHoliday").val(1);
-        }else{
-    		$("#spcDateHoliday").val(0);
-        }
-    });
-});
 
-</script>
 </html>

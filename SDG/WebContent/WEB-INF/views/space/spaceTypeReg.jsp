@@ -3,12 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 	<form action="<%=request.getContextPath()%>/space/spaceRegForm" method="GET">
-		<label for="spaceType">사업자 유형</label>
+
+<label for="spaceType">사업자 유형</label>
 		<br />
 		<select name="cat" id="cat">
 			<option disabled selected value>모임 장소</option>

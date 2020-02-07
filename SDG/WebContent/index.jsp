@@ -21,16 +21,19 @@
 	
 	계속 왔다
 	
-	지줂형.......너무......멋있네요..ㅅ..ㅂ...
 	
+<<<<<<< HEAD
 				<ul class="main-nav">
 					
 					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 					
 				</ul>
 			
+=======
+	20200207김원재TEST
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/views/res/res.jsp">예약</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
 	</ul>
 <<<<<<< HEAD
 	

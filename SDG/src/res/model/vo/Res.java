@@ -22,11 +22,10 @@ public class Res extends SpacesDefault {
 	}
 	public Res(int resGroupNo) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.resGroupNo = resGroupNo;
 	}
 	public Res(String memberId, int spcNo) {
 		super(memberId, spcNo);
-		// TODO Auto-generated constructor stub
 	}
 	public Res(int resGroupNo, String memberId, int spcNo, int resMany, String resName, String resPhone, String resEmail, String resContent,
 			Date resApply) {
@@ -38,6 +37,14 @@ public class Res extends SpacesDefault {
 		this.resEmail = resEmail;
 		this.resContent = resContent;
 		this.resApply = resApply;
+	}
+	public Res(String memberId, int spcNo, int resMany, String resName, String resPhone, String resEmail, String resContent) {
+		super(memberId, spcNo);
+		this.resMany = resMany;
+		this.resName = resName;
+		this.resPhone = resPhone;
+		this.resEmail = resEmail;
+		this.resContent = resContent;
 	}
 	public int getResGroupNo() {
 		return resGroupNo;
@@ -83,8 +90,8 @@ public class Res extends SpacesDefault {
 	}
 	@Override
 	public String toString() {
-		return "Res [resGroupNo=" + resGroupNo + ", resMany=" + resMany + ", resName=" + resName + ", resPhone="
-				+ resPhone + ", resEmail=" + resEmail + ", resContent=" + resContent + ", resApply=" + resApply + "]";
+		return "Res [resGroupNo=" + resGroupNo + ", spcNo=" + getSpcNo() + ", memberId=" + getMemberId()+ ", resMany=" + resMany + ", resName=" + resName + ", resPhone="
+				+ resPhone + ", resEmail=" + resEmail + ", resContent=" + resContent + "]";
 	}
 	
 	
