@@ -182,6 +182,7 @@
     <script src="<%=request.getContextPath()%>/vendor/js/bootstrap-datetimepicker.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/fullCalendar.js"></script>
     <script src="<%=request.getContextPath()%>/js/fullCalendarAddEvent.js"></script>
+    <script src="<%=request.getContextPath()%>/js/fullCalendarViewEvent.js"></script>
     <script src="<%=request.getContextPath()%>/js/fullCalendarEditEvent.js"></script>
     <script src="<%=request.getContextPath()%>/js/fullCalendarEtcSetting.js"></script>
 

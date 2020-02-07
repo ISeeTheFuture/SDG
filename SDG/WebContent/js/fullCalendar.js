@@ -297,9 +297,9 @@ var calendar = $('#calendar').fullCalendar({
 
   },
 
-  //이벤트 클릭시 수정이벤트
+  //이벤트 클릭시 보기이벤트
   eventClick: function (event, jsEvent, view) {
-    editEvent(event);
+    viewEvent(event);
   },
 
   locale: 'ko',
