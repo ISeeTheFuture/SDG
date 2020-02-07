@@ -1,6 +1,6 @@
 package space.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class SpacesDefault {
 
@@ -10,7 +10,6 @@ public class SpacesDefault {
 	private String spcAddr;
 	private String spcContent;
 	private char spcAvail;
-	private Date spcDate;
 	
 	
 	public SpacesDefault() {
@@ -22,8 +21,7 @@ public class SpacesDefault {
 		this.memberId = memberId;
 		this.spcNo = spcNo;
 	}
-	public SpacesDefault(int spcNo, String memberId, String spcName, String spcAddr, String spcContent, char spcAvail,
-			Date spcDate) {
+	public SpacesDefault(int spcNo, String memberId, String spcName, String spcAddr, String spcContent, char spcAvail) {
 		super();
 		this.spcNo = spcNo;
 		this.memberId = memberId;
@@ -31,7 +29,13 @@ public class SpacesDefault {
 		this.spcAddr = spcAddr;
 		this.spcContent = spcContent;
 		this.spcAvail = spcAvail;
-		this.spcDate = spcDate;
+	}
+	
+	
+	public SpacesDefault(String memberId, String spcName) {
+		super();
+		this.memberId = memberId;
+		this.spcName = spcName;
 	}
 	public int getSpcNo() {
 		return spcNo;
@@ -69,14 +73,5 @@ public class SpacesDefault {
 	public void setSpcAvail(char spcAvail) {
 		this.spcAvail = spcAvail;
 	}
-	public Date getSpcDate() {
-		return spcDate;
-	}
-	public void setSpcDate(Date spcDate) {
-		this.spcDate = spcDate;
-	}
-	
-	
-	
 	
 }

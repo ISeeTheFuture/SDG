@@ -17,16 +17,17 @@ public class Spaces {
 	private int spcDetCapacity;
 	private int spcCapMin;
 	private int spcCpaMax;
+	private int spcTimeMin;
+	private int spcTimeMax;
 	private Date spcDateStart;
 	private Date spcDateEnd;
-	private Date spcDetDate;
 	public Spaces() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Spaces(int spcDetNo, int spcNo, int spcTypeNo, int spcLocNo, char spcDetAvail, String spcDetContent,
 			char spcDetSharing, char spcDetHoliday, int spcDetSize, int spcDetCapacity, int spcCapMin, int spcCpaMax,
-			Date spcDateStart, Date spcDateEnd, Date spcDetDate) {
+			int spcTimeMin, int spcTimeMax, Date spcDateStart, Date spcDateEnd) {
 		super();
 		this.spcDetNo = spcDetNo;
 		this.spcNo = spcNo;
@@ -40,9 +41,10 @@ public class Spaces {
 		this.spcDetCapacity = spcDetCapacity;
 		this.spcCapMin = spcCapMin;
 		this.spcCpaMax = spcCpaMax;
+		this.spcTimeMin = spcTimeMin;
+		this.spcTimeMax = spcTimeMax;
 		this.spcDateStart = spcDateStart;
 		this.spcDateEnd = spcDateEnd;
-		this.spcDetDate = spcDetDate;
 	}
 	public int getSpcDetNo() {
 		return spcDetNo;
@@ -128,11 +130,17 @@ public class Spaces {
 	public void setSpcDateEnd(Date spcDateEnd) {
 		this.spcDateEnd = spcDateEnd;
 	}
-	public Date getSpcDetDate() {
-		return spcDetDate;
+	public int getSpcTimeMin() {
+		return spcTimeMin;
 	}
-	public void setSpcDetDate(Date spcDetDate) {
-		this.spcDetDate = spcDetDate;
+	public void setSpcTimeMin(int spcTimeMin) {
+		this.spcTimeMin = spcTimeMin;
+	}
+	public int getSpcTimeMax() {
+		return spcTimeMax;
+	}
+	public void setSpcTimeMax(int spcTimeMax) {
+		this.spcTimeMax = spcTimeMax;
 	}
 	
 	
