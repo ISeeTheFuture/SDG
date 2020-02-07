@@ -21,27 +21,25 @@ public class JDBCTemplate {
 		try {
 			
 			Properties prop = new Properties();
-			// 현재 클래스 객체의 루트 디렉토리(build path - /WebContent/WEB-INF/classes)부터 위치한 파일의 경로를 찾는다.
-			String fileName = JDBCTemplate.class.getResource("/driver.properties")
-												.getPath();
+			String fileName = JDBCTemplate.class.getResource("/driver.properties").getPath();
 			System.out.println("fileName@JDBCTemplate="+fileName);
-			prop.load(new FileReader(fileName)); // prop.load(입력객체(경로))
+			prop.load(new FileReader(fileName));
 			
 			//Property내역 출력
-//			prop.list(System.out); // 잘 받아왔나 properties 내용 확인
+			prop.list(System.out); // 잘 받아왔나 properties 내용 확인
 			
 			String driver = prop.getProperty("driver");
 			String url = prop.getProperty("url");
 			String user = prop.getProperty("user");
 			String password = prop.getProperty("password");
 			
-			Class.forName(driver); // 클래스 객체 등록 - 생략가능
+			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, password);
 			conn.setAutoCommit(false);
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
-		} catch(FileNotFoundException e) { // 
+		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -19,7 +19,8 @@ public class SpacesDefault {
 	}
 	public SpacesDefault(String memberId, int spcNo) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.memberId = memberId;
+		this.spcNo = spcNo;
 	}
 	public SpacesDefault(int spcNo, String memberId, String spcName, String spcAddr, String spcContent, char spcAvail,
 			Date spcDate) {

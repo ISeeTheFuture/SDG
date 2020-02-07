@@ -16,7 +16,7 @@ DROP TABLE review cascade constraints;
 DROP TABLE review_cmnt cascade constraints;
 DROP TABLE review_rpt cascade constraints;
 DROP TABLE cmmt_rpt cascade constraints;
-DROP TABLE field cascade constraints;
+DROP TABLE spc cascade constraints;
 DROP TABLE spc_res cascade constraints;
 DROP TABLE spc_img cascade constraints;
 DROP TABLE spc_dtl cascade constraints;
@@ -28,7 +28,7 @@ DROP TABLE spc_timetable cascade constraints;
 DROP TABLE spc_time_exp cascade constraints;
 DROP TABLE spc_opt_lst cascade constraints;
 DROP TABLE spc_opt cascade constraints;
-DROP TABLE field_loc cascade constraints;
+DROP TABLE spc_loc cascade constraints;
 
 --======================================================
 -- 시퀀스 모음
@@ -65,7 +65,7 @@ CREATE TABLE membership (
 	mem_email	varchar2(255)		NOT NULL,
 	mem_phone	varchar2(100)		NULL,
 	mem_addr	varchar2(255)		NULL,
-	mem_date	Date	DEFAULT sysdate	NOT NULL,
+	mem_date	timestamp	DEFAULT SYSTIMESTAMP	NOT NULL,
 	mem_rest	Date		NULL,
 	mem_lastLogin	Date		NULL
 );
@@ -77,14 +77,14 @@ CREATE TABLE member_grd (
 
 CREATE TABLE member_blk (
 	mem_id	varchar2(100)		NOT NULL,
-	block_write	Date		NULL,
-	block_comment	Date		NULL,
+	block_write	timestamp	DEFAULT SYSTIMESTAMP	NULL,
+	block_comment	timestamp	DEFAULT SYSTIMESTAMP	NULL,
 	block_memo	varchar2(4000)		NULL
 );
 
 CREATE TABLE review (
 	review_no	number		NOT NULL,
-	field_no	number		NOT NULL,
+	spc_no	number		NOT NULL,
 	mem_id	varchar2(20)		NOT NULL,
 	review_ori_no	number		NULL,
 	review_star	number	DEFAULT 3	NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE review (
 	review_content	long		NULL,
 	review_file	varchar2(40)		NULL,
 	review_upfile	varchar2(40)		NULL,
-	review_date	Date	DEFAULT sysdate	NOT NULL,
+	review_date	timestamp	DEFAULT SYSTIMESTAMP	NOT NULL,
 	review_readcnt	number	DEFAULT 0	NULL,
 	review_recommend	number	DEFAULT 0	NULL,
 	review_delete	char(1)	DEFAULT 0	NULL
@@ -105,7 +105,7 @@ CREATE TABLE review_cmnt (
 	review_no	number		NOT NULL,
 	comment_type	number		NOT NULL,
 	comment_content	varchar2(4000)		NULL,
-	comment_date	Date	DEFAULT sysdate	NULL,
+	comment_date	timestamp	DEFAULT SYSTIMESTAMP	NULL,
 	comment_recommend	number	DEFAULT 0	NULL,
 	comment_delete	char(1)	DEFAULT 0	NULL
 );
@@ -114,24 +114,24 @@ CREATE TABLE review_rpt (
 	review_report_no	number		NOT NULL,
 	review_no	number		NOT NULL,
 	review_report_reason	varchar2(4000)		NULL,
-	review_report_date	Date	DEFAULT sysdate	NULL
+	review_report_date	timestamp	DEFAULT SYSTIMESTAMP	NULL
 );
 
 CREATE TABLE cmmt_rpt (
 	comment_report_no	number		NOT NULL,
 	comment_no	number		NOT NULL,
 	comment_report_reason	varchar2(4000)		NULL,
-	comment_report_date	Date	DEFAULT sysdate	NULL
+	comment_report_date	timestamp	DEFAULT SYSTIMESTAMP	NULL
 );
 
-CREATE TABLE field (
+CREATE TABLE spc (
 	spc_no	number		NOT NULL,
 	mem_id	varchar2(100)		NOT NULL,
 	spc_name	varchar2(100)		NULL,
 	spc_addr	varchar2(255)		NULL,
 	spc_content	long		NULL,
 	spc_avail	char(1)	DEFAULT 1	NULL,
-	spc_date	Date		NULL
+	spc_date	timestamp	DEFAULT SYSTIMESTAMP	NULL
 );
 
 CREATE TABLE spc_res (
@@ -143,34 +143,9 @@ CREATE TABLE spc_res (
 	res_phone	varchar2(100)		NULL,
 	res_email	varchar2(255)		NULL,
 	res_content	varchar2(4000)		NULL,
-	res_apply	Date	DEFAULT sysdate	NOT NULL
+	res_apply	timestamp	DEFAULT SYSTIMESTAMP	NOT NULL
 );
 
-CREATE TABLE field_option_ex (
-	field_option_alcol	char(1)	DEFAULT 0	NOT NULL,
-	field_option_sound	char(1)	DEFAULT 0	NULL,
-	field_option_bbq	char(1)	DEFAULT 0	NULL,
-	field_option_table	char(1)	DEFAULT 0	NULL,
-	field_option_cook	char(1)	DEFAULT 0	NULL,
-	field_option_cloth	char(1)	DEFAULT 0	NULL,
-	field_option_mirror	char(1)	DEFAULT 0	NULL,
-	field_option_toilet_in	char(1)	DEFAULT 0	NULL,
-	field_option_toilet_out	char(1)	DEFAULT 0	NULL,
-	field_option_smoking_room	char(1)	DEFAULT 0	NULL,
-	field_option_no_smoking	char(1)	DEFAULT 0	NULL,
-	field_option_rounge	char(1)	DEFAULT 0	NULL,
-	field_option_pc	char(1)	DEFAULT 0	NULL,
-	field_option_tv	char(1)	DEFAULT 0	NULL,
-	field_option_proj	char(1)	DEFAULT 0	NULL,
-	field_option_wifi	char(1)	DEFAULT 0	NULL,
-	field_option_warm	char(1)	DEFAULT 0	NULL,
-	field_option_cool	char(1)	DEFAULT 0	NULL,
-	field_option_parking	char(1)	DEFAULT 0	NULL,
-	field_option_shower	char(1)	DEFAULT 0	NULL,
-	field_option_terras	char(1)	DEFAULT 0	NULL,
-	field_option_food	char(1)	DEFAULT 0	NULL,
-	field_option_pet	char(1)	DEFAULT 0	NULL
-);
 
 CREATE TABLE spc_img (
 	spc_detail_no	number		NOT NULL,
@@ -197,7 +172,7 @@ CREATE TABLE spc_dtl (
 	spc_time_max	number		NOT NULL,
 	spc_date_start	Date		NOT NULL,
 	spc_date_end	Date		NOT NULL,
-	spc_detail_date	Date	DEFAULT sysdate	NOT NULL
+	spc_detail_date	timestamp	DEFAULT SYSTIMESTAMP	NOT NULL
 );
 
 CREATE TABLE spc_type (
@@ -217,24 +192,19 @@ CREATE TABLE spc_res_grp (
 	res_no	number		NOT NULL,
 	res_group_no	number		NOT NULL,
 	res_cancle	char(1)	DEFAULT 0	NOT NULL,
-	res_date	Date		NOT NULL,
-	res_time	Date		NULL,
+	res_time	timestamp		NOT NULL,
 	res_prior	number	DEFAULT 0	NOT NULL,
-	res_time_apply	Date		NULL
+	res_time_apply	timestamp	DEFAULT SYSTIMESTAMP	NULL
 );
 
-COMMENT ON COLUMN spc_res_grp.res_cancle IS '예약대기
-예약확정
-완료
-취소';
 
 CREATE TABLE spc_price (
 	spc_price_no	number		NOT NULL,
 	spc_detail_no	number		NOT NULL,
 	spc_detail_name	varchar2(100)		NOT NULL,
 	spc_price_day	varchar2(10)		NULL,
-	spc_price_start	Date		NOT NULL,
-	spc_price_end	Date		NOT NULL,
+	spc_price_start	number		NOT NULL,
+	spc_price_end	number		NOT NULL,
 	spc_price_peak	char(1)	DEFAULT 0	NOT NULL,
 	spc_price_perman	char(1)	DEFAULT 0	NOT NULL,
 	spc_price_day_bool	char(1)	DEFAULT 0	NOT NULL,
@@ -261,7 +231,7 @@ CREATE TABLE spc_opt_lst (
 	spc_option_no	number		NOT NULL,
 	spc_option_name	varchar2(100)		NULL,
 	spc_option_icon	varchar2(100)		NULL,
-	spc_option_date	date	DEFAULT sysdate	NOT NULL
+	spc_option_date	timestamp	DEFAULT SYSTIMESTAMP	NOT NULL
 );
 
 CREATE TABLE spc_opt (
@@ -269,7 +239,7 @@ CREATE TABLE spc_opt (
 	spc_option_no	number		NOT NULL
 );
 
-CREATE TABLE field_loc (
+CREATE TABLE spc_loc (
 	spc_location_no	number		NOT NULL,
 	spc_location_name	varchar2(100)		NULL
 );
@@ -307,7 +277,7 @@ ALTER TABLE cmmt_rpt ADD CONSTRAINT PK_CMMT_RPT PRIMARY KEY (
 	comment_report_no
 );
 
-ALTER TABLE field ADD CONSTRAINT PK_FIELD PRIMARY KEY (
+ALTER TABLE spc ADD CONSTRAINT PK_SPC PRIMARY KEY (
 	spc_no
 );
 
@@ -339,7 +309,7 @@ ALTER TABLE spc_opt_lst ADD CONSTRAINT PK_SPC_OPT_LST PRIMARY KEY (
 	spc_option_no
 );
 
-ALTER TABLE field_loc ADD CONSTRAINT PK_FIELD_LOC PRIMARY KEY (
+ALTER TABLE spc_loc ADD CONSTRAINT PK_SPC_LOC PRIMARY KEY (
 	spc_location_no
 );
 
@@ -357,10 +327,10 @@ REFERENCES membership (
 	mem_id
 );
 
-ALTER TABLE review ADD CONSTRAINT FK_field_TO_review_1 FOREIGN KEY (
-	field_no
+ALTER TABLE review ADD CONSTRAINT FK_spc_TO_review_1 FOREIGN KEY (
+	spc_no
 )
-REFERENCES field (
+REFERENCES spc (
 	spc_no
 );
 
@@ -399,7 +369,7 @@ REFERENCES review_cmnt (
 	comment_no
 );
 
-ALTER TABLE field ADD CONSTRAINT FK_membership_TO_field_1 FOREIGN KEY (
+ALTER TABLE spc ADD CONSTRAINT FK_membership_TO_spc_1 FOREIGN KEY (
 	mem_id
 )
 REFERENCES membership (
@@ -413,10 +383,10 @@ REFERENCES membership (
 	mem_id
 );
 
-ALTER TABLE spc_res ADD CONSTRAINT FK_field_TO_spc_res_1 FOREIGN KEY (
+ALTER TABLE spc_res ADD CONSTRAINT FK_spc_TO_spc_res_1 FOREIGN KEY (
 	spc_no
 )
-REFERENCES field (
+REFERENCES spc (
 	spc_no
 );
 
@@ -427,17 +397,17 @@ REFERENCES spc_dtl (
 	spc_detail_no
 );
 
-ALTER TABLE spc_img ADD CONSTRAINT FK_field_TO_spc_img_1 FOREIGN KEY (
+ALTER TABLE spc_img ADD CONSTRAINT FK_spc_TO_spc_img_1 FOREIGN KEY (
 	spc_no
 )
-REFERENCES field (
+REFERENCES spc (
 	spc_no
 );
 
-ALTER TABLE spc_dtl ADD CONSTRAINT FK_field_TO_spc_dtl_1 FOREIGN KEY (
+ALTER TABLE spc_dtl ADD CONSTRAINT FK_spc_TO_spc_dtl_1 FOREIGN KEY (
 	spc_no
 )
-REFERENCES field (
+REFERENCES spc (
 	spc_no
 );
 
@@ -448,10 +418,10 @@ REFERENCES spc_type (
 	spc_type_no
 );
 
-ALTER TABLE spc_dtl ADD CONSTRAINT FK_field_loc_TO_spc_dtl_1 FOREIGN KEY (
+ALTER TABLE spc_dtl ADD CONSTRAINT FK_spc_loc_TO_spc_dtl_1 FOREIGN KEY (
 	spc_location_no
 )
-REFERENCES field_loc (
+REFERENCES spc_loc (
 	spc_location_no
 );
 
@@ -503,5 +473,27 @@ ALTER TABLE spc_opt ADD CONSTRAINT FK_spc_opt_lst_TO_spc_opt_1 FOREIGN KEY (
 REFERENCES spc_opt_lst (
 	spc_option_no
 );
+
+
+
+--===================================
+--테스트 공간
+--===================================
+insert into member_grd values(0,0);
+insert into member_grd values(1,0);
+insert into member_grd values(2,0);
+insert into member_grd values(3,0);
+insert into member_grd values(4,0);
+insert into member_grd values(5,0);
+INSERT INTO membership VALUES('testid','testpwd','testname',DEFAULT,DEFAULT,DEFAULT,0,1,SYSDATE,'testemail','01000000000','seoul',DEFAULT,NULL,SYSDATE);
+INSERT INTO spc VALUES(1011,'testid',null, null, null, null, null);
+commit;
+
+
+select * from membership;
+select * from member_grd;
+select * from spc;
+select * from spc_res;
+select * from spc_res_grp;
 
 
