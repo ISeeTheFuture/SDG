@@ -1,9 +1,14 @@
 package space.model.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SpacesTimeTable {
+public class SpacesTimeTable implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int spcDetNo;
 	private String spcDay;
 	private Date spcHourStart;

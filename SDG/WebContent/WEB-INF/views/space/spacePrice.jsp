@@ -12,7 +12,7 @@
 	<form action="<%=request.getContextPath() %>/space/spacePriceEnd" method="post">
 	
 	<label for="spcPriNo">요금제_NO</label>
-	<input type="text" name="spcPriNo" id="spcPriNo" />
+	<input type="text" name="spcPriceNo" id="spcPriceNo" />
 	<br />
 	
 	<label for="spcDetNo">세부공간_NO</label>
@@ -20,35 +20,35 @@
 	<br />
 	
 	<label for="spcPriName">요금명</label>
-	<input type="text" name="spcPriName" id="spcPriName" value="요금제1"/>
+	<input type="text" name="spcPriceName" id="spcPriceName" value="요금제1"/>
 	<br />
 	
 	<label for="spcPriDay">요일</label>
-	<input type="text" name="spcPriDay" id="spcPriDay" />
+	<input type="text" name="spcPriceDay" id="spcPriceDay" />
 	<br />
 	
 	<label for="spcPriStart">적용시작시간</label>
-	<input type="text" name="spcPriStart" id="spcPriStart" />
+	<input type="text" name="spcPriceStart" id="spcPriceStart" />
 	<br />
 	
 	<label for="spcPriEnd">적용종료시간</label>
-	<input type="text" name="spcPriEnd" id="spcPriEnd" />
+	<input type="text" name="spcPriceEnd" id="spcPriceEnd" />
 	<br />
 	
 	<label for="spcPrPeak">성수기여부</label>
-	<input type="checkbox" name="spcPriPeak" id="spcPriPeak" />
+	<input type="checkbox" name="spcPricePeak" id="spcPricePeak" />
 	<br />
 	
 	<label for="spcPriperMan">1인당여부</label>
-	<input type="checkbox" name="spcPriperMan" id="spcPriPerMan" />
+	<input type="checkbox" name="spcPriceper" id="spcPricePer" />
 	<br />
 	
 	<label for="spcPriDayBool">요일별여부</label>
-	<input type="checkbox" name="spcPriDayBool" id="spcPriDayBool" />
+	<input type="checkbox" name="spcPriceDayBool" id="spcPriceDayBool" />
 	<br />
 	
 	<label for="spcPriPrice">가격</label>
-	<input type="checkbox" name="spcPriPrice" id="spcPriPrice" />
+	<input type="checkbox" name="spcPricePrice" id="spcPricePrice" />
 	<br />
 	
 	<button>제출</button>

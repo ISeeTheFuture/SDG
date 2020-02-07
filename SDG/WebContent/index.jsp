@@ -40,6 +40,10 @@
 		<form action="<%=request.getContextPath()%>/space/spacePrice" method="GET">
 			<button id="spaceReg">사업장 요금</button>
 		</form>
+		
+		<form action="<%=request.getContextPath()%>/space/spaceTimeTable" method="GET">
+			<button id="spaceReg">사업자 운영스케쥴</button>
+		</form>
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 =======

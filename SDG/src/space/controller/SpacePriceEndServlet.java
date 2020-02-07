@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.service.MemberService;
+import member.model.vo.Member;
+import space.model.vo.SpacesTimeTable;
+
 /**
  * Servlet implementation class SpacePriceEndServlet
  */
@@ -28,27 +32,28 @@ public class SpacePriceEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		String spcPriNo = request.getParameter("spcPriNo");
+		String spcPriceNo = request.getParameter("spcPriceNo");
 		String spcDetNo = request.getParameter("spcDetNo");
-		String spcPriName = request.getParameter("spcPriName");
-		String spcPriDay = request.getParameter("spcPriDay");
-		String spcPriStart = request.getParameter("spcPriStart");
-		String spcPriEnd = request.getParameter("spcPriEnd");
-		String spcPriPeak = request.getParameter("spcPriPeak");
-		String spcPriperMan = request.getParameter("spcPriperMan");
-		String spcPriDayBool = request.getParameter("spcPriDayBool");
-		String spcPriPrice = request.getParameter("spcPriPrice");
+		String spcPriceName = request.getParameter("spcPriceName");
+		String spcPriceDay = request.getParameter("spcPriceDay");
+		String spcPriceStart = request.getParameter("spcPriceStart");
+		String spcPriceEnd = request.getParameter("spcPriceEnd");
+		String spcPricePeak = request.getParameter("spcPricePeak");
+		String spcPricePer = request.getParameter("spcPricePer");
+		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
+		String spcPricePrice = request.getParameter("spcPricePrice");
 		
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriNo);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceNo);
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcDetNo);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriName);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriDay);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriStart);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriEnd);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriPeak);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriperMan);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriDayBool);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriPrice);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceName);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceDay);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceStart);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceEnd);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPricePeak);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPricePer);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceDayBool);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPricePrice);
+		
 		
 		
 
