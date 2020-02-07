@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="<%=request.getContextPath() %>/space/spacePrice" method="post">
+	<form action="<%=request.getContextPath() %>/space/spacePriceEnd" method="post">
 	
 	<label for="spcPriNo">요금제_NO</label>
 	<input type="text" name="spcPriNo" id="spcPriNo" />
@@ -39,8 +39,20 @@
 	<input type="checkbox" name="spcPriPeak" id="spcPriPeak" />
 	<br />
 	
+	<label for="spcPriperMan">1인당여부</label>
+	<input type="checkbox" name="spcPriperMan" id="spcPriPerMan" />
+	<br />
 	
+	<label for="spcPriDayBool">요일별여부</label>
+	<input type="checkbox" name="spcPriDayBool" id="spcPriDayBool" />
+	<br />
 	
+	<label for="spcPriPrice">가격</label>
+	<input type="checkbox" name="spcPriPrice" id="spcPriPrice" />
+	<br />
+	
+	<button>제출</button>
+
 		
 	</form>
 
