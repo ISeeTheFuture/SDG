@@ -38,6 +38,13 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		//회사명
 		String spcName = request.getParameter("spcName");
+		//회사주소
+		String compAddr = request.getParameter("compAddr");
+		//회사소개
+		String compContent = request.getParameter("compContent");
+		
+		
+		
 		//방의 지역
 		int regionNo = Integer.parseInt(request.getParameter("region"));
 		//방의 주소
@@ -72,7 +79,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		if(!"".equals(spcDateEnd))
 			spcDateEnd_ = Date.valueOf(spcDateEnd);
 		
-		SpacesDefault spDefault = new SpacesDefault("temp", spcName);
+		SpacesDefault spDefault = new SpacesDefault("temp", spcName, compAddr, compContent);
 		
 		int result = new SpaceService().insertComp(spDefault);
 	}

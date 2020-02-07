@@ -14,10 +14,19 @@
 	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST">
 		<input type="hidden" name="cat" value="<%=cat %>" />
 		
-		<label for="spcName">공간명 : </label>
+		<label for="spcName">회사명 : </label>
 		<br />	
 		<input type="text" name="spcName" id="spcName" />
 		<br />	
+		
+		<label for="compAddr">회사주소 :</label>
+		<input type="text" name="compAddr" id="compAddr" />
+		<br />
+		
+		<label for="compContent">회사 소개 :</label>
+		<textarea name="compContent" id="compContent" /></textarea>
+		<br />
+		
 		
 		<br />
 		<br />
@@ -132,45 +141,15 @@
 		<br />
 		
 		<label for="spcDetHoliday">공휴일 휴무 여부</label>
-<<<<<<< HEAD
-		<input type="checkbox" name="spcDetHoliday" id="spcDetHoliday" value=""/>
-=======
-		<input type="checkbox" name="spcDetHoliday" value="0"/>
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
-		
-<<<<<<< HEAD
-
-=======
+		<input type="checkbox" name="spcDetHoliday"value="1"/>
+		<input type="hidden" name="spcDetHoliday" value="0"/>
 		
 		<br />
 		<br />
 		
 		<button>등록</button>
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		
 	</form>
 	
-<script>
-$(document).ready(function(){
-    $("#spcDetHoliday").change(function(){
-        if($("#spcDetHoliday").is(":checked")){
-    		$("#spcDateHoliday").val("1");
-        }
-    });
-});
-</script>
 </body>
-<script>
-	
-$(document).ready(function(){
-    $("#spcDetHoliday").change(function(){
-        if($("#spcDetHoliday").is(":checked")){
-    		$("#spcDateHoliday").val(1);
-        }else{
-    		$("#spcDateHoliday").val(0);
-        }
-    });
-});
-
-</script>
 </html>

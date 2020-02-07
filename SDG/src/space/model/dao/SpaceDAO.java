@@ -39,6 +39,8 @@ public class SpaceDAO {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, spDefault.getMemberId());
 			pstmt.setString(2, spDefault.getSpcName());
+			pstmt.setString(3,  spDefault.getSpcAddr());
+			pstmt.setString(4,  spDefault.getSpcContent());
 
 			result = pstmt.executeUpdate();
 
