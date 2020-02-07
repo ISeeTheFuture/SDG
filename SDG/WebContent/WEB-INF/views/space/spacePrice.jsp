@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 <title>사업장 요금</title>
 </head>
 <body>
