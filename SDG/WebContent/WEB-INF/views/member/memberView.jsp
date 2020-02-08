@@ -63,6 +63,7 @@ function updatePassword(){
 				<input type="text"  name="memberName" id="memberName" value="<%=member.getMemName() %>"  required><br>
 				</td>
 			</tr>
+				
 			<tr>
 				<th>생년월일</th>
 				<td>	
@@ -96,6 +97,20 @@ function updatePassword(){
 						 <label for="gender1">여</label>
 				</td>
 			</tr>
+			
+			<tr>
+				<th>포인트</th>
+				<td>	
+				<input type="text"  name="memberPoint" id="memberPoint" value="<%=member.getMemPoint() %>"  required><br>
+				</td>
+			</tr>
+			<tr>
+				<th>그레이드네임</th>
+				<td>	
+				<input type="text"  name="memberGradeName" id="memberGradeName" value="<%=member.getMemGradeName() %>"  required><br>
+				</td>
+			</tr>
+			
 			<tr>
 				
 			</tr>

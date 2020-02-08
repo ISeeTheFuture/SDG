@@ -68,6 +68,8 @@ public class MemberDAO {
 				m.setMemDate(rset.getDate("mem_date"));
 				m.setMemRest(rset.getDate("mem_rest"));
 				m.setMemLastLogin(rset.getDate("mem_lastLogin"));
+				m.setMemGradeName(rset.getInt("mem_grade_name"));
+				m.setIgnoreOn(rset.getInt("mem_grade_name"));
 
 			}
 			
@@ -184,15 +186,15 @@ public class MemberDAO {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("updatePoint"); 
-
+System.out.println(query);
 		try {
 
 			pstmt = conn.prepareStatement(query);
 	
-	
-			pstmt.setInt(1, member.getMemGender());
-			
-			pstmt.setString(2, member.getMemId());
+				
+			pstmt.setInt(1, member.getMemGradeName());
+			pstmt.setInt(2, member.getMemPoint());
+			pstmt.setString(3, member.getMemId());
 
 			result = pstmt.executeUpdate();
 			
