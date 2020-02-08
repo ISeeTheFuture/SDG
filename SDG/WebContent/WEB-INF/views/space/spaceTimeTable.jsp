@@ -13,6 +13,7 @@
 
 	<label for="spcPriNo">세부공간_NO</label>
 	<input type="text" name="spcDetNo" id="spcDetNo" />
+<%-- 	<input type="text" name="spcDetNo" id="spcDetNo" value="<%=사업자.getscpDetNo() %>"/> --%>
 	<br />
 	
 	<label for="spcDetNo">요일</label>
@@ -20,18 +21,24 @@
 	<br />
 	
 	<label for="spcPriName">시작시간</label>
-	<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0"/>
+	<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0" />
 	<br />
 	
 	<label for="spcPriDay">종료시간</label>
-	<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"/>
+	<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"  />
 	<br />
 	
 	<label for="spcPriStart">가용여부</label>
-	<input type="text" name="spcAvail" id="spcAvail" placeholder="O or X"/>
+	<input type="text" name="spcAvail" id="spcAvail" placeholder="해당사항 없으면 공백"/>
+	
+	
 	<br />
 	
 	<button>전송</button>
 </form>
+
+
+
 </body>
+
 </html>
