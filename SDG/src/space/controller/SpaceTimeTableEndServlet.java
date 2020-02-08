@@ -39,8 +39,8 @@ public class SpaceTimeTableEndServlet extends HttpServlet {
 		
 		int spcDetNo = Integer.parseInt(request.getParameter("spcDetNo"));
 		String spcDay = request.getParameter("spcDay");
-		String spcHourStart = request.getParameter("spcHourStart");
-		String spcHourEnd = request.getParameter("spcHourEnd");
+		int spcHourStart = Integer.parseInt(request.getParameter("spcHourStart"));
+		int spcHourEnd = Integer.parseInt(request.getParameter("spcHourEnd"));
 		String spcAvail =request.getParameter("spcAvail");
 		
 
@@ -53,19 +53,12 @@ public class SpaceTimeTableEndServlet extends HttpServlet {
 		System.out.println("spc@scpTime  : " + spcHourEnd);
 		System.out.println("spc@scpTime  : " + spcAvail);
 		
-		Date spcHourStart_ = null;
-		if(!"".equals(spcHourStart)) 
-			spcHourStart_ = Date.valueOf(spcHourStart);
-		
-		Date spcHourEnd_ = null;
-		if(!"".equals(spcHourEnd)) 
-			spcHourEnd_ = Date.valueOf(spcHourEnd);
 		
 		char spcAvail_ = ' '; 
 		if(!"".equals(spcAvail))
 			spcAvail_ = 'O';
 		
-		SpacesTimeTable spacestimetable = new SpacesTimeTable(spcDetNo, spcDay, spcHourStart_, spcHourEnd_,spcAvail_);
+		SpacesTimeTable spacestimetable = new SpacesTimeTable(spcDetNo, spcDay, spcHourStart, spcHourEnd,spcAvail_);
 		
 		System.out.println("SpacesTimeTable="+spacestimetable);
 		
@@ -73,6 +66,21 @@ public class SpaceTimeTableEndServlet extends HttpServlet {
 		
 		int result = new SpaceService().insertSpaceTimeTable(spacestimetable);
 		System.out.println("result@servlet="+result);
+		
+		//view
+		String msg = "";
+		String loc = "/";
+		
+		if(result > 0)
+			msg = "정보등록 성공!";
+		else 
+			msg = "정보등록 실패!";
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
+			   .forward(request, response);
 	}
 
 	/**

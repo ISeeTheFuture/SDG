@@ -20,15 +20,15 @@
 	<br />
 	
 	<label for="spcPriName">시작시간</label>
-	<input type="text" name="spcHourStart" id="spcHourStart"/>
+	<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0"/>
 	<br />
 	
 	<label for="spcPriDay">종료시간</label>
-	<input type="text" name="spcHourEnd" id="spcHourEnd" />
+	<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"/>
 	<br />
 	
 	<label for="spcPriStart">가용여부</label>
-	<input type="text" name="spcAvail" id="spcAvail" />
+	<input type="text" name="spcAvail" id="spcAvail" placeholder="O or X"/>
 	<br />
 	
 	<button>전송</button>
