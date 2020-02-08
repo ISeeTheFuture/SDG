@@ -87,37 +87,37 @@ function calDateWhenResize(event) {
 
 var calendar = $('#calendar').fullCalendar({
 
-  eventRender: function (event, element, view) {
-
+//  eventRender: function (event, element, view) {
+//
     //일정에 hover시 요약
-    element.popover({
-      title: $('<div />', {
-        class: 'popoverTitleCalendar',
-        text: event.title
-      }).css({
-        'background': event.backgroundColor,
-        'color': event.textColor
-      }),
-      content: $('<div />', {
-          class: 'popoverInfoCalendar'
-        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
-        .append('<p><strong>구분:</strong> ' + event.type + '</p>')
-        .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
-        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
-      delay: {
-        show: "800",
-        hide: "50"
-      },
-      trigger: 'hover',
-      placement: 'top',
-      html: true,
-      container: 'body'
-    });
-
+//    element.popover({
+//      title: $('<div />', {
+//        class: 'popoverTitleCalendar',
+//        text: event.title
+//      }).css({
+//        'background': event.backgroundColor,
+//        'color': event.textColor
+//      }),
+//      content: $('<div />', {
+//          class: 'popoverInfoCalendar'
+//        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
+//        .append('<p><strong>구분:</strong> ' + event.type + '</p>')
+//        .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
+//        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
+//      delay: {
+//        show: "800",
+//        hide: "50"
+//      },
+//      trigger: 'hover',
+//      placement: 'top',
+//      html: true,
+//      container: 'body'
+//    });
+//
 //    return filtering(event); // 필터링 필요하면 활성화
-    return true
-
-  },
+//    return true
+//
+//  },
 
   //주말 숨기기 & 보이기 버튼
 //  customButtons: {
@@ -135,7 +135,8 @@ var calendar = $('#calendar').fullCalendar({
   header: {
     left: 'today, prevYear, nextYear, viewWeekends',
     center: 'prev, title, next',
-    right: 'month,agendaWeek,agendaDay,listWeek'
+//    right: 'month,agendaWeek,agendaDay,listWeek'
+   	right: 'agendaWeek,agendaDay,listWeek'
   },
   views: {
     month: {
@@ -161,7 +162,9 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "../data.json",
+      url: "/SDG/res/resViewEnd.do",
+      dataType: "json",
+//      url: "../data.json",
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
       },
@@ -321,6 +324,7 @@ var calendar = $('#calendar').fullCalendar({
   eventLimitClick: 'week', //popover
   navLinks: true,
 //  defaultDate: moment('2020-02'), // 초기 월 고정(테스트용)
+  defaultView: 'agendaWeek',
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
   editable: false, // 드래그&드랍 편집 기능 on&off
