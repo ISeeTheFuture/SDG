@@ -31,7 +31,14 @@ public class SpacesDefault {
 		this.spcAvail = spcAvail;
 	}
 	
-	
+	//spaceRegForm 에서 사용하는 생성자
+	public SpacesDefault(String memberId, String spcName, String spcAddr, String spcContent) {
+		super();
+		this.memberId = memberId;
+		this.spcName = spcName;
+		this.spcAddr = spcAddr;
+		this.spcContent = spcContent;
+	}
 	public SpacesDefault(String memberId, String spcName) {
 		super();
 		this.memberId = memberId;

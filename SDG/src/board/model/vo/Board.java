@@ -9,64 +9,52 @@ public class Board implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int reviewNo;//글번호
+	private int boardNo;//글번호
 	private int fieldNo;//공간no
 	private String memberId;//아이디
-	private int reviewOriNo;//원본글번호
-	private int reviewStar;//평점
-	private String reviewType;//유형
-	private String reviewTitle;//제목
-	private String reviewContent;//내용
-	private String reviewFile;//파일명
-	private String reviewUpfile;//파일명 변경
-	private Date reviewDate;//작성시간
-	private int reviewReadcnt;//조회수
-	private int reviewRecommend;//추천수
-	private String reviewDelete;//삭제여부
+	private int boardOriNo;//원본글번호
+	private int boardStar;//평점
+	private String boardType;//유형
+	private String boardTitle;//제목
+	private String boardContent;//내용
+	private String boardFile;//파일명
+	private String boardUpfile;//파일명 변경
+	private Date boardDate;//작성시간
+	private int boardReadcnt;//조회수
+	private int boardRecommend;//추천수
+	private int boardReport;//신고수
+	private Boolean boardDelete;//삭제여부
+	
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-//	public Board(String memberId, int reviewStar, String reviewTitle, String reviewContent) {
-//		super();
-//		this.memberId = memberId;
-//		this.reviewStar = reviewStar;
-//		this.reviewTitle = reviewTitle;
-//		this.reviewContent = reviewContent;
-//	}
-
-
-	public Board(int reviewNo, int fieldNo, String memberId, int reviewOriNo, int reviewStar, String reviewType,
-			String reviewTitle, String reviewContent, String reviewFile, String reviewUpfile, Date reviewDate,
-			int reviewReadcnt, int reviewRecommend, String reviewDelete) {
+	public Board(int boardNo, int fieldNo, String memberId, int boardOriNo, int boardStar, String boardType,
+			String boardTitle, String boardContent, String boardFile, String boardUpfile, Date boardDate,
+			int boardReadcnt, int boardRecommend, int boardReport, Boolean boardDelete) {
 		super();
-		this.reviewNo = reviewNo;
+		this.boardNo = boardNo;
 		this.fieldNo = fieldNo;
 		this.memberId = memberId;
-		this.reviewOriNo = reviewOriNo;
-		this.reviewStar = reviewStar;
-		this.reviewType = reviewType;
-		this.reviewTitle = reviewTitle;
-		this.reviewContent = reviewContent;
-		this.reviewFile = reviewFile;
-		this.reviewUpfile = reviewUpfile;
-		this.reviewDate = reviewDate;
-		this.reviewReadcnt = reviewReadcnt;
-		this.reviewRecommend = reviewRecommend;
-		this.reviewDelete = reviewDelete;
+		this.boardOriNo = boardOriNo;
+		this.boardStar = boardStar;
+		this.boardType = boardType;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardFile = boardFile;
+		this.boardUpfile = boardUpfile;
+		this.boardDate = boardDate;
+		this.boardReadcnt = boardReadcnt;
+		this.boardRecommend = boardRecommend;
+		this.boardReport = boardReport;
+		this.boardDelete = boardDelete;
 	}
-	public Board(String memberId2, int reviewStar2, String reviewTitle2, String reviewContent2) {
-		
+	public int getBoardNo() {
+		return boardNo;
 	}
-
-
-	public int getReviewNo() {
-		return reviewNo;
-	}
-	public void setReviewNo(int reviewNo) {
-		this.reviewNo = reviewNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 	public int getFieldNo() {
 		return fieldNo;
@@ -80,83 +68,86 @@ public class Board implements Serializable{
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public int getReviewOriNo() {
-		return reviewOriNo;
+	public int getBoardOriNo() {
+		return boardOriNo;
 	}
-	public void setReviewOriNo(int reviewOriNo) {
-		this.reviewOriNo = reviewOriNo;
+	public void setBoardOriNo(int boardOriNo) {
+		this.boardOriNo = boardOriNo;
 	}
-	public int getReviewStar() {
-		return reviewStar;
+	public int getBoardStar() {
+		return boardStar;
 	}
-	public void setReviewStar(int reviewStar) {
-		this.reviewStar = reviewStar;
+	public void setBoardStar(int boardStar) {
+		this.boardStar = boardStar;
 	}
-	public String getReviewType() {
-		return reviewType;
+	public String getBoardType() {
+		return boardType;
 	}
-	public void setReviewType(String reviewType) {
-		this.reviewType = reviewType;
+	public void setBoardType(String boardType) {
+		this.boardType = boardType;
 	}
-	public String getReviewTitle() {
-		return reviewTitle;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setReviewTitle(String reviewTitle) {
-		this.reviewTitle = reviewTitle;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
-	public String getReviewContent() {
-		return reviewContent;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setReviewContent(String reviewContent) {
-		this.reviewContent = reviewContent;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
-	public String getReviewFile() {
-		return reviewFile;
+	public String getBoardFile() {
+		return boardFile;
 	}
-	public void setReviewFile(String reviewFile) {
-		this.reviewFile = reviewFile;
+	public void setBoardFile(String boardFile) {
+		this.boardFile = boardFile;
 	}
-	public String getReviewUpfile() {
-		return reviewUpfile;
+	public String getBoardUpfile() {
+		return boardUpfile;
 	}
-	public void setReviewUpfile(String reviewUpfile) {
-		this.reviewUpfile = reviewUpfile;
+	public void setBoardUpfile(String boardUpfile) {
+		this.boardUpfile = boardUpfile;
 	}
-	public Date getReviewDate() {
-		return reviewDate;
+	public Date getBoardDate() {
+		return boardDate;
 	}
-	public void setReviewDate(Date reviewDate) {
-		this.reviewDate = reviewDate;
+	public void setBoardDate(Date boardDate) {
+		this.boardDate = boardDate;
 	}
-	public int getReviewReadcnt() {
-		return reviewReadcnt;
+	public int getBoardReadcnt() {
+		return boardReadcnt;
 	}
-	public void setReviewReadcnt(int reviewReadcnt) {
-		this.reviewReadcnt = reviewReadcnt;
+	public void setBoardReadcnt(int boardReadcnt) {
+		this.boardReadcnt = boardReadcnt;
 	}
-	public int getReviewRecommend() {
-		return reviewRecommend;
+	public int getBoardRecommend() {
+		return boardRecommend;
 	}
-	public void setReviewRecommend(int reviewRecommend) {
-		this.reviewRecommend = reviewRecommend;
+	public void setBoardRecommend(int boardRecommend) {
+		this.boardRecommend = boardRecommend;
 	}
-	public String getReviewDelete() {
-		return reviewDelete;
+	public int getBoardReport() {
+		return boardReport;
 	}
-	public void setReviewDelete(String reviewDelete) {
-		this.reviewDelete = reviewDelete;
+	public void setBoardReport(int boardReport) {
+		this.boardReport = boardReport;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Boolean getBoardDelete() {
+		return boardDelete;
 	}
-	@Override
-	public String toString() {
-		return "Board [reviewNo=" + reviewNo + ", fieldNo=" + fieldNo + ", memberId=" + memberId + ", reviewOriNo="
-				+ reviewOriNo + ", reviewStar=" + reviewStar + ", reviewType=" + reviewType + ", reviewTitle="
-				+ reviewTitle + ", reviewContent=" + reviewContent + ", reviewFile=" + reviewFile + ", reviewUpfile="
-				+ reviewUpfile + ", reviewDate=" + reviewDate + ", reviewReadcnt=" + reviewReadcnt
-				+ ", reviewRecommend=" + reviewRecommend + ", reviewDelete=" + reviewDelete + "]";
+	public void setBoardDelete(Boolean boardDelete) {
+		this.boardDelete = boardDelete;
 	}
 	
+	@Override
+	public String toString() {
+		return "Board [boardNo=" + boardNo + ", fieldNo=" + fieldNo + ", memberId=" + memberId + ", boardOriNo="
+				+ boardOriNo + ", boardStar=" + boardStar + ", boardType=" + boardType + ", boardTitle=" + boardTitle
+				+ ", boardContent=" + boardContent + ", boardFile=" + boardFile + ", boardUpfile=" + boardUpfile
+				+ ", boardDate=" + boardDate + ", boardReadcnt=" + boardReadcnt + ", boardRecommend=" + boardRecommend
+				+ ", boardReport=" + boardReport + ", boardDelete=" + boardDelete + "]";
+	}
 	
 }

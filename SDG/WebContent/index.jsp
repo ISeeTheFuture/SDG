@@ -55,6 +55,18 @@
 	
 	지줂형.......너무......멋있네요..ㅅ..ㅂ...
 	
+<<<<<<< HEAD
+<<<<<<< HEAD
+				<ul class="main-nav">
+					
+					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
+					
+				</ul>
+			
+=======
+	20200207김원재TEST
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+=======
 	
 	
 			
@@ -121,6 +133,7 @@
 					
 				</ul>
 			
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	<ul>
 		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
 		<li><a href="<%=request.getContextPath()%>/res/resView2">예약2</a></li>
@@ -130,6 +143,16 @@
 		<form action="<%=request.getContextPath()%>/space/spacePrice" method="GET">
 			<button id="spaceReg">사업장 요금</button>
 		</form>
+<<<<<<< HEAD
+		
+		<form action="<%=request.getContextPath()%>/space/spaceTimeTable" method="GET">
+			<button id="spaceReg">사업자 운영스케쥴</button>
+		</form>
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+=======
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+=======
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 =======
@@ -143,5 +166,6 @@
 				
 			
 
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 </body>
 </html>

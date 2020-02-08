@@ -1,5 +1,12 @@
 /board/
 /common/
-/member/
-/space/
+/driver.properties
 /res/
+/space/
+<<<<<<< HEAD
+/res/
+=======
+/sql/
+/member/
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+/review/

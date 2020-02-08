@@ -46,13 +46,8 @@ public class BoardListServlet extends HttpServlet {
 //		List<Board> list = boardService.selectBoardList();
 		List<Board> list = boardService.selectBoardList(cPage, numPerPage);
 		System.out.println("list@servlet="+list);
-		Board fieldNo = new Board();
-		final int totalBoardCount = new BoardService().selectBoardCount(fieldNo);
-		final int AvgStar = new BoardService().selectStarAvg(fieldNo);
-		
+		final int totalBoardCount = new BoardService().selectBoardCount();
 		final int totalPage = (int)Math.ceil((double)totalBoardCount/numPerPage);
-		
-		
 		
 		String pageBar = "";	
 		final int pageBarSize = 5;
@@ -90,8 +85,6 @@ public class BoardListServlet extends HttpServlet {
 		//3.뷰모델 처리
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("totalBoardCount", totalBoardCount);
-		request.setAttribute("AvgStar", AvgStar);
 		request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp")
 			   .forward(request, response);
 	

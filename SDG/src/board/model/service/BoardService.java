@@ -14,11 +14,7 @@ import board.model.vo.Board;
 import board.model.vo.BoardComment;
 
 
-/**
- * sdad
- * 
- *
- */
+
 public class BoardService {
 	private BoardDAO boardDAO = new BoardDAO();
 
@@ -29,10 +25,27 @@ public class BoardService {
 		return list;
 	}
 
-	
-	public int selectBoardCount(Board fieldNo) {
+	public int insertBoard(Board b) {
 		Connection conn = getConnection();
-		int totalBoardCount = new BoardDAO().selectBoardCount(conn, fieldNo);
+		int result = new BoardDAO().insertBoard(conn, b);
+		
+		//새로 작성한 boardNo 가져오기
+		//select seq_boardno.currval from dual;
+		int boardNo = new BoardDAO().selectLastSeq(conn);
+		b.setBoardNo(boardNo);
+		
+		//트랜잭션처리
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		//자원반납
+		close(conn);
+		return result;
+	}
+	
+	public int selectBoardCount() {
+		Connection conn = getConnection();
+		int totalBoardCount = new BoardDAO().selectBoardCount(conn);
 		close(conn);
 		return totalBoardCount;
 	}
@@ -56,7 +69,7 @@ public class BoardService {
 	public Board selectOne(int boardNo, boolean hasRead) {
 		Connection conn = getConnection();
 		int result = 0;
-		//議고쉶�닔 利앷�
+		//조회수 증가
 		if(hasRead == false) {
 			result = new BoardDAO().increaseReadCount(conn, boardNo);
 		}
@@ -128,32 +141,6 @@ public class BoardService {
 		else rollback(conn);
 		close(conn);
 		
-		return result;
-	}
-
-	
-	public int selectStarAvg(Board fieldNo) {
-		Connection conn = getConnection();
-		int totalBoardCount = new BoardDAO().selectStarAvg(conn, fieldNo);
-		close(conn);
-		return totalBoardCount;
-	}
-
-	public int insertReview(Board b) {
-		Connection conn = getConnection();
-		int result = new BoardDAO().insertReview(conn, b);
-		
-		//�깉濡� �옉�꽦�븳 boardNo 媛��졇�삤湲�
-		//select seq_boardno.currval from dual;
-//		int reviewNo = new BoardDAO().selectLastSeq(conn);
-//		b.setReviewNo(reviewNo);
-		
-		//�듃�옖�옲�뀡泥섎━
-		if(result > 0) commit(conn);
-		else rollback(conn);
-		
-		//�옄�썝諛섎궔
-		close(conn);
 		return result;
 	}
 

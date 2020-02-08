@@ -9,53 +9,48 @@ public class BoardReport implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private int reviewReportNo;
-	private int reviewNo;
-	private String reviewReportReason;
-	private Date reviewReportDate;
+	private int boardReportNo;
+	private int boardNo;
+	private String boardReportReason;
+	private Date boardReportDate;
 	public BoardReport() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BoardReport(int reviewReportNo, int reviewNo, String reviewReportReason, Date reviewReportDate) {
+	public BoardReport(int boardReportNo, int boardNo, String boardReportReason, Date boardReportDate) {
 		super();
-		this.reviewReportNo = reviewReportNo;
-		this.reviewNo = reviewNo;
-		this.reviewReportReason = reviewReportReason;
-		this.reviewReportDate = reviewReportDate;
+		this.boardReportNo = boardReportNo;
+		this.boardNo = boardNo;
+		this.boardReportReason = boardReportReason;
+		this.boardReportDate = boardReportDate;
 	}
-	public int getReviewReportNo() {
-		return reviewReportNo;
+	public int getBoardReportNo() {
+		return boardReportNo;
 	}
-	public void setReviewReportNo(int reviewReportNo) {
-		this.reviewReportNo = reviewReportNo;
+	public void setBoardReportNo(int boardReportNo) {
+		this.boardReportNo = boardReportNo;
 	}
-	public int getReviewNo() {
-		return reviewNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
-	public void setReviewNo(int reviewNo) {
-		this.reviewNo = reviewNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
-	public String getReviewReportReason() {
-		return reviewReportReason;
+	public String getBoardReportReason() {
+		return boardReportReason;
 	}
-	public void setReviewReportReason(String reviewReportReason) {
-		this.reviewReportReason = reviewReportReason;
+	public void setBoardReportReason(String boardReportReason) {
+		this.boardReportReason = boardReportReason;
 	}
-	public Date getReviewReportDate() {
-		return reviewReportDate;
+	public Date getBoardReportDate() {
+		return boardReportDate;
 	}
-	public void setReviewReportDate(Date reviewReportDate) {
-		this.reviewReportDate = reviewReportDate;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setBoardReportDate(Date boardReportDate) {
+		this.boardReportDate = boardReportDate;
 	}
 	@Override
 	public String toString() {
-		return "BoardReport [reviewReportNo=" + reviewReportNo + ", reviewNo=" + reviewNo + ", reviewReportReason="
-				+ reviewReportReason + ", reviewReportDate=" + reviewReportDate + "]";
+		return "BoardReport [boardReportNo=" + boardReportNo + ", boardNo=" + boardNo + ", boardReportReason="
+				+ boardReportReason + ", boardReportDate=" + boardReportDate + "]";
 	}
-	
 }

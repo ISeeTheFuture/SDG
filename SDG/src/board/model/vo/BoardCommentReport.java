@@ -9,7 +9,6 @@ public class BoardCommentReport implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	private int commentReportNo;
 	private int commentNo;
 	private String commentReportReason;
