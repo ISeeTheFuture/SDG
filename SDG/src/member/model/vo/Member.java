@@ -26,6 +26,25 @@ public class Member implements Serializable, HttpSessionBindingListener{
 	private Date memBirth;
 	private Date memDate;
 	private Date memRest;
+	private int IgnoreOn;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int getIgnoreOn() {
+		return IgnoreOn;
+	}
+	public void setIgnoreOn(int ignoreOn) {
+		IgnoreOn = ignoreOn;
+	}
 	public Member(String memId, String memPass, String memName,  int memPoint,
 			int memGradeName, int memGender, Date memBirth,
 			String memEmail, String memPhone, String memAddr) {
@@ -211,7 +230,24 @@ public class Member implements Serializable, HttpSessionBindingListener{
 		this.memPhone = memPhone;
 		this.memAddr = memAddr;
 	}
-
+	public Member(String memId) {
+		super();
+		this.memId = memId;
+	}
+	public Member(String memId, int memGradeName) {
+		super();
+		this.memId = memId;
+		this.memGradeName = memGradeName;
+	}
+	public Member(String memId, int memPoint, int memGradeName) {
+		super();
+		this.memId = memId;
+		this.memPoint = memPoint;
+		this.memGradeName = memGradeName;
+	}
+	
+	
+	
 	
 	
 	

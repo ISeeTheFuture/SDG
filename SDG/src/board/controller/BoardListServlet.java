@@ -46,8 +46,6 @@ public class BoardListServlet extends HttpServlet {
 //		List<Board> list = boardService.selectBoardList();
 		List<Board> list = boardService.selectBoardList(cPage, numPerPage);
 		System.out.println("list@servlet="+list);
-<<<<<<< HEAD
-		
 		final int totalBoardCount = new BoardService().selectBoardCount();
 		final int totalPage = (int)Math.ceil((double)totalBoardCount/numPerPage);
 		
@@ -87,54 +85,6 @@ public class BoardListServlet extends HttpServlet {
 		//3.뷰모델 처리
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);
-=======
-		Board fieldNo = new Board();
-		final int totalBoardCount = new BoardService().selectBoardCount(fieldNo);
-		final int AvgStar = new BoardService().selectStarAvg(fieldNo);
-		
-		final int totalPage = (int)Math.ceil((double)totalBoardCount/numPerPage);
-		
-		
-		
-		String pageBar = "";	
-		final int pageBarSize = 5;
-		int pageStart = ((cPage - 1)/pageBarSize) * pageBarSize +1;
-		int pageEnd = pageStart+pageBarSize-1;
-		int pageNo = pageStart;
-		
-		//[이전] section
-		if(pageNo == 1 ){
-			pageBar += "<span>[이전]</span>"; 
-		}
-		else {
-			pageBar += "<a href='"+request.getContextPath()+"/board/boardList?cPage="+(pageNo-1)+"'>[이전]</a> ";
-		}
-			
-		// pageNo section
-		while(!(pageNo>pageEnd || pageNo > totalPage)){
-			
-			if(cPage == pageNo ){
-				pageBar += "<span class='cPage'>"+pageNo+"</span> ";
-			} 
-			else {
-				pageBar += "<a href='"+request.getContextPath()+"/board/boardList?cPage="+pageNo+"'>"+pageNo+"</a> ";
-			}
-			pageNo++;
-		}
-		
-		//[다음] section
-		if(pageNo > totalPage){
-			pageBar += "<span>[다음]</span>";
-		} else {
-			pageBar += "<a href='"+request.getContextPath()+"/board/boardList?cPage="+pageNo+"'>[다음]</a>";
-		}
-
-		//3.뷰모델 처리
-		request.setAttribute("list", list);
-		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("totalBoardCount", totalBoardCount);
-		request.setAttribute("AvgStar", AvgStar);
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp")
 			   .forward(request, response);
 	

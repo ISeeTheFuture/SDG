@@ -9,10 +9,6 @@ public class BoardCommentReport implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	private int commentReportNo;
 	private int commentNo;
 	private String commentReportReason;

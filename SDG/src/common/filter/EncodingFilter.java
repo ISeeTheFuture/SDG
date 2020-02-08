@@ -36,7 +36,7 @@ public class EncodingFilter implements Filter{
 		
 		//공통 인코딩 처리
 		request.setCharacterEncoding(encodingType);
-		System.out.println("request : "+encodingType+"으로 인코딩처리함.");
+//		System.out.println("request : "+encodingType+"으로 인코딩처리함.");
 
 		//필터체인에 연결된 다음 Filter의 doFilter를 호출
 		//다음 필터가 없다면, Servlet을 호출함.

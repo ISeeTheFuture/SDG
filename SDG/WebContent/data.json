@@ -6,6 +6,7 @@
     "end": "2020-02-07T15:00",
     "type": "카테고리1",
     "username": "다현",
+    "resMany" : 1,
     "backgroundColor": "#D25565",
     "textColor": "#ffffff",
     "allDay": false
@@ -17,6 +18,7 @@
     "end": "2020-02-01T15:30",
     "type": "카테고리1",
     "username": "나연",
+    "resMany" : 2,
     "backgroundColor": "#9775fa",
     "textColor": "#ffffff",
     "allDay": false
@@ -28,6 +30,7 @@
     "end": "2020-02-12",
     "type": "카테고리2",
     "username": "다현",
+    "resMany" : 3,
     "backgroundColor": "#ffa94d",
     "textColor": "#ffffff",
     "allDay": true
@@ -39,6 +42,7 @@
     "end": "2020-02-06",
     "type": "카테고리2",
     "username": "지효",
+    "resMany" : 4,
     "backgroundColor": "#74c0fc",
     "textColor": "#ffffff",
     "allDay": true
@@ -50,6 +54,7 @@
     "end": "2020-02-08",
     "type": "카테고리3",
     "username": "지효",
+    "resMany" : 5,
     "backgroundColor": "#f06595",
     "textColor": "#ffffff",
     "allDay": true
@@ -61,6 +66,7 @@
     "end": "2020-02-14",
     "type": "카테고리2",
     "username": "사나",
+    "resMany" : 6,
     "backgroundColor": "#63e6be",
     "textColor": "#ffffff",
     "allDay": true
@@ -72,6 +78,7 @@
     "end": "2020-02-20",
     "type": "카테고리4",
     "username": "사나",
+    "resMany" : 7,
     "backgroundColor": "#a9e34b",
     "textColor": "#ffffff",
     "allDay": true
@@ -83,6 +90,7 @@
     "end": "2020-02-24T10:00",
     "type": "카테고리3",
     "username": "정연",
+    "resMany" : 8,
     "backgroundColor": "#4d638c",
     "textColor": "#ffffff",
     "allDay": false
@@ -94,6 +102,7 @@
     "end": "2020-02-31",
     "type": "카테고리3",
     "username": "정연",
+    "resMany" : 9,
     "backgroundColor": "#495057",
     "textColor": "#ffffff",
     "allDay": true
@@ -105,6 +114,7 @@
     "end": "2020-02-22",
     "type": "카테고리2",
     "username": "다현",
+    "resMany" : 10,
     "backgroundColor": "#9775fa",
     "textColor": "#ffffff",
     "allDay": true

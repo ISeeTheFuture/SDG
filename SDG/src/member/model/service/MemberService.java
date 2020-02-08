@@ -6,7 +6,6 @@ import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 import static common.JDBCTemplate.*;
 
-
 public class MemberService {
 
 	public static final String USER_MEMBER_ROLE = "U";
@@ -22,47 +21,60 @@ public class MemberService {
 	public int insertMember(Member member) {
 		Connection conn = getConnection();
 		int result = new MemberDAO().insertMember(conn, member);
-		
-		if(result > 0) commit(conn);
-		else rollback(conn);
-		
+
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+
 		close(conn);
-		
+
 		return result;
 	}
-	
+
 	public int updateMember(Member member) {
 		Connection conn = getConnection();
 		int result = new MemberDAO().updateMember(conn, member);
-		if(result>0)
+		if (result > 0)
 			commit(conn);
-		else 
-			rollback(conn);
-		close(conn);
-		return result;
-	}
-	
-	public int updatePassword(Member member) {
-		Connection conn = getConnection();
-		int result = new MemberDAO().updatePassword(conn, member);
-		if(result>0)
-			commit(conn);
-		else 
+		else
 			rollback(conn);
 		close(conn);
 		return result;
 	}
 
-	
-	
-	public int updatePoint(Member member) {
+	public int updatePassword(Member member) {
 		Connection conn = getConnection();
-		int result = new MemberDAO().updatePoint(conn, member);
-		if(result>0)
+		int result = new MemberDAO().updatePassword(conn, member);
+		if (result > 0)
 			commit(conn);
-		else 
+		else
 			rollback(conn);
 		close(conn);
+		return result;
+	}
+
+	//수정용
+//	public int updatePoint(Member member) {
+//		Connection conn = getConnection();
+//		int result = new MemberDAO().updatePoint(conn, member);
+//		if (result > 0)
+//			commit(conn);
+//		else
+//			rollback(conn);
+//		close(conn);
+//		return result;
+//	}
+
+	public int updateMemberPoint(Member member) {
+		Connection conn = getConnection();
+		int result = new MemberDAO().updatePoint(conn, member);
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+
 		return result;
 	}
 }

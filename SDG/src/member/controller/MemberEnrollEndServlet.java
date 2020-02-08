@@ -51,15 +51,15 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		String memAddr = request.getParameter("address");
 		System.out.println(memBirth);
 		
-		//태어난날 Date 변환
-		
-		memBirth="20010101";
-		Date birthDay_ = null;
+		//태어난날 Date 변환		
+//		memBirth="20010101";
+		Date birthDay_= null;
+//		=  new java.sql.Date(new java.util.Date().getTime());
 		if(!"".equals(memBirth)) 
-			birthDay_ = Date.valueOf(memBirth);
-		
-		
-		
+			birthDay_ 
+//			= Date.valueOf(memBirth);
+			= java.sql.Date.valueOf(memBirth);
+
 		//gender int로 변환. 남캐는0 여캐는 1
 		int gender = 0;
 		if("M".equals(memGender)) {

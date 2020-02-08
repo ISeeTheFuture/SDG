@@ -305,7 +305,7 @@ var calendar = $('#calendar').fullCalendar({
   locale: 'ko',
   timezone: "local",
   nextDayThreshold: "09:00:00",
-  allDaySlot: true,
+  allDaySlot: true, // 올데이 활성화 하려면 true
   displayEventTime: true,
   displayEventEnd: true,
   firstDay: 0, //월요일이 먼저 오게 하려면 1
@@ -323,7 +323,7 @@ var calendar = $('#calendar').fullCalendar({
 //  defaultDate: moment('2020-02'), // 초기 월 고정(테스트용)
   timeFormat: 'HH:mm',
   defaultTimedEventDuration: '01:00:00',
-  editable: false, // 드래그&드랍 편집 기능
+  editable: false, // 드래그&드랍 편집 기능 on&off
   minTime: '00:00:00',
   maxTime: '24:00:00',
   slotLabelFormat: 'HH:mm',
