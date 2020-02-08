@@ -6,6 +6,7 @@ var editTitle = $('#edit-title');
 var editStart = $('#edit-start');
 var editEnd = $('#edit-end');
 var editType = $('#edit-type');
+var editResMany = $('#edit-resMany');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
 
@@ -46,6 +47,7 @@ var newEvent = function (start, end, eventType) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
+            resMany: editResMany.val(),
             username: 'testid',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
