@@ -141,12 +141,15 @@
 <<<<<<< HEAD
 	
 		<form action="<%=request.getContextPath()%>/space/spacePrice" method="GET">
-			<button id="spaceReg">사업장 요금</button>
+			<button id="spacePriceReg">사업장 요금</button>
 		</form>
 <<<<<<< HEAD
 		
 		<form action="<%=request.getContextPath()%>/space/spaceTimeTable" method="GET">
 			<button id="spaceReg">사업자 운영스케쥴</button>
+		</form>
+		<form action="<%=request.getContextPath()%>/space/spaceTimeExp" method="GET">
+			<button id="spaceExp">사업자 예외스케쥴</button>
 		</form>
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 >>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git

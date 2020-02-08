@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -14,11 +13,8 @@ import java.util.Properties;
 
 import space.model.vo.SpacesTimeTable;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Properties;
-
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesTimeExp;
 
 public class SpaceDAO {
 	private Properties prop = new Properties();
@@ -74,6 +70,31 @@ public class SpaceDAO {
 			pstmt.setInt(3, spacestimetable.getSpcHourStart());
 			pstmt.setInt(4, spacestimetable.getSpcHourEnd());
 			pstmt.setString(5,String.valueOf(spacestimetable.getSpcAvail()));
+
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertSapceTimeExp(Connection conn, SpacesTimeExp spacetimeexp) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertSapceTimeExp");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, spacetimeexp.getSpcDetNo());
+			pstmt.setDate(2, spacetimeexp.getSpcExcDate());
+			pstmt.setInt(3, spacetimeexp.getSpcExcStart());
+			pstmt.setInt(4, spacetimeexp.getSpcExcEnd());
+			pstmt.setString(5,String.valueOf(spacetimeexp.getSpcAvail()));
 
 			
 			result = pstmt.executeUpdate();

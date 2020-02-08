@@ -1,19 +1,19 @@
 package space.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class SpacesTimeExp {
 
 	private int spcDetNo;
 	private Date spcExcDate;
-	private Date spcExcStart;
-	private Date spcExcEnd;
+	private int spcExcStart;
+	private int spcExcEnd;
 	private char spcAvail;
 	public SpacesTimeExp() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SpacesTimeExp(int spcDetNo, Date spcExcDate, Date spcExcStart, Date spcExcEnd, char spcAvail) {
+	public SpacesTimeExp(int spcDetNo, Date spcExcDate, int spcExcStart, int spcExcEnd, char spcAvail) {
 		super();
 		this.spcDetNo = spcDetNo;
 		this.spcExcDate = spcExcDate;
@@ -33,16 +33,16 @@ public class SpacesTimeExp {
 	public void setSpcExcDate(Date spcExcDate) {
 		this.spcExcDate = spcExcDate;
 	}
-	public Date getSpcExcStart() {
+	public int getSpcExcStart() {
 		return spcExcStart;
 	}
-	public void setSpcExcStart(Date spcExcStart) {
+	public void setSpcExcStart(int spcExcStart) {
 		this.spcExcStart = spcExcStart;
 	}
-	public Date getSpcExcEnd() {
+	public int getSpcExcEnd() {
 		return spcExcEnd;
 	}
-	public void setSpcExcEnd(Date spcExcEnd) {
+	public void setSpcExcEnd(int spcExcEnd) {
 		this.spcExcEnd = spcExcEnd;
 	}
 	public char getSpcAvail() {

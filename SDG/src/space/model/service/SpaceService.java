@@ -16,6 +16,7 @@ import java.sql.Connection;
 
 import space.model.dao.SpaceDAO;
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesTimeExp;
 
 import static common.JDBCTemplate.*;
 public class SpaceService {
@@ -44,5 +45,18 @@ public class SpaceService {
 		
 		return result;
 
+	}
+	
+
+	public int insertSapceTimeExp(SpacesTimeExp spacetimeexp) {
+		Connection conn = getConnection();
+		int result = new SpaceDAO().insertSapceTimeExp(conn, spacetimeexp);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 }
