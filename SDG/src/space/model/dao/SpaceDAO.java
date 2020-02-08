@@ -14,6 +14,7 @@ import java.util.Properties;
 import space.model.vo.SpacesTimeTable;
 
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
 
 public class SpaceDAO {
@@ -96,6 +97,35 @@ public class SpaceDAO {
 			pstmt.setInt(4, spacetimeexp.getSpcExcEnd());
 			pstmt.setString(5,String.valueOf(spacetimeexp.getSpcAvail()));
 
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertPrice(Connection conn, SpacesPrice spaceprice) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertPrice");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, spaceprice.getSpcPriceNo());
+			pstmt.setInt(2, spaceprice.getSpcDetNo());
+			pstmt.setString(3, spaceprice.getSpcDetName());
+			pstmt.setString(4, spaceprice.getSpcPriceDay());
+			pstmt.setInt(5, spaceprice.getSpcPriceStart());
+			pstmt.setInt(6, spaceprice.getSpcPriceEnd());
+			pstmt.setString(7,String.valueOf(spaceprice.getSpcPricePeak()));
+			pstmt.setString(8,String.valueOf(spaceprice.getSpcPricePer()));
+			pstmt.setString(9,String.valueOf(spaceprice.getSpcPriceDayBool()));
+			pstmt.setInt(10, spaceprice.getSpcPricePrice());
 			
 			result = pstmt.executeUpdate();
 			

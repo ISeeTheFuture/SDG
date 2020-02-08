@@ -16,6 +16,7 @@ import java.sql.Connection;
 
 import space.model.dao.SpaceDAO;
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
 
 import static common.JDBCTemplate.*;
@@ -51,6 +52,18 @@ public class SpaceService {
 	public int insertSapceTimeExp(SpacesTimeExp spacetimeexp) {
 		Connection conn = getConnection();
 		int result = new SpaceDAO().insertSapceTimeExp(conn, spacetimeexp);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int insertPrice(SpacesPrice spaceprice) {
+		Connection conn = getConnection();
+		int result = new SpaceDAO().insertPrice(conn, spaceprice);
 		
 		if(result > 0) commit(conn);
 		else rollback(conn);

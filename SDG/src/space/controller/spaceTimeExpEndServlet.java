@@ -48,7 +48,9 @@ public class spaceTimeExpEndServlet extends HttpServlet {
 		System.out.println("spc@scpExpTime  : " + spcAvail);
 		
 		char spcAvail_ = ' '; 
-		if(!"".equals(spcAvail))
+		if("".equals(spcAvail))
+			spcAvail_ = 'X';
+		else
 			spcAvail_ = 'O';
 		
 		//spcExcDate="20010101";

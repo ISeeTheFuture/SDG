@@ -1,15 +1,14 @@
 package space.model.vo;
 
-import java.util.Date;
 
 public class SpacesPrice {
 
 	private int spcPriceNo;
 	private int spcDetNo;
 	private String spcDetName;
-	private Date spcPriceDay;
-	private Date spcPriceStart;
-	private Date spcPriceEnd;
+	private String spcPriceDay;
+	private int spcPriceStart;
+	private int spcPriceEnd;
 	private char spcPricePeak;
 	private char spcPricePer;
 	private char spcPriceDayBool;
@@ -18,8 +17,8 @@ public class SpacesPrice {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SpacesPrice(int spcPriceNo, int spcDetNo, String spcDetName, Date spcPriceDay, Date spcPriceStart,
-			Date spcPriceEnd, char spcPricePeak, char spcPricePer, char spcPriceDayBool, int spcPricePrice) {
+	public SpacesPrice(int spcPriceNo, int spcDetNo, String spcDetName, String spcPriceDay, int spcPriceStart,
+			int spcPriceEnd, char spcPricePeak, char spcPricePer, char spcPriceDayBool, int spcPricePrice) {
 		super();
 		this.spcPriceNo = spcPriceNo;
 		this.spcDetNo = spcDetNo;
@@ -50,22 +49,22 @@ public class SpacesPrice {
 	public void setSpcDetName(String spcDetName) {
 		this.spcDetName = spcDetName;
 	}
-	public Date getSpcPriceDay() {
+	public String getSpcPriceDay() {
 		return spcPriceDay;
 	}
-	public void setSpcPriceDay(Date spcPriceDay) {
+	public void setSpcPriceDay(String spcPriceDay) {
 		this.spcPriceDay = spcPriceDay;
 	}
-	public Date getSpcPriceStart() {
+	public int getSpcPriceStart() {
 		return spcPriceStart;
 	}
-	public void setSpcPriceStart(Date spcPriceStart) {
+	public void setSpcPriceStart(int spcPriceStart) {
 		this.spcPriceStart = spcPriceStart;
 	}
-	public Date getSpcPriceEnd() {
+	public int getSpcPriceEnd() {
 		return spcPriceEnd;
 	}
-	public void setSpcPriceEnd(Date spcPriceEnd) {
+	public void setSpcPriceEnd(int spcPriceEnd) {
 		this.spcPriceEnd = spcPriceEnd;
 	}
 	public char getSpcPricePeak() {

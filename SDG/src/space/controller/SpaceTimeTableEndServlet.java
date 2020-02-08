@@ -56,6 +56,8 @@ public class SpaceTimeTableEndServlet extends HttpServlet {
 		
 		char spcAvail_ = ' '; 
 		if(!"".equals(spcAvail))
+			spcAvail_ = 'X';
+		else
 			spcAvail_ = 'O';
 		
 		SpacesTimeTable spacestimetable = new SpacesTimeTable(spcDetNo, spcDay, spcHourStart, spcHourEnd,spcAvail_);

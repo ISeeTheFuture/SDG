@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import space.model.service.SpaceService;
+import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeTable;
 
 /**
@@ -32,20 +34,20 @@ public class SpacePriceEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		String spcPriceNo = request.getParameter("spcPriceNo");
-		String spcDetNo = request.getParameter("spcDetNo");
-		String spcPriceName = request.getParameter("spcPriceName");
+		int spcPriceNo = Integer.parseInt(request.getParameter("spcPriceNo"));
+		int spcDetNo = Integer.parseInt(request.getParameter("spcDetNo"));
+		String spcDetName = request.getParameter("spcDetName");
 		String spcPriceDay = request.getParameter("spcPriceDay");
-		String spcPriceStart = request.getParameter("spcPriceStart");
-		String spcPriceEnd = request.getParameter("spcPriceEnd");
+		int spcPriceStart = Integer.parseInt(request.getParameter("spcPriceStart"));
+		int spcPriceEnd = Integer.parseInt(request.getParameter("spcPriceEnd"));
 		String spcPricePeak = request.getParameter("spcPricePeak");
 		String spcPricePer = request.getParameter("spcPricePer");
 		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
-		String spcPricePrice = request.getParameter("spcPricePrice");
+		int spcPricePrice = Integer.parseInt(request.getParameter("spcPricePrice"));
 		
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceNo);
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcDetNo);
-		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceName);
+		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcDetName);
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceDay);
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceStart);
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceEnd);
@@ -54,8 +56,41 @@ public class SpacePriceEndServlet extends HttpServlet {
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPriceDayBool);
 		System.out.println("spcPriNoy@scpPriceformEndservlet  : " + spcPricePrice);
 		
+		char spcPricePeak_= ' ';
+		if("".equals(spcPricePeak))
+			spcPricePeak_ ='X';
+		else
+			spcPricePeak_ ='O';
 		
+		char spcPricePer_= ' ';
+		if("".equals(spcPricePer))
+			spcPricePer_ ='X';
+		else
+			spcPricePer_ ='O';
 		
+		char spcPriceDayBool_= ' ';
+		if("".equals(spcPriceDayBool))
+			spcPriceDayBool_ ='X';
+		else
+			spcPriceDayBool_ ='O';
+		
+		SpacesPrice spaceprice = new SpacesPrice(spcPriceNo, spcDetNo, spcDetName, spcPriceDayBool, spcPriceStart, spcPriceEnd, spcPricePeak_, spcPricePer_, spcPriceDayBool_, spcPricePrice);
+		int result = new SpaceService().insertPrice(spaceprice);
+		
+		//view
+		String msg = "";
+		String loc = "/";
+		
+		if(result > 0)
+			msg = "정보등록 성공!";
+		else 
+			msg = "정보등록 실패!";
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
+			   .forward(request, response);
 
 	}
 

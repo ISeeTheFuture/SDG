@@ -28,7 +28,7 @@
 	<br />
 	
 	<label for="spcAvail">가용여부</label>
-	<input type="text" name="spcAvail" id="spcAvail" placeholder="O or X"/>
+	<input type="text" name="spcAvail" id="spcAvail" placeholder="해당사항 없으면 공백"/>
 	<br />
 	
 	<button>전송</button>
