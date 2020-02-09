@@ -125,6 +125,11 @@
 		<form action="<%=request.getContextPath()%>/space/spaceTimeExp" method="GET">
 			<button id="spaceExp">사업자 예외스케쥴</button>
 		</form>
+		<form action="<%=request.getContextPath()%>/space/UpdateSpacePrice" method="GET">
+			<button id="spaceExp">사업자 요금 수정</button>
+		</form>
+		
+		
 
 
 					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>

@@ -5,6 +5,8 @@ import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
+import member.model.dao.MemberDAO;
+import member.model.vo.Member;
 import space.model.dao.SpaceDAO;
 import space.model.vo.SpacesTimeTable;
 
@@ -91,5 +93,25 @@ public class SpaceService {
 		Spaces spcObj= new SpaceDAO().selectOneSpace(conn, spcNo);
 		close(conn);
 		return spcObj;
+	}
+
+	public int updatePrice(SpacesPrice spaceprice) {
+		Connection conn = getConnection();
+		int result = new SpaceDAO().updatePrice(conn, spaceprice);
+
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public SpacesPrice selectOnePrice(int spcDetNo) {
+		Connection conn = getConnection();
+		SpacesPrice spacesprice = new SpaceDAO().selectOnePrice(conn, spcDetNo);
+		close(conn);
+		return spacesprice;
 	}
 }
