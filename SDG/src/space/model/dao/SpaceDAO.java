@@ -1,6 +1,6 @@
 package space.model.dao;
 
-import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import member.model.vo.Member;
 import space.model.vo.SpacesTimeTable;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
@@ -71,7 +70,6 @@ public class SpaceDAO {
 			pstmt.setString(2, spacestimetable.getSpcDay());
 			pstmt.setInt(3, spacestimetable.getSpcHourStart());
 			pstmt.setInt(4, spacestimetable.getSpcHourEnd());
-			pstmt.setString(5,String.valueOf(spacestimetable.getSpcAvail()));
 
 			
 			result = pstmt.executeUpdate();
@@ -98,7 +96,6 @@ public class SpaceDAO {
 			pstmt.setInt(4, spacetimeexp.getSpcExcEnd());
 			pstmt.setString(5,String.valueOf(spacetimeexp.getSpcAvail()));
 
-			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -204,6 +201,52 @@ public class SpaceDAO {
 		}
 
 		return result;
+	}
+
+	public Spaces selectOneSpace(Connection conn, int spcNo) {
+		Spaces spcObj = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectOneSpace");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setInt(1, spcNo);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				spcObj = new Spaces();
+				spcObj.setSpcDetNo(rset.getInt("spc_detail_no"));
+				spcObj.setSpcNo(rset.getInt("spc_no"));
+				spcObj.setSpcTypeNo(rset.getInt("spc_type_no"));
+				spcObj.setSpcLocNo(rset.getInt("spc_location_no"));
+				spcObj.setSpcDetContent(rset.getString("spc_detail_content"));
+				spcObj.setSpcDetSharing(rset.getString("spc_detail_sharing").charAt(0));
+				spcObj.setSpcDetHoliday(rset.getString("spc_detail_holiday").charAt(0));
+				spcObj.setSpcDetSize(rset.getInt("spc_detail_size"));
+				spcObj.setSpcDetCapacity(rset.getInt("spc_detail_storable"));
+				spcObj.setSpcCapMin(rset.getInt("spc_man_min"));
+				spcObj.setSpcCapMax(rset.getInt("spc_man_max"));
+				spcObj.setSpcTimeMin(rset.getInt("spc_time_min"));
+				spcObj.setSpcTimeMax(rset.getInt("spc_time_max"));
+				spcObj.setSpcDateStart(rset.getDate("spc_date_start"));
+				spcObj.setSpcDateEnd(rset.getDate("spc_date_end"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return spcObj;
 	}
 
 }

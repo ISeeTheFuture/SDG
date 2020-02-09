@@ -1,28 +1,18 @@
 package space.model.service;
 
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.rollback;
+import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
-import member.model.dao.MemberDAO;
-import member.model.vo.Member;
 import space.model.dao.SpaceDAO;
 import space.model.vo.SpacesTimeTable;
 
-
-import java.sql.Connection;
-
-import space.model.dao.SpaceDAO;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
 
-import static common.JDBCTemplate.*;
 public class SpaceService {
 
 	public int insertComp(SpacesDefault spDefault) {
@@ -94,5 +84,12 @@ public class SpaceService {
 		close(conn);
 		
 		return result;
+	}
+
+	public Spaces selectOneSpace(int spcNo) {
+		Connection conn = getConnection();
+		Spaces spcObj= new SpaceDAO().selectOneSpace(conn, spcNo);
+		close(conn);
+		return spcObj;
 	}
 }

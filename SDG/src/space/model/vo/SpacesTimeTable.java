@@ -25,6 +25,14 @@ public class SpacesTimeTable implements Serializable{
 		this.spcHourEnd = spcHourEnd;
 		this.spcAvail = spcAvail;
 	}
+	//AVAIL 제외
+	public SpacesTimeTable(int spcDetNo, String spcDay, int spcHourStart, int spcHourEnd) {
+		super();
+		this.spcDetNo = spcDetNo;
+		this.spcDay = spcDay;
+		this.spcHourStart = spcHourStart;
+		this.spcHourEnd = spcHourEnd;
+	}
 	public int getSpcDetNo() {
 		return spcDetNo;
 	}

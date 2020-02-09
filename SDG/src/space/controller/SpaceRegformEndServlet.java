@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import space.model.service.SpaceService;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesTimeTable;
 
 /**
  * Servlet implementation class SpaceRegformEndServlet
@@ -62,8 +63,8 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		String spcDateStart = request.getParameter("spcDateStart");
 		String spcDateEnd = request.getParameter("spcDateEnd");
 		String [] spcDays = request.getParameterValues("spcDay");
-		String spcHourStart = request.getParameter("spcHourStart");
-		String spcHourEnd = request.getParameter("spcHourEnd");
+		int spcHourStart = Integer.parseInt(request.getParameter("spcHourStart"));
+		int spcHourEnd = Integer.parseInt(request.getParameter("spcHourEnd"));
 		String spcDetSharing = request.getParameter("spcDetSharing");
 		String spcDetHoliday = request.getParameter("spcDetHoliday");
 		int cat = Integer.parseInt(request.getParameter("cat"));
@@ -82,9 +83,16 @@ public class SpaceRegformEndServlet extends HttpServlet {
 			spcDateEnd_ = Date.valueOf(spcDateEnd);
 		
 		SpacesDefault spDefault = new SpacesDefault("temp", spcName, compAddr, compContent);
+		int result = new SpaceService().insertComp(spDefault);
+
 		SpacesDefault comp = new SpaceService().selectOneComp("temp");
 		Spaces space = new Spaces(comp.getSpcNo(), cat, regionNo, spcContent, spcDetSharing.charAt(0), spcDetHoliday.charAt(0), spcDetSize, spcDetStorable, spcManMin, spcManMax, spcTimeMin, spcTimeMax, spcDateStart_, spcDateEnd_);
-		int result = new SpaceService().insertComp(spDefault);
+		result += new SpaceService().insertSpace(space);
+		
+		//회사No 로 공간객체 가져오기
+		Spaces spcObj = new SpaceService().selectOneSpace(comp.getSpcNo());
+		SpacesTimeTable spacetimetable = new SpacesTimeTable(spcObj.getSpcDetNo(), spcDay, spcHourStart, spcHourEnd);
+		result += new SpaceService().insertSpaceTimeTable(spacetimetable);
 	}
 
 	/**
