@@ -7,12 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
+import member.model.vo.Member;
 import space.model.vo.SpacesTimeTable;
-
+import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
@@ -135,6 +136,73 @@ public class SpaceDAO {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+	public SpacesDefault selectOneComp(Connection conn, String memberId) {
+		SpacesDefault comp = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectOneComp");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setString(1, memberId);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				comp = new SpacesDefault();
+				comp.setSpcNo(rset.getInt("spc_no"));
+				comp.setMemberId(rset.getString("memberid"));
+				comp.setSpcName(rset.getString("spc_name"));
+				comp.setSpcAddr(rset.getString("spc_addr"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return comp;
+	}
+
+	public int insertSpace(Connection conn, Spaces space) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertSpace");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, space.getSpcNo());
+			pstmt.setInt(2, space.getSpcTypeNo());
+			pstmt.setInt(3, space.getSpcLocNo());
+			pstmt.setString(4,  space.getSpcDetContent());
+			pstmt.setString(5,  Character.toString(space.getSpcDetSharing()));
+			pstmt.setString(6,  Character.toString(space.getSpcDetHoliday()));
+			pstmt.setInt(7,  space.getSpcDetSize());
+			pstmt.setInt(8,  space.getSpcDetCapacity());
+			pstmt.setInt(9,  space.getSpcCapMin());
+			pstmt.setInt(10,  space.getSpcCapMax());
+			pstmt.setInt(11,  space.getSpcTimeMin());
+			pstmt.setInt(12,  space.getSpcTimeMax());
+			pstmt.setDate(13,  space.getSpcDateStart());
+			pstmt.setDate(14,  space.getSpcDateEnd());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
 		return result;
 	}
 

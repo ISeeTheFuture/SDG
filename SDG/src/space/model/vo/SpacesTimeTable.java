@@ -1,7 +1,6 @@
 package space.model.vo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class SpacesTimeTable implements Serializable{
 
