@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class SpaceReg
  */
 @WebServlet("/space/spaceTypeReg")
-public class SpaceTypeRegSevlet extends HttpServlet {
+public class SpaceTypeRegServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceTypeRegSevlet() {
+    public SpaceTypeRegServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
