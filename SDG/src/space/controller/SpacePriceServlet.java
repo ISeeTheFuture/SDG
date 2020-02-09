@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SpaceReg
+ * Servlet implementation class SpacePriceSetvlet
  */
-@WebServlet("/space/spaceTypeReg")
-public class SpaceTypeRegSevlet extends HttpServlet {
+@WebServlet("/space/spacePrice")
+public class SpacePriceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceTypeRegSevlet() {
+    public SpacePriceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,12 @@ public class SpaceTypeRegSevlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//view단 포워딩
-				request.getRequestDispatcher("/WEB-INF/views/space/spaceTypeReg.jsp")
-					   .forward(request, response);
+		//1. 인코딩 처리
+		request.setCharacterEncoding("utf-8");
+		
+		//4. 뷰단처리
+		request.getRequestDispatcher("/WEB-INF/views/space/spacePrice.jsp")
+			   .forward(request, response);
 	}
 
 	/**

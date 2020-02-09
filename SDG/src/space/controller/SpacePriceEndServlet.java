@@ -74,7 +74,7 @@ public class SpacePriceEndServlet extends HttpServlet {
 		else
 			spcPriceDayBool_ ='O';
 		
-		SpacesPrice spaceprice = new SpacesPrice(spcPriceNo, spcDetNo, spcDetName, spcPriceDayBool, spcPriceStart, spcPriceEnd, spcPricePeak_, spcPricePer_, spcPriceDayBool_, spcPricePrice);
+		SpacesPrice spaceprice = new SpacesPrice(spcPriceNo, spcDetNo, spcDetName, spcPriceDay, spcPriceStart, spcPriceEnd, spcPricePeak_, spcPricePer_, spcPriceDayBool_, spcPricePrice);
 		int result = new SpaceService().insertPrice(spaceprice);
 		
 		//view

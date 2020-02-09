@@ -1,7 +1,6 @@
 package space.model.vo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class SpacesTimeTable implements Serializable{
 
@@ -25,6 +24,14 @@ public class SpacesTimeTable implements Serializable{
 		this.spcHourStart = spcHourStart;
 		this.spcHourEnd = spcHourEnd;
 		this.spcAvail = spcAvail;
+	}
+	//AVAIL 제외
+	public SpacesTimeTable(int spcDetNo, String spcDay, int spcHourStart, int spcHourEnd) {
+		super();
+		this.spcDetNo = spcDetNo;
+		this.spcDay = spcDay;
+		this.spcHourStart = spcHourStart;
+		this.spcHourEnd = spcHourEnd;
 	}
 	public int getSpcDetNo() {
 		return spcDetNo;

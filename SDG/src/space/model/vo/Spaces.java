@@ -1,7 +1,7 @@
 
 package space.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Spaces {
 
@@ -16,7 +16,7 @@ public class Spaces {
 	private int spcDetSize;
 	private int spcDetCapacity;
 	private int spcCapMin;
-	private int spcCpaMax;
+	private int spcCapMax;
 	private int spcTimeMin;
 	private int spcTimeMax;
 	private Date spcDateStart;
@@ -26,7 +26,7 @@ public class Spaces {
 		// TODO Auto-generated constructor stub
 	}
 	public Spaces(int spcDetNo, int spcNo, int spcTypeNo, int spcLocNo, char spcDetAvail, String spcDetContent,
-			char spcDetSharing, char spcDetHoliday, int spcDetSize, int spcDetCapacity, int spcCapMin, int spcCpaMax,
+			char spcDetSharing, char spcDetHoliday, int spcDetSize, int spcDetCapacity, int spcCapMin, int spcCapMax,
 			int spcTimeMin, int spcTimeMax, Date spcDateStart, Date spcDateEnd) {
 		super();
 		this.spcDetNo = spcDetNo;
@@ -40,7 +40,27 @@ public class Spaces {
 		this.spcDetSize = spcDetSize;
 		this.spcDetCapacity = spcDetCapacity;
 		this.spcCapMin = spcCapMin;
-		this.spcCpaMax = spcCpaMax;
+		this.spcCapMax = spcCapMax;
+		this.spcTimeMin = spcTimeMin;
+		this.spcTimeMax = spcTimeMax;
+		this.spcDateStart = spcDateStart;
+		this.spcDateEnd = spcDateEnd;
+	}
+	//space 등록에 사용하는 파라미터 생성자
+	public Spaces(int spcNo, int spcTypeNo, int spcLocNo, String spcDetContent, char spcDetSharing, char spcDetHoliday,
+			int spcDetSize, int spcDetCapacity, int spcCapMin, int spcCapMax, int spcTimeMin, int spcTimeMax,
+			Date spcDateStart, Date spcDateEnd) {
+		super();
+		this.spcNo = spcNo;
+		this.spcTypeNo = spcTypeNo;
+		this.spcLocNo = spcLocNo;
+		this.spcDetContent = spcDetContent;
+		this.spcDetSharing = spcDetSharing;
+		this.spcDetHoliday = spcDetHoliday;
+		this.spcDetSize = spcDetSize;
+		this.spcDetCapacity = spcDetCapacity;
+		this.spcCapMin = spcCapMin;
+		this.spcCapMax = spcCapMax;
 		this.spcTimeMin = spcTimeMin;
 		this.spcTimeMax = spcTimeMax;
 		this.spcDateStart = spcDateStart;
@@ -112,11 +132,11 @@ public class Spaces {
 	public void setSpcCapMin(int spcCapMin) {
 		this.spcCapMin = spcCapMin;
 	}
-	public int getSpcCpaMax() {
-		return spcCpaMax;
+	public int getSpcCapMax() {
+		return spcCapMax;
 	}
-	public void setSpcCpaMax(int spcCpaMax) {
-		this.spcCpaMax = spcCpaMax;
+	public void setSpcCapMax(int spcCapMax) {
+		this.spcCapMax = spcCapMax;
 	}
 	public Date getSpcDateStart() {
 		return spcDateStart;
