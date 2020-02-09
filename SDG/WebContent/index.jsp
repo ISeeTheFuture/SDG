@@ -44,15 +44,6 @@
 			<button id="spaceReg">공간 등록</button>
 		</form>
 	</nav>
-	고상욱 만
-
-
-	김선일 만
-	ㅎㅇ
-	내가 왔다 JIJUN
-	
-	계속 왔다
-	
 			
 		<div class="login-container">
 			<%  if(memberLoggedIn != null){ %>
@@ -135,12 +126,10 @@
 		<form action="<%=request.getContextPath()%>/space/UpdateSpacePrice" method="GET">
 			<button id="spaceExp">사업자 요금 수정</button>
 		</form>
-		
-		
 
-
-					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
-					<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resView2">예약</a></li>
 				
 			
 
