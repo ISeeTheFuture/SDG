@@ -61,9 +61,9 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-title">일정명</label>
+                                <label class="col-xs-4" for="edit-title">예약자ID</label>
                                 <input class="inputModal" type="text" name="edit-title" id="edit-title"
-                                    required="required" />
+                                    readonly value="testid" />
                             </div>
                         </div>
                         <div class="row">
@@ -95,7 +95,7 @@
                                 <input class="inputModal" type="number" name="edit-resMany" id="edit-resMany" min="1" max="5">
                             </div>
                         </div>
-                        <div class="row">
+<!--                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-color">색상</label>
                                 <select class="inputModal" name="color" id="edit-color">
@@ -110,10 +110,10 @@
                                     <option value="#495057" style="color:#495057;">검정색</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-desc">설명</label>
+                                <label class="col-xs-4" for="edit-desc">요청사항</label>
                                 <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
                                     id="edit-desc"></textarea>
                             </div>

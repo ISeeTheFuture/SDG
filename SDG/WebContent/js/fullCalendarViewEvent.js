@@ -1,5 +1,5 @@
 /* ****************
- *  일정 편집
+ *  일정 보기
  * ************** */
 var viewEvent = function (event, element, view) {
 

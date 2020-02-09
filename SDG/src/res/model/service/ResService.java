@@ -7,6 +7,7 @@ import java.util.List;
 import res.model.dao.ResDAO;
 import res.model.vo.Res;
 import res.model.vo.ResGrp;
+import res.model.vo.ResView;
 
 public class ResService {
 
@@ -32,6 +33,15 @@ public class ResService {
 		else rollback(conn);
 		
 		close(conn);
+		return result;
+	}
+
+
+	public List<ResView> selectResView(int spcNo) {
+		Connection conn = getConnection();
+		List<ResView> result = new ResDAO().selectResView(conn, spcNo);
+		
+		
 		return result;
 	}
 
