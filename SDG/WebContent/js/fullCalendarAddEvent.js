@@ -9,6 +9,8 @@ var editType = $('#edit-type');
 var editResMany = $('#edit-resMany');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
+var editResManyLabel = $('#edit-resMany-label');
+var editDescLabel = $('#edit-desc-label');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
@@ -32,11 +34,19 @@ var newEvent = function (start, end, eventType) {
     viewBtnContainer.hide();
     eventModal.modal('show');
 
+    //  메뉴 보여주기
+    editResMany.show();
+    editResManyLabel.show();
+    editDesc.show();
+    editDescLabel.show();
+    
+    
+    
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
     var eventId = 1 + Math.floor(Math.random() * 1000);
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
-    //새로운 일정 저장버튼 클릭
+    //새로운 일정 예약버튼 클릭
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
 
@@ -81,18 +91,67 @@ var newEvent = function (start, end, eventType) {
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
 
-        //새로운 일정 저장
-        $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //.....
-            },
-            success: function (response) {
-                //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
-            }
-        });
+        //새로운 예약 저장 페이지로 이동
+        
+        //create element (form)
+        var form = document.createElement('form');
+        //set attribute (form)
+        form.name = 'newForm';
+        form.method = 'post';
+        form.action = '/SDG/res/resView';
+//        form.target = '_blank'; // 이건 새창
+        
+        //create element (input)
+        var input1 = document.createElement('input');
+        var input2 = document.createElement('input');
+        var input3 = document.createElement('input');
+        var input4 = document.createElement('input');
+        var input5 = document.createElement('input');
+        
+        //set attribute (input)
+        input1.setAttribute("type", "text");
+        input1.setAttribute("name", "memberId");
+        input1.setAttribute("value", eventData.title);
+        input2.setAttribute("type", "text");
+        input2.setAttribute("name", "resMany");
+        input2.setAttribute("value", eventData.resMany);        
+        input3.setAttribute("type", "text");
+        input3.setAttribute("name", "startTime");
+        input3.setAttribute("value", eventData.start);
+        input4.setAttribute("type", "text");
+        input4.setAttribute("name", "endTime");
+        input4.setAttribute("value", eventData.end);
+        input5.setAttribute("type", "text");
+        input5.setAttribute("name", "resContent");
+        input5.setAttribute("value", eventData.description);
+        
+        
+        
+        //append input (to form)
+        form.appendChild(input1);
+        form.appendChild(input2);
+        form.appendChild(input3);
+        form.appendChild(input4);
+        form.appendChild(input5);
+        
+        //append form (to body)
+        document.body.appendChild(form);
+
+        // submit form
+        form.submit();
+        
+        
+//        $.ajax({
+//            type: "get",
+//            url: "",
+//            data: {
+//                //.....
+//            },
+//            success: function (response) {
+//                //DB연동시 중복이벤트 방지를 위한
+//                //$('#calendar').fullCalendar('removeEvents');
+//                //$('#calendar').fullCalendar('refetchEvents');
+//            }
+//        });
     });
 };

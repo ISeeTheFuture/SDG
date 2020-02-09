@@ -44,10 +44,10 @@
 			<button id="spaceReg">공간 등록</button>
 		</form>
 	</nav>
-	고상욱 천
+	고상욱 만
 
 
-	김선일 천
+	김선일 만
 	ㅎㅇ
 	내가 왔다 JIJUN
 	
@@ -121,7 +121,6 @@
 			
 
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
 		<li><a href="<%=request.getContextPath()%>/res/resView2">예약2</a></li>
 	</ul>
 	
