@@ -44,16 +44,6 @@
 			<button id="spaceReg">공간 등록</button>
 		</form>
 	</nav>
-	고상욱 천
-
-
-	김선일 천
-	ㅎㅇ
-	내가 왔다 JIJUN
-	
-	계속 왔다
-	
-	지줂형.......너무......멋있네요..ㅅ..ㅂ...
 	
 			
 		<div class="login-container">

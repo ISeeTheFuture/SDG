@@ -26,7 +26,7 @@ public class Spaces {
 		// TODO Auto-generated constructor stub
 	}
 	public Spaces(int spcDetNo, int spcNo, int spcTypeNo, int spcLocNo, char spcDetAvail, String spcDetContent,
-			char spcDetSharing, char spcDetHoliday, int spcDetSize, int spcDetCapacity, int spcCapMin, int spcCpaMax,
+			char spcDetSharing, char spcDetHoliday, int spcDetSize, int spcDetCapacity, int spcCapMin, int spcCapMax,
 			int spcTimeMin, int spcTimeMax, Date spcDateStart, Date spcDateEnd) {
 		super();
 		this.spcDetNo = spcDetNo;
@@ -40,7 +40,7 @@ public class Spaces {
 		this.spcDetSize = spcDetSize;
 		this.spcDetCapacity = spcDetCapacity;
 		this.spcCapMin = spcCapMin;
-		this.spcCapMax = spcCpaMax;
+		this.spcCapMax = spcCapMax;
 		this.spcTimeMin = spcTimeMin;
 		this.spcTimeMax = spcTimeMax;
 		this.spcDateStart = spcDateStart;
