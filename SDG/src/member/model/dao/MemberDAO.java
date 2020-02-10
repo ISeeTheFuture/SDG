@@ -13,6 +13,9 @@ import java.util.Properties;
 
 import member.model.vo.Member;
 
+import member.model.vo.MemberBusi;
+import review.model.vo.ReviewRpt;
+
 public class MemberDAO {
 	
 	private Properties prop = new Properties();
@@ -206,12 +209,62 @@ System.out.println(query);
 		
 		return result;
 	}
-	
 
 	
+
+	public int insertMemberBusi(Connection conn, MemberBusi memberBusi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertMemberBusi");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberBusi.getMemId());
+			pstmt.setInt(2, memberBusi.getMemBusiNo());
+			pstmt.setString(3, memberBusi.getMemBusiAddr());
+			pstmt.setString(4, memberBusi.getMemBusiPhone());
+			pstmt.setString(5, memberBusi.getMemBusiAllow());
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertReviewRpt(Connection conn, ReviewRpt reviewRpt) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertReviewRpt");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reviewRpt.getReviewReportNo());
+			pstmt.setInt(2, reviewRpt.getReviewNo());
+			pstmt.setString(3, reviewRpt.getReviewReportReason());
+			pstmt.setDate(4, reviewRpt.getReviewReportDate());
+			pstmt.setInt(5, reviewRpt.getReviewNo());
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
 	
 
-	
 
 	public int banMember(Connection conn, String ignoId, String ignReason) {
 		int result = 0;
@@ -333,8 +386,5 @@ System.out.println("memROleId@DAO"+memRoleId);
 	
 	
 	
-	
-	
-	
-	
 }
+

@@ -1,4 +1,3 @@
-
 package space.model.vo;
 
 import java.sql.Date;
@@ -23,7 +22,6 @@ public class Spaces {
 	private Date spcDateEnd;
 	public Spaces() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Spaces(int spcDetNo, int spcNo, int spcTypeNo, int spcLocNo, char spcDetAvail, String spcDetContent,
 			char spcDetSharing, char spcDetHoliday, int spcDetSize, int spcDetCapacity, int spcCapMin, int spcCapMax,
@@ -162,14 +160,5 @@ public class Spaces {
 	public void setSpcTimeMax(int spcTimeMax) {
 		this.spcTimeMax = spcTimeMax;
 	}
-	
-	
-
-
-	
-	
-
-
-	
 }
 

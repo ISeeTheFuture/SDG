@@ -2,7 +2,18 @@
 /common/
 /driver.properties
 /member/
+<<<<<<< HEAD
 /res/
 /review/
 /space/
 /sql/
+=======
+<<<<<<< HEAD
+/sql/
+/review/
+=======
+/common/
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+/res/
+/space/
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG

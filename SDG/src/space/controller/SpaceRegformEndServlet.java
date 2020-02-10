@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import space.model.service.SpaceService;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesImg;
+import space.model.vo.SpacesPrice;
+import space.model.vo.SpacesTimeExp;
 import space.model.vo.SpacesTimeTable;
+import space.model.vo.SpacesImg;
 
 /**
  * Servlet implementation class SpaceRegformEndServlet
@@ -69,6 +73,30 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		String spcDetHoliday = request.getParameter("spcDetHoliday");
 		int cat = Integer.parseInt(request.getParameter("cat"));
 		
+		//spaceExp
+		
+//		int spcDetNo = Integer.parseInt(request.getParameter("spcDetNo"));
+		String spcExcDate = request.getParameter("spcExcDate");
+		int spcExcStart = Integer.parseInt(request.getParameter("spcExcStart"));
+		int spcExcEnd = Integer.parseInt(request.getParameter("spcExcEnd"));
+		
+		//spacePrice
+		
+		String spcDetName = request.getParameter("spcDetName");
+		String [] spcPriceDays = request.getParameterValues("spcPriceDay");
+		int spcPriceStart = Integer.parseInt(request.getParameter("spcPriceStart"));
+		int spcPriceEnd = Integer.parseInt(request.getParameter("spcPriceEnd"));
+		String spcPricePeak = request.getParameter("spcPricePeak");
+		String spcPricePer = request.getParameter("spcPricePer");
+		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
+		int spcPricePrice = Integer.parseInt(request.getParameter("spcPricePrice"));
+		
+		
+		//spaceImg
+		String spcImgTitle = request.getParameter("spcImgTitle");
+		String spcImgText = request.getParameter("spcImgText");
+		String spcImgRoute = request.getParameter("spcImgRoute");
+		
 		String spcDay = "";
 		
 		if(spcDays != null)
@@ -93,6 +121,28 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		Spaces spcObj = new SpaceService().selectOneSpace(comp.getSpcNo());
 		SpacesTimeTable spacetimetable = new SpacesTimeTable(spcObj.getSpcDetNo(), spcDay, spcHourStart, spcHourEnd);
 		result += new SpaceService().insertSpaceTimeTable(spacetimetable);
+		
+		//spcExp : scpDetNo가져오기 
+		
+		Date spcExcDate_ = null;
+		if(!"".equals(spcExcDate)) 
+			spcExcDate_ = Date.valueOf(spcExcDate);
+		
+		SpacesTimeExp spacetimeexp = new SpacesTimeExp(spcObj.getSpcDetNo(), spcExcDate_, spcExcStart, spcExcEnd);
+		result += new SpaceService().insertSapceTimeExp(spacetimeexp);
+		
+		
+		String spcPriceDay = "";
+		
+		if(spcPriceDays != null)
+			spcPriceDay = String.join(",", spcPriceDays);
+		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPriceDayBool.charAt(0), spcPricePrice);
+		result += new SpaceService().insertPrice(spaceprice);
+		
+		//spcImg
+		
+		SpacesImg spaceimg = new SpacesImg(spcObj.getSpcDetNo(), spcImgTitle, spcImgText, spcImgRoute, comp.getSpcNo());
+		result += new SpaceService().insertImg(spaceimg);
 	}
 
 	/**
