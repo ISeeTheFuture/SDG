@@ -115,16 +115,11 @@ public class SpaceDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, spaceprice.getSpcPriceNo());
-			pstmt.setInt(2, spaceprice.getSpcDetNo());
-			pstmt.setString(3, spaceprice.getSpcDetName());
-			pstmt.setString(4, spaceprice.getSpcPriceDay());
-			pstmt.setInt(5, spaceprice.getSpcPriceStart());
-			pstmt.setInt(6, spaceprice.getSpcPriceEnd());
-			pstmt.setString(7,String.valueOf(spaceprice.getSpcPricePeak()));
-			pstmt.setString(8,String.valueOf(spaceprice.getSpcPricePer()));
-			pstmt.setString(9,String.valueOf(spaceprice.getSpcPriceDayBool()));
-			pstmt.setInt(10, spaceprice.getSpcPricePrice());
+			pstmt.setInt(1, spaceprice.getSpcDetNo());
+			pstmt.setString(2, spaceprice.getSpcDetName());
+			pstmt.setString(3, spaceprice.getSpcPriceDay());
+			pstmt.setString(4,String.valueOf(spaceprice.getSpcPricePer()));
+			pstmt.setInt(5, spaceprice.getSpcPricePrice());
 			
 			result = pstmt.executeUpdate();
 			

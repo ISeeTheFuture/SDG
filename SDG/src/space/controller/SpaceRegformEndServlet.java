@@ -85,7 +85,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		String spcDetName = request.getParameter("spcDetName");
 		String [] spcPriceDays = request.getParameterValues("spcPriceDay");
 		String spcPricePer = request.getParameter("spcPricePer");
-		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
+//		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
 		int spcPricePrice = Integer.parseInt(request.getParameter("spcPricePrice"));
 		
 		
@@ -137,8 +137,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		if(spcPriceDays != null)
 			spcPriceDay = String.join(",", spcPriceDays);
 		
-		System.out.println(spcPricePer);
-		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0), spcPriceDayBool.charAt(0), spcPricePrice);
+		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0), spcPricePrice);
 		result += new SpaceService().insertPrice(spaceprice);
 		
 		//spcImg
