@@ -6,6 +6,7 @@ import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 
 import member.model.vo.MemberBusi;
+import review.model.vo.ReviewRpt;
 
 import static common.JDBCTemplate.*;
 
@@ -85,6 +86,20 @@ public class MemberService {
 	public int insertMemberBusi(MemberBusi memberBusi) {
 		Connection conn = getConnection();
 		int result = new MemberDAO().insertMemberBusi(conn, memberBusi);
+
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+
+		close(conn);
+
+		return result;
+	}
+
+	public int insertReviewRpt(ReviewRpt reviewRpt) {
+		Connection conn = getConnection();
+		int result = new MemberDAO().insertReviewRpt(conn, reviewRpt);
 
 		if (result > 0)
 			commit(conn);
