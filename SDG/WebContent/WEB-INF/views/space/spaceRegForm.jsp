@@ -141,6 +141,52 @@
 		<input type="hidden" name="spcDetSharing" value="0"/>
 		<br />
 		<br />
+
+		
+		<label for="spcPriNo">세부공간_NO</label>
+	<input type="text" name="spcDetNo" id="spcDetNo" />
+
+	<br />
+	
+	<label for="spcDetNo">요일</label>
+	<input type="text" name="spcDay" id="spcDay" />
+	<br />
+	
+	<label for="spcPriName">시작시간</label>
+	<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0" />
+	<br />
+	
+	<label for="spcPriDay">종료시간</label>
+	<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"  />
+	<br />
+	
+	<label for="spcPriStart">가용여부</label>
+	<input type="text" name="spcAvail" id="spcAvail" placeholder="해당사항 없으면 공백"/>
+	
+	
+	<br />
+	
+
+	<label for="spcPriNo">세부공간_NO</label>
+	<input type="text" name="spcDetNo" id="spcDetNo" />
+
+	<br />
+	
+	<label for="spcExcDate">예외날짜</label>
+	<input type="date" name="spcExcDate" id="spcExcDate" />
+	<br />
+	
+	<label for="spcExcStart">예외시작시간</label>
+	<input type="range" name="spcExcStart" id="spcExcStart" min="0" max="24" step="1" value="0"  />
+	<br />
+	
+	<label for="spcExcEnd">예외종료시간</label>
+	<input type="range" name="spcExcEnd" id="spcExcEnd" min="0" max="24" step="1" value="0"  />
+	<br />
+	
+	<label for="spcAvail">가용여부</label>
+	<input type="text" name="spcAvail" id="spcAvail" placeholder="해당사항 없으면 공백"/>
+	<br />
 		
 		<button>등록</button>
 
