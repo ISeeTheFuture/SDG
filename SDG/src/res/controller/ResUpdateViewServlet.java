@@ -21,14 +21,14 @@ import res.model.vo.ResView;
 /**
  * Servlet implementation class ResViewServlet
  */
-@WebServlet("/res/resViewEnd.do")
-public class ResViewEndServlet extends HttpServlet {
+@WebServlet("/res/resUpdateView.do")
+public class ResUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResViewEndServlet() {
+    public ResUpdateViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,8 +38,8 @@ public class ResViewEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int spcNo = Integer.parseInt(request.getParameter("spcNo"));
-		List<ResView> list = new ResService().selectResView(spcNo);	
+		String memId = request.getParameter("memberId");
+		List<ResView> list = new ResService().selectResUpdateView(memId);	
 		JSONArray jsonArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		

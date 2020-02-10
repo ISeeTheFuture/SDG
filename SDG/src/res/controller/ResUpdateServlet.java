@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ResViewServlet
  */
-@WebServlet("/res/resView2")
-public class ResViewServlet2 extends HttpServlet {
+@WebServlet("/res/resUpdate")
+public class ResUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResViewServlet2() {
+    public ResUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class ResViewServlet2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/res/res2.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/res/resUpdate.jsp").forward(request, response);
 	}
 
 	/**

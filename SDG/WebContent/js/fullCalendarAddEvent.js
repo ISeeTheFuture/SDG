@@ -64,10 +64,20 @@ var newEvent = function (start, end, eventType) {
             allDay: false
         };
 
+        
         if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
+            console.log(eventData.start);
+            console.log(new Date());
             return false;
         }
+        
+
+        if (new Date(eventData.start).setDate(0) <= (new Date()).setDate(+1)) {
+        	alert('현재부터 24시간 후부터 예약 가능합니다.');
+        	return false;
+        }
+        
 
         if (eventData.title === '') {
             alert('일정명은 필수입니다.');
@@ -98,7 +108,7 @@ var newEvent = function (start, end, eventType) {
         //set attribute (form)
         form.name = 'newForm';
         form.method = 'post';
-        form.action = '/SDG/res/resView';
+        form.action = '/SDG/res/resInsert';
 //        form.target = '_blank'; // 이건 새창
         
         //create element (input)

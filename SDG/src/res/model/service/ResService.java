@@ -45,4 +45,13 @@ public class ResService {
 		return result;
 	}
 
+
+	public List<ResView> selectResUpdateView(String memId) {
+		Connection conn = getConnection();
+		List<ResView> result = new ResDAO().selectResUpdateView(conn, memId);
+		
+		
+		return result;
+	}
+
 }

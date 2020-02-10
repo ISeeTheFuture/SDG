@@ -132,6 +132,7 @@ public class ResDAO {
 
 	public List<ResView> selectResView(Connection conn, int spcNo) {
 		List<ResView> list = new ArrayList<>();
+		List<ResView> listTmp = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("selectResView");
@@ -142,84 +143,116 @@ public class ResDAO {
 			pstmt.setInt(1, spcNo);
 			rset = pstmt.executeQuery();
 			
-			ResView rv = new ResView();
-			ResView rvTmp = new ResView();
-			int onehang = 0; // 자료가 행이 바뀌지 않고 끝나는지 확인
-			rvTmp.setResGroupNo(-1);
 			
 			while(rset.next()) {
-				if(rvTmp.getResGroupNo()==-1) { // 완전히 자료의 시작일 때
-					rv.setResGroupNo(rset.getInt("res_group_no"));
-					rv.setMemId(rset.getString("mem_id"));
-					rv.setResMany(rset.getInt("res_many"));
-					rv.setResName(rset.getString("res_name"));
-					rv.setResPhone(rset.getString("res_phone"));
-					rv.setResEmail(rset.getString("res_email"));
-					rv.setResContent(rset.getString("res_content"));
-					rv.setResTimeStart(rset.getTimestamp("res_time"));
-					rv.setResTimeEnd(rset.getTimestamp("res_time")); // +한시간 필요
-					
-					rvTmp.setResGroupNo(rset.getInt("res_group_no"));
-//					System.out.println("1번말~~");
+				ResView rvTmp = new ResView();
+				rvTmp.setResGroupNo(rset.getInt("res_group_no"));
+				rvTmp.setMemId(rset.getString("mem_id"));
+				rvTmp.setResMany(rset.getInt("res_many"));
+				rvTmp.setResName(rset.getString("res_name"));
+				rvTmp.setResPhone(rset.getString("res_phone"));
+				rvTmp.setResEmail(rset.getString("res_email"));
+				rvTmp.setResContent(rset.getString("res_content"));
+				Timestamp resTimeStart = rset.getTimestamp("res_time");
+				rvTmp.setResTimeStart(resTimeStart);
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeInMillis(resTimeStart.getTime());
+				cal.add(Calendar.SECOND, 3600);
+				
+				Timestamp resTimeEnd = new Timestamp(cal.getTime().getTime()); 
+				rvTmp.setResTimeEnd(resTimeEnd);
+				
+				listTmp.add(rvTmp);
+				
+			}
+			int idx = 0;
+			for(int i = 0; i < listTmp.size(); i++) {
+				if(i == 0) {
+					list.add(listTmp.get(i));
 				}
-						
-				else if(rvTmp.getResGroupNo()!=rv.getResGroupNo()) { //행이 바뀌었을 때
-					rv.setResTimeEnd(rvTmp.getResTimeEnd());
-					list.add(rv);
-//					System.out.println("list@ResDAO : "+list.toString());
-					rv = new ResView();
-					rv.setResGroupNo(rset.getInt("res_group_no"));
-					rv.setMemId(rset.getString("mem_id"));
-					rv.setResMany(rset.getInt("res_many"));
-					rv.setResName(rset.getString("res_name"));
-					rv.setResPhone(rset.getString("res_phone"));
-					rv.setResEmail(rset.getString("res_email"));
-					rv.setResContent(rset.getString("res_content"));
-					Timestamp resTimeStart = rset.getTimestamp("res_time");
-					rv.setResTimeStart(resTimeStart);
-					
-					Calendar cal = Calendar.getInstance();
-					cal.setTimeInMillis(resTimeStart.getTime());
-					cal.add(Calendar.SECOND, 3600);
-					
-					Timestamp resTimeEnd = new Timestamp(cal.getTime().getTime()); 
-					rv.setResTimeEnd(resTimeEnd);
-					 
-					rvTmp.setResGroupNo(rset.getInt("res_group_no")); // 임시 객체에 그룹넘버 저장
-					
-					onehang++;
-					
-//					System.out.println("2번말~~");
+				else if(list.get(idx).getResGroupNo()==listTmp.get(i).getResGroupNo()) {
+					ResView tmp = new ResView();
+					tmp = list.get(idx);
+					tmp.setResTimeEnd(listTmp.get(i).getResTimeEnd());
+					list.set(idx, tmp);
+				}
+				else {
+					list.add(listTmp.get(i));
+					idx++;
+				}
+			}
 
-				} else { // 첫 행이 아닐때
-					rvTmp.setResTimeEnd(rv.getResTimeEnd());
-					Timestamp resTimeStart = rset.getTimestamp("res_time");
-					Calendar cal = Calendar.getInstance();
-					cal.setTimeInMillis(resTimeStart.getTime());
-					cal.add(Calendar.SECOND, 3600);
-					Timestamp resTimeEnd = new Timestamp(cal.getTime().getTime());
-					
-					rv.setResTimeEnd(resTimeEnd);
-					rvTmp.setResGroupNo(rset.getInt("res_group_no")); // 임시 객체에 그룹넘버 저장
-					
-//					System.out.println("3번말~~");
-					onehang = 0;
-				}
-				
-				
-			}
-			if(onehang==0) {
-				list.add(rv);
-//				System.out.println("4번말~~");
-			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-//		System.out.println("list@ResDAO : "+list.toString());
+		System.out.println("list@ResDAO : "+list.toString());
+		return list;
+	}
+
+	public List<ResView> selectResUpdateView(Connection conn, String memId) {
+		List<ResView> list = new ArrayList<>();
+		List<ResView> listTmp = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectResUpdateView");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memId);
+			rset = pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				ResView rvTmp = new ResView();
+				rvTmp.setResGroupNo(rset.getInt("res_group_no"));
+				rvTmp.setMemId(rset.getString("mem_id"));
+				rvTmp.setResMany(rset.getInt("res_many"));
+				rvTmp.setResName(rset.getString("res_name"));
+				rvTmp.setResPhone(rset.getString("res_phone"));
+				rvTmp.setResEmail(rset.getString("res_email"));
+				rvTmp.setResContent(rset.getString("res_content"));
+				Timestamp resTimeStart = rset.getTimestamp("res_time");
+				rvTmp.setResTimeStart(resTimeStart);
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeInMillis(resTimeStart.getTime());
+				cal.add(Calendar.SECOND, 3600);
+				
+				Timestamp resTimeEnd = new Timestamp(cal.getTime().getTime()); 
+				rvTmp.setResTimeEnd(resTimeEnd);
+				
+				listTmp.add(rvTmp);
+				
+			}
+			int idx = 0;
+			for(int i = 0; i < listTmp.size(); i++) {
+				if(i == 0) {
+					list.add(listTmp.get(i));
+				}
+				else if(list.get(idx).getResGroupNo()==listTmp.get(i).getResGroupNo()) {
+					ResView tmp = new ResView();
+					tmp = list.get(idx);
+					tmp.setResTimeEnd(listTmp.get(i).getResTimeEnd());
+					list.set(idx, tmp);
+				}
+				else {
+					list.add(listTmp.get(i));
+					idx++;
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("list@ResDAO : "+list.toString());
 		return list;
 	}
 		

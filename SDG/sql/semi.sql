@@ -34,7 +34,6 @@ DROP TABLE spc_loc cascade constraints;
 -- 시퀀스 모음
 --======================================================
 
-create SEQUENCE seq_mem_id;
 
 create SEQUENCE seq_review_no;
 create SEQUENCE seq_review_report_no;
@@ -46,6 +45,7 @@ create SEQUENCE seq_res_group_no;
 
 create SEQUENCE seq_spc_no;
 create SEQUENCE seq_spc_detail_no;
+create SEQUENCE seq_spc_price_no;
 
 
 --======================================================
@@ -496,4 +496,4 @@ select * from spc;
 select * from spc_res;
 select * from spc_res_grp;
 
-select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;
+select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no where spc_no = 1011 ORDER BY res_no;

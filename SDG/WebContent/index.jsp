@@ -107,11 +107,6 @@
 					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 					
 				</ul>
-			
-
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/res/resView2">예약2</a></li>
-	</ul>
 	
 		<form action="<%=request.getContextPath()%>/space/spacePrice" method="GET">
 			<button id="spacePriceReg">사업장 요금</button>
@@ -129,7 +124,8 @@
 
 		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
-		<li><a href="<%=request.getContextPath()%>/res/resView2">예약</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resUpdate">예약수정하기</a></li>
 				
 			
 
