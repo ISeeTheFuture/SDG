@@ -141,52 +141,67 @@
 		<input type="hidden" name="spcDetSharing" value="0"/>
 		<br />
 		<br />
-
 		
-		<label for="spcPriNo">세부공간_NO</label>
-	<input type="text" name="spcDetNo" id="spcDetNo" />
-
-	<br />
-	
-	<label for="spcDetNo">요일</label>
-	<input type="text" name="spcDay" id="spcDay" />
-	<br />
-	
-	<label for="spcPriName">시작시간</label>
-	<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0" />
-	<br />
-	
-	<label for="spcPriDay">종료시간</label>
-	<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"  />
-	<br />
-	
-	<label for="spcPriStart">가용여부</label>
-	<input type="text" name="spcAvail" id="spcAvail" placeholder="해당사항 없으면 공백"/>
-	
-	
-	<br />
-	
-
-	<label for="spcPriNo">세부공간_NO</label>
-	<input type="text" name="spcDetNo" id="spcDetNo" />
-
-	<br />
-	
-	<label for="spcExcDate">예외날짜</label>
-	<input type="date" name="spcExcDate" id="spcExcDate" />
-	<br />
-	
-	<label for="spcExcStart">예외시작시간</label>
-	<input type="range" name="spcExcStart" id="spcExcStart" min="0" max="24" step="1" value="0"  />
-	<br />
-	
-	<label for="spcExcEnd">예외종료시간</label>
-	<input type="range" name="spcExcEnd" id="spcExcEnd" min="0" max="24" step="1" value="0"  />
-	<br />
-	
-	<label for="spcAvail">가용여부</label>
-	<input type="text" name="spcAvail" id="spcAvail" placeholder="해당사항 없으면 공백"/>
-	<br />
+		<label for="spcExcDate">예외날짜</label>
+		<input type="date" name="spcExcDate" id="spcExcDate" />
+		<br />
+		
+		<label for="spcExcStart">예외시작시간</label>
+		<input type="range" name="spcExcStart" id="spcExcStart" min="0" max="24" step="1" value="0"  />
+		<br />
+		
+		<label for="spcExcEnd">예외종료시간</label>
+		<input type="range" name="spcExcEnd" id="spcExcEnd" min="0" max="24" step="1" value="0"  />
+		<br />
+		<br />
+		
+		<label for="spcPriNo">요금제_NO</label>
+		<input type="text" name="spcPriceNo" id="spcPriceNo" />
+		<br />
+		
+		<label for="spcDetNo">세부공간_NO</label>
+		<input type="text" name="spcDetNo" id="spcDetNo" />
+		<br />
+		
+		<label for="spcDetName">요금명</label>
+		<input type="text" name="spcDetName" id="spcDetName">
+		<br />
+		
+		<h3>주중 요금제 적용일 : </h3>
+		<hr />
+		월요일 :	
+		<input type="checkbox" name="spcPriceDay" value="mon" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		화요일 :
+		<input type="checkbox" name="spcPriceDay" value="tue" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		수요일 :
+		<input type="checkbox" name="spcPriceDay" value="wed" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		목요일 :
+		<input type="checkbox" name="spcPriceDay" value="thu" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		금요일 :
+		<input type="checkbox" name="spcPriceDay" value="fri" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		토요일 :
+		<input type="checkbox" name="spcPriceDay" value="sat" />
+		<span style="border-right:2px solid gray;width:1px;"></span>
+		일요일 :
+		<input type="checkbox" name="spcPriceDay" value="sun" />
+		<span style="border-right:2px solid gray;width:1px;"></span>	
+		<br />	
+		<br />	
+		<hr />
+		
+		<label for="spcPriperMan">1인당여부</label>
+		<input type="checkbox" name="spcPriperMan" id="spcPriperMan" value="1"/>
+		<input type="hidden" name="spcPriperMan" id="spcPriperMan" value="0">
+		<br />
+		
+		<label for="spcPricePrice">가격</label>
+		<input type="text" name="spcPricePrice" id="spcPricePrice" />
+		<br />
 		
 		<button>등록</button>
 

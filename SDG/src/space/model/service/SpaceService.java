@@ -1,20 +1,20 @@
 package space.model.service;
 
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
-import member.model.dao.MemberDAO;
-import member.model.vo.Member;
 import space.model.dao.SpaceDAO;
-import space.model.vo.SpacesTimeTable;
-
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
+import space.model.vo.SpacesTimeTable;
 
 public class SpaceService {
 
