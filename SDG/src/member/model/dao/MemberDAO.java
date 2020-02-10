@@ -13,6 +13,8 @@ import java.util.Properties;
 
 import member.model.vo.Member;
 
+import member.model.vo.MemberBusi;
+
 public class MemberDAO {
 	
 	private Properties prop = new Properties();
@@ -196,6 +198,32 @@ System.out.println(query);
 			pstmt.setInt(2, member.getMemPoint());
 			pstmt.setString(3, member.getMemId());
 
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+
+	public int insertMemberBusi(Connection conn, MemberBusi memberBusi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertMemberBusi");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberBusi.getMemId());
+			pstmt.setInt(2, memberBusi.getMemBusiNo());
+			pstmt.setString(3, memberBusi.getMemBusiAddr());
+			pstmt.setString(4, memberBusi.getMemBusiPhone());
+			pstmt.setString(5, memberBusi.getMemBusiAllow());
+						
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

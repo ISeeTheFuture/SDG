@@ -4,6 +4,9 @@ import java.sql.Connection;
 
 import member.model.dao.MemberDAO;
 import member.model.vo.Member;
+
+import member.model.vo.MemberBusi;
+
 import static common.JDBCTemplate.*;
 
 public class MemberService {
@@ -73,6 +76,21 @@ public class MemberService {
 			commit(conn);
 		else
 			rollback(conn);
+		close(conn);
+
+		return result;
+	}
+
+
+	public int insertMemberBusi(MemberBusi memberBusi) {
+		Connection conn = getConnection();
+		int result = new MemberDAO().insertMemberBusi(conn, memberBusi);
+
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+
 		close(conn);
 
 		return result;

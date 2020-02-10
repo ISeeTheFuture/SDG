@@ -127,6 +127,10 @@
 			<button id="spaceExp">사업자 요금 수정</button>
 		</form>
 
+		<form action="<%=request.getContextPath()%>/member/memberBusi" method="GET">
+			<button id="spaceExp">사업자 정보 입력</button>
+		</form>
+		
 		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
 		<li><a href="<%=request.getContextPath()%>/res/resView2">예약</a></li>
