@@ -91,7 +91,7 @@
                         </div> -->
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-resMany">인원</label>
+                                <label class="col-xs-4" for="edit-resMany" id="edit-resMany-label">인원</label>
                                 <input class="inputModal" type="number" name="edit-resMany" id="edit-resMany" min="1" max="5">
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                         </div> -->
                         <div class="row">
                             <div class="col-xs-12">
-                                <label class="col-xs-4" for="edit-desc">요청사항</label>
+                                <label class="col-xs-4" for="edit-desc" id="edit-desc-label">요청사항</label>
                                 <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
                                     id="edit-desc"></textarea>
                             </div>
@@ -121,12 +121,12 @@
                     </div>
                     <div class="modal-footer modalBtnContainer-addEvent">
                         <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" id="save-event">저장</button>
+                        <button type="button" class="btn btn-primary" id="save-event">예약</button>
                     </div>
                     <div class="modal-footer modalBtnContainer-modifyEvent">
                         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                         <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
-                        <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                        <button type="button" class="btn btn-primary" id="updateEvent">수정</button>
                     </div>
                     <div class="modal-footer modalBtnContainer-viewEvent">
                         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>

@@ -249,4 +249,74 @@ public class SpaceDAO {
 		return spcObj;
 	}
 
+	public int updatePrice(Connection conn, SpacesPrice spaceprice) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updatePrice"); 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, spaceprice.getSpcPriceNo());
+			pstmt.setInt(2, spaceprice.getSpcDetNo());
+			pstmt.setString(3, spaceprice.getSpcDetName());
+			pstmt.setString(4, spaceprice.getSpcPriceDay());
+			pstmt.setInt(5, spaceprice.getSpcPriceStart());
+			pstmt.setInt(6, spaceprice.getSpcPriceEnd());
+			pstmt.setString(7,String.valueOf(spaceprice.getSpcPricePeak()));
+			pstmt.setString(8,String.valueOf(spaceprice.getSpcPricePer()));
+			pstmt.setString(9,String.valueOf(spaceprice.getSpcPriceDayBool()));
+			pstmt.setInt(10, spaceprice.getSpcPricePrice());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public SpacesPrice selectOnePrice(Connection conn, int spcDetNo) {
+		SpacesPrice spcpri = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectOnePrice");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setInt(1, spcDetNo);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				spcpri = new SpacesPrice();
+				spcpri.setSpcPriceNo(rset.getInt("spc_price_no"));
+				spcpri.setSpcDetNo(rset.getInt("spc_detail_no"));
+				spcpri.setSpcDetName(rset.getString("spc_detail_name"));
+				spcpri.setSpcPriceDay(rset.getString("spc_price_day"));
+				spcpri.setSpcPriceStart(rset.getInt("spc_price_start"));
+				spcpri.setSpcPriceEnd(rset.getInt("spc_price_end"));
+				spcpri.setSpcPricePeak(rset.getString("spc_price_peak").charAt(0));
+				spcpri.setSpcPricePer(rset.getString("spc_price_perman").charAt(0));
+				spcpri.setSpcPriceDayBool(rset.getString("spc_price_day_bool").charAt(0));
+				spcpri.setSpcPricePrice(rset.getInt("spc_price_price"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return spcpri;
+	}
+
 }

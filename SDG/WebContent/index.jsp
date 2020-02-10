@@ -44,7 +44,6 @@
 			<button id="spaceReg">공간 등록</button>
 		</form>
 	</nav>
-	
 			
 		<div class="login-container">
 			<%  if(memberLoggedIn != null){ %>
@@ -111,7 +110,6 @@
 			
 
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
 		<li><a href="<%=request.getContextPath()%>/res/resView2">예약2</a></li>
 	</ul>
 	
@@ -125,10 +123,13 @@
 		<form action="<%=request.getContextPath()%>/space/spaceTimeExp" method="GET">
 			<button id="spaceExp">사업자 예외스케쥴</button>
 		</form>
+		<form action="<%=request.getContextPath()%>/space/UpdateSpacePrice" method="GET">
+			<button id="spaceExp">사업자 요금 수정</button>
+		</form>
 
-
-					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
-					<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resView2">예약</a></li>
 				
 			
 

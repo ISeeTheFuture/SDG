@@ -29,6 +29,13 @@ var viewEvent = function (event, element, view) {
     editResMany.val(event.resMany);
     editDesc.val(event.description);
     editColor.val(event.backgroundColor).css('color', event.backgroundColor);
+    
+//    메뉴 보여주기
+    editResMany.hide();
+    editResManyLabel.hide();
+    editDesc.hide();
+    editDescLabel.hide();
+    
 
     addBtnContainer.hide();
     modifyBtnContainer.hide();
