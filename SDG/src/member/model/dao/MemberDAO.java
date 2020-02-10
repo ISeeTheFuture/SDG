@@ -216,15 +216,14 @@ System.out.println(query);
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("insertMemberBusi");
-		
+		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, memberBusi.getMemId());
-			pstmt.setInt(2, memberBusi.getMemBusiNo());
-			pstmt.setString(3, memberBusi.getMemBusiAddr());
-			pstmt.setString(4, memberBusi.getMemBusiPhone());
-			pstmt.setString(5, memberBusi.getMemBusiAllow());
-						
+			
+			pstmt.setString(2, memberBusi.getMemBusiAddr());
+			pstmt.setString(3, memberBusi.getMemBusiPhone());
+					
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -232,7 +231,7 @@ System.out.println(query);
 		} finally {
 			close(pstmt);
 		}
-		
+		System.out.println(result);
 		return result;
 	}
 

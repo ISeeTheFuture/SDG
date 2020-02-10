@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@page import="member.model.vo.Member"%>
     <%
-    Member member = (Member)request.getAttribute("memId");
+    Member member = (Member)request.getAttribute("member");
+    Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
     %>
 <!DOCTYPE html>
 <html>
@@ -14,13 +15,12 @@
 <body>
 	<form action="<%=request.getContextPath() %>/member/memberBusiEnd" method="post">
 	<label for="memId">사업자 아이디</label>
-	<input type="text"  name="memId" id="memId" value="memId"  required>
+	<input type="text"  name="memId" id="memId" value="<%=memberLoggedIn.getMemId() %>"  required><br>
 	<br>
 	
-	<%-- <input type="text"  name="memId" id="memId" value="<%=member.getMemId() %>"  required><br> --%>
-	<label for="memBusiNo">사업자 번호</label>
+	<!-- <label for="memBusiNo">사업자 번호</label>
       <input type="text" name="memBusiNo" id="memBusiNo" placeholder="사업자 번호를 입력하세요." />
-      <br>
+      <br> -->
       
      <label for="memBusiAddr">사업장 주소</label>
       <input type="text" name="memBusiAddr" id="memBusiAddr" placeholder="사업장 주소를 입력하세요." />
@@ -30,7 +30,7 @@
       <input type="tel" placeholder="사업장 연락쳐를 입력하세요.(-없이)01012345678" name="memBusiPhone" id="memBusiPhone" maxlength="11" required><br>
       <br>
       
-      <input type="hidden" name="memBusiAllow" id="memBusiAllow" value="0" />
+     <!--  <input type="hidden" name="memBusiAllow" id="memBusiAllow" value="N" /> -->
       <!--기본값 0으로  0일때 승인 거부 상태 , 관리자가 1로 update해야 승인됨 -->
       
       <input type='submit' value="전송" />
