@@ -327,9 +327,11 @@ public class SpaceDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, spaceimg.getSpcImgTitle());
-			pstmt.setString(2, spaceimg.getSpcImgText());
-			pstmt.setString(3, spaceimg.getSpcImgRoute());
+			pstmt.setInt(1, spaceimg.getSpcDetailNo());
+			pstmt.setString(2, spaceimg.getSpcImgTitle());
+			pstmt.setString(3, spaceimg.getSpcImgText());
+			pstmt.setString(4, spaceimg.getSpcImgRoute());
+			pstmt.setInt(5, spaceimg.getSpcNo());
 
 			
 			result = pstmt.executeUpdate();
