@@ -132,8 +132,13 @@
 		
 		<label for="spcDetHoliday">공휴일 휴무 여부</label>
 
-		<input type="checkbox" name="spcDetHoliday" id="spcDetHoliday" value="0"/>
+		<input type="checkbox" name="spcDetHoliday" value="1"/>
+		<input type="hidden" name="spcDetHoliday" value="0"/>
 
+		<label for="spcDetSharing">공용 여부</label>
+
+		<input type="checkbox" name="spcDetSharing" value="1"/>
+		<input type="hidden" name="spcDetSharing" value="0"/>
 		<br />
 		<br />
 
