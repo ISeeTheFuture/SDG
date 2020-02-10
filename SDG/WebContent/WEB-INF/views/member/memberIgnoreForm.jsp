@@ -1,0 +1,75 @@
+<%@page import="member.model.vo.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <%
+	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+	// /mvc/index.jsp => memberLoggedIn = null;
+	// /mvc/member/login => memberLoggedIn = member객체
+			
+			
+	//쿠키확인
+	Cookie[] cookies = request.getCookies();
+	boolean saveIdChecked = false;
+	String memberId = "";
+	
+	if(cookies != null){
+		//System.out.println("cookies@header.jsp");
+		//System.out.println("===================================");
+		for(Cookie c : cookies){
+			String name = c.getName();
+			String value = c.getValue();
+			//System.out.println(name + " = " + value);
+			
+			if("saveId".equals(name)){
+				saveIdChecked = true;
+				memberId = value;
+			}
+		}
+		//System.out.println("===================================");
+		
+	}
+	
+%>
+
+
+
+
+
+
+
+
+		<%--관리자인경우 벤이 가능하도록 함. --%>
+	<%
+		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
+	%>
+	<form action="<%=request.getContextPath()%>/member/memberIgnore"
+		name="memberIgnoreFrm" method="post">
+		<input type="text" name="ignoreId" id="ignoreMemIndex" placeholder="벤 대상자의 id를 입력하세요." />
+		<input type="text" name="ignoreReason" id="ignoreReasonIndex" placeholder="벤 사유를 입력하세요." />
+		<input type='submit' value="전송" />
+	</form>
+	<%
+		}
+	%>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

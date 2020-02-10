@@ -108,4 +108,20 @@ public class MemberService {
 		return result;
 
 	}
+	
+	
+	public static String IgnoreCheckselectOne(String memberId) {
+		Connection conn = getConnection();
+		String m = new MemberDAO().IgnoreCheckselectOne(conn, memberId);
+	
+		
+		
+		close(conn);
+		return m;
+	}
+	
+	
+	
+	
+	
 }

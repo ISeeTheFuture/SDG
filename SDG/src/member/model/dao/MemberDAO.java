@@ -267,6 +267,48 @@ System.out.println("memROleId@DAO"+memRoleId);
 		
 		return result;
 	}
+
+	public String IgnoreCheckselectOne(Connection conn, String memberId) {
+	
+		String ignoreReason = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("IgnoreCheckselectOne");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setString(1, memberId);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+			
+				
+				ignoreReason=rset.getString("block_memo");
+
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		
+//		if(ignoreReason==null) {
+//			
+//			ignoreReason="";
+//		}
+		
+		
+		return ignoreReason;
+	}
 	
 	
 	
