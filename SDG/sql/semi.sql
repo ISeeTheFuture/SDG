@@ -34,8 +34,6 @@ DROP TABLE spc_loc cascade constraints;
 -- 시퀀스 모음
 --======================================================
 
-create SEQUENCE seq_mem_id;
-
 create SEQUENCE seq_review_no;
 create SEQUENCE seq_review_report_no;
 create SEQUENCE seq_comment_no;
@@ -46,6 +44,7 @@ create SEQUENCE seq_res_group_no;
 
 create SEQUENCE seq_spc_no;
 create SEQUENCE seq_spc_detail_no;
+create SEQUENCE seq_spc_price_no;
 
 
 --======================================================
