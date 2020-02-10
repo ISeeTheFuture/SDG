@@ -21,6 +21,14 @@ public class SpacesTimeExp {
 		this.spcExcEnd = spcExcEnd;
 		this.spcAvail = spcAvail;
 	}
+	//exp전용 생성자
+	public SpacesTimeExp(int spcDetNo, Date spcExcDate, int spcExcStart, int spcExcEnd) {
+		super();
+		this.spcDetNo = spcDetNo;
+		this.spcExcDate = spcExcDate;
+		this.spcExcStart = spcExcStart;
+		this.spcExcEnd = spcExcEnd;
+	}
 	public int getSpcDetNo() {
 		return spcDetNo;
 	}

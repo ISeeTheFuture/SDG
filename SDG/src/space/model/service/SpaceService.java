@@ -12,6 +12,7 @@ import space.model.vo.SpacesTimeTable;
 
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
 
@@ -113,5 +114,18 @@ public class SpaceService {
 		SpacesPrice spacesprice = new SpaceDAO().selectOnePrice(conn, spcDetNo);
 		close(conn);
 		return spacesprice;
+	}
+
+	public int insertImg(SpacesImg spaceimg) {
+		Connection conn = getConnection();
+		int result = new SpaceDAO().insertImg(conn, spaceimg);
+
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
 	}
 }
