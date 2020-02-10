@@ -84,9 +84,6 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		String spcDetName = request.getParameter("spcDetName");
 		String [] spcPriceDays = request.getParameterValues("spcPriceDay");
-		int spcPriceStart = Integer.parseInt(request.getParameter("spcPriceStart"));
-		int spcPriceEnd = Integer.parseInt(request.getParameter("spcPriceEnd"));
-		String spcPricePeak = request.getParameter("spcPricePeak");
 		String spcPricePer = request.getParameter("spcPricePer");
 		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
 		int spcPricePrice = Integer.parseInt(request.getParameter("spcPricePrice"));
@@ -110,11 +107,12 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		if(!"".equals(spcDateEnd))
 			spcDateEnd_ = Date.valueOf(spcDateEnd);
 		
-		SpacesDefault spDefault = new SpacesDefault("temp", spcName, compAddr, compContent);
+		SpacesDefault spDefault = new SpacesDefault("testid", spcName, compAddr, compContent);
 		int result = new SpaceService().insertComp(spDefault);
 
-		SpacesDefault comp = new SpaceService().selectOneComp("temp");
+		SpacesDefault comp = new SpaceService().selectOneComp("testid");
 		Spaces space = new Spaces(comp.getSpcNo(), cat, regionNo, spcContent, spcDetSharing.charAt(0), spcDetHoliday.charAt(0), spcDetSize, spcDetStorable, spcManMin, spcManMax, spcTimeMin, spcTimeMax, spcDateStart_, spcDateEnd_);
+		
 		result += new SpaceService().insertSpace(space);
 		
 		//회사No 로 공간객체 가져오기
@@ -132,17 +130,23 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		result += new SpaceService().insertSapceTimeExp(spacetimeexp);
 		
 		
+//		System.out.println(spcObj.getSpcNo()+"@SpaceRegFormEndServlet");
+		
 		String spcPriceDay = "";
 		
 		if(spcPriceDays != null)
 			spcPriceDay = String.join(",", spcPriceDays);
-		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPriceDayBool.charAt(0), spcPricePrice);
+		
+		System.out.println(spcPricePer);
+		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0), spcPriceDayBool.charAt(0), spcPricePrice);
 		result += new SpaceService().insertPrice(spaceprice);
 		
 		//spcImg
 		
 		SpacesImg spaceimg = new SpacesImg(spcObj.getSpcDetNo(), spcImgTitle, spcImgText, spcImgRoute, comp.getSpcNo());
 		result += new SpaceService().insertImg(spaceimg);
+		
+		
 	}
 
 	/**
