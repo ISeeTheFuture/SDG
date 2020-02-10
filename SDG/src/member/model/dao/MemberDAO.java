@@ -263,6 +263,108 @@ System.out.println(query);
 	
 	
 	
+
+
+	public int banMember(Connection conn, String ignoId, String ignReason) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("MemberIgnore"); 
+		System.out.println("ignoId@DAO="+ignoId);
+		System.out.println("ignoReason@DAO="+ignReason);
+		System.out.println("banMemberQuery@DAO="+query);
+		try {
+
+			pstmt = conn.prepareStatement(query);
+	
+				
+			pstmt.setString(1, ignoId);
+			pstmt.setString(2, ignReason);
+
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int RoleUpMember(Connection conn, String memRoleId) {
+		
+		
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("MemberRoleUp"); 
+System.out.println(query);
+System.out.println("memROleId@DAO"+memRoleId);
+		try {
+
+			pstmt = conn.prepareStatement(query);
+	
+				
+			pstmt.setString(1, memRoleId);
+		
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public String IgnoreCheckselectOne(Connection conn, String memberId) {
+	
+		String ignoreReason = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("IgnoreCheckselectOne");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setString(1, memberId);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+			
+				
+				ignoreReason=rset.getString("block_memo");
+
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		
+//		if(ignoreReason==null) {
+//			
+//			ignoreReason="";
+//		}
+		
+		
+		return ignoreReason;
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -284,3 +386,4 @@ System.out.println(query);
 	
 	
 }
+
