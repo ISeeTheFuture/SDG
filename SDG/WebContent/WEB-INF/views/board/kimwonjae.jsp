@@ -2,12 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
    <%
 	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 	// /mvc/index.jsp => memberLoggedIn = null;
@@ -37,6 +32,12 @@
 	}
 	
 %>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
 
 
 
@@ -45,6 +46,25 @@
 
 
 
+
+		
+				
+			
+			
+	<%  if(memberLoggedIn != null){ %>
+	<form>
+	<input type="button"   value="포인트업 서블릿 확인용"   onclick="location.href='<%=request.getContextPath() %>/member/memberPointUp?memberId=<%=memberLoggedIn.getMemId()%>'" />
+					  				   
+					  				   	<input type="hidden" name="memberPoint" value="<%=memberLoggedIn!=null?memberLoggedIn.getMemPoint():""%>"/>
+
+<%
+		}
+	%>
+
+	</form>
+	
+	
+	
 		<%--관리자인경우 벤이 가능하도록 함. --%>
 	<%
 		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
@@ -59,6 +79,31 @@
 		}
 	%>
 	
+
+
+
+	<%--관리자인경우 사업자 등록, 관리자 등록이 가능하도록 함. --%>
+	<%
+		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
+	%>
+	<form action="<%=request.getContextPath()%>/member/memberRole"
+		name="memberRoleUpFrm" method="post">
+		<input type="text" name="RoleId" id="RoleUP_ID" placeholder="사업자 등록 대상자의 id를 입력하세요." />
+		<input type='submit' value="전송" />
+	</form>
+	<%
+		}
+	%>
+				
+
+
+
+
+
+
+
+
+
 
 
 
