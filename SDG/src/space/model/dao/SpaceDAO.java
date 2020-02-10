@@ -14,6 +14,7 @@ import java.util.Properties;
 import space.model.vo.SpacesTimeTable;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
+import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
 
@@ -317,6 +318,31 @@ public class SpaceDAO {
 		} 
 		
 		return spcpri;
+	}
+
+	public int insertImg(Connection conn, SpacesImg spaceimg) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertImg"); 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, spaceimg.getSpcDetailNo());
+			pstmt.setString(2, spaceimg.getSpcImgTitle());
+			pstmt.setString(3, spaceimg.getSpcImgText());
+			pstmt.setString(4, spaceimg.getSpcImgRoute());
+			pstmt.setInt(5, spaceimg.getSpcNo());
+
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

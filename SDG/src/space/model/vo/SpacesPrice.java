@@ -31,6 +31,14 @@ public class SpacesPrice {
 		this.spcPriceDayBool = spcPriceDayBool;
 		this.spcPricePrice = spcPricePrice;
 	}
+	public SpacesPrice(int spcDetNo, String spcDetName, String spcPriceDay, char spcPriceDayBool, int spcPricePrice) {
+		this.spcDetNo = spcDetNo;
+		this.spcDetName = spcDetName;
+		this.spcPriceDay = spcPriceDay;
+
+		this.spcPriceDayBool = spcPriceDayBool;
+		this.spcPricePrice = spcPricePrice;
+	}
 	public int getSpcPriceNo() {
 		return spcPriceNo;
 	}
