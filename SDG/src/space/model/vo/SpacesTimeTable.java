@@ -1,25 +1,37 @@
 package space.model.vo;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class SpacesTimeTable {
+public class SpacesTimeTable implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int spcDetNo;
 	private String spcDay;
-	private Date spcHourStart;
-	private Date spcHourEnd;
+	private int spcHourStart;
+	private int spcHourEnd;
 	private char spcAvail;
 	public SpacesTimeTable() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SpacesTimeTable(int spcDetNo, String spcDay, Date spcHourStart, Date spcHourEnd, char spcAvail) {
+	public SpacesTimeTable(int spcDetNo, String spcDay, int spcHourStart, int spcHourEnd, char spcAvail) {
 		super();
 		this.spcDetNo = spcDetNo;
 		this.spcDay = spcDay;
 		this.spcHourStart = spcHourStart;
 		this.spcHourEnd = spcHourEnd;
 		this.spcAvail = spcAvail;
+	}
+	//AVAIL 제외
+	public SpacesTimeTable(int spcDetNo, String spcDay, int spcHourStart, int spcHourEnd) {
+		super();
+		this.spcDetNo = spcDetNo;
+		this.spcDay = spcDay;
+		this.spcHourStart = spcHourStart;
+		this.spcHourEnd = spcHourEnd;
 	}
 	public int getSpcDetNo() {
 		return spcDetNo;
@@ -33,16 +45,16 @@ public class SpacesTimeTable {
 	public void setSpcDay(String spcDay) {
 		this.spcDay = spcDay;
 	}
-	public Date getSpcHourStart() {
+	public int getSpcHourStart() {
 		return spcHourStart;
 	}
-	public void setSpcHourStart(Date spcHourStart) {
+	public void setSpcHourStart(int spcHourStart) {
 		this.spcHourStart = spcHourStart;
 	}
-	public Date getSpcHourEnd() {
+	public int getSpcHourEnd() {
 		return spcHourEnd;
 	}
-	public void setSpcHourEnd(Date spcHourEnd) {
+	public void setSpcHourEnd(int spcHourEnd) {
 		this.spcHourEnd = spcHourEnd;
 	}
 	public char getSpcAvail() {

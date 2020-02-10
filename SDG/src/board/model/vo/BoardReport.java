@@ -53,5 +53,4 @@ public class BoardReport implements Serializable{
 		return "BoardReport [boardReportNo=" + boardReportNo + ", boardNo=" + boardNo + ", boardReportReason="
 				+ boardReportReason + ", boardReportDate=" + boardReportDate + "]";
 	}
-
 }
