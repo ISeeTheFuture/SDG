@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -130,4 +131,24 @@
 
 
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG
 </html>

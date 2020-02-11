@@ -1,24 +1,16 @@
 package member.model.service;
 
-import java.sql.Connection;
-
-import member.model.dao.MemberDAO;
-import member.model.vo.Member;
-import static common.JDBCTemplate.*;
-
-
-
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
 import member.model.dao.MemberDAO;
 import member.model.vo.Member;
-
 import member.model.vo.MemberBusi;
 import member.model.vo.Memberblk;
-import review.model.vo.ReviewRpt;
-
-import static common.JDBCTemplate.*;
 
 public class MemberService {
 
@@ -68,17 +60,7 @@ public class MemberService {
 		return result;
 	}
 
-	//수정용
-//	public int updatePoint(Member member) {
-//		Connection conn = getConnection();
-//		int result = new MemberDAO().updatePoint(conn, member);
-//		if (result > 0)
-//			commit(conn);
-//		else
-//			rollback(conn);
-//		close(conn);
-//		return result;
-//	}
+
 
 	public int updateMemberPoint(Member member) {
 		Connection conn = getConnection();
@@ -107,19 +89,6 @@ public class MemberService {
 		return result;
 	}
 
-	public int insertReviewRpt(ReviewRpt reviewRpt) {
-		Connection conn = getConnection();
-		int result = new MemberDAO().insertReviewRpt(conn, reviewRpt);
-
-		if (result > 0)
-			commit(conn);
-		else
-			rollback(conn);
-
-		close(conn);
-
-		return result;
-	}
 	
 	
 	
@@ -156,6 +125,7 @@ public class MemberService {
 	}
 	
 	
+
 	public static Memberblk IgnoreCheckselectOne(String memberId) {
 		Connection conn = getConnection();
 		Memberblk m = new MemberDAO().IgnoreCheckselectOne(conn, memberId);
@@ -165,10 +135,4 @@ public class MemberService {
 		close(conn);
 		return m;
 	}
-	
-	
-	
-	
-	
 }
-

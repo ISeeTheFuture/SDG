@@ -36,15 +36,17 @@ public class MemberBusiEndServlet extends HttpServlet {
 				
 				//2. 파라미터 핸들링
 				String memId = request.getParameter("memId");
-				int memBusiNo = Integer.parseInt(request.getParameter("memBusiNo")); 
-//				String password = Utils.getSha512(request.getParameter("password"));
-				
-				String memBusiAddr = request.getParameter("memBusiAddr");//"2020-01-20" => java.sql.Date
+				String memBusiNo = request.getParameter("memBusiNo"); 
+//				
+				String memBusiAddr = request.getParameter("memBusiAddr");
 
 				String memBusiPhone = request.getParameter("memBusiPhone");
 				String memBusiAllow = request.getParameter("memBusiAllow");
-			
 				
+				System.out.println("memId"+memId);
+				System.out.println("memBusiNo="+memBusiNo);
+				System.out.println("memphone"+memBusiPhone);
+//				System.out.println("memBusiAllow"+memBusiAllow);
 				
 				
 				MemberBusi memberBusi = new MemberBusi(memId, memBusiNo, memBusiAddr, memBusiPhone, memBusiAllow);

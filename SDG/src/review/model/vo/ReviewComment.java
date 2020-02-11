@@ -1,32 +1,40 @@
 package review.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReviewCmnt {
+
+public class ReviewComment implements Serializable {
 	
-	private int commentNo;
-	private String memId;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private int commentNo; //댓글번호
+	private String memberId;
 	private int reviewNo;
 	private int commentType;
 	private String commentContent;
 	private Date commentDate;
 	private int commentRecommend;
-	private String commendDelete;
-	public ReviewCmnt() {
+	private boolean commentDelete;
+	public ReviewComment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ReviewCmnt(int commentNo, String memId, int reviewNo, int commentType, String commentContent,
-			Date commentDate, int commentRecommend, String commendDelete) {
+	public ReviewComment(int commentNo, String memberId, int reviewNo, int commentType, String commentContent,
+			Date commentDate, int commentRecommend, boolean commentDelete) {
 		super();
 		this.commentNo = commentNo;
-		this.memId = memId;
+		this.memberId = memberId;
 		this.reviewNo = reviewNo;
 		this.commentType = commentType;
 		this.commentContent = commentContent;
 		this.commentDate = commentDate;
 		this.commentRecommend = commentRecommend;
-		this.commendDelete = commendDelete;
+		this.commentDelete = commentDelete;
 	}
 	public int getCommentNo() {
 		return commentNo;
@@ -34,11 +42,11 @@ public class ReviewCmnt {
 	public void setCommentNo(int commentNo) {
 		this.commentNo = commentNo;
 	}
-	public String getMemId() {
-		return memId;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemId(String memId) {
-		this.memId = memId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public int getReviewNo() {
 		return reviewNo;
@@ -70,20 +78,23 @@ public class ReviewCmnt {
 	public void setCommentRecommend(int commentRecommend) {
 		this.commentRecommend = commentRecommend;
 	}
-	public String getCommendDelete() {
-		return commendDelete;
+	public boolean isCommentDelete() {
+		return commentDelete;
 	}
-	public void setCommendDelete(String commendDelete) {
-		this.commendDelete = commendDelete;
+	public void setCommentDelete(boolean commentDelete) {
+		this.commentDelete = commentDelete;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	@Override
 	public String toString() {
-		return "ReviewCmnt [commentNo=" + commentNo + ", memId=" + memId + ", reviewNo=" + reviewNo + ", commentType="
-				+ commentType + ", commentContent=" + commentContent + ", commentDate=" + commentDate
-				+ ", commentRecommend=" + commentRecommend + ", commendDelete=" + commendDelete + "]";
+		return "ReviewComment [commentNo=" + commentNo + ", memberId=" + memberId + ", reviewNo=" + reviewNo
+				+ ", commentType=" + commentType + ", commentContent=" + commentContent + ", commentDate=" + commentDate
+				+ ", commentRecommend=" + commentRecommend + ", commentDelete=" + commentDelete + "]";
 	}
 	
 	
 	
-
+	
 }

@@ -1,17 +1,25 @@
 package review.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReviewRpt {
+
+public class ReviewReport implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int reviewReportNo;
 	private int reviewNo;
 	private String reviewReportReason;
 	private Date reviewReportDate;
-	public ReviewRpt() {
+	public ReviewReport() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ReviewRpt(int reviewReportNo, int reviewNo, String reviewReportReason, Date reviewReportDate) {
+	public ReviewReport(int reviewReportNo, int reviewNo, String reviewReportReason, Date reviewReportDate) {
 		super();
 		this.reviewReportNo = reviewReportNo;
 		this.reviewNo = reviewNo;
@@ -42,9 +50,12 @@ public class ReviewRpt {
 	public void setReviewReportDate(Date reviewReportDate) {
 		this.reviewReportDate = reviewReportDate;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public String toString() {
-		return "ReviewRpt [reviewReportNo=" + reviewReportNo + ", reviewNo=" + reviewNo + ", reviewReportReason="
+		return "reviewReport [reviewReportNo=" + reviewReportNo + ", reviewNo=" + reviewNo + ", reviewReportReason="
 				+ reviewReportReason + ", reviewReportDate=" + reviewReportDate + "]";
 	}
 	

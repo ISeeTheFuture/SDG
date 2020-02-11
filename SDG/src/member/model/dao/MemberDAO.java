@@ -15,7 +15,7 @@ import member.model.vo.Member;
 
 import member.model.vo.MemberBusi;
 import member.model.vo.Memberblk;
-import review.model.vo.ReviewRpt;
+
 
 public class MemberDAO {
 	
@@ -217,15 +217,14 @@ System.out.println(query);
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("insertMemberBusi");
-		
+		System.out.println(query);
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, memberBusi.getMemId());
-			pstmt.setInt(2, memberBusi.getMemBusiNo());
-			pstmt.setString(3, memberBusi.getMemBusiAddr());
-			pstmt.setString(4, memberBusi.getMemBusiPhone());
-			pstmt.setString(5, memberBusi.getMemBusiAllow());
-						
+			
+			pstmt.setString(2, memberBusi.getMemBusiAddr());
+			pstmt.setString(3, memberBusi.getMemBusiPhone());
+					
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -233,35 +232,11 @@ System.out.println(query);
 		} finally {
 			close(pstmt);
 		}
-		
+		System.out.println(result);
 		return result;
 	}
 
-	public int insertReviewRpt(Connection conn, ReviewRpt reviewRpt) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String query = prop.getProperty("insertReviewRpt");
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, reviewRpt.getReviewReportNo());
-			pstmt.setInt(2, reviewRpt.getReviewNo());
-			pstmt.setString(3, reviewRpt.getReviewReportReason());
-			pstmt.setDate(4, reviewRpt.getReviewReportDate());
-			pstmt.setInt(5, reviewRpt.getReviewNo());
-						
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
-	
+
 	
 	
 	

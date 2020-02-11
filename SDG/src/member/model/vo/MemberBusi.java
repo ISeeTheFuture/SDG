@@ -2,7 +2,7 @@ package member.model.vo;
 
 public class MemberBusi {
 	private String memId;
-	private int memBusiNo;
+	private String memBusiNo;
 	private String memBusiAddr;
 	private String memBusiPhone;
 	private String memBusiAllow;
@@ -10,7 +10,7 @@ public class MemberBusi {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberBusi(String memId, int memBusiNo, String memBusiAddr, String memBusiPhone, String memBusiAllow) {
+	public MemberBusi(String memId, String memBusiNo, String memBusiAddr, String memBusiPhone, String memBusiAllow) {
 		super();
 		this.memId = memId;
 		this.memBusiNo = memBusiNo;
@@ -24,10 +24,10 @@ public class MemberBusi {
 	public void setMemId(String memId) {
 		this.memId = memId;
 	}
-	public int getMemBusiNo() {
+	public String getMemBusiNo() {
 		return memBusiNo;
 	}
-	public void setMemBusiNo(int memBusiNo) {
+	public void setMemBusiNo(String memBusiNo) {
 		this.memBusiNo = memBusiNo;
 	}
 	public String getMemBusiAddr() {
@@ -53,6 +53,7 @@ public class MemberBusi {
 		return "MemberBusi [memId=" + memId + ", memBusiNo=" + memBusiNo + ", memBusiAddr=" + memBusiAddr
 				+ ", memBusiPhone=" + memBusiPhone + ", memBusiAllow=" + memBusiAllow + "]";
 	}
+	
 	
 
 }
