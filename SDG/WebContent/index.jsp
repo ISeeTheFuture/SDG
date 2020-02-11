@@ -136,7 +136,12 @@
 		<form action="<%=request.getContextPath()%>/review/reviewRpt" method="GET">
 			<button id="reviewRpt">게시물신고</button>
 		</form>
-		
+		<form action="<%=request.getContextPath()%>/review/reviewForm" method="GET">
+			<button id="reviewRpt">게시물 작성</button>
+		</form>
+		<form action="<%=request.getContextPath()%>/review/reviewList" method="GET">
+			<button id="reviewRpt">게시물 보기</button>
+		</form>
 		
 		<li><a href="<%=request.getContextPath()%>/res/resView2">예약</a></li>
 				
