@@ -22,7 +22,7 @@ $(function (){ $("#button").click(function (){ $("#divToggle").toggle(); }); });
 		<legend>공간유형</legend>
 		<div class="outer">
 		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=1'">회의실</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=2'">다모적홀</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=2'">다목적홀</div>
 		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=3'">레저시설</div>
 		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=4'">파티룸</div>
 		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=5'">공연장</div>
