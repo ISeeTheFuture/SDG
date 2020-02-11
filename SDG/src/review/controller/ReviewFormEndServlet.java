@@ -36,7 +36,7 @@ public class ReviewFormEndServlet extends HttpServlet {
 		//2.maxPostSize: 업로드한 파일 최대크기 10MB 1kb*1024*10
 		
 //		3.encoding: UTF-8
-		String encoding = "utf-8";
+		request.setCharacterEncoding("utf-8");
 		
 		//4.fileRenamePolicy: 중복파일 리네임 정책 DefaultFileRenamePolicy a.txt, a1.txt, a2.txt,... 
 
@@ -69,7 +69,7 @@ public class ReviewFormEndServlet extends HttpServlet {
 //								   .replaceAll(">", "&gt;")
 //								   .replaceAll("\\n", "<br>");
 //		
-		Review b = new Review(0, 0, memberId, 0, 0, reviewStar, reviewTitle, null, reviewContent, null, null, 0, 0, null);
+		Review b = new Review(0, 0, memberId, 0, reviewStar, reviewTitle, null, reviewContent, null, null, 0, 0, null);
 						
 //		Review b = new Review(0, 0, memberId, 0, reviewStar, null, reviewTitle, reviewContent, null, null, null, 0, 0, null);
 		System.out.println("board:before@servlet="+b);

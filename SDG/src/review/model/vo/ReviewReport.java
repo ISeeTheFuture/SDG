@@ -1,7 +1,8 @@
 package review.model.vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+
 
 public class ReviewReport implements Serializable{
 	

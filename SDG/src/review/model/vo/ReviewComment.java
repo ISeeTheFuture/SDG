@@ -1,7 +1,8 @@
 package review.model.vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+
 
 public class ReviewComment implements Serializable {
 	
@@ -18,14 +19,13 @@ public class ReviewComment implements Serializable {
 	private String commentContent;
 	private Date commentDate;
 	private int commentRecommend;
-	private int commentReport;
 	private boolean commentDelete;
 	public ReviewComment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ReviewComment(int commentNo, String memberId, int reviewNo, int commentType, String commentContent,
-			Date commentDate, int commentRecommend, int commentReport, boolean commentDelete) {
+			Date commentDate, int commentRecommend, boolean commentDelete) {
 		super();
 		this.commentNo = commentNo;
 		this.memberId = memberId;
@@ -34,7 +34,6 @@ public class ReviewComment implements Serializable {
 		this.commentContent = commentContent;
 		this.commentDate = commentDate;
 		this.commentRecommend = commentRecommend;
-		this.commentReport = commentReport;
 		this.commentDelete = commentDelete;
 	}
 	public int getCommentNo() {
@@ -79,12 +78,6 @@ public class ReviewComment implements Serializable {
 	public void setCommentRecommend(int commentRecommend) {
 		this.commentRecommend = commentRecommend;
 	}
-	public int getCommentReport() {
-		return commentReport;
-	}
-	public void setCommentReport(int commentReport) {
-		this.commentReport = commentReport;
-	}
 	public boolean isCommentDelete() {
 		return commentDelete;
 	}
@@ -98,9 +91,9 @@ public class ReviewComment implements Serializable {
 	public String toString() {
 		return "ReviewComment [commentNo=" + commentNo + ", memberId=" + memberId + ", reviewNo=" + reviewNo
 				+ ", commentType=" + commentType + ", commentContent=" + commentContent + ", commentDate=" + commentDate
-				+ ", commentRecommend=" + commentRecommend + ", commentReport=" + commentReport + ", commentDelete="
-				+ commentDelete + "]";
+				+ ", commentRecommend=" + commentRecommend + ", commentDelete=" + commentDelete + "]";
 	}
+	
 	
 	
 	
