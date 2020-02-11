@@ -15,6 +15,8 @@ import review.model.dao.ReviewDAO;
 import review.model.vo.Review;
 import review.model.vo.ReviewComment;
 import review.model.vo.ReviewReport;
+import space.model.dao.SpaceDAO;
+import space.model.vo.SpacesDefault;
 
 
 /**
@@ -79,8 +81,10 @@ public class ReviewService {
 	}
 
 	public Review selectOneReviewNo(String memId) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = getConnection();
+		Review reviewNo = new ReviewDAO().selectOneReviewNo(conn, memId);
+		close(conn);
+		return reviewNo;
 	}
 
 //	public int insertReviewRpt(ReviewReport reviewRpt) {
