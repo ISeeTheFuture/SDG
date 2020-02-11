@@ -85,12 +85,12 @@
 		<input type="number" name="spcTimeMax" id="spcTimeMax" min="1" placeholder="1"/>
 		<br />
 			
-		<label for="spcDateStart">운영 시작 시간 : </label>
+		<label for="spcDateStart">운영 시작 날짜 : </label>
 		<br />	
 		<input type="date" name="spcDateStart" id="spcDateStart"/>
 		<br />	
 			
-		<label for="spcDateEnd">운영 종료 시간 : </label>
+		<label for="spcDateEnd">운영 종료 날짜 : </label>
 		<br />	
 		<input type="date" name="spcDateEnd" id="spcDateEnd"/>
 		<br />	
@@ -123,10 +123,18 @@
 		<br />	
 		<hr />
 		<label for="spcHourStart">운영 시작 시각</label>
+<<<<<<< HEAD
 		<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0"/>
+=======
+		<input type="range" name="spcHourStart" id="spcHourStart" min='0' max='24'/>
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		<br />	
 		<label for="spcHourEnd">운영 마감 시각</label>
+<<<<<<< HEAD
 		<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"/>		
+=======
+		<input type="range" name="spcHourEnd" id="spcHourEnd" min='0' max='24'/>		
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		<hr />			
 		<br />
 		
@@ -153,14 +161,6 @@
 		<label for="spcExcEnd">예외종료시간</label>
 		<input type="range" name="spcExcEnd" id="spcExcEnd" min="0" max="24" step="1" value="0"  />
 		<br />
-		<br />
-		
-		<label for="spcPriNo">요금제_NO</label>
-		<input type="text" name="spcPriceNo" id="spcPriceNo" />
-		<br />
-		
-		<label for="spcDetNo">세부공간_NO</label>
-		<input type="text" name="spcDetNo" id="spcDetNo" />
 		<br />
 		
 		<label for="spcDetName">요금명</label>
@@ -195,8 +195,8 @@
 		<hr />
 		
 		<label for="spcPriperMan">1인당여부</label>
-		<input type="checkbox" name="spcPriperMan" id="spcPriperMan" value="1"/>
-		<input type="hidden" name="spcPriperMan" id="spcPriperMan" value="0">
+		<input type="checkbox" name="spcPricePer" id="spcPricePer" value="1"/>
+		<input type="hidden" name="spcPricePer" id="spcPricePer" value="0">
 		<br />
 		
 		<label for="spcPricePrice">가격</label>

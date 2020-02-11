@@ -85,7 +85,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		String spcDetName = request.getParameter("spcDetName");
 		String [] spcPriceDays = request.getParameterValues("spcPriceDay");
 		String spcPricePer = request.getParameter("spcPricePer");
-		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
+//		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
 		int spcPricePrice = Integer.parseInt(request.getParameter("spcPricePrice"));
 		
 		
@@ -112,6 +112,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 
 		SpacesDefault comp = new SpaceService().selectOneComp("testid");
 		Spaces space = new Spaces(comp.getSpcNo(), cat, regionNo, spcContent, spcDetSharing.charAt(0), spcDetHoliday.charAt(0), spcDetSize, spcDetStorable, spcManMin, spcManMax, spcTimeMin, spcTimeMax, spcDateStart_, spcDateEnd_);
+		
 		result += new SpaceService().insertSpace(space);
 		
 		
@@ -137,11 +138,18 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		result += new SpaceService().insertSapceTimeExp(spacetimeexp);
 		
 		
+//		System.out.println(spcObj.getSpcNo()+"@SpaceRegFormEndServlet");
+		
 		String spcPriceDay = "";
 		
 		if(spcPriceDays != null)
 			spcPriceDay = String.join(",", spcPriceDays);
+<<<<<<< HEAD
 		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0),spcPriceDayBool.charAt(0), spcPricePrice);
+=======
+		
+		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0), spcPricePrice);
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		result += new SpaceService().insertPrice(spaceprice);
 		
 		//spcImg
@@ -149,6 +157,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		SpacesImg spaceimg = new SpacesImg(spcObj.getSpcDetNo(), spcImgTitle, spcImgText, spcImgRoute, comp.getSpcNo());
 		result += new SpaceService().insertImg(spaceimg);
 		
+<<<<<<< HEAD
 		String msg = "";
 		String loc = "/";
 		
@@ -162,6 +171,9 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 			   .forward(request, response);
+=======
+		
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	}
 
 	/**

@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.model.service.MemberService;
-import member.model.vo.Member;
 
 /**
- * Servlet implementation class CheckIdDuplicateServlet
+ * Servlet implementation class MemberIgnoreForm
  */
-@WebServlet("/member/checkIdDuplicate")
-public class CheckIdDuplicateServlet extends HttpServlet {
+@WebServlet("/member/memberIgnore")
+public class MemberIgnoreForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckIdDuplicateServlet() {
+    public MemberIgnoreForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +29,43 @@ public class CheckIdDuplicateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.encoding
-		request.setCharacterEncoding("utf-8");
+	
+	
+		request.setCharacterEncoding("UTF-8");
 		
-		//2.parameter handling
-		String memberId = request.getParameter("memberId");
+		String ignoId=request.getParameter("ignoreId");
+		System.out.println("dogetIgnoredId="+ignoId);
+		String ignReason=request.getParameter("ignoreReason");
 		
-		//3.business logic
-		Member m = new MemberService().selectOne(memberId);
-		boolean isUsable = m==null?true:false;
+		int result = new MemberService().banMember(ignoId,ignReason);
 		
-		//4.view단처리
-		request.setAttribute("isUsable", isUsable);
+		String msg = "";
+		String loc = "/";
 		
-		request.getRequestDispatcher("/WEB-INF/views/member/checkIdDuplicate.jsp")
+		if(result > 0)
+			msg = "회원 벤 성공";
+		else 
+			msg = "회원 벤 실패";
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 			   .forward(request, response);
-	
-	
+		
+		
+		System.out.println("result@servlet="+result);		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	/**
