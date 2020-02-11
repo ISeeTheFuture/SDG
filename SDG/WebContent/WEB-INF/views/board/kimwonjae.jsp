@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -42,14 +41,8 @@
 
 
 
-
-
-
-
-
-
 	<input type="button" value="이그노어 체크 서블릿 확인용"
-		onclick="location.href='<%=request.getContextPath()%>/member/memberIgnoreCheck'" />
+		onclick="location.href='<%=request.getContextPath()%>/member/memberIgnoreCheck?memberId=<%=memberLoggedIn.getMemId()%>'" />
 
 
 
@@ -150,5 +143,4 @@
 
 
 </body>
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG
 </html>

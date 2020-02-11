@@ -51,9 +51,8 @@ public class WritingFilter implements Filter {
 	String ignoreCheck =MB.getMem_memo();
 	boolean l = false;
 	
-	if(ignoreCheck!=null){
-		l=true;
-	}
+	if(ignoreCheck!=null)l=true;
+	
 		
 		
 		
