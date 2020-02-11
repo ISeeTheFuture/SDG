@@ -15,6 +15,7 @@ import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 
 import member.model.vo.MemberBusi;
+import member.model.vo.Memberblk;
 import review.model.vo.ReviewRpt;
 
 import static common.JDBCTemplate.*;
@@ -155,9 +156,9 @@ public class MemberService {
 	}
 	
 	
-	public static String IgnoreCheckselectOne(String memberId) {
+	public static Memberblk IgnoreCheckselectOne(String memberId) {
 		Connection conn = getConnection();
-		String m = new MemberDAO().IgnoreCheckselectOne(conn, memberId);
+		Memberblk m = new MemberDAO().IgnoreCheckselectOne(conn, memberId);
 	
 		
 		

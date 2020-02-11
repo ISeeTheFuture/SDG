@@ -14,6 +14,7 @@ import java.util.Properties;
 import member.model.vo.Member;
 
 import member.model.vo.MemberBusi;
+import member.model.vo.Memberblk;
 import review.model.vo.ReviewRpt;
 
 public class MemberDAO {
@@ -321,9 +322,9 @@ System.out.println("memROleId@DAO"+memRoleId);
 		return result;
 	}
 
-	public String IgnoreCheckselectOne(Connection conn, String memberId) {
+	public Memberblk IgnoreCheckselectOne(Connection conn, String memberId) {
 	
-		String ignoreReason = null;
+		Memberblk mb = new Memberblk(); 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("IgnoreCheckselectOne");
@@ -341,7 +342,11 @@ System.out.println("memROleId@DAO"+memRoleId);
 			while(rset.next()) {
 			
 				
-				ignoreReason=rset.getString("block_memo");
+				mb.setMem_memo(rset.getString("block_memo"));
+				mb.setMem_id(rset.getString("mem_id"));
+				mb.setBlock_write(rset.getDate("block_write"));
+				mb.setBlock_comment(rset.getDate("block_comment"));
+				
 
 			}
 			
@@ -360,7 +365,7 @@ System.out.println("memROleId@DAO"+memRoleId);
 //		}
 		
 		
-		return ignoreReason;
+		return mb;
 	}
 	
 	

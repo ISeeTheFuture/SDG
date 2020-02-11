@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import member.model.vo.Memberblk;
 
 /**
  * Servlet Filter implementation class WritingFilter
@@ -46,7 +47,8 @@ public class WritingFilter implements Filter {
 		String reqMemberId = httpRequest.getParameter("memberId");
 	
 		
-	String ignoreCheck = MemberService.IgnoreCheckselectOne(reqMemberId);
+		Memberblk MB= MemberService.IgnoreCheckselectOne(reqMemberId);
+	String ignoreCheck =MB.getMem_memo();
 	boolean l = false;
 	
 	if(ignoreCheck!=null){
@@ -56,7 +58,7 @@ public class WritingFilter implements Filter {
 		
 		
 		if(l) {
-			request.setAttribute("msg", "글쓰기벤 당하셨습니다 사유="+ignoreCheck);
+			request.setAttribute("msg", "글쓰기벤 당하셨습니다 사유="+ignoreCheck+"차단해제일자"+MB.getBlock_comment());
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 					.forward(httpRequest, response);
