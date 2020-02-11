@@ -16,6 +16,7 @@ import java.util.Properties;
 import review.model.vo.Review;
 import review.model.vo.ReviewComment;
 import review.model.vo.ReviewReport;
+import space.model.vo.SpacesDefault;
 
 public class ReviewDAO {
 
@@ -200,15 +201,15 @@ public class ReviewDAO {
 			pstmt = conn.prepareStatement(query);
 			//쿼리문 변수대입
 			pstmt.setString(1, reviewComment.getMemId());
-			pstmt.setString(2, reviewComment.getCommentContent());
-			pstmt.setInt(3, reviewComment.getReviewNo());
+			pstmt.setInt(2, reviewComment.getReviewNo());
+			pstmt.setString(3, reviewComment.getCommentContent());
 			//댓글 참조: board_comment_ref
 			//댓글 : null
 			//대댓글: 참조하는 댓글의 board_comment_no
-			String bcRef 
-				=  reviewComment.getReviewNo()==0?null:""+reviewComment.getReviewNo();
-			pstmt.setString(5,bcRef);
-			
+//			String bcRef 
+//				=  reviewComment.getReviewNo()==0?null:""+reviewComment.getReviewNo();
+//			pstmt.setString(5,bcRef);
+//			
 			result = pstmt.executeUpdate();
 			
 			
@@ -247,6 +248,44 @@ public class ReviewDAO {
 		}
 		
 		return totalMember;
+	}
+
+
+
+	public Review selectOneReviewNo(Connection conn, String memId) {
+		Review reviewNo = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectOneReviewNo");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setString(1, memId);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				reviewNo = new Review();
+				reviewNo.setReviewNo(rset.getInt("review_no"));
+				reviewNo.setMemId(rset.getString("mem_id"));
+				reviewNo.setReviewTitle(rset.getString("review_title"));
+				reviewNo.setReviewContent(rset.getString("review_content"));
+				reviewNo.setReviewDate(rset.getDate("review_date"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return reviewNo;
 	}
 	
 	

@@ -36,7 +36,7 @@ public class ReviewComment implements Serializable {
 		this.commentRecommend = commentRecommend;
 		this.commentDelete = commentDelete;
 	}
-	public ReviewComment(int reviewNo, String memId, String commentContent) {
+	public ReviewComment(String memId, int reviewNo, String commentContent) {
 		this.memId = memId;
 		this.reviewNo = reviewNo;
 		this.commentContent = commentContent;

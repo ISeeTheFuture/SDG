@@ -6,11 +6,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ReviewComment reviewComment = (ReviewComment)request.getAttribute("reviewComment");
 	List<Review> list = (List<Review>)request.getAttribute("list");
 	String pageBar = (String)request.getAttribute("pageBar");
 	int totalReviewCount = (int)request.getAttribute("totalReviewCount");
 	int AvgStar = (int)request.getAttribute("AvgStar");
+	ReviewComment reviewComment = (ReviewComment)request.getAttribute("reviewComment");
 	List<ReviewComment> commentList
 	= (List<ReviewComment>)request.getAttribute("commentList");
 	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
@@ -22,6 +22,11 @@
 		<th>이용후기 <%=totalReviewCount %>개</th>
 		<th>평균 평점 <%=AvgStar %>점</th>
 		<br/>
+		
+		<% if(memberLoggedIn != null){ %>
+	<input type="button" value="이용후기 작성" id="btn-add"
+		   onclick="location.href='<%=request.getContextPath() %>/review/reviewForm'" />
+	<% } %>
 	</tr>
 	<table id="tbl-board">
 		<tr>
@@ -70,20 +75,23 @@
     
     
     <!-- ssssssssssssssssssssssssssssss -->
-    
-    
-    
+   
+
         <form action="<%=request.getContextPath()%>/review/reviewCommentInsert"
         	  method="post"
         	  name="reviewCommentFrm">
         	<input type="hidden" name="memId" value="<%=memberLoggedIn!=null?memberLoggedIn.getMemId():""%>"/>
-        	<input type="hidden" name="commentContent" value="0"/>
-            <textarea name="reviewCommentContent" cols="60" rows="3"></textarea>
+        	
+            <textarea name="commentContent" cols="60" rows="3"></textarea>
             <button type="submit" id="btn-insert">등록</button>
+      
         </form>
     </div>
 </div>
+
 <% } %>
+
+
 <script>
 $(function(){
 	$("[name=commentContent]").click(function(){
@@ -109,4 +117,49 @@ function loginAlert(){
 	$("#login-memId").focus();
 }
 </script>
+<!-- 댓글목록테이블 -->
+<table id="tbl-comment">
+<%
+	if(commentList != null){
+		for(ReviewComment bc : commentList){
+			if(bc.getReviewCommentLevel() == 1){
+%>		
+		<tr class="level1">
+			<td>
+				<sub class="comment-writer"><%=bc.getBoardCommentWriter() %></sub>
+				<sub class="comment-date"><%=bc.getBoardCommentDate() %></sub>
+				<br />
+				<%=bc.getBoardCommentContent() %>
+			</td>
+			<td>
+				<button class="btn-reply"
+						value="<%=bc.getBoardCommentNo()%>">답글</button>
+						<%if(memberLoggedIn!=null && (bc.getBoardCommentWriter().equals(memberLoggedIn.getMemId()) || "A".equals(memberLoggedIn.getMemRole())
+								)){%>
+								<button class="btn-delete" value="<%=bc.getBoardCommentNo() %>">삭제</button>
+								<%} %>
+			</td>		
+		</tr>		
+<%
+			} else {
+%>				
+		<tr class="level2">
+			<td>
+				<sub class="comment-writer"><%=bc.getBoardCommentWriter() %></sub>
+				<sub class="comment-date"><%=bc.getBoardCommentDate() %></sub>
+				<br />
+				<%=bc.getBoardCommentContent() %>
+			</td>
+			<td>
+									<%if(memberLoggedIn!=null && (bc.getBoardCommentWriter().equals(memberLoggedIn.getMemId()) || "A".equals(memberLoggedIn.getMemRole())
+								)){%>
+								<button class="btn-delete" value="<%=bc.getCommentNo() %>">삭제</button>
+								<%} %>
+			</td>		
+		</tr>	
+<%		
+			}//end of if(level)
+		}//end of for
+	}//end of if(commentList)
+%>
 </section>

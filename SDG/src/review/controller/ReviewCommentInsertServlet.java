@@ -31,14 +31,16 @@ public class ReviewCommentInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
 		//1.파라미터
 //		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		String memId = request.getParameter("memId");
 		String commentContent = request.getParameter("commentContent");
 		Review reviewNo = new ReviewService().selectOneReviewNo(memId);
 		
-		ReviewComment reviewComment = new ReviewComment(reviewNo.getReviewNo(), memId, commentContent);
-		System.out.println(reviewComment);
+		ReviewComment reviewComment = new ReviewComment(memId, reviewNo.getReviewNo(), commentContent);
+		System.out.println("REVEIW="+reviewComment);
 		
 		//2.업무로직
 		int result = new ReviewService().insertReviewComment(reviewComment);
@@ -46,23 +48,19 @@ public class ReviewCommentInsertServlet extends HttpServlet {
 		
 		//3.view단처리: 댓글등록여부를 msg.jsp통해서 알림후, 
 		//    		   /board/boardView로 이동
-		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
-		//javascript/html에서 사용할 url은 contextPath를 포함한다.
-		String loc = "/review/reviewList?reviewNo="+reviewNo;
-
-		if(result>0){
-			msg = "댓글 등록 성공!";
-		}
-		else {
-			msg = "댓글 등록 실패!";				
-		}
+		String loc = "/";
+		
+		if(result > 0)
+			msg = "게시물 등록 성공!";
+		else 
+			msg = "게시물 등록 실패!";
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
-		
-		request.getRequestDispatcher(view)
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 			   .forward(request, response);
+	
 	
 	}
 
