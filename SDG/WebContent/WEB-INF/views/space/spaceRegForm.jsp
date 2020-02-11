@@ -123,18 +123,16 @@
 		<br />	
 		<hr />
 		<label for="spcHourStart">운영 시작 시각</label>
-<<<<<<< HEAD
+
 		<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0"/>
-=======
-		<input type="range" name="spcHourStart" id="spcHourStart" min='0' max='24'/>
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+
+		
 		<br />	
 		<label for="spcHourEnd">운영 마감 시각</label>
-<<<<<<< HEAD
+
 		<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"/>		
-=======
-		<input type="range" name="spcHourEnd" id="spcHourEnd" min='0' max='24'/>		
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+
+		
 		<hr />			
 		<br />
 		

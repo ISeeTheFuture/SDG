@@ -13,7 +13,7 @@ public class ReviewComment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int commentNo; //댓글번호
-	private String memberId;
+	private String memId;
 	private int reviewNo;
 	private int commentType;
 	private String commentContent;
@@ -24,11 +24,11 @@ public class ReviewComment implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ReviewComment(int commentNo, String memberId, int reviewNo, int commentType, String commentContent,
+	public ReviewComment(int commentNo, String memId, int reviewNo, int commentType, String commentContent,
 			Date commentDate, int commentRecommend, boolean commentDelete) {
 		super();
 		this.commentNo = commentNo;
-		this.memberId = memberId;
+		this.memId = memId;
 		this.reviewNo = reviewNo;
 		this.commentType = commentType;
 		this.commentContent = commentContent;
@@ -36,17 +36,22 @@ public class ReviewComment implements Serializable {
 		this.commentRecommend = commentRecommend;
 		this.commentDelete = commentDelete;
 	}
+	public ReviewComment(int reviewNo, String memId, String commentContent) {
+		this.memId = memId;
+		this.reviewNo = reviewNo;
+		this.commentContent = commentContent;
+	}
 	public int getCommentNo() {
 		return commentNo;
 	}
 	public void setCommentNo(int commentNo) {
 		this.commentNo = commentNo;
 	}
-	public String getMemberId() {
-		return memberId;
+	public String getMemId() {
+		return memId;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
 	public int getReviewNo() {
 		return reviewNo;
@@ -89,12 +94,10 @@ public class ReviewComment implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "ReviewComment [commentNo=" + commentNo + ", memberId=" + memberId + ", reviewNo=" + reviewNo
+		return "ReviewComment [commentNo=" + commentNo + ", memId=" + memId + ", reviewNo=" + reviewNo
 				+ ", commentType=" + commentType + ", commentContent=" + commentContent + ", commentDate=" + commentDate
 				+ ", commentRecommend=" + commentRecommend + ", commentDelete=" + commentDelete + "]";
 	}
-	
-	
 	
 	
 }
