@@ -78,6 +78,11 @@ public class ReviewService {
 		return totalBoardCount;
 	}
 
+	public Review selectOneReviewNo(String memId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 //	public int insertReviewRpt(ReviewReport reviewRpt) {
 //		Connection conn = getConnection();
 //		int result = new MemberDAO().insertReviewRpt(conn, reviewRpt);
