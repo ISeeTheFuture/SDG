@@ -1,42 +1,48 @@
 package review.model.vo;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
-public class Review {
-	private int reviewNo;
-	private int spcNo;
-	private String memId;
-	private int reviewOriNo;
-	private int reviewStar;
-	private String reviewType;
-	private String reviewTitle;
-	private String reviewContent;
-	private String reviewFile;
-	private String reviewUpFile;
-	private Date reviewDate;
-	private int reviewReadCnt;
-	private int reviewRecommend;
-	private String reviewDelete;
+public class Review implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private int reviewNo;//글번호
+	private int fieldNo;//공간no
+	private String memberId;//아이디
+	private int reviewOriNo;//원본글번호
+	private int reviewStar;//평점
+	private String reviewType;//유형
+	private String reviewTitle;//제목
+	private String reviewContent;//내용
+	private String reviewFile;//파일명
+	private String reviewUpfile;//파일명 변경
+	private Date reviewDate;//작성시간
+	private int reviewReadcnt;//조회수
+	private int reviewRecommend;//추천수
+	private String reviewDelete;//삭제여부
 	public Review() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Review(int reviewNo, int spcNo, String memId, int reviewOriNo, int reviewStar, String reviewType,
-			String reviewTitle, String reviewContent, String reviewFile, String reviewUpFile, Date reviewDate,
-			int reviewReadCnt, int reviewRecommend, String reviewDelete) {
+	public Review(int reviewNo, int fieldNo, String memberId, int reviewOriNo, int reviewStar, String reviewType,
+			String reviewTitle, String reviewContent, String reviewFile, String reviewUpfile, Date reviewDate,
+			int reviewReadcnt, int reviewRecommend, String reviewDelete) {
 		super();
 		this.reviewNo = reviewNo;
-		this.spcNo = spcNo;
-		this.memId = memId;
+		this.fieldNo = fieldNo;
+		this.memberId = memberId;
 		this.reviewOriNo = reviewOriNo;
 		this.reviewStar = reviewStar;
 		this.reviewType = reviewType;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewFile = reviewFile;
-		this.reviewUpFile = reviewUpFile;
+		this.reviewUpfile = reviewUpfile;
 		this.reviewDate = reviewDate;
-		this.reviewReadCnt = reviewReadCnt;
+		this.reviewReadcnt = reviewReadcnt;
 		this.reviewRecommend = reviewRecommend;
 		this.reviewDelete = reviewDelete;
 	}
@@ -46,17 +52,17 @@ public class Review {
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
 	}
-	public int getSpcNo() {
-		return spcNo;
+	public int getFieldNo() {
+		return fieldNo;
 	}
-	public void setSpcNo(int spcNo) {
-		this.spcNo = spcNo;
+	public void setFieldNo(int fieldNo) {
+		this.fieldNo = fieldNo;
 	}
-	public String getMemId() {
-		return memId;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemId(String memId) {
-		this.memId = memId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public int getReviewOriNo() {
 		return reviewOriNo;
@@ -94,11 +100,11 @@ public class Review {
 	public void setReviewFile(String reviewFile) {
 		this.reviewFile = reviewFile;
 	}
-	public String getReviewUpFile() {
-		return reviewUpFile;
+	public String getReviewUpfile() {
+		return reviewUpfile;
 	}
-	public void setReviewUpFile(String reviewUpFile) {
-		this.reviewUpFile = reviewUpFile;
+	public void setReviewUpfile(String reviewUpfile) {
+		this.reviewUpfile = reviewUpfile;
 	}
 	public Date getReviewDate() {
 		return reviewDate;
@@ -106,11 +112,11 @@ public class Review {
 	public void setReviewDate(Date reviewDate) {
 		this.reviewDate = reviewDate;
 	}
-	public int getReviewReadCnt() {
-		return reviewReadCnt;
+	public int getReviewReadcnt() {
+		return reviewReadcnt;
 	}
-	public void setReviewReadCnt(int reviewReadCnt) {
-		this.reviewReadCnt = reviewReadCnt;
+	public void setReviewReadcnt(int reviewReadcnt) {
+		this.reviewReadcnt = reviewReadcnt;
 	}
 	public int getReviewRecommend() {
 		return reviewRecommend;
@@ -124,15 +130,17 @@ public class Review {
 	public void setReviewDelete(String reviewDelete) {
 		this.reviewDelete = reviewDelete;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", spcNo=" + spcNo + ", memId=" + memId + ", reviewOriNo=" + reviewOriNo
-				+ ", reviewStar=" + reviewStar + ", reviewType=" + reviewType + ", reviewTitle=" + reviewTitle
-				+ ", reviewContent=" + reviewContent + ", reviewFile=" + reviewFile + ", reviewUpFile=" + reviewUpFile
-				+ ", reviewDate=" + reviewDate + ", reviewReadCnt=" + reviewReadCnt + ", reviewRecommend="
-				+ reviewRecommend + ", reviewDelete=" + reviewDelete + "]";
+		return "Review [reviewNo=" + reviewNo + ", fieldNo=" + fieldNo + ", memberId=" + memberId + ", reviewOriNo="
+				+ reviewOriNo + ", reviewStar=" + reviewStar + ", reviewType=" + reviewType + ", reviewTitle="
+				+ reviewTitle + ", reviewContent=" + reviewContent + ", reviewFile=" + reviewFile + ", reviewUpfile="
+				+ reviewUpfile + ", reviewDate=" + reviewDate + ", reviewReadcnt=" + reviewReadcnt
+				+ ", reviewRecommend=" + reviewRecommend + ", reviewDelete=" + reviewDelete + "]";
 	}
 	
 	
-
 }
