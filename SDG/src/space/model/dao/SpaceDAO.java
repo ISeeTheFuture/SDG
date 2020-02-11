@@ -22,7 +22,7 @@ public class SpaceDAO {
 	private Properties prop = new Properties();
 
 	public SpaceDAO() {
-		String fileName = SpaceDAO.class.getResource("/sql/spc/space-query.properties").getPath();
+		String fileName = SpaceDAO.class.getResource("/sql/spc/spc-query.properties").getPath();
 		System.out.println("fileName@MemberDAO=" + fileName);
 
 		try {
@@ -95,7 +95,7 @@ public class SpaceDAO {
 			pstmt.setDate(2, spacetimeexp.getSpcExcDate());
 			pstmt.setInt(3, spacetimeexp.getSpcExcStart());
 			pstmt.setInt(4, spacetimeexp.getSpcExcEnd());
-			pstmt.setString(5,String.valueOf(spacetimeexp.getSpcAvail()));
+//			pstmt.setString(5,String.valueOf(spacetimeexp.getSpcAvail()));
 
 			result = pstmt.executeUpdate();
 			
@@ -115,16 +115,11 @@ public class SpaceDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, spaceprice.getSpcPriceNo());
-			pstmt.setInt(2, spaceprice.getSpcDetNo());
-			pstmt.setString(3, spaceprice.getSpcDetName());
-			pstmt.setString(4, spaceprice.getSpcPriceDay());
-			pstmt.setInt(5, spaceprice.getSpcPriceStart());
-			pstmt.setInt(6, spaceprice.getSpcPriceEnd());
-			pstmt.setString(7,String.valueOf(spaceprice.getSpcPricePeak()));
-			pstmt.setString(8,String.valueOf(spaceprice.getSpcPricePer()));
-			pstmt.setString(9,String.valueOf(spaceprice.getSpcPriceDayBool()));
-			pstmt.setInt(10, spaceprice.getSpcPricePrice());
+			pstmt.setInt(1, spaceprice.getSpcDetNo());
+			pstmt.setString(2, spaceprice.getSpcDetName());
+			pstmt.setString(3, spaceprice.getSpcPriceDay());
+			pstmt.setString(4,String.valueOf(spaceprice.getSpcPricePer()));
+			pstmt.setInt(5, spaceprice.getSpcPricePrice());
 			
 			result = pstmt.executeUpdate();
 			
@@ -155,7 +150,7 @@ public class SpaceDAO {
 			while(rset.next()) {
 				comp = new SpacesDefault();
 				comp.setSpcNo(rset.getInt("spc_no"));
-				comp.setMemberId(rset.getString("memberid"));
+				comp.setMemberId(rset.getString("mem_id"));
 				comp.setSpcName(rset.getString("spc_name"));
 				comp.setSpcAddr(rset.getString("spc_addr"));
 			}

@@ -84,11 +84,8 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		String spcDetName = request.getParameter("spcDetName");
 		String [] spcPriceDays = request.getParameterValues("spcPriceDay");
-		int spcPriceStart = Integer.parseInt(request.getParameter("spcPriceStart"));
-		int spcPriceEnd = Integer.parseInt(request.getParameter("spcPriceEnd"));
-		String spcPricePeak = request.getParameter("spcPricePeak");
 		String spcPricePer = request.getParameter("spcPricePer");
-		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
+//		String spcPriceDayBool = request.getParameter("spcPriceDayBool");
 		int spcPricePrice = Integer.parseInt(request.getParameter("spcPricePrice"));
 		
 		
@@ -110,17 +107,26 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		if(!"".equals(spcDateEnd))
 			spcDateEnd_ = Date.valueOf(spcDateEnd);
 		
-		SpacesDefault spDefault = new SpacesDefault("temp", spcName, compAddr, compContent);
+		SpacesDefault spDefault = new SpacesDefault("testid", spcName, compAddr, compContent);
 		int result = new SpaceService().insertComp(spDefault);
 
-		SpacesDefault comp = new SpaceService().selectOneComp("temp");
+		SpacesDefault comp = new SpaceService().selectOneComp("testid");
 		Spaces space = new Spaces(comp.getSpcNo(), cat, regionNo, spcContent, spcDetSharing.charAt(0), spcDetHoliday.charAt(0), spcDetSize, spcDetStorable, spcManMin, spcManMax, spcTimeMin, spcTimeMax, spcDateStart_, spcDateEnd_);
+		
 		result += new SpaceService().insertSpace(space);
+		
+		
+		System.out.println("spc@scpcomt =" + comp);
+
+		
 		
 		//회사No 로 공간객체 가져오기
 		Spaces spcObj = new SpaceService().selectOneSpace(comp.getSpcNo());
 		SpacesTimeTable spacetimetable = new SpacesTimeTable(spcObj.getSpcDetNo(), spcDay, spcHourStart, spcHourEnd);
 		result += new SpaceService().insertSpaceTimeTable(spacetimetable);
+
+		
+		System.out.println("spc@scpcomt =" + spcObj);
 		
 		//spcExp : scpDetNo가져오기 
 		
@@ -132,17 +138,42 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		result += new SpaceService().insertSapceTimeExp(spacetimeexp);
 		
 		
+//		System.out.println(spcObj.getSpcNo()+"@SpaceRegFormEndServlet");
+		
 		String spcPriceDay = "";
 		
 		if(spcPriceDays != null)
 			spcPriceDay = String.join(",", spcPriceDays);
-		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPriceDayBool.charAt(0), spcPricePrice);
+<<<<<<< HEAD
+		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0),spcPriceDayBool.charAt(0), spcPricePrice);
+=======
+		
+		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0), spcPricePrice);
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		result += new SpaceService().insertPrice(spaceprice);
 		
 		//spcImg
 		
 		SpacesImg spaceimg = new SpacesImg(spcObj.getSpcDetNo(), spcImgTitle, spcImgText, spcImgRoute, comp.getSpcNo());
 		result += new SpaceService().insertImg(spaceimg);
+		
+<<<<<<< HEAD
+		String msg = "";
+		String loc = "/";
+		
+		if(result > 0)
+			msg = "정보등록 성공!";
+		else 
+			msg = "정보등록 실패!";
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
+			   .forward(request, response);
+=======
+		
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	}
 
 	/**
