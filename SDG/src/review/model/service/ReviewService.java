@@ -87,6 +87,30 @@ public class ReviewService {
 		return reviewNo;
 	}
 
+	public int deleteReview(int reviewNo) {
+		Connection conn = getConnection();
+		int result = new ReviewDAO().deleteReview(conn, reviewNo);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		
+		return result;
+	}
+
+	public int deleteReviewComment(ReviewComment rc) {
+		Connection conn = getConnection();
+		int result = new ReviewDAO().deleteReviewComment(conn, rc);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		
+		return result;
+	}
+
 //	public int insertReviewRpt(ReviewReport reviewRpt) {
 //		Connection conn = getConnection();
 //		int result = new MemberDAO().insertReviewRpt(conn, reviewRpt);

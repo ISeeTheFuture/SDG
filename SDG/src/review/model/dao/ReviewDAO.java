@@ -287,6 +287,68 @@ public class ReviewDAO {
 		
 		return reviewNo;
 	}
+
+
+
+	public int deleteReview(Connection conn, int reviewNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("deleteReview"); 
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setInt(1, reviewNo);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		
+		return result;
+	}
+
+
+
+	public int deleteReviewComment(Connection conn, ReviewComment rc) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("deleteReviewComment");
+		//insert into board_comment
+		//values ....
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문 변수대입
+			pstmt.setString(1, rc.getMemId());
+			pstmt.setInt(2, rc.getReviewNo());
+			pstmt.setString(3, rc.getCommentContent());
+			//댓글 참조: board_comment_ref
+			//댓글 : null
+			//대댓글: 참조하는 댓글의 board_comment_no
+//			String bcRef 
+//				=  reviewComment.getReviewNo()==0?null:""+reviewComment.getReviewNo();
+//			pstmt.setString(5,bcRef);
+//			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
 	
 	
 }
