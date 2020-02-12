@@ -136,7 +136,7 @@
 		<form action="<%=request.getContextPath()%>/review/reviewRpt" method="GET">
 			<button id="reviewRpt">게시물신고</button>
 		</form>
-<<<<<<< HEAD
+		
 		<% if(memberLoggedIn != null){ %>
 	<input type="button" value="이용후기 작성" id="btn-add"
 		   onclick="location.href='<%=request.getContextPath() %>/review/reviewForm'" />
@@ -144,9 +144,7 @@
 		<form action="<%=request.getContextPath()%>/review/reviewList" method="GET">
 			<button id="reviewRpt">게시물 보기</button>
 		</form>
-=======
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
-		
+
 
 				
 			
