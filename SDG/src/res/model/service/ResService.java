@@ -19,8 +19,9 @@ public class ResService {
 		
 		if(result > 0) commit(conn);
 		else rollback(conn);
-		
+
 		close(conn);
+		commit(conn);
 		return resGrpNo;
 	}
 
@@ -33,6 +34,7 @@ public class ResService {
 		else rollback(conn);
 		
 		close(conn);
+		commit(conn);
 		return result;
 	}
 
@@ -41,8 +43,59 @@ public class ResService {
 		Connection conn = getConnection();
 		List<ResView> result = new ResDAO().selectResView(conn, spcNo);
 		
-		
+		close(conn);
 		return result;
+	}
+
+
+	public List<ResView> selectResUpdateView(String memId) {
+		Connection conn = getConnection();
+		List<ResView> result = new ResDAO().selectResUpdateView(conn, memId);
+		
+		close(conn);
+		return result;
+	}
+
+
+	public ResView selectResOneGrp(int resGroupNo) {
+		Connection conn = getConnection();
+		ResView resGrp = new ResDAO().selectResOneGrp(conn, resGroupNo);
+		
+		
+		return resGrp;
+	}
+
+
+	public int deleteResOneGrp(int resGroupNo) {
+		int result = 0;
+		Connection conn = getConnection();
+		
+		result = new ResDAO().deleteResOneGrp(conn, resGroupNo);
+		
+		commit(conn);
+		close(conn);
+		return result;
+	}
+
+
+	public int deleteResGrp(int resGroupNo) {
+		int result = 0;
+		Connection conn = getConnection();
+		
+		result = new ResDAO().deleteResOne(conn, resGroupNo);
+		
+		commit(conn);
+		close(conn);
+		return result;
+	}
+
+
+	public Res selectResOne(int resGroupNo) {
+		Connection conn = getConnection();
+		Res res = new ResDAO().selectResOne(conn, resGroupNo);
+		
+		
+		return res;
 	}
 
 }

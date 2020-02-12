@@ -1,44 +1,49 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
-
-<script>
-  function reviewValidate(){
-	//내용을 작성하지 않은 경우에 대한 유효성 검사하세요.
-	//공백만 작성한 경우도 폼이 제출되어서는 안됨.
-
-	return true;
-}
-</script>
-<section id="review-container">
-<h2>게시판 작성</h2>
-<form action="<%=request.getContextPath() %>/review/reviewFormEnd" 
-	  method="post"
-	  enctype="multipart/form-data">
-	<table id="tbl-board-view">
-	<tr>
-		<th>제 목</th>
-		<td><input type="text" id="reviewTitle" name="reviewTitle" required></td>
-	</tr>
-	<tr>
-		<th>작성자</th>
-		<td>
-			<input type="text" id="memberId" name="memberId" value="작성자" readonly/>
-		</td>
-	</tr>
-	<tr>
-		<th>내 용</th>
-		<td><textarea rows="5" cols="40" id="reviewContent" name="reviewContent"></textarea></td>
-	</tr>
+    pageEncoding="UTF-8"%>
+    <%@page import="review.model.vo.Review"%>
+    <%@page import="member.model.vo.Member"%>
+    <%@page import="res.model.vo.Res"%>
+    <%
+    Res res = (Res)request.getAttribute("res");
+    Review review = (Review)request.getAttribute("review");
+    Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
+<title>사업자 정보 입력</title>
+</head>
+<body>
+	<form action="<%=request.getContextPath() %>/review/reviewFormEnd" method="post">
+	<label for="memId">아이디</label>
+	<input type="text"  name="memId" id="memId" value="<%=memberLoggedIn.getMemId() %>"  readonly><br>
+	<br>
 	
-	<tr>
-		<th>별점</th>
-		<td><input type="text" id="reviewStar" name="reviewStar" ></td>
-	</tr>
-	<tr>
-		<th colspan="2">
-			<input type="submit" value="등록하기" onclick="return boardValidate();">
-		</th>
-	</tr>
-</table>
-</form>
-</section>
+	<!-- <label for="memBusiNo">사업자 번호</label>
+      <input type="text" name="memBusiNo" id="memBusiNo" placeholder="사업자 번호를 입력하세요." />
+      <br> -->
+      
+     <label for="reviewTitle">제목</label>
+      <input type="text" name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요." />
+      <br>
+     <label for="reviewContent">내용</label>
+      <input type="text" name="reviewContent" id="reviewContent" placeholder="내용을 입력하세요." />
+      <br>
+     
+      <label for="reviewStar">별점 입력</label>
+      <input type="tel" placeholder="별점을 입력하세요" name="reviewStar" id="reviewStar" maxlength="11" required><br>
+      <br>
+      
+     <!--  <input type="hidden" name="memBusiAllow" id="memBusiAllow" value="N" /> -->
+      <!--기본값 0으로  0일때 승인 거부 상태 , 관리자가 1로 update해야 승인됨 -->
+      
+      <input type='submit' value="전송" />
+      <input type="reset" value="취소">
+	
+	</form>
+</body>
+
+
+</html>

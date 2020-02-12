@@ -12,7 +12,7 @@ public class Review implements Serializable{
 	
 	private int reviewNo;//글번호
 	private int fieldNo;//공간no
-	private String memberId;//아이디
+	private String memId;//아이디
 	private int reviewOriNo;//원본글번호
 	private int reviewStar;//평점
 	private String reviewType;//유형
@@ -28,13 +28,13 @@ public class Review implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Review(int reviewNo, int fieldNo, String memberId, int reviewOriNo, int reviewStar, String reviewType,
+	public Review(int reviewNo, int fieldNo, String memId, int reviewOriNo, int reviewStar, String reviewType,
 			String reviewTitle, String reviewContent, String reviewFile, String reviewUpfile, Date reviewDate,
 			int reviewReadcnt, int reviewRecommend, String reviewDelete) {
 		super();
 		this.reviewNo = reviewNo;
 		this.fieldNo = fieldNo;
-		this.memberId = memberId;
+		this.memId = memId;
 		this.reviewOriNo = reviewOriNo;
 		this.reviewStar = reviewStar;
 		this.reviewType = reviewType;
@@ -46,6 +46,13 @@ public class Review implements Serializable{
 		this.reviewReadcnt = reviewReadcnt;
 		this.reviewRecommend = reviewRecommend;
 		this.reviewDelete = reviewDelete;
+	}
+	public Review(int fieldNo,String memId, String reviewTitle, int reviewStar, String reviewContent) {
+		this.fieldNo = fieldNo;
+		this.memId = memId;
+		this.reviewTitle = reviewTitle;
+		this.reviewStar = reviewStar;
+		this.reviewContent = reviewContent;
 	}
 	public int getReviewNo() {
 		return reviewNo;
@@ -59,11 +66,11 @@ public class Review implements Serializable{
 	public void setFieldNo(int fieldNo) {
 		this.fieldNo = fieldNo;
 	}
-	public String getMemberId() {
-		return memberId;
+	public String getMemId() {
+		return memId;
 	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMemId(String memId) {
+		this.memId = memId;
 	}
 	public int getReviewOriNo() {
 		return reviewOriNo;
@@ -136,7 +143,7 @@ public class Review implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", fieldNo=" + fieldNo + ", memberId=" + memberId + ", reviewOriNo="
+		return "Review [reviewNo=" + reviewNo + ", fieldNo=" + fieldNo + ", memId=" + memId + ", reviewOriNo="
 				+ reviewOriNo + ", reviewStar=" + reviewStar + ", reviewType=" + reviewType + ", reviewTitle="
 				+ reviewTitle + ", reviewContent=" + reviewContent + ", reviewFile=" + reviewFile + ", reviewUpfile="
 				+ reviewUpfile + ", reviewDate=" + reviewDate + ", reviewReadcnt=" + reviewReadcnt
