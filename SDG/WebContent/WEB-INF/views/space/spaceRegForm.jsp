@@ -6,12 +6,88 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
+<script>
+function validate(){
+	let specialCharRegExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+	let onlyNumRegExp = /^[0-9]*$/g;
+	let spcName = $('#spcName').val();
+	let regionNo = $('#region').val();
+	let spcContent = $('#spcContent').val();
+	let spcDetSize = $('#spcDetSize').val();
+	let spcDetStorable = $('#spcDetStorable').val();
+	let spcManMin = $('#spcManMin').val();
+	let spcManMax = $('#spcManMax').val();
+	let spcTimeMin = $('#spcTimeMin').val();
+	let spcTimeMax = $('#spcTimeMax').val();
+	let spcDateStart = $('#spcDateStart').val();
+	let spcDateEnd = $('#spcDateEnd').val();
+    if(specialCharRegExp.test(spcName)){
+    	alert("공간명에는 특수문자를 제거해주세요");
+    	return false;
+    }
+    if(regionNo == null){
+   		alert("지역을 선택하지 않으셨습니다.");
+    	return false;
+    }
+    
+    if(spcContent == ""){
+    	 $('#spcContent').val("소개글 없음");
+    	 return false;
+    }
+    
+    if(spcDetSize == ""){
+    	alert("숫자를 입력해주세요 (크기)");
+    	$('#spcDetSize').val(100);
+    	return false;
+    }
+    
+    if(spcDetSize == ""){
+    	$('#spcDetSize').val(100);
+    	return false;
+    }
+    
+    if(spcDetStorable == ""){
+    	$('#spcDetStorable').val(100);
+    	return false;
+    }
+    
+    if(spcManMin == ""){
+    	$('#spcManMin').val(100);
+    	return false;
+    }
+    
+    if(spcManMax == ""){
+    	$('#spcManMax').val(100);
+    	return false;
+    }
+    
+    if(spcTimeMim == ""){
+    	$('#spcTimeMin').val(100);
+    	return false;
+    }
+    
+    if(spcTimeMax == ""){
+    	$('#spcTimeMax').val(100);
+    	return false;
+    }
+    
+    if(!Date.parse(spcDateStart)){
+    	alert("운영 시작 날짜를 입력해주세요")
+    	return false;
+    }
+    
+    
+    
+	return true;
+}
+
+</script>
 </head>
 <body>
 	
 	<%String cat = request.getParameter("cat");%>
 
-	<form action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST">
+	<form onsubmit="return validate();" action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST">
 		<input type="hidden" name="cat" value="<%=cat %>" />
 		<label for="spcName">공간명 : </label>
 		<br />	
@@ -123,16 +199,10 @@
 		<br />	
 		<hr />
 		<label for="spcHourStart">운영 시작 시각</label>
-
 		<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0"/>
-
-		
 		<br />	
 		<label for="spcHourEnd">운영 마감 시각</label>
-
 		<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"/>		
-
-		
 		<hr />			
 		<br />
 		
@@ -193,8 +263,8 @@
 		<hr />
 		
 		<label for="spcPriperMan">1인당여부</label>
-		<input type="checkbox" name="spcPricePer" id="spcPricePer" value="1"/>
-		<input type="hidden" name="spcPricePer" id="spcPricePer" value="0">
+		<input type="checkbox" name="spcPricePer" value="1"/>
+		<input type="hidden" name="spcPricePer" value="0">
 		<br />
 		
 		<label for="spcPricePrice">가격</label>
@@ -205,7 +275,56 @@
 
 		
 	</form>
-	
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 </body>
 
 </html>

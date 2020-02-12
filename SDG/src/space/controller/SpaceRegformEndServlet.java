@@ -144,26 +144,14 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		if(spcPriceDays != null)
 			spcPriceDay = String.join(",", spcPriceDays);
-<<<<<<< HEAD
-
-		
-=======
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
-		
 		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0), spcPricePrice);
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		result += new SpaceService().insertPrice(spaceprice);
 		
 		//spcImg
 		
 		SpacesImg spaceimg = new SpacesImg(spcObj.getSpcDetNo(), spcImgTitle, spcImgText, spcImgRoute, comp.getSpcNo());
 		result += new SpaceService().insertImg(spaceimg);
-		
-<<<<<<< HEAD
-
 		String msg = "";
 		String loc = "/";
 		
@@ -177,11 +165,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 			   .forward(request, response);
-
-=======
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	}
-		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
