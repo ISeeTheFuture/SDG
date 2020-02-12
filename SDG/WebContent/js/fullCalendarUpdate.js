@@ -166,12 +166,11 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: getContextPath()+"/res/resViewEnd.do",
+      url: "/SDG/res/resUpdateView.do",
       dataType: "json",
 //      url: "../data.json",
       data: {
-        // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
-    	  spcNo : 1011
+        memberId : "testid"
       },
       success: function (response) {
         var fixedDate = response.map(function (array) {
@@ -307,7 +306,7 @@ var calendar = $('#calendar').fullCalendar({
 
   //이벤트 클릭시 보기이벤트
   eventClick: function (event, jsEvent, view) {
-    viewEvent(event);
+    editEvent(event);
   },
 
   locale: 'ko',

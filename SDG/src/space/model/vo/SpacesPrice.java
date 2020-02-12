@@ -32,16 +32,25 @@ public class SpacesPrice {
 		this.spcPricePrice = spcPricePrice;
 	}
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	public SpacesPrice(int spcDetNo, String spcDetName, String spcPriceDay, char spcPricePer, int spcPricePrice) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		this.spcDetNo = spcDetNo;
 		this.spcDetName = spcDetName;
 		this.spcPriceDay = spcPriceDay;
 		this.spcPricePer = spcPricePer;
+<<<<<<< HEAD
 
 		this.spcPriceDayBool = spcPriceDayBool;
 
+=======
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		this.spcPricePrice = spcPricePrice;
 	}
 	public int getSpcPriceNo() {

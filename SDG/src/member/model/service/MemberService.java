@@ -1,17 +1,13 @@
-
 package member.model.service;
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.rollback;
+import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
 import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 import member.model.vo.MemberBusi;
-import review.model.vo.ReviewReport;
+import member.model.vo.Memberblk;
 
 public class MemberService {
 
@@ -61,17 +57,7 @@ public class MemberService {
 		return result;
 	}
 
-	//수정용
-//	public int updatePoint(Member member) {
-//		Connection conn = getConnection();
-//		int result = new MemberDAO().updatePoint(conn, member);
-//		if (result > 0)
-//			commit(conn);
-//		else
-//			rollback(conn);
-//		close(conn);
-//		return result;
-//	}
+
 
 	public int updateMemberPoint(Member member) {
 		Connection conn = getConnection();
@@ -136,18 +122,14 @@ public class MemberService {
 	}
 	
 	
-	public static String IgnoreCheckselectOne(String memberId) {
+
+	public static Memberblk IgnoreCheckselectOne(String memberId) {
 		Connection conn = getConnection();
-		String m = new MemberDAO().IgnoreCheckselectOne(conn, memberId);
+		Memberblk m = new MemberDAO().IgnoreCheckselectOne(conn, memberId);
 	
 		
 		
 		close(conn);
 		return m;
 	}
-	
-	
-	
-	
-	
 }

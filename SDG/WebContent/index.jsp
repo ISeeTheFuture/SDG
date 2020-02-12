@@ -107,11 +107,6 @@
 					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 					
 				</ul>
-			
-
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/res/resView2">예약2</a></li>
-	</ul>
 	
 		<form action="<%=request.getContextPath()%>/space/spacePrice" method="GET">
 			<button id="spacePriceReg">사업장 요금</button>
@@ -128,6 +123,11 @@
 		</form>
 
 
+		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
+		<li><a href="<%=request.getContextPath()%>/res/resUpdate">예약수정하기</a></li>
+
 <br><br><br>
 		<form action="<%=request.getContextPath()%>/member/memberBusi" method="GET">
 			<button id="memberBusi">사업자 정보 입력</button>
@@ -136,6 +136,7 @@
 		<form action="<%=request.getContextPath()%>/review/reviewRpt" method="GET">
 			<button id="reviewRpt">게시물신고</button>
 		</form>
+<<<<<<< HEAD
 		<% if(memberLoggedIn != null){ %>
 	<input type="button" value="이용후기 작성" id="btn-add"
 		   onclick="location.href='<%=request.getContextPath() %>/review/reviewForm'" />
@@ -143,8 +144,10 @@
 		<form action="<%=request.getContextPath()%>/review/reviewList" method="GET">
 			<button id="reviewRpt">게시물 보기</button>
 		</form>
+=======
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		
-		<li><a href="<%=request.getContextPath()%>/res/resView2">예약</a></li>
+
 				
 			
 
