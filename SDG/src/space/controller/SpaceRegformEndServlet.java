@@ -144,12 +144,8 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		if(spcPriceDays != null)
 			spcPriceDay = String.join(",", spcPriceDays);
-<<<<<<< HEAD
-		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0),spcPriceDayBool.charAt(0), spcPricePrice);
-=======
 		
 		SpacesPrice spaceprice = new SpacesPrice(spcObj.getSpcDetNo(), spcDetName, spcPriceDay, spcPricePer.charAt(0), spcPricePrice);
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		result += new SpaceService().insertPrice(spaceprice);
 		
 		//spcImg
@@ -157,24 +153,8 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		SpacesImg spaceimg = new SpacesImg(spcObj.getSpcDetNo(), spcImgTitle, spcImgText, spcImgRoute, comp.getSpcNo());
 		result += new SpaceService().insertImg(spaceimg);
 		
-<<<<<<< HEAD
-		String msg = "";
-		String loc = "/";
-		
-		if(result > 0)
-			msg = "정보등록 성공!";
-		else 
-			msg = "정보등록 실패!";
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-			   .forward(request, response);
-=======
-		
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	}
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

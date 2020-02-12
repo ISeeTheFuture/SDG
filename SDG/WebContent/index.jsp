@@ -122,12 +122,11 @@
 			<button id="spaceExp">사업자 요금 수정</button>
 		</form>
 
-<<<<<<< HEAD
+
 		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
 		<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
 		<li><a href="<%=request.getContextPath()%>/res/resUpdate">예약수정하기</a></li>
-=======
 
 <br><br><br>
 		<form action="<%=request.getContextPath()%>/member/memberBusi" method="GET">
@@ -138,9 +137,7 @@
 			<button id="reviewRpt">게시물신고</button>
 		</form>
 		
-		
-		<li><a href="<%=request.getContextPath()%>/res/resView2">예약</a></li>
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+
 				
 			
 
