@@ -5,6 +5,17 @@
 
 <%
 	Member member = (Member)request.getAttribute("member");
+int gn = member.getMemGradeName();
+String MemberGradeName = null;
+
+switch(gn){
+case 1 :MemberGradeName="브론즈"; break;
+case 2 :MemberGradeName="실버"; break;
+case 3 :MemberGradeName="골드"; break;
+case 4 :MemberGradeName="플레티넘"; break;
+case 5 :MemberGradeName="다이아몬드"; break;
+
+}
 
 	//String[] hobby = member.getHobby().split(",");
 	//List<String> hobbyList = null;
@@ -107,7 +118,7 @@ function updatePassword(){
 			<tr>
 				<th>그레이드네임</th>
 				<td>	
-				<input type="text"  name="memberGradeName" id="memberGradeName" value="<%=member.getMemGradeName() %>"  required><br>
+				<input type="text"  name="memberGradeName" id="memberGradeName" value="<%=MemberGradeName %>"  required><br>
 				</td>
 			</tr>
 			

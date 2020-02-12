@@ -13,6 +13,10 @@ import java.util.Properties;
 
 import member.model.vo.Member;
 
+import member.model.vo.MemberBusi;
+import member.model.vo.Memberblk;
+
+
 public class MemberDAO {
 	
 	private Properties prop = new Properties();
@@ -206,7 +210,138 @@ System.out.println(query);
 		
 		return result;
 	}
+
 	
+
+	public int insertMemberBusi(Connection conn, MemberBusi memberBusi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertMemberBusi");
+		System.out.println(query);
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberBusi.getMemId());
+			
+			pstmt.setString(2, memberBusi.getMemBusiAddr());
+			pstmt.setString(3, memberBusi.getMemBusiPhone());
+					
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println(result);
+		return result;
+	}
+
+
+	
+	
+	
+
+
+	public int banMember(Connection conn, String ignoId, String ignReason) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("MemberIgnore"); 
+		System.out.println("ignoId@DAO="+ignoId);
+		System.out.println("ignoReason@DAO="+ignReason);
+		System.out.println("banMemberQuery@DAO="+query);
+		try {
+
+			pstmt = conn.prepareStatement(query);
+	
+				
+			pstmt.setString(1, ignoId);
+			pstmt.setString(2, ignReason);
+
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int RoleUpMember(Connection conn, String memRoleId) {
+		
+		
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("MemberRoleUp"); 
+System.out.println(query);
+System.out.println("memROleId@DAO"+memRoleId);
+		try {
+
+			pstmt = conn.prepareStatement(query);
+	
+				
+			pstmt.setString(1, memRoleId);
+		
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Memberblk IgnoreCheckselectOne(Connection conn, String memberId) {
+	
+		Memberblk mb = new Memberblk(); 
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("IgnoreCheckselectOne");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setString(1, memberId);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+			
+				
+				mb.setMem_memo(rset.getString("block_memo"));
+				mb.setMem_id(rset.getString("mem_id"));
+				mb.setBlock_write(rset.getDate("block_write"));
+				mb.setBlock_comment(rset.getDate("block_comment"));
+				
+
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		
+//		if(ignoreReason==null) {
+//			
+//			ignoreReason="";
+//		}
+		
+		
+		return mb;
+	}
 	
 	
 	
@@ -232,3 +367,4 @@ System.out.println(query);
 	
 	
 }
+

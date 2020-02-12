@@ -30,13 +30,7 @@ public class Member implements Serializable, HttpSessionBindingListener{
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	public int getIgnoreOn() {
