@@ -1,8 +1,8 @@
 ﻿<%@page import="review.model.vo.ReviewComment"%>
 <%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="review.model.vo.Review, java.util.List" %>
+	pageEncoding="UTF-8"%>
+<%@ page import="review.model.vo.Review, java.util.List"%>
 
 <%
 Review review = (Review)request.getAttribute("review");
@@ -17,56 +17,68 @@ Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 %>
 
 <section id="board-container">
-<h2>이용후기</h2>
-<table id="tbl-board-view">
-<% for(Review review1 : list){ %>
-	<tr>
-		
-		<td><%=review1.getMemId() %></td>
-	</tr>
-	<tr>
-		<td><%=review1.getReviewTitle() %></td>
-	</tr>
-	<tr>
-		
-		<td><%=review1.getReviewContent() %></td>
-	</tr>
-	<tr>
-		
-		<td><%=review1.getReviewStar() %></td>
-	</tr>
-	
-	<%--글작성자/관리자인경우 게시글 수정삭제버튼 보일수 있게 함 --%>
-	<% if(memberLoggedIn!=null &&
+	<h2>이용후기</h2>
+	<table id="tbl-board-view">
+		<% for(Review review1 : list){ %>
+
+
+		<input type="button" />
+
+		<form action="<%=request.getContextPath()%>/review/reviewRptEnd?reviewNo=<%=review1.getReviewNo() %>"
+			method="GET">
+			<button id="memberBusi">사업자 정보 입력</button>
+			<tr>
+				<td>신고하러가기</td>
+			</tr>
+
+		</form>
+
+		<tr>
+
+			<td><%=review1.getMemId() %></td>
+		</tr>
+		<tr>
+			<td><%=review1.getReviewTitle() %></td>
+		</tr>
+		<tr>
+
+			<td><%=review1.getReviewContent() %></td>
+		</tr>
+		<tr>
+
+			<td><%=review1.getReviewStar() %></td>
+		</tr>
+
+		<%--글작성자/관리자인경우 게시글 수정삭제버튼 보일수 있게 함 --%>
+		<% if(memberLoggedIn!=null &&
 		(review1.getMemId().equals(memberLoggedIn.getMemId())
 		|| "A".equals(memberLoggedIn.getMemRole())) ){ %>
-	<tr>
-		<th colspan="2">
-			<input type="button" value="수정하기"
-				   onclick="updateReview();"/>
-			<input type="button" value="삭제하기" onclick="deleteReview();"/>
-		</th>
-	</tr>
-	<%} %>	
-	
-</table>
-<!-- end of table#tbl-board-view -->
-<hr style="margin-top:30px;" />	
-<div class="comment-container">
-    <%-- text-area 포커스, 등록버튼을 누른 경우 로그인여부를 검사해서 경고창을 띄어줌. --%>
-    <div class="comment-editor">
-        <form action="<%=request.getContextPath()%>/review/reviewCommentInsert"
-        	  method="post"
-        	  name="reviewCommentFrm">
-        	<input type="hidden" name="memId" value="<%=memberLoggedIn!=null?memberLoggedIn.getMemId():""%>"/>
-        	
-            <textarea name="commentContent" ></textarea>
-            <button type="submit" id="btn-insert">등록</button>
-        </form>
-    </div>
-</div>
-<%} %>	
-<script>
+		<tr>
+			<th colspan="2"><input type="button" value="수정하기"
+				onclick="updateReview();" /> <input type="button" value="삭제하기"
+				onclick="deleteReview();" /></th>
+		</tr>
+		<%} %>
+
+	</table>
+	<!-- end of table#tbl-board-view -->
+	<hr style="margin-top: 30px;" />
+	<div class="comment-container">
+		<%-- text-area 포커스, 등록버튼을 누른 경우 로그인여부를 검사해서 경고창을 띄어줌. --%>
+		<div class="comment-editor">
+			<form
+				action="<%=request.getContextPath()%>/review/reviewCommentInsert"
+				method="post" name="reviewCommentFrm">
+				<input type="hidden" name="memId"
+					value="<%=memberLoggedIn!=null?memberLoggedIn.getMemId():""%>" />
+
+				<textarea name="commentContent"></textarea>
+				<button type="submit" id="btn-insert">등록</button>
+			</form>
+		</div>
+	</div>
+	<%} %>
+	<script>
 $(function(){
 	$("[name=commentContent]").click(function(){
 		if(<%=memberLoggedIn == null%>)
@@ -91,32 +103,32 @@ function loginAlert(){
 	$("#login-membId").focus();
 }
 </script>
-<!-- 댓글목록테이블 -->
-<table id="tbl-comment">
-<%
+	<!-- 댓글목록테이블 -->
+	<table id="tbl-comment">
+		<%
 	if(commentList != null){
 		for(ReviewComment bc : commentList){
 		/* 	if(bc. == 1){ */
-%>		
+%>
 		<tr class="level1">
-			<td>
-				<sub class="comment-writer"><%=bc.getMemId() %></sub>
-				<sub class="comment-date"><%=bc.getCommentDate() %></sub>
-				<br />
-				<%=bc.getCommentContent() %>
+			<td><sub class="comment-writer"><%=bc.getMemId() %></sub> <sub
+				class="comment-date"><%=bc.getCommentDate() %></sub> <br /> <%=bc.getCommentContent() %>
 			</td>
 			<td>
-				<button class="btn-reply"
-						value="<%=bc.getCommentNo()%>">답글</button>
-						<%if(memberLoggedIn!=null && (bc.getMemId().equals(memberLoggedIn.getMemId()) || "A".equals(memberLoggedIn.getMemRole())
+				<button class="btn-reply" value="<%=bc.getCommentNo()%>">답글</button>
+				<%if(memberLoggedIn!=null && (bc.getMemId().equals(memberLoggedIn.getMemId()) || "A".equals(memberLoggedIn.getMemRole())
 								)){%>
-								<button class="btn-delete" value="<%=bc.getCommentNo() %>">삭제</button>
-								<%} %>
-			</td>		
-		</tr>		
-<%
+				<button class="btn-delete" value="<%=bc.getCommentNo() %>">삭제</button>
+				<%} %>
+			</td>
+		</tr>
+
+		<tr>
+			<td></td>
+		</tr>
+		<%
 			/* } else { */
-%>				
+%>
 		<%-- <tr class="level2">
 			<td>
 				<sub class="comment-writer"><%=bc.getBoardCommentWriter() %></sub>
@@ -131,21 +143,20 @@ function loginAlert(){
 								<%} %>
 			</td>		
 		</tr>	 --%>
-<%		
+		<%		
 			}//end of if(level)
 		}//end of for
 	//end of if(commentList)
 %>
-</table>
+	</table>
 </section>
 
 
 <!-- 게시물삭제폼 -->
 <form action="<%=request.getContextPath()%>/review/reviewDelete"
-	  name="reviewDelFrm"
-	  method="POST">
-	  <input type="hidden" name="reviewNo" value="<%=review.getReviewNo()%>"/>
-	 
+	name="reviewDelFrm" method="POST">
+	<input type="hidden" name="reviewNo" value="<%=review.getReviewNo()%>" />
+
 </form>
 <script>
 //삭제버튼 클릭시 댓글 삭제후 현재페이지 돌아오기
@@ -184,7 +195,7 @@ $(".btn-reply").click(function(){
 	.focus();
 	//클릭이벤트 한번 실행후에는 핸들러 제거
 	$(this).off('click');
-	<%} else{%>
+	<%} else {%>
 		loginAlert();
 	<%}%>
 });
@@ -200,8 +211,8 @@ function deleteReview(){
 function fileDownload(oName, rName){
 	oName = encodeURIComponent(oName);
 	console.log(oName);
-	location.href = "<%=request.getContextPath()%>/board/boardFileDownload"
-				  + "?oName="+oName
-			  	  + "&rName="+rName;
-}
-</script> 
+	location.href = "<%=request.getContextPath()%>
+	/board/boardFileDownload"
+				+ "?oName=" + oName + "&rName=" + rName;
+	}
+</script>

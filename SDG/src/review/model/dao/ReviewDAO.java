@@ -349,6 +349,40 @@ public class ReviewDAO {
 		
 		return result;
 	}
+
+
+
+	public int insertReviewReport(Connection conn, ReviewReport reviewReport) {
+
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertReviewReport");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, reviewReport.getReviewReportReason());
+			pstmt.setInt(2,reviewReport.getReviewNo());
+
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 }

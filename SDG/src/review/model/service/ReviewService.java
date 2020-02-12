@@ -126,6 +126,44 @@ public class ReviewService {
 //	}
 	
 	
+	public int insertReport(ReviewReport reviewReport) {
+		Connection conn = getConnection();
+		int result = new ReviewDAO().insertReviewReport(conn, reviewReport);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		
+		return result;
+	}
+
+	public int insertReviewReport(ReviewReport rR) {
+
+		
+		Connection conn = getConnection();
+		int result = new ReviewDAO().insertReviewReport(conn, rR);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		
+		return result;
+		
+		
+		
+		
+		
+	
+	}
+	
+
+	
+	
+	
 }
 
 

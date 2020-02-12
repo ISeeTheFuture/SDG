@@ -18,14 +18,19 @@
 	
 	<label for="reviewNo">원본글번호 hidden </label>
 	<%-- <input type="hidden"  name="reviewNo" id="reviewNo" value="<%=review.getReviewOriNo() %>"  required> --%>
+		<td><input type="text" name="reviewNo" id="reviewNo"
+						value="<%= %>"
+						tabindex="1" /></td>
+	
 	<br>
+	
+	
 	
 	<label for="reviewReportReason">신고 사유</label>
       <input type="text" name="reviewReportReason" id="reviewReportReason" placeholder="신고사유를 입력하세요." />
       <br>
             
-      <input type="hidden" name="reviewReportDate" id="reviewReportDate" value="0" />
-      <!--기본값 0으로  0일때 승인 거부 상태 , 관리자가 1로 update해야 승인됨 -->
+ 
       
       <input type='submit' value="전송" />
       <input type="reset" value="취소">
