@@ -34,7 +34,6 @@ DROP TABLE spc_loc cascade constraints;
 -- 시퀀스 모음
 --======================================================
 
-
 create SEQUENCE seq_review_no;
 create SEQUENCE seq_review_report_no;
 create SEQUENCE seq_comment_no;
@@ -202,7 +201,7 @@ CREATE TABLE spc_price (
 	spc_price_no	number		NOT NULL,
 	spc_detail_no	number		NOT NULL,
 	spc_detail_name	varchar2(100)		NOT NULL,
-	spc_price_day	varchar2(10)		NULL,
+	spc_price_day	varchar2(1000)		NULL,
 	spc_price_start	number		NOT NULL,
 	spc_price_end	number		NOT NULL,
 	spc_price_peak	char(1)	DEFAULT 0	NOT NULL,
@@ -213,7 +212,7 @@ CREATE TABLE spc_price (
 
 CREATE TABLE spc_timetable (
 	spc_detail_no	number		NOT NULL,
-	spc_day	varchar2(10)		NULL,
+	spc_day	varchar2(1000)		NULL,
 	spc_hour_start	number		NOT NULL,
 	spc_hour_end	number		NOT NULL,
 	spc_avail	char(1)	DEFAULT 0	NOT NULL
@@ -486,14 +485,47 @@ insert into member_grd values(3,0);
 insert into member_grd values(4,0);
 insert into member_grd values(5,0);
 INSERT INTO membership VALUES('testid','testpwd','testname',DEFAULT,DEFAULT,DEFAULT,0,1,SYSDATE,'testemail','01000000000','seoul',DEFAULT,NULL,SYSDATE);
+INSERT INTO spc VALUES(SEQ_SPC_NO.NEXTVAL,'testid','선동렬', '경기도 광주', '아름다운 살인마들', DEFAULT, DEFAULT);
+INSERT INTO SPC_LOC VALUES(1,'서울');
+INSERT INTO SPC_LOC VALUES(2,'경기도');
+INSERT INTO SPC_LOC VALUES(3,'인천광역시');
+INSERT INTO SPC_LOC VALUES(4,'세종특별시');
+INSERT INTO SPC_LOC VALUES(5,'충청북도');
+INSERT INTO SPC_LOC VALUES(6,'충청남도');
+INSERT INTO SPC_LOC VALUES(7,'강원도');
+INSERT INTO SPC_LOC VALUES(8,'대전광역시');
+INSERT INTO SPC_LOC VALUES(9,'대구광역시');
+INSERT INTO SPC_LOC VALUES(10,'경상북도');
+INSERT INTO SPC_LOC VALUES(11,'경상남도');
+INSERT INTO SPC_LOC VALUES(12,'부산광역시');
+INSERT INTO SPC_LOC VALUES(13,'울산광역시');
+INSERT INTO SPC_LOC VALUES(14,'전라북도');
+INSERT INTO SPC_LOC VALUES(15,'전라남도');
+INSERT INTO SPC_LOC VALUES(16,'광주광역시');
+INSERT INTO SPC_LOC VALUES(17,'제주도');
+INSERT INTO SPC_TYPE VALUES(1,'회의실');
+INSERT INTO SPC_TYPE VALUES(2,'다목적홀');
+INSERT INTO SPC_TYPE VALUES(3,'레저시설');
+INSERT INTO SPC_TYPE VALUES(4,'파티룸');
+INSERT INTO SPC_TYPE VALUES(5,'공연장');
+INSERT INTO SPC_TYPE VALUES(6,'카페');
+INSERT INTO SPC_TYPE VALUES(7,'스터디룸');
+INSERT INTO SPC_TYPE VALUES(8,'독립오피스');
+INSERT INTO SPC_TYPE VALUES(9,'코워킹오피스');
+INSERT INTO SPC_TYPE VALUES(10,'일하기좋은카페');
 INSERT INTO spc VALUES(1011,'testid',null, null, null, null, null);
 commit;
 
 
+select * from spc_type;
 select * from membership;
 select * from member_grd;
 select * from spc;
+select * from spc_dtl;
+select * from spc_timetable;
 select * from spc_res;
 select * from spc_res_grp;
 
-select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no where spc_no = 1011 ORDER BY res_no;
+
+select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;
+SELECT * FROM SPC_RES R JOIN SPC_RES_GRP G ON R.RES_GROUP_NO = G.RES_GROUP_NO WHERE R.RES_GROUP_NO = 62 ORDER BY RES_TIME;

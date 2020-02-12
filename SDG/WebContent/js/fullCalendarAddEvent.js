@@ -9,6 +9,7 @@ var editType = $('#edit-type');
 var editResMany = $('#edit-resMany');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
+
 var editResManyLabel = $('#edit-resMany-label');
 var editDescLabel = $('#edit-desc-label');
 
@@ -29,6 +30,7 @@ var newEvent = function (start, end, eventType) {
     editEnd.val(end);
     editType.val(eventType).prop("selected", true);
 
+    // 닫기버튼 보여주기
     addBtnContainer.show();
     modifyBtnContainer.hide();
     viewBtnContainer.hide();
@@ -58,7 +60,7 @@ var newEvent = function (start, end, eventType) {
             description: editDesc.val(),
             type: editType.val(),
             resMany: editResMany.val(),
-            username: 'testid',
+            username: 'testid', // 꼭 세션에서 받아오도록 변경
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
@@ -71,9 +73,12 @@ var newEvent = function (start, end, eventType) {
             console.log(new Date());
             return false;
         }
-        
-
-        if (new Date(eventData.start).setDate(0) <= (new Date()).setDate(+1)) {
+ 
+        if(new Date(eventData.start).getMinutes() !== 0 || new Date(eventData.end).getMinutes() !== 0 || eventData.start == eventData.end){
+        	alert('예약은 1시간 단위만 가능합니다.');
+        	return false;
+        }
+        if (new Date(eventData.start) <= new Date(new Date().setDate(new Date().getDate() + 1))) {        	
         	alert('현재부터 24시간 후부터 예약 가능합니다.');
         	return false;
         }
@@ -108,7 +113,7 @@ var newEvent = function (start, end, eventType) {
         //set attribute (form)
         form.name = 'newForm';
         form.method = 'post';
-        form.action = '/SDG/res/resInsert';
+        form.action = getContextPath()+'/res/resInsert';
 //        form.target = '_blank'; // 이건 새창
         
         //create element (input)

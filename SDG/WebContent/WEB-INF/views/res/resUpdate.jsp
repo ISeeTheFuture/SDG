@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예약하기2</title>
+<title>예약수정하기</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/vendor/css/bootstrap.min.css">
 
 <link rel=" shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico">
@@ -92,7 +92,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-resMany" id="edit-resMany-label">인원</label>
-                                <input class="inputModal" type="number" name="edit-resMany" id="edit-resMany" min="1" max="5">
+                                <input class="inputModal" type="number" name="edit-resMany" id="edit-resMany" min="1" max="30">
                             </div>
                         </div>
 <!--                         <div class="row">

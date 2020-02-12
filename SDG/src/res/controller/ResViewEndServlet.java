@@ -47,7 +47,7 @@ public class ResViewEndServlet extends HttpServlet {
 			JSONObject resView = new JSONObject();
 			resView.put("_id", r.getResGroupNo());
 			resView.put("title", r.getMemId());
-			resView.put("decription", r.getResContent());
+			resView.put("description", r.getResContent());
 			resView.put("start", sdf.format(r.getResTimeStart()));
 			resView.put("end", sdf.format(r.getResTimeEnd()));
 			resView.put("type", "카테고리1");
@@ -60,7 +60,7 @@ public class ResViewEndServlet extends HttpServlet {
 			jsonArr.add(resView);
 		}
 		
-		
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.write(jsonArr.toJSONString());
 	}

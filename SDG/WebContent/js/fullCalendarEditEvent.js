@@ -23,14 +23,18 @@ var editEvent = function (event, element, view) {
     }
 
     modalTitle.html('일정 수정');
+    console.log(event);
     editTitle.val(event.title);
     editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
-    editType.val(event.type);
+//    editType.val(event.type);
+    editResMany.val(event.resMany);
     editDesc.val(event.description);
     editColor.val(event.backgroundColor).css('color', event.backgroundColor);
 
+    
     addBtnContainer.hide();
     modifyBtnContainer.show();
+    viewBtnContainer.hide();
     eventModal.modal('show');
 
     //업데이트 버튼 클릭시
@@ -40,6 +44,17 @@ var editEvent = function (event, element, view) {
         if (editStart.val() > editEnd.val()) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
+        }
+        
+        
+        if(new Date(editStart.val()).getMinutes() !== 0 || new Date(editEnd.val()).getMinutes() !== 0 || editStart.val() == editEnd.val()){
+        	alert('예약은 1시간 단위만 가능합니다.');
+        	return false;
+        }
+
+        if (new Date(editStart.val()) <= new Date(new Date().setDate(new Date().getDate() + 1))) {        	
+        	alert('현재부터 24시간 후부터 예약 가능합니다.');
+        	return false;
         }
 
         if (editTitle.val() === '') {
@@ -76,12 +91,19 @@ var editEvent = function (event, element, view) {
 
         $("#calendar").fullCalendar('updateEvent', event);
 
+//        console.log(event.end);
         //일정 업데이트
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //...
+            type: "post",
+            url: getContextPath()+"/res/resUpdateEnd",
+            dataType: "json",
+            data: { 
+                resGroupNo: event._id,
+                memberId: event.title,
+                resStart: event.start,
+                resEnd: event.end,
+                resMany: editResMany.val(),
+                resDesc: event.description
             },
             success: function (response) {
                 alert('수정되었습니다.')
@@ -98,10 +120,10 @@ var editEvent = function (event, element, view) {
 
         //삭제시
         $.ajax({
-            type: "get",
-            url: "",
+            type: "post",
+            url: getContextPath()+"/res/resDeleteEnd",
             data: {
-                //...
+                resGroupNo: event._id,
             },
             success: function (response) {
                 alert('삭제되었습니다.');

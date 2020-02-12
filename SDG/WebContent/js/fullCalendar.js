@@ -1,6 +1,10 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
 
+function getContextPath() { // contextPath 구하기
+	return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+}
+
 function getDisplayEventDate(event) {
 
   var displayEventDate;
@@ -162,7 +166,7 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "/SDG/res/resViewEnd.do",
+      url: getContextPath()+"/res/resViewEnd.do",
       dataType: "json",
 //      url: "../data.json",
       data: {
