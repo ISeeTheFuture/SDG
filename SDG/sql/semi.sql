@@ -45,7 +45,7 @@ create SEQUENCE seq_res_group_no;
 create SEQUENCE seq_spc_no;
 create SEQUENCE seq_spc_detail_no;
 create SEQUENCE seq_spc_price_no;
-
+create SEQUENCE seq_memberbusi_report_no;
 
 --======================================================
 -- 여기서부터 테이블
