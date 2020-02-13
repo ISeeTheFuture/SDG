@@ -9,6 +9,9 @@
 	// /mvc/index.jsp => memberLoggedIn = null;
 	// /mvc/member/login => memberLoggedIn = member객체
 
+			
+		//System.out.println("cookies@header.jsp"+memberBusiIn);
+			
 	//쿠키확인
 	Cookie[] cookies = request.getCookies();
 	boolean saveIdChecked = false;

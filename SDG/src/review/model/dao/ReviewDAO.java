@@ -346,6 +346,7 @@ public class ReviewDAO {
 
 
 
+<<<<<<< HEAD
 	public int updateReview(Connection conn, Review r) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -458,6 +459,39 @@ public class ReviewDAO {
 			close(pstmt);
 		}
 		return review;
+=======
+	public int insertReviewReport(Connection conn, ReviewReport reviewReport) {
+
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertReviewReport");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, reviewReport.getReviewReportReason());
+			pstmt.setInt(2,reviewReport.getReviewNo());
+
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	
 	}
 
