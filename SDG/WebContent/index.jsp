@@ -1,5 +1,5 @@
 <%@page import="member.model.vo.Member"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -107,21 +107,6 @@
 					<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 					
 				</ul>
-	
-		<form action="<%=request.getContextPath()%>/space/spacePrice" method="GET">
-			<button id="spacePriceReg">사업장 요금</button>
-		</form>
-
-		<form action="<%=request.getContextPath()%>/space/spaceTimeTable" method="GET">
-			<button id="spaceReg">사업자 운영스케쥴</button>
-		</form>
-		<form action="<%=request.getContextPath()%>/space/spaceTimeExp" method="GET">
-			<button id="spaceExp">사업자 예외스케쥴</button>
-		</form>
-		<form action="<%=request.getContextPath()%>/space/UpdateSpacePrice" method="GET">
-			<button id="spaceExp">사업자 요금 수정</button>
-		</form>
-
 
 		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
@@ -146,7 +131,10 @@
 		</form>
 
 
-				
+		<form action="<%=request.getContextPath()%>/space/spaceSrchList" method="GET">
+			<input type="text" name="spcSrch" id="spcSrch"/>
+			<input type="submit" value="검색">
+		</form>		
 			
 
 </body>
