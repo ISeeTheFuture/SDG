@@ -350,7 +350,7 @@ $(document).ready(
 	                    //div id="preview" 내에 동적코드추가.
 	                    //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
 	                    $("#preview").append(
-	                        "<img src=\"" + img.target.result + "\/>"
+	                        "<img src=\"" + img.target.result + "\"\"/>"
 	                    );
 	                    $("#preview").css("display","block");
 	                };
