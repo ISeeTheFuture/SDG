@@ -26,27 +26,6 @@ public class ReviewReport implements Serializable{
 		this.reviewReportReason = reviewReportReason;
 		this.reviewReportDate = reviewReportDate;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public ReviewReport(int reviewNo, String reviewReportReason) {
-		super();
-		this.reviewNo = reviewNo;
-		this.reviewReportReason = reviewReportReason;
-	}
 	public int getReviewReportNo() {
 		return reviewReportNo;
 	}
