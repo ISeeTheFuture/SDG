@@ -1,3 +1,4 @@
+<%@page import="member.model.vo.MemberBusi"%>
 <%@page import="member.model.vo.Member"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,10 +6,20 @@
 
 <%
 	Member member = (Member)request.getAttribute("member");
+MemberBusi memberBusiIn = (MemberBusi)session.getAttribute("memberBusiIn");
 int gn = member.getMemGradeName();
 String MemberGradeName = null;
+String RoleCheck="사업자가 아닙니다.";
+ System.out.println("엠비 로그인 서wqeqwe블릿="+member.getMemGender());
+
+if("1".equals(member.getMemRole())){
+	RoleCheck="사업자입니다.";
+	
+	
+}
 
 switch(gn){
+case 0: MemberGradeName="등급없음"; break;
 case 1 :MemberGradeName="브론즈"; break;
 case 2 :MemberGradeName="실버"; break;
 case 3 :MemberGradeName="골드"; break;
@@ -102,9 +113,10 @@ function updatePassword(){
 			<tr>
 				<th>성별 </th>
 				<td>
-			       		 <input type="radio" name="gender" id="gender0" value="M" <%="0".equals(member.getMemGender())?"checked":"" %>>
+				
+			       		 <input type="radio" name="gender" id="gender0" value="M" <%=0==member.getMemGender()?"checked":"" %>>
 						 <label for="gender0">남</label>
-						 <input type="radio" name="gender" id="gender1" value="F" <%="1".equals(member.getMemGender())?"checked":"" %>>
+						 <input type="radio" name="gender" id="gender1" value="F" <%=1==member.getMemGender()?"checked":"" %>>
 						 <label for="gender1">여</label>
 				</td>
 			</tr>
@@ -121,10 +133,39 @@ function updatePassword(){
 				<input type="text"  name="memberGradeName" id="memberGradeName" value="<%=MemberGradeName %>"  required><br>
 				</td>
 			</tr>
-			
 			<tr>
-				
+				<th>사업자 허용 여부</th>
+				<td>	
+				<input type="text"  name="memberGradeName" id="memberGradeName" value="<%=RoleCheck %>"  required><br>
+				</td>
 			</tr>
+			
+			
+	 		<tr>
+			<% if(memberBusiIn!=null){ %>
+	 		<th>사업장 주소</th>
+	 		<td>
+	 		<input type="text"  name="memberGradeName" id="memberGradeName" value="<%=memberBusiIn.getMemBusiAddr() %>"  required><br>
+	 			
+	 			<td>
+	 			
+	 		<%} %>
+	 			</tr>
+
+			<% if(memberBusiIn!=null){ %>
+	 			<tr>
+	 		<th>사업장 전화번호</th>
+	 		<td>
+	 		<input type="text"  name="memberGradeName" id="memberGradeName" value="<%=memberBusiIn.getMemBusiPhone() %>"  required><br>
+	 			
+	 			<td>
+	 			
+	 			</tr>
+	 			
+	 		<%} %>
+
+	 			
+			
 		</table>
         <input type="button" onclick="updateMember();" value="정보수정"/>
         <input type="button" onclick="updatePassword();" value="비밀번호변경" />

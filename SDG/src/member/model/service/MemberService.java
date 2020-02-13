@@ -1,6 +1,10 @@
+
 package member.model.service;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
@@ -126,9 +130,13 @@ public class MemberService {
 	public static Memberblk IgnoreCheckselectOne(String memberId) {
 		Connection conn = getConnection();
 		Memberblk m = new MemberDAO().IgnoreCheckselectOne(conn, memberId);
-	
-		
-		
+		close(conn);
+		return m;
+	}
+
+	public MemberBusi selectOneMEmberBusi(String memberId) {
+		Connection conn = getConnection();
+		MemberBusi m = new MemberDAO().SelectOneMemberBusi(conn,memberId);
 		close(conn);
 		return m;
 	}

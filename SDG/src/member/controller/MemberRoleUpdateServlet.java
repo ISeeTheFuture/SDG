@@ -27,14 +27,7 @@ public class MemberRoleUpdateServlet extends HttpServlet {
 		//1.전송값에 한글이 있을 경우 인코딩처리해야함.
 		//void javax.servlet.ServletRequest.setCharacterEncoding(String arg0) throws UnsupportedEncodingException
 		request.setCharacterEncoding("UTF-8");//대소문자 상관없음. 요청한 view단의 charset값과 동일해야 한다.
-
-		
-		
-		System.out.println("콘텐트랭쓰"+request.getContentLength());
-		System.out.println("메소드"+request.getMethod());
-		System.out.println("getProtocol"+request.getProtocol());
 		String memRoleId = request.getParameter("RoleId");
-System.out.println("RoleUpID@Servlet="+memRoleId);
 		//3.서비스로직호출
 		int result = new MemberService().RoleUpdate(memRoleId);  
 

@@ -216,15 +216,18 @@ System.out.println(query);
 	public int insertMemberBusi(Connection conn, MemberBusi memberBusi) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = prop.getProperty("insertMemberBusi");
+		String query = prop.getProperty("UpdateMemberBusi");
 		System.out.println(query);
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, memberBusi.getMemId());
 			
-			pstmt.setString(2, memberBusi.getMemBusiAddr());
-			pstmt.setString(3, memberBusi.getMemBusiPhone());
-					
+			//사업자 등록 할때, 이미 insert를 한번 처리 해서, update로 교정함 김원재 2020 02 12 17:00
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberBusi.getMemBusiAddr());
+			pstmt.setString(2, memberBusi.getMemBusiPhone());
+			
+			pstmt.setString(3, memberBusi.getMemId());
+			
+			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -275,25 +278,25 @@ System.out.println(query);
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
+
 		String query = prop.getProperty("MemberRoleUp"); 
+		String query2 = prop.getProperty("MemberRoleUpInMemberbusiTable"); 
 System.out.println(query);
 System.out.println("memROleId@DAO"+memRoleId);
 		try {
-
-			pstmt = conn.prepareStatement(query);
-	
-				
+			pstmt = conn.prepareStatement(query);		
 			pstmt.setString(1, memRoleId);
-		
-
+			pstmt = conn.prepareStatement(query2);
+			pstmt.setString(1, memRoleId);		
 			result = pstmt.executeUpdate();
+	
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+		
 			close(pstmt);
 		}
-		
 		return result;
 	}
 
@@ -341,6 +344,43 @@ System.out.println("memROleId@DAO"+memRoleId);
 		
 		
 		return mb;
+	}
+
+	public MemberBusi SelectOneMemberBusi(Connection conn, String memberId) {
+		MemberBusi m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectOneMemberBusi");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setString(1, memberId);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				m = new MemberBusi();
+				m.setMemId(rset.getString("mem_id"));
+				m.setMemBusiAddr(rset.getString("mem_buis_addr"));
+				m.setMemBusiPhone(rset.getString("mem_buis_phone"));
+				m.setMemBusiNo(rset.getString("mem_buis_no"));
+				m.setMemBusiAllow(rset.getString("mem_Buis_Allow"));
+
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return m;
 	}
 	
 	

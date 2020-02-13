@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import member.model.vo.MemberBusi;
 
 /**
  * Servlet implementation class MemberLoginServlet
@@ -50,6 +50,22 @@ public class MemberLoginServlet extends HttpServlet {
 		//2.조회된 member객체가 없는 경우: 3.로그인실패
 		
 		Member m = new MemberService().selectOne(memberId);
+		
+		
+		
+		//memberRole체크..
+		
+		MemberBusi MB = null;
+		System.out.println("m.getRole는?"+m.getMemRole());
+		if("1".equals(m.getMemRole())) {
+		
+			 MB = new MemberService().selectOneMEmberBusi(memberId);
+		
+		
+		}
+		System.out.println("MB는?"+MB);
+		
+		
 		System.out.println("member@controller="+m);
 		
 		String msg = "";
@@ -70,6 +86,16 @@ public class MemberLoginServlet extends HttpServlet {
 				Member memberLoggedIn = m;
 				
 				session.setAttribute("memberLoggedIn", memberLoggedIn);
+				
+				
+				
+				if(MB!=null) {
+					MemberBusi memberBusiIn=MB;				
+					session.setAttribute("memberBusiIn", memberBusiIn);
+					
+				}
+				System.out.println("엠비 로그인 서블릿="+MB);
+				
 				
 				//로그인한 사용자 세션객체 타임아웃설정(개별세션) : 초
 				session.setMaxInactiveInterval(60*30);
