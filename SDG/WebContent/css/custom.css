@@ -21,3 +21,14 @@ body {
   font-family: 'Nanum Gothic';
 
 }
+
+.signIn{
+	position:absolute;
+	right:0;
+	margin-right:110px;
+}
+.signUp{
+	position:absolute;
+	right:0;
+	margin-right:30px;
+}
