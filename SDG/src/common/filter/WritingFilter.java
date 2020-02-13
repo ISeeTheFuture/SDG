@@ -48,10 +48,11 @@ public class WritingFilter implements Filter {
 	
 		
 		Memberblk MB= MemberService.IgnoreCheckselectOne(reqMemberId);
-	String ignoreCheck =MB.getMem_memo();
-	boolean l = false;
-	
-	if(ignoreCheck!=null)l=true;
+		
+		String ignoreCheck =MB.getMem_memo();
+		boolean l = false;
+		
+		if(ignoreCheck!=null)l=true;
 	
 		
 		

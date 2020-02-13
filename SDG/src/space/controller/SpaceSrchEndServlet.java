@@ -41,32 +41,32 @@ public class SpaceSrchEndServlet extends HttpServlet {
 
 	
 		// 2. 배열
-		List<Member> list = new ArrayList<>();
-		list.add(new Member("줄리아 로버츠", "01012341234", "juliaRoberts.jpg"));
-		list.add(new Member("박보검", "01012341234", "parkBogum.jpg"));
-		list.add(new Member("천우희", "01012341234", "천우희.jpg"));
-		list.add(new Member("맷 데이먼", "01012341234", "mattDamon.jpg"));
-		list.add(new Member("day6", "01012341234", "day6.jpg"));
-		list.add(new Member("차은우", "01012341234", "은우.jpg"));
-		list.add(new Member("봉준호", "01012341234", "bongjunho.jpg"));
-		
-		
-		//JSONArray(list)
-		JSONArray jsonArr = new JSONArray();
-		
-		for(Member m : list) {
-			JSONObject memberJson = new JSONObject();
-			memberJson.put("name", m.getName());
-			memberJson.put("phone", m.getPhone());
-			memberJson.put("profile", m.getProfile());
-			
-			jsonArr.add(memberJson);
-		}
-		
-		// 응답객체에 쓰기
-		PrintWriter out = response.getWriter();
-		out.write(jsonArr.toJSONString());
-		
+//		List<Member> list = new ArrayList<>();
+//		list.add(new Member("줄리아 로버츠", "01012341234", "juliaRoberts.jpg"));
+//		list.add(new Member("박보검", "01012341234", "parkBogum.jpg"));
+//		list.add(new Member("천우희", "01012341234", "천우희.jpg"));
+//		list.add(new Member("맷 데이먼", "01012341234", "mattDamon.jpg"));
+//		list.add(new Member("day6", "01012341234", "day6.jpg"));
+//		list.add(new Member("차은우", "01012341234", "은우.jpg"));
+//		list.add(new Member("봉준호", "01012341234", "bongjunho.jpg"));
+//		
+//		
+//		//JSONArray(list)
+//		JSONArray jsonArr = new JSONArray();
+//		
+//		for(Member m : list) {
+//			JSONObject memberJson = new JSONObject();
+//			memberJson.put("name", m.getName());
+//			memberJson.put("phone", m.getPhone());
+//			memberJson.put("profile", m.getProfile());
+//			
+//			jsonArr.add(memberJson);
+//		}
+//		
+//		//응답객체에 쓰기
+//		PrintWriter out = response.getWriter();
+//		out.write(jsonArr.toJSONString());
+//		
 	}
 
 	/**
