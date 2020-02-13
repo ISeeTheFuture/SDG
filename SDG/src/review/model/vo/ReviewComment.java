@@ -41,6 +41,12 @@ public class ReviewComment implements Serializable {
 		this.reviewNo = reviewNo;
 		this.commentContent = commentContent;
 	}
+	public ReviewComment(int commentNo, String memId, String commentContent, int reviewNo) {
+		this.commentNo = commentNo;
+		this.memId = memId;
+		this.reviewNo = reviewNo;
+		this.commentContent = commentContent;
+	}
 	public int getCommentNo() {
 		return commentNo;
 	}

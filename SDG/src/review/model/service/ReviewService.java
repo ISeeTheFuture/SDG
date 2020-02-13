@@ -99,9 +99,10 @@ public class ReviewService {
 		return result;
 	}
 
-	public int deleteReviewComment(ReviewComment rc) {
+	
+	public int deleteComment(int commentNo) {
 		Connection conn = getConnection();
-		int result = new ReviewDAO().deleteReviewComment(conn, rc);
+		int result = new ReviewDAO().deleteComment(conn, commentNo);
 		if(result>0)
 			commit(conn);
 		else 
@@ -109,6 +110,58 @@ public class ReviewService {
 		close(conn);
 		
 		return result;
+	}
+
+	
+
+	public int updateReview(Review r) {
+		Connection conn = getConnection();
+		int result = new ReviewDAO().updateReview(conn, r);
+
+		if(result > 0)
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public Review selectOneReviewNo(int reviewNo) {
+		Connection conn = getConnection();
+		Review review = new ReviewDAO().selectOneReviewNo(conn, reviewNo);
+		close(conn);
+		return review;
+	}
+
+	public Review selectOne(int reviewNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		
+		Review review = new ReviewDAO().selectOne(conn, reviewNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		return review;
+	}
+
+	
+
+	
+
+	public List<ReviewComment> selectCommentList(int reviewNo) {
+		Connection conn = getConnection();
+		List<ReviewComment> list
+			= new ReviewDAO().selectCommentList(conn, reviewNo);
+		close(conn);
+		return list;
 	}
 
 //	public int insertReviewRpt(ReviewReport reviewRpt) {

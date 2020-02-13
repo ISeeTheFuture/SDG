@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import review.model.service.ReviewService;
 import review.model.vo.Review;
+import review.model.vo.ReviewComment;
 
 /**
  * 게시글페이지
@@ -33,8 +34,15 @@ public class ReviewListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		
 		//1.파라미터핸들링
+		/*
+		 * int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+		 * List<ReviewComment> commentList = new
+		 * ReviewService().selectCommentList(reviewNo);
+		 */
+
 		final int numPerPage = 5;//한페이지당 수
 		int cPage = 1;//요청페이지
 		try{
@@ -43,8 +51,22 @@ public class ReviewListServlet extends HttpServlet {
 		
 		}
 		//2.업무로직
+//		System.out.println(request.getParameter("reviewNo"));
+		
+//		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+		
 //		List<review> list = reviewService.selectreviewList();
 		List<Review> list = reviewService.selectReviewList(cPage, numPerPage);
+		
+		
+		for(int i=0;i<list.size();i++) {
+			int reviewNo = list.get(i).getReviewNo();
+		List<ReviewComment> commentList = reviewService.selectCommentList(reviewNo);
+		request.setAttribute("commentList", commentList);
+		}
+		
+//		System.out.println("commen="+commentList.get(0).getCommentContent());
+			
 		System.out.println("list@servlet="+list);
 		Review fieldNo = new Review();
 		final int totalReviewCount = new ReviewService().selectReviewCount(fieldNo);
@@ -89,14 +111,13 @@ public class ReviewListServlet extends HttpServlet {
 
 		//3.뷰모델 처리
 		request.setAttribute("list", list);
+		
+		
+		
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("totalReviewCount", totalReviewCount);
-		request.setAttribute("AvgStar", AvgStar);
+	
 		request.getRequestDispatcher("/WEB-INF/views/review/reviewList.jsp")
 			   .forward(request, response);
-	
-	
-	
 	}
 
 	/**

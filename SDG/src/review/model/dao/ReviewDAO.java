@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+
 import review.model.vo.Review;
 import review.model.vo.ReviewComment;
 import review.model.vo.ReviewReport;
@@ -317,40 +318,220 @@ public class ReviewDAO {
 
 
 
-	public int deleteReviewComment(Connection conn, ReviewComment rc) {
+
+	public int deleteComment(Connection conn, int commentNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = prop.getProperty("deleteReviewComment");
-		//insert into board_comment
-		//values ....
+		String query = prop.getProperty("deleteComment"); 
 		
 		try {
 			//미완성쿼리문을 가지고 객체생성.
 			pstmt = conn.prepareStatement(query);
-			//쿼리문 변수대입
-			pstmt.setString(1, rc.getMemId());
-			pstmt.setInt(2, rc.getReviewNo());
-			pstmt.setString(3, rc.getCommentContent());
-			//댓글 참조: board_comment_ref
-			//댓글 : null
-			//대댓글: 참조하는 댓글의 board_comment_no
-//			String bcRef 
-//				=  reviewComment.getReviewNo()==0?null:""+reviewComment.getReviewNo();
-//			pstmt.setString(5,bcRef);
-//			
+			//쿼리문미완성
+			pstmt.setInt(1, commentNo);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
 			result = pstmt.executeUpdate();
 			
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
-		
+
 		
 		return result;
 	}
+
+
+
+	public int updateReview(Connection conn, Review r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateReview");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, r.getReviewTitle());
+			pstmt.setString(2, r.getReviewContent());
+			pstmt.setInt(3, r.getReviewStar());
+			pstmt.setInt(4, r.getReviewNo());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+
+	public Review selectOneReviewNo(Connection conn, int reviewNo) {
+		Review review = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneReview");
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setInt(1, reviewNo);
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				review = new Review();
+				review.setReviewNo(rset.getInt("review_no"));
+				review.setReviewTitle(rset.getString("review_title"));
+				review.setMemId(rset.getString("mem_id"));
+				review.setReviewContent(rset.getString("review_content"));
+				review.setReviewDate(rset.getDate("review_date"));
+				
+				review.setReviewReadcnt(rset.getInt("review_readcnt"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return review;
+	}
+
+
+
+	public int increaseReadCount(Connection conn, int reviewNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("increaseReadCount");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reviewNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+
+	public Review selectOne(Connection conn, int reviewNo) {
+		Review review = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOne");
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setInt(1, reviewNo);
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				review = new Review();
+				review.setReviewNo(rset.getInt("review_no"));
+				review.setReviewTitle(rset.getString("review_title"));
+				review.setMemId(rset.getString("mem_id"));
+				review.setReviewContent(rset.getString("reviw_content"));
+				review.setReviewDate(rset.getDate("review_date"));
+				review.setReviewReadcnt(rset.getInt("review_readcnt"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return review;
 	
-	
+	}
+
+
+
+	public List<ReviewComment> selectCommentList(Connection conn, int reviewNo) {
+		List<ReviewComment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectCommentList");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성. 
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reviewNo);
+			
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				ReviewComment bc = new ReviewComment();
+				//컬럼명은 대소문자 구분이 없다.
+				bc.setCommentNo(rset.getInt("comment_no"));
+				bc.setMemId(rset.getString("mem_id"));
+				bc.setCommentContent(rset.getString("comment_content"));
+				bc.setCommentDate(rset.getDate("comment_date"));
+				list.add(bc);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+
+
+	public List<ReviewComment> selectCommentList(Connection conn, int cPage, int numPerPage) {
+		List<ReviewComment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectCommentList");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성. 
+			pstmt = conn.prepareStatement(query);
+			
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				ReviewComment b = new ReviewComment();
+				//컬럼명은 대소문자 구분이 없다.
+				b.setMemId(rset.getString("mem_id"));
+				b.setCommentContent(rset.getString("comment_content"));
+				b.setCommentDate(rset.getDate("comment_date"));
+				list.add(b);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
 }
 
 

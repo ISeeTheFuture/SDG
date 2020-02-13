@@ -31,32 +31,30 @@ public class ReviewCommentDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
 		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
-		String memId = request.getParameter("memId");
-		String commentContent = request.getParameter("commentContent");
-		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		
-		/*
-		 * ReviewComment rc = new ReviewComment(commentNo, memId, commentContent,
-		 * reviewNo);
-		 */
+		//2.서비스로직호출
+		int result = new ReviewService().deleteComment(commentNo);
 		
-		/* int result = new ReviewService().deleteReviewComment(rc); */
+		//3. 받은 결과에 따라 뷰페이지 내보내기
+		String view = "/WEB-INF/views/common/msg.jsp";
+		String msg = "";
+		//javascript/html에서 사용할 url은 contextPath를 포함한다.
+		String loc = "/review/reviewList";
+
+		if(result>0)
+			msg = "게시글 삭제 성공!";
+			
+		else 
+			msg = "게시글 삭제 실패!";	
 		
-		//3.view단처리: 댓글등록여부를 msg.jsp통해서 알림후, 
-				//    		   /board/boardView로 이동
-		/*
-		 * String view = "/WEB-INF/views/common/msg.jsp"; String msg = "";
-		 * //javascript/html에서 사용할 url은 contextPath를 포함한다. String loc =
-		 * "/review/reviewView?reviewNo="+reviewNo;
-		 * 
-		 * if(result>0){ msg = "댓글 삭제 성공!"; } else { msg = "댓글 삭제 실패!"; }
-		 * 
-		 * request.setAttribute("msg", msg); request.setAttribute("loc", loc);
-		 * 
-		 * RequestDispatcher reqDispatcher = request.getRequestDispatcher(view);
-		 * reqDispatcher.forward(request, response);
-		 */
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		RequestDispatcher reqDispatcher = request.getRequestDispatcher(view);
+		reqDispatcher.forward(request, response);
 	}
 		
 	/**
