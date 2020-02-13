@@ -346,7 +346,7 @@ public class ReviewDAO {
 
 
 
-<<<<<<< HEAD
+
 	public int updateReview(Connection conn, Review r) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -459,7 +459,7 @@ public class ReviewDAO {
 			close(pstmt);
 		}
 		return review;
-=======
+	}
 	public int insertReviewReport(Connection conn, ReviewReport reviewReport) {
 
 		
@@ -483,17 +483,10 @@ public class ReviewDAO {
 		
 		return result;
 		
-		
-		
-		
-		
-		
-		
-		
 	}
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
+
 	
-	}
+	
 
 
 
