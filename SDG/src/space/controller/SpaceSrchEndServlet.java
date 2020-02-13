@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import space.model.service.SpaceService;
+import space.model.vo.SpacesSrch;
+
 
 /**
  * Servlet implementation class JsonTest1Servlet
@@ -39,7 +42,12 @@ public class SpaceSrchEndServlet extends HttpServlet {
 		// Java객체 -> json문자열 변환 -> 응답객체
 		// json-simple-library
 
-	
+		String srchWord = request.getParameter("srchWord"); 
+        int spcLoc = Integer.parseInt(request.getParameter("spcLoc"));
+        int spcType = Integer.parseInt(request.getParameter("spcType"));
+		
+		List<SpacesSrch> spcSrchList = new SpaceService().selectSpcSrch(srchWord, spcLoc, spcType ); 
+		
 		// 2. 배열
 //		List<Member> list = new ArrayList<>();
 //		list.add(new Member("줄리아 로버츠", "01012341234", "juliaRoberts.jpg"));

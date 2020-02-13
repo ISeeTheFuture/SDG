@@ -7,12 +7,14 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import space.model.dao.SpaceDAO;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
+import space.model.vo.SpacesSrch;
 import space.model.vo.SpacesTimeExp;
 import space.model.vo.SpacesTimeTable;
 
@@ -127,5 +129,13 @@ public class SpaceService {
 		close(conn);
 		
 		return result;
+	}
+
+	public List<SpacesSrch> selectSpcSrch(String srchWord, int spcLoc, int spcType) {
+		Connection conn = getConnection();
+		List<SpacesSrch> spacesSrch = null;
+		
+		close(conn);
+		return spacesSrch;
 	}
 }
