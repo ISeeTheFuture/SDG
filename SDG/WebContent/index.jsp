@@ -144,6 +144,7 @@
 		<button id="memberBusi">사업자 정보 입력</button>
 	</form>
 	<br>
+	
 	<form action="<%=request.getContextPath()%>/review/reviewRpt"
 		method="GET">
 		<button id="reviewRpt">게시물신고</button>
@@ -157,11 +158,9 @@
 	<%
 		}
 	%>
-	<form action="<%=request.getContextPath()%>/review/reviewList"
-		method="GET">
-		<button id="reviewRpt">게시물 보기</button>
-	</form>
-
+<form action="<%=request.getContextPath()%>/review/reviewList" method="GET">
+			<button id="reviewRpt">게시물 보기</button>
+		</form>
 	<a href="<%=request.getContextPath()%>/member/kimwonjae">테스트페이지</a>
 
 
