@@ -9,7 +9,6 @@
 <script>
 function validate(){
 	let specialCharRegExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
-	let onlyNumRegExp = /^[0-9]*$/g;
 	let spcName = $('#spcName').val();
 	let regionNo = $('#region').val();
 	let spcContent = $('#spcContent').val();
@@ -21,74 +20,108 @@ function validate(){
 	let spcTimeMax = $('#spcTimeMax').val();
 	let spcDateStart = $('#spcDateStart').val();
 	let spcDateEnd = $('#spcDateEnd').val();
+	let spcPrice = $('#spcPricePrice').val();
+	let result = 1;
+	
     if(specialCharRegExp.test(spcName)){
+    	$("#spcName" ).css( "border", "3px solid red" );
     	alert("공간명에는 특수문자를 제거해주세요");
-    	return false;
+    	result = 0;
+    }else if(spcName == ""){
+    	$("#spcName" ).css( "border", "3px solid red" );
+    	$("#spcName" ).val("공간명을 입력해주세요");
+    	result = 0;
     }
+    
     if(regionNo == null){
-   		alert("지역을 선택하지 않으셨습니다.");
-    	return false;
+    	$("#region" ).css( "border", "3px solid red" );
+    	result = 0;
     }
     
     if(spcContent == ""){
+    	 $("#spcContent" ).css( "border", "3px solid red" );
     	 $('#spcContent').val("소개글 없음");
-    	 return false;
+    	result = 0;
     }
     
     if(spcDetSize == ""){
-    	alert("숫자를 입력해주세요 (크기)");
+    	$("#spcDetSize" ).css( "border", "3px solid red" );
     	$('#spcDetSize').val(100);
-    	return false;
-    }
-    
-    if(spcDetSize == ""){
-    	$('#spcDetSize').val(100);
-    	return false;
+    	result = 0;
     }
     
     if(spcDetStorable == ""){
+    	$("#spcDetStorable" ).css( "border", "3px solid red" );
     	$('#spcDetStorable').val(100);
-    	return false;
+    	result = 0;
     }
     
     if(spcManMin == ""){
+    	$("#spcManMin" ).css( "border", "3px solid red" );
     	$('#spcManMin').val(100);
-    	return false;
+    	result = 0;
     }
     
     if(spcManMax == ""){
+    	$("#spcManMax" ).css( "border", "3px solid red" );
     	$('#spcManMax').val(100);
-    	return false;
+    	result = 0;
     }
     
-    if(spcTimeMim == ""){
+    if(spcTimeMin == ""){
+    	$("#spcTimeMin" ).css( "border", "3px solid red" );
     	$('#spcTimeMin').val(100);
-    	return false;
+    	result = 0;
     }
     
     if(spcTimeMax == ""){
+    	$("#spcTimeMax" ).css( "border", "3px solid red");
     	$('#spcTimeMax').val(100);
-    	return false;
+    	result = 0;
     }
     
-    if(!Date.parse(spcDateStart)){
-    	alert("운영 시작 날짜를 입력해주세요")
-    	return false;
+    if(spcDateStart==""){
+    	$("#spcDateStart" ).css( "border", "3px solid red" );
+    	$('#spcDateStart').val('2020-02-14');
+    	result = 0;
     }
     
+    if(spcDateEnd==""){
+    	$("#spcDateEnd" ).css( "border", "3px solid red" );
+    	$('#spcDateEnd').val('2020-02-15');
+    	result = 0;
+    }
     
+    if ($('input[name=spcDay]').filter(':checked').length == 0) {
+    	$("#workingDays").css( "border", "3px solid red" );
+    	result = 0;
+    }	
     
-	return true;
+    if(spcPrice == ""){
+    	$("#spcPricePrice").css( "border", "3px solid red" );
+    	$("#spcPricePrice").val( "10000" );
+    	result = 0;    	
+    }
+    
+    if(result == 0){
+    	return false;
+    }
+
+    return true;
 }
 
 </script>
 </head>
 <body>
 	
-	<%String cat = request.getParameter("cat");%>
+	<%String cat = request.getParameter("cat");
+	String memberId = request.getParameter("memberId");
+	%>
 
-	<form onsubmit="return validate();" action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST">
+	<form onsubmit="return validate();" action="<%=request.getContextPath()%>/space/spaceRegformEnd" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="cat" value="<%=cat %>" />
+		<input type="hidden" name="memberId" value="<%=memberId %>" />
+		
 		<label for="spcName">공간명 : </label>
 		<br />	
 		<input type="text" name="spcName" id="spcName" />
@@ -117,6 +150,12 @@ function validate(){
 			<option value="16">광주광역시</option>
 			<option value="17">제주도</option>
 		</select>
+		
+		
+		<div id="preview"></div>
+		<br />
+		사진:
+		<input type="file" name="spcImgFile" id="spcImgFile" accept=".jpg, .png" class="spcImgFile" multiple/>
 		
 		<br />
 		<br />
@@ -170,109 +209,74 @@ function validate(){
 		<br />	
 		<input type="date" name="spcDateEnd" id="spcDateEnd"/>
 		<br />	
+		<br />	
 		
-		<hr />
-		<h3>주중 운영일 : </h3>
-		<hr />
-		월요일 :	
-		<input type="checkbox" name="spcDay" value="mon" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		화요일 :
-		<input type="checkbox" name="spcDay" value="tue" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		수요일 :
-		<input type="checkbox" name="spcDay" value="wed" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		목요일 :
-		<input type="checkbox" name="spcDay" value="thu" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		금요일 :
-		<input type="checkbox" name="spcDay" value="fri" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		토요일 :
-		<input type="checkbox" name="spcDay" value="sat" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		일요일 :
-		<input type="checkbox" name="spcDay" value="sun" />
-		<span style="border-right:2px solid gray;width:1px;"></span>	
+		<fieldset id = "workingDays">
+			<legend>주중 운영일 :</legend>
+			월요일 :	
+			<input type="checkbox" name="spcDay" value="mon" />
+			<span style="border-right:2px solid gray;width:1px;"></span>
+			화요일 :
+			<input type="checkbox" name="spcDay" value="tue" />
+			<span style="border-right:2px solid gray;width:1px;"></span>
+			수요일 :
+			<input type="checkbox" name="spcDay" value="wed" />
+			<span style="border-right:2px solid gray;width:1px;"></span>
+			목요일 :
+			<input type="checkbox" name="spcDay" value="thu" />
+			<span style="border-right:2px solid gray;width:1px;"></span>
+			금요일 :
+			<input type="checkbox" name="spcDay" value="fri" />
+			<span style="border-right:2px solid gray;width:1px;"></span>
+			토요일 :
+			<input type="checkbox" name="spcDay" value="sat" />
+			<span style="border-right:2px solid gray;width:1px;"></span>
+			일요일 :
+			<input type="checkbox" name="spcDay" value="sun" />
+			<span style="border-right:2px solid gray;width:1px;"></span>
+		</fieldset>
+		
+			
 		<br />	
 		<br />	
 		<hr />
 		<label for="spcHourStart">운영 시작 시각</label>
-		<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="0"/>
+		<input type="range" name="spcHourStart" id="spcHourStart" min="0" max="24" step="1" value="12" oninput="document.getElementById('value1').innerHTML=this.value;"/><span id="value1"></span>
 		<br />	
 		<label for="spcHourEnd">운영 마감 시각</label>
-		<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="0"/>		
+		<input type="range" name="spcHourEnd" id="spcHourEnd" min="0" max="24" step="1" value="12" oninput="document.getElementById('value2').innerHTML=this.value;"/><span id="value2"></span>		
 		<hr />			
 		<br />
-		
-		<label for="spcDetHoliday">공휴일 휴무 여부</label>
-
-		<input type="checkbox" name="spcDetHoliday" value="1"/>
+	
 		<input type="hidden" name="spcDetHoliday" value="0"/>
-
-		<label for="spcDetSharing">공용 여부</label>
-
-		<input type="checkbox" name="spcDetSharing" value="1"/>
 		<input type="hidden" name="spcDetSharing" value="0"/>
 		<br />
-		<br />
 		
-		<label for="spcExcDate">예외날짜</label>
-		<input type="date" name="spcExcDate" id="spcExcDate" />
-		<br />
+		<input type="hidden" name="spcExcDate" id="spcExcDate" value="2020-02-12"/>
 		
-		<label for="spcExcStart">예외시작시간</label>
-		<input type="range" name="spcExcStart" id="spcExcStart" min="0" max="24" step="1" value="0"  />
-		<br />
+		<input type="hidden" name="spcExcStart" id="spcExcStart" value="0"  />
 		
-		<label for="spcExcEnd">예외종료시간</label>
-		<input type="range" name="spcExcEnd" id="spcExcEnd" min="0" max="24" step="1" value="0"  />
-		<br />
-		<br />
+		<input type="hidden" name="spcExcEnd" id="spcExcEnd" value="0"  />
 		
-		<label for="spcDetName">요금명</label>
-		<input type="text" name="spcDetName" id="spcDetName">
+		<input type="hidden" name="spcDetName" id="spcDetName" value="기본요금">
+	
+		<input type="hidden" name="spcPriceDay" value="mon" />
+		<input type="hidden" name="spcPriceDay" value="tue" />
+		<input type="hidden" name="spcPriceDay" value="wed" />
+		<input type="hidden" name="spcPriceDay" value="thu" />
+		<input type="hidden" name="spcPriceDay" value="fri" />
+		<input type="hidden" name="spcPriceDay" value="sat" />
+		<input type="hidden" name="spcPriceDay" value="sun" />
+		
+		<input type="hidden" name="spcPricePer" value="1">
+		
+		<label for="spcPricePrice">가격 :</label>
 		<br />
-		
-		<h3>주중 요금제 적용일 : </h3>
-		<hr />
-		월요일 :	
-		<input type="checkbox" name="spcPriceDay" value="mon" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		화요일 :
-		<input type="checkbox" name="spcPriceDay" value="tue" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		수요일 :
-		<input type="checkbox" name="spcPriceDay" value="wed" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		목요일 :
-		<input type="checkbox" name="spcPriceDay" value="thu" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		금요일 :
-		<input type="checkbox" name="spcPriceDay" value="fri" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		토요일 :
-		<input type="checkbox" name="spcPriceDay" value="sat" />
-		<span style="border-right:2px solid gray;width:1px;"></span>
-		일요일 :
-		<input type="checkbox" name="spcPriceDay" value="sun" />
-		<span style="border-right:2px solid gray;width:1px;"></span>	
-		<br />	
-		<br />	
-		<hr />
-		
-		<label for="spcPriperMan">1인당여부</label>
-		<input type="checkbox" name="spcPricePer" value="1"/>
-		<input type="hidden" name="spcPricePer" value="0">
-		<br />
-		
-		<label for="spcPricePrice">가격</label>
 		<input type="text" name="spcPricePrice" id="spcPricePrice" />
-		<br />
 		
+		<br />
+		<br />
 		<button>등록</button>
-
 		
 	</form>
 	<br />
@@ -326,5 +330,34 @@ function validate(){
 	<br />
 	<br />
 </body>
+<script>
+$(document).ready(
+	    function() {
+	        // 태그에 onchange를 부여한다.
+	        $('.spcImgFile').change(function() {
+	                addPreview($(this)); //preview form 추가하기
+	        });
+	    });
+	    // image preview 기능 구현
+	    // input = file object[]
+	    function addPreview(input) {
+	        if (input[0].files) {
+	            //파일 선택이 여러개였을 시의 대응
+	            for (var fileIndex = 0 ; fileIndex < input[0].files.length ; fileIndex++) {
+	                var file = input[0].files[fileIndex];
+	                var reader = new FileReader();
+	                reader.onload = function (img) {
+	                    //div id="preview" 내에 동적코드추가.
+	                    //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+	                    $("#preview").append(
+	                        "<img src=\"" + img.target.result + "\/>"
+	                    );
+	                    $("#preview").css("display","block");
+	                };
+	                reader.readAsDataURL(file);
+	            }
+	        } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+	    }
+</script>
 
 </html>

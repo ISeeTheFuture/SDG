@@ -2,7 +2,7 @@ package space.model.vo;
 
 public class SpacesImg {
 
-	private int spcDetailNo;
+	private int spcDetNo;
 	private String spcImgTitle;
 	private String spcImgText;
 	private String spcImgRoute;
@@ -11,19 +11,20 @@ public class SpacesImg {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SpacesImg(int spcDetailNo, String spcImgTitle, String spcImgText, String spcImgRoute, int spcNo) {
+	//spaceRegFormEnd Servlet 에서 사용하는 파라미터 생성자
+	public SpacesImg(int spcDetNo, String spcImgTitle, String spcImgText,String spcImgRoute, int spcNo) {
 		super();
-		this.spcDetailNo = spcDetailNo;
+		this.spcDetNo = spcDetNo;
 		this.spcImgTitle = spcImgTitle;
-		this.spcImgText = spcImgText;
+		this.spcImgTitle = spcImgText;
 		this.spcImgRoute = spcImgRoute;
 		this.spcNo = spcNo;
 	}
-	public int getSpcDetailNo() {
-		return spcDetailNo;
+	public int getSpcDetNo() {
+		return spcDetNo;
 	}
-	public void setSpcDetailNo(int spcDetailNo) {
-		this.spcDetailNo = spcDetailNo;
+	public void setSpcDetNo(int spcDetNo) {
+		this.spcDetNo = spcDetNo;
 	}
 	public String getSpcImgTitle() {
 		return spcImgTitle;
