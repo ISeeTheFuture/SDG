@@ -32,3 +32,14 @@ body {
 	right:0;
 	margin-right:30px;
 }
+
+.memberInfo{
+	position:absolute;
+	right:0;
+	margin-right:110px;
+}
+.signOut{
+	position:absolute;
+	right:0;
+	margin-right:30px;
+}
