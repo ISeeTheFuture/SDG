@@ -40,9 +40,11 @@
 </head>
 <body>
 	<nav>
-		<form action="<%=request.getContextPath() %>/space/spaceTypeReg" method="GET">
+		<%if (memberLoggedIn != null) { %>
+		<form action="<%=request.getContextPath() %>/space/spaceTypeReg?memberId=<%=memberLoggedIn.getMemId() %>" method="GET">
 			<button id="spaceReg">공간 등록</button>
 		</form>
+		<%} %>
 	</nav>
 			
 		<div class="login-container">

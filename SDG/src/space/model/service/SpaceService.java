@@ -18,17 +18,29 @@ import space.model.vo.SpacesTimeTable;
 
 public class SpaceService {
 
+//	public int insertComp(SpacesDefault spDefault) {
+//		Connection conn = getConnection();
+//		int result = new SpaceDAO().insertComp(conn, spDefault);
+//		
+//		if(result > 0) commit(conn);
+//		else rollback(conn);
+//		
+//		close(conn);
+//		
+//		return result;
+//	}
+	
 	public int insertComp(SpacesDefault spDefault) {
 		Connection conn = getConnection();
 		int result = new SpaceDAO().insertComp(conn, spDefault);
-
+		int spcNo = new SpaceDAO().selectSpcNo(conn);
 		
 		if(result > 0) commit(conn);
 		else rollback(conn);
-		
+		System.out.println(spcNo+"sadnashilasuhulasbflakui");
 		close(conn);
 		
-		return result;
+		return spcNo;
 	}
 	
 	public int insertSpaceTimeTable(SpacesTimeTable spacestimetable) {
@@ -79,15 +91,30 @@ public class SpaceService {
 	public int insertSpace(Spaces space) {
 		Connection conn = getConnection();
 		int result = new SpaceDAO().insertSpace(conn, space);
-
+		int spcDtlNo = new SpaceDAO().selectSpcDtlNo(conn);
 		
 		if(result > 0) commit(conn);
 		else rollback(conn);
 		
 		close(conn);
 		
-		return result;
+		System.out.println("서비스"+spcDtlNo);
+		return spcDtlNo;
 	}
+	
+	
+//	public int insertSpace(Spaces space) {
+//		Connection conn = getConnection();
+//		int result = new SpaceDAO().insertSpace(conn, space);
+//		int spcDtlNo = new SpaceDAO().selectSpcDtlNo(conn);
+//		
+//		if(result > 0) commit(conn);
+//		else rollback(conn);
+//		
+//		close(conn);
+//		
+//		return spcDtlNo;
+//	}
 
 	public Spaces selectOneSpace(int spcNo) {
 		Connection conn = getConnection();

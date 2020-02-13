@@ -1,3 +1,4 @@
+<%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<%Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn"); %>
 <style>
 div{
 	position : relateive;
@@ -21,22 +24,22 @@ $(function (){ $("#button").click(function (){ $("#divToggle").toggle(); }); });
 	<fieldset>
 		<legend>공간유형</legend>
 		<div class="outer">
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=1'">회의실</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=2'">다목적홀</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=3'">레저시설</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=4'">파티룸</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=5'">공연장</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=6'">카페</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=7'">스터디룸</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=1&memberId=<%=memberLoggedIn.getMemId() %>'">회의실</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=2&memberId=<%=memberLoggedIn.getMemId() %>'">다목적홀</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=3&memberId=<%=memberLoggedIn.getMemId() %>'">레저시설</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=4&memberId=<%=memberLoggedIn.getMemId() %>'">파티룸</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=5&memberId=<%=memberLoggedIn.getMemId() %>'">공연장</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=6&memberId=<%=memberLoggedIn.getMemId() %>'">카페</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=7&memberId=<%=memberLoggedIn.getMemId() %>'">스터디룸</div>
 		</div>
 	</fieldset>
 	
 		<fieldset>
 		<legend>공유 오피스</legend>
 		<div class="outer">
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=8'">독립오피스</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=9'">코워킹오피스</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=10'">일하기좋은카페</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=8&memberId=<%=memberLoggedIn.getMemId() %>'">독립오피스</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=9&memberId=<%=memberLoggedIn.getMemId() %>'">코워킹오피스</div>
+		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=10&memberId=<%=memberLoggedIn.getMemId() %>'">일하기좋은카페</div>
 		</div>
 	</fieldset>
 

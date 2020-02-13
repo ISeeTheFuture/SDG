@@ -206,6 +206,7 @@ public class SpaceDAO {
 		String query = prop.getProperty("selectOneSpace");
 		System.out.println("query="+query);
 		
+		
 		try {
 			//1.미완성쿼리객체 생성
 			pstmt = conn.prepareStatement(query);
@@ -242,6 +243,7 @@ public class SpaceDAO {
 			close(pstmt);
 		} 
 		
+		System.out.println("selectOneSpace"+spcObj);
 		return spcObj;
 	}
 
@@ -322,11 +324,12 @@ public class SpaceDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, spaceimg.getSpcDetailNo());
+			pstmt.setInt(1,spaceimg.getSpcDetNo());
 			pstmt.setString(2, spaceimg.getSpcImgTitle());
 			pstmt.setString(3, spaceimg.getSpcImgText());
 			pstmt.setString(4, spaceimg.getSpcImgRoute());
 			pstmt.setInt(5, spaceimg.getSpcNo());
+			
 
 			
 			result = pstmt.executeUpdate();
@@ -338,6 +341,65 @@ public class SpaceDAO {
 		}
 		
 		return result;
+	}
+
+	public int selectSpcDtlNo(Connection conn) {
+		int spcdtlNo = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectSpcDtlNo");
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				spcdtlNo = rset.getInt("SPCDTLNO");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return spcdtlNo;
+	}
+
+	public int selectSpcNo(Connection conn) {
+		int spcNo = 0;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("selectSpcNo");
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				spcNo = rset.getInt("spcno");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return spcNo;
 	}
 
 }

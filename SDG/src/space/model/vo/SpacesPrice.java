@@ -31,19 +31,12 @@ public class SpacesPrice {
 		this.spcPriceDayBool = spcPriceDayBool;
 		this.spcPricePrice = spcPricePrice;
 	}
-<<<<<<< HEAD
-	public SpacesPrice(int spcDetNo, String spcDetName, String spcPriceDay, char spcPricePer, char spcPriceDayBool, int spcPricePrice) {
-=======
+	
 	public SpacesPrice(int spcDetNo, String spcDetName, String spcPriceDay, char spcPricePer, int spcPricePrice) {
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		this.spcDetNo = spcDetNo;
 		this.spcDetName = spcDetName;
 		this.spcPriceDay = spcPriceDay;
 		this.spcPricePer = spcPricePer;
-<<<<<<< HEAD
-		this.spcPriceDayBool = spcPriceDayBool;
-=======
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 		this.spcPricePrice = spcPricePrice;
 	}
 	public int getSpcPriceNo() {
