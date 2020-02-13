@@ -7,28 +7,42 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import space.model.dao.SpaceDAO;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
+import space.model.vo.SpacesSrch;
 import space.model.vo.SpacesTimeExp;
 import space.model.vo.SpacesTimeTable;
 
 public class SpaceService {
 
+//	public int insertComp(SpacesDefault spDefault) {
+//		Connection conn = getConnection();
+//		int result = new SpaceDAO().insertComp(conn, spDefault);
+//		
+//		if(result > 0) commit(conn);
+//		else rollback(conn);
+//		
+//		close(conn);
+//		
+//		return result;
+//	}
+	
 	public int insertComp(SpacesDefault spDefault) {
 		Connection conn = getConnection();
 		int result = new SpaceDAO().insertComp(conn, spDefault);
-
+		int spcNo = new SpaceDAO().selectSpcNo(conn);
 		
 		if(result > 0) commit(conn);
 		else rollback(conn);
-		
+		System.out.println(spcNo+"sadnashilasuhulasbflakui");
 		close(conn);
 		
-		return result;
+		return spcNo;
 	}
 	
 	public int insertSpaceTimeTable(SpacesTimeTable spacestimetable) {
@@ -79,15 +93,30 @@ public class SpaceService {
 	public int insertSpace(Spaces space) {
 		Connection conn = getConnection();
 		int result = new SpaceDAO().insertSpace(conn, space);
-
+		int spcDtlNo = new SpaceDAO().selectSpcDtlNo(conn);
 		
 		if(result > 0) commit(conn);
 		else rollback(conn);
 		
 		close(conn);
 		
-		return result;
+		System.out.println("서비스"+spcDtlNo);
+		return spcDtlNo;
 	}
+	
+	
+//	public int insertSpace(Spaces space) {
+//		Connection conn = getConnection();
+//		int result = new SpaceDAO().insertSpace(conn, space);
+//		int spcDtlNo = new SpaceDAO().selectSpcDtlNo(conn);
+//		
+//		if(result > 0) commit(conn);
+//		else rollback(conn);
+//		
+//		close(conn);
+//		
+//		return spcDtlNo;
+//	}
 
 	public Spaces selectOneSpace(int spcNo) {
 		Connection conn = getConnection();
@@ -127,5 +156,13 @@ public class SpaceService {
 		close(conn);
 		
 		return result;
+	}
+
+	public List<SpacesSrch> selectSpcSrch(String srchWord, int spcLoc, int spcType) {
+		Connection conn = getConnection();
+		List<SpacesSrch> spacesSrch = null;
+		
+		close(conn);
+		return spacesSrch;
 	}
 }
