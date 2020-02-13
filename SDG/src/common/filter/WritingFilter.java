@@ -1,4 +1,4 @@
-package common.filter;
+﻿package common.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -51,12 +51,16 @@ public class WritingFilter implements Filter {
 		
 		System.out.println("외않됀데?");
 		Memberblk MB= MemberService.IgnoreCheckselectOne(reqMemberId);
-	String ignoreCheck =MB.getMem_memo();
+
 	boolean l = false;
 	System.out.println("dㅇㄴㅁㄱㅈㄱㅂㅈㄷㅅㄷㅅㄷㅅ"+reqMemberId);
 	if(ignoreCheck!=null)l=true;
 	
+		String ignoreCheck =MB.getMem_memo();
+		boolean l = false;
 		
+		if(ignoreCheck!=null)l=true;
+
 		
 		
 		if(l) {

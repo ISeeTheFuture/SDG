@@ -525,6 +525,7 @@ select * from spc_dtl;
 select * from spc_timetable;
 select * from spc_res;
 select * from spc_res_grp;
+select * from spc_price;
 
 
 select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;

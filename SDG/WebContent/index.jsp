@@ -1,7 +1,5 @@
 <%@page import="member.model.vo.MemberBusi"%>
 <%@page import="member.model.vo.Member"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,6 +37,7 @@
 
 <html>
 <head>
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -49,6 +48,7 @@
 			<button id="spaceReg">공간 등록</button>
 		</form>
 	</nav>
+
 
 	<div class="login-container">
 		<%
@@ -106,6 +106,7 @@
 
 	<ul class="main-nav">
 
+
 		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
 
 	</ul>
@@ -129,10 +130,10 @@
 	</form>
 
 
-	<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
-	<li><a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a></li>
-	<li><a href="<%=request.getContextPath()%>/res/resView">예약</a></li>
-	<li><a href="<%=request.getContextPath()%>/res/resUpdate">예약수정하기</a></li>
+	<a href="<%=request.getContextPath()%>/board/boardList">이용후기</a>
+	<a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a>
+	<a href="<%=request.getContextPath()%>/res/resView">예약</a>
+	<a href="<%=request.getContextPath()%>/res/resUpdate">예약수정하기</a>
 
 	<br>
 	<br>
@@ -160,9 +161,14 @@
 		<button id="reviewRpt">게시물 보기</button>
 	</form>
 
-<li><a href="<%=request.getContextPath()%>/member/kimwonjae">테스트페이지</a></li>
+	<a href="<%=request.getContextPath()%>/member/kimwonjae">테스트페이지</a>
 
 
+	<form action="<%=request.getContextPath()%>/space/spaceSrchList" method="GET">
+		<input type="text" name="spcSrch" id="spcSrch"/>
+		<input type="submit" value="검색">
+	</form>		
+			
 	<%--membership의 role값이 1 (트루)인경우 사업자 정보 입력 페이지로 이동 가능하도록 함. --%>
 	<%
 		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
@@ -174,7 +180,6 @@
 	<%
 		}
 	%>
-
 
 
 </body>
