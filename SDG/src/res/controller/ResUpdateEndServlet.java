@@ -81,6 +81,8 @@ public class ResUpdateEndServlet extends HttpServlet {
 		if(resultRes > 0) System.out.println("예약 성공!");
 		resGrp.setResGroupNo(resultRes);
 		
+		System.out.println(res);
+		System.out.println(resGrp);
 		
 		Calendar cal = Calendar.getInstance();
 		List<ResGrp> list = new ArrayList<>();
