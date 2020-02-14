@@ -1,6 +1,4 @@
-/common/
-/member/
-/review/
-/space/
+/driver.properties
 /res/
+/review/
 /sql/
