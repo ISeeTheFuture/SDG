@@ -54,6 +54,19 @@
 		    <li class="nav-item">
 		      	<a class="nav-link" href="#">Link</a>
 		    </li>
+			<form action="<%=request.getContextPath()%>/space/spaceSrchList" method="GET">
+			    <div class="search">
+			    	<div class="container">
+						<div class="input-group">
+								<input type="text" name="spcSrch" id="spcSrch" class="form-control" placeholder="Search for...">
+		     					<span class="input-group-btn">
+		        					<button class="btn btn-search" type="submit"><i class="fa fa-search fa-fw"></i> Search</button>
+		      					</span>
+			    		</div>
+			    	</div>
+			    </div>
+      		</form>
+		    
 		    <% if(memberLoggedIn == null){ %>
 		    <div class="signIn">
 			    <li class="nav-item">
@@ -66,9 +79,11 @@
 			    </li>
 		    </div>
 		    <%}else if(memberLoggedIn != null){ %>
-		    <li class="nav-item">
-		      	<a class="nav-link" href="<%=request.getContextPath() %>/space/spaceTypeReg?memberId=<%=memberLoggedIn.getMemId()%>">공간 등록</a>
-		    </li>
+		    <div class="spaceReg">
+			    <li class="nav-item">
+			      	<a class="nav-link" href="<%=request.getContextPath() %>/space/spaceTypeReg?memberId=<%=memberLoggedIn.getMemId()%>">공간 등록</a>
+			    </li>
+		    </div>
 		    <div class="memberInfo">
 			    <li class="nav-item">
 			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/memberView?memberId=<%=memberLoggedIn.getMemId()%>">내 정보 보기</a>
@@ -80,6 +95,7 @@
 			    </li>
 		    </div>
 		    <%} %>
+		    
 		</ul>
 	</nav>
 
