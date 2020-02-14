@@ -1,3 +1,5 @@
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -77,7 +79,7 @@
  					
  					$.each(data, function(idx, d){ // 배열 요소당 한번씩 콜백함수를 호출
  						var tmp = "<%=request.getContextPath()%>/upload/"+d.spcImgTitle;
- 						var act = "<%=request.getContextPath()%>/res/resView";
+ 						var act = "<%=request.getContextPath()%>/space/spaceView";
 						SrchResult += "<div width='400px' height='260px' name='srchContent"+d.spcDetNo+"' class='srchContent'><form method='post' action="+act+" id='srchContent"+d.spcDetNo+"'><img src="+tmp+" alt='' srcset='' width='400px' height='230px'>";
  						SrchResult += "<h1>"+d.spcName+"</h1>";
 						SrchResult += "<h4>"+d.spcLocationName+"/"+d.spcTypeName+"</h4>";
