@@ -66,6 +66,7 @@ public class ResInsertServlet extends HttpServlet {
 		request.setAttribute("resEndDate", resEndDate);
 		request.setAttribute("resEndTime", resEndTime);
 		request.setAttribute("resContent", request.getParameter("resContent"));
+		request.setAttribute("spcNo", request.getParameter("spcNo"));
 		
 		
 //		request.getRequestDispatcher("/WEB-INF/views/res/res.jsp").forward(request, response);

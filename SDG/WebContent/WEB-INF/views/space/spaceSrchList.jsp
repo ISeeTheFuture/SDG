@@ -50,7 +50,17 @@
 		</div>
 		
 	<script>
-		$("#btn1").click(function(){
+	
+		$(function(){ // 온로드 함수
+			$("#btn1").trigger("srchStart");
+		});
+	
+		$("#btn1").click(function(){ // 즉시 실행이 한 번 필요해서 바인드 방식으로 클릭 처리
+			$("#btn1").trigger("srchStart");	
+		})
+
+			
+		$("#btn1").bind("srchStart", function(){
 			$.ajax({
 				url: "<%=request.getContextPath()%>/space/spaceSrchEnd.do",
 				type: "post",
@@ -67,26 +77,33 @@
  					
  					$.each(data, function(idx, d){ // 배열 요소당 한번씩 콜백함수를 호출
  						var tmp = "<%=request.getContextPath()%>/upload/"+d.spcImgTitle;
-						SrchResult += "<div width='150px' height='130px'><img src="+tmp+" alt='' srcset='' width='150px' height='100px'>";
+ 						var act = "<%=request.getContextPath()%>/res/resView";
+						SrchResult += "<div width='400px' height='260px' name='srchContent"+d.spcDetNo+"' class='srchContent'><form method='post' action="+act+" id='srchContent"+d.spcDetNo+"'><img src="+tmp+" alt='' srcset='' width='400px' height='230px'>";
  						SrchResult += "<h1>"+d.spcName+"</h1>";
 						SrchResult += "<h4>"+d.spcLocationName+"/"+d.spcTypeName+"</h4>";
 						SrchResult += "<h3>"+d.spcPricePrice+"</h3>";
-						SrchResult += "<input type='hidden' name='spcNo' id='spcNo' value="+d.spcNo+">";
-						SrchResult += "<input type='hidden' name='spcDetNo' id='spcDetNo' value="+d.spcDetNo+"></div>";
+						SrchResult += "<input type='hidden' name='spcNo' class='spcNo' value="+d.spcNo+">";
+						SrchResult += "<input type='hidden' name='spcDetNo' class='spcDetNo' value="+d.spcDetNo+"><button type='submit' name='btnSubmit' value='임시버튼'></form></div>";
 					});
 					$("#SrchResultList").html(SrchResult);
-					
 				},
 				error: (x,s,e) => {
 					//x : xhr
 					//s : testStatus
 					//e : errorThrown
 					console.log(x,s,e);
-				}, complete: function() {
-					/*console.log("bbb");*/
+				}, complete: function(data) {
+					$(".srchContent").click(function(){
+						var srchNo = $(this).attr('name')
+						$("#"+srchNo+"").submit();
+					});
 				}
 			});
 		});
+		
+
+
+		
 	</script>
 
 </body>
