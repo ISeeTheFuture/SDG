@@ -102,34 +102,6 @@
 	</div>
 
 
-	<ul class="main-nav">
-
-
-		<li><a href="<%=request.getContextPath()%>/board/boardList">이용후기</a></li>
-
-	</ul>
-
-	<form action="<%=request.getContextPath()%>/space/spacePrice"
-		method="GET">
-		<button id="spacePriceReg">사업장 요금</button>
-	</form>
-
-	<form action="<%=request.getContextPath()%>/space/spaceTimeTable"
-		method="GET">
-		<button id="spaceReg">사업자 운영스케쥴</button>
-	</form>
-	<form action="<%=request.getContextPath()%>/space/spaceTimeExp"
-		method="GET">
-		<button id="spaceExp">사업자 예외스케쥴</button>
-	</form>
-	<form action="<%=request.getContextPath()%>/space/UpdateSpacePrice"
-		method="GET">
-		<button id="spaceExp">사업자 요금 수정</button>
-	</form>
-
-
-	<a href="<%=request.getContextPath()%>/board/boardList">이용후기</a>
-	<a href="<%=request.getContextPath()%>/board/boardForm">이용후기작성</a>
 	<a href="<%=request.getContextPath()%>/res/resView">예약</a>
 	<a href="<%=request.getContextPath()%>/res/resUpdate">예약수정하기</a>
 
@@ -159,7 +131,6 @@
 		<button id="reviewRpt">게시물 보기</button>
 	</form>
 
-	<a href="<%=request.getContextPath()%>/member/kimwonjae">테스트페이지</a>
 
 
 	<form action="<%=request.getContextPath()%>/space/spaceSrchList" method="GET">

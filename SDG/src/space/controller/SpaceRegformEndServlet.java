@@ -130,7 +130,6 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		String spcImgTitle2 = multiReq.getFilesystemName("spcImgFile");
 
-		
 		String spcImgTitle = "'"+spcImgTitle2+"'";
 		String spcImgRoute = "'"+saveDirectory +"/"+spcImgTitle2+"'";
 		String spcImgText = "'"+spcImgTitle2+"'";

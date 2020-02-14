@@ -39,7 +39,6 @@ public class SpaceService {
 		
 		if(result > 0) commit(conn);
 		else rollback(conn);
-		System.out.println(spcNo+"sadnashilasuhulasbflakui");
 		close(conn);
 		
 		return spcNo;
@@ -158,11 +157,4 @@ public class SpaceService {
 		return result;
 	}
 
-	public List<SpacesSrch> selectSpcSrch(String srchWord, int spcLoc, int spcType) {
-		Connection conn = getConnection();
-		List<SpacesSrch> spacesSrch = null;
-		
-		close(conn);
-		return spacesSrch;
-	}
 }

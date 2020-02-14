@@ -141,12 +141,12 @@ function loginAlert(){
 
 
 <!-- 게시물삭제폼 -->
-<form action="<%=request.getContextPath()%>/review/reviewDelete"
+<%-- <form action="<%=request.getContextPath()%>/review/reviewDelete"
 	  name="reviewDelFrm"
 	  method="POST">
 	  <input type="hidden" name="reviewNo" value="<%=review.getReviewNo()%>"/>
 	 
-</form>
+</form> --%>
 <script>
 //삭제버튼 클릭시 댓글 삭제후 현재페이지 돌아오기
 $(".btn-delete").click(function(){

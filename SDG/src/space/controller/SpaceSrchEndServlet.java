@@ -17,6 +17,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import space.model.service.SpaceService;
+import space.model.service.SrchService;
 import space.model.vo.SpacesSrch;
 
 
@@ -41,40 +42,40 @@ public class SpaceSrchEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Java객체 -> json문자열 변환 -> 응답객체
 		// json-simple-library
-
-		String srchWord = request.getParameter("srchWord"); 
+		response.setContentType("UTF-8");
+		String srchWord = request.getParameter("srchWord")==null?"":request.getParameter("srchWord");
         int spcLoc = Integer.parseInt(request.getParameter("spcLoc"));
         int spcType = Integer.parseInt(request.getParameter("spcType"));
 		
-		List<SpacesSrch> spcSrchList = new SpaceService().selectSpcSrch(srchWord, spcLoc, spcType ); 
+        // 일단 (spc+spc_dtl+ spc_img)테이블에서 srchWord, spcLoc, spcType 을 조건으로 spcDetNo, spcNo, spcName, spc_TypeNo, spc_LocNo,spc_price, spc_img 을 가져옴
+        // 동시에 (spc_loc+spc_type) 테이블에서 spc_Detail_no를 조건으로 spc_type_name, spcLocationName 를 가져옴
+		List<SpacesSrch> spcSrchList = new SrchService().selectSpcSrch(srchWord, spcLoc, spcType );
 		
-		// 2. 배열
-//		List<Member> list = new ArrayList<>();
-//		list.add(new Member("줄리아 로버츠", "01012341234", "juliaRoberts.jpg"));
-//		list.add(new Member("박보검", "01012341234", "parkBogum.jpg"));
-//		list.add(new Member("천우희", "01012341234", "천우희.jpg"));
-//		list.add(new Member("맷 데이먼", "01012341234", "mattDamon.jpg"));
-//		list.add(new Member("day6", "01012341234", "day6.jpg"));
-//		list.add(new Member("차은우", "01012341234", "은우.jpg"));
-//		list.add(new Member("봉준호", "01012341234", "bongjunho.jpg"));
-//		
-//		
-//		//JSONArray(list)
-//		JSONArray jsonArr = new JSONArray();
-//		
-//		for(Member m : list) {
-//			JSONObject memberJson = new JSONObject();
-//			memberJson.put("name", m.getName());
-//			memberJson.put("phone", m.getPhone());
-//			memberJson.put("profile", m.getProfile());
-//			
-//			jsonArr.add(memberJson);
-//		}
-//		
-//		//응답객체에 쓰기
-//		PrintWriter out = response.getWriter();
-//		out.write(jsonArr.toJSONString());
-//		
+	
+		//JSONArray(list)
+		JSONArray jsonArr = new JSONArray();
+		
+		for(SpacesSrch s :  spcSrchList) {
+			JSONObject srchJson = new JSONObject();
+			srchJson.put("spcDetNo", s.getSpcDetNo());
+			srchJson.put("spcNo", s.getSpcNo());
+			srchJson.put("spcName", s.getSpcName());
+			srchJson.put("spcTypeNo", s.getSpcTypeNo());
+			srchJson.put("spcTypeName", s.getSpcTypeName());
+			srchJson.put("spcLocNo", s.getSpcLocNo());
+			srchJson.put("spcLocationName", s.getSpcLocationName());
+			srchJson.put("spcPricePrice", s.getSpcPricePrice());
+			String tmp = s.getSpcImgTitle();
+			srchJson.put("spcImgTitle", tmp.substring(1, tmp.length()-1));
+
+			jsonArr.add(srchJson);
+		}
+//		System.out.println("확인"+jsonArr.toString());
+		//응답객체에 쓰기
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.write(jsonArr.toJSONString());
+		
 	}
 
 	/**

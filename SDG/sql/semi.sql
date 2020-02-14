@@ -514,8 +514,15 @@ INSERT INTO SPC_TYPE VALUES(8,'독립오피스');
 INSERT INTO SPC_TYPE VALUES(9,'코워킹오피스');
 INSERT INTO SPC_TYPE VALUES(10,'일하기좋은카페');
 INSERT INTO spc VALUES(1011,'testid',null, null, null, null, null);
+
+INSERT INTO REVIEW VALUES(3,1,'testid',0,2,null,'WQE','QWE',null,20/02/11,DEFAULT,0,0,0);
+
+INSERT INTO REVIEW_CMNT VALUES(1,'testid',3,0,0,DEFAULT,0,0);
+
 commit;
 
+select * from review;
+select * from review_cmnt;
 
 select * from spc_type;
 select * from membership;
@@ -528,7 +535,8 @@ select * from spc_res_grp;
 select * from spc_price;
 select * from spc_loc;
 select * from spc_type;
-
+select * from spc_img;
+select * from spc S join spc_dtl D on S.spc_no=D.spc_no join spc_price P on D.spc_detail_no=P.spc_detail_no join spc_img I on D.spc_detail_no=I.spc_detail_no where spc_name like '%%' and SPC_TYPE_NO is not null and SPC_LOCATION_NO is not null;
 
 select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;
 SELECT * FROM SPC_RES R JOIN SPC_RES_GRP G ON R.RES_GROUP_NO = G.RES_GROUP_NO WHERE R.RES_GROUP_NO = 62 ORDER BY RES_TIME;
