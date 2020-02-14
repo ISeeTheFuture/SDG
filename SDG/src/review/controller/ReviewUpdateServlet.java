@@ -8,17 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import review.model.service.ReviewService;
+import review.model.vo.Review;
+
 /**
- * 게시판
+ * 게시판 업데이트
  */
-@WebServlet("/review/reviewForm")
-public class ReviewFormServlet extends HttpServlet {
+@WebServlet("/review/reviewUpdate")
+public class ReviewUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewFormServlet() {
+    public ReviewUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +32,16 @@ public class ReviewFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		request.getRequestDispatcher("/WEB-INF/views/review/reviewForm.jsp")
+		//1.parameter
+		 int reviewNo = Integer.parseInt(request.getParameter("reviewNo")); 
+				
+		//2.business logic
+		Review b = new ReviewService().selectOneReviewNo(reviewNo);
+		
+		//3.view
+		request.setAttribute("review", b);
+		request.getRequestDispatcher("/WEB-INF/views/review/reviewUpdate.jsp")
 			   .forward(request, response);
-	
 	}
 
 	/**

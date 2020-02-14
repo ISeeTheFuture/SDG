@@ -44,13 +44,7 @@ public class MemberIngnoreCheckServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		
-		String ses = request.getParameter("memberId");
-		
-		
-//		System.out.println("어쨰서?"+ses);
-		
-		
-		
+		String ses = request.getParameter("memberId");		
 		
 		Member member = new MemberService().selectOne(ses);
 
