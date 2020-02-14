@@ -77,6 +77,7 @@ function enrollValidate(){
 	return true;
 }
 
+
 function checkIdDuplicate(){
 	let memberId = $("#memberId_").val().trim();
 	if(!memberId || memberId.length < 4){
@@ -111,6 +112,9 @@ function checkIdDuplicate(){
 
 <div class="card bg-light">
 <!-- 회원가입 action -->
+<form name="checkIdDuplicateFrm">
+	<input type="hidden" name="memberId" />
+</form>
 <article class="card-body mx-auto"  style="max-width: 400px;">
     	   <form action="<%=request.getContextPath() %>/member/memberEnrollEnd" 
     	  name="memberEnrollFrm" 
@@ -197,5 +201,3 @@ function checkIdDuplicate(){
                                                          
 </form>
 </article>
-
-  
