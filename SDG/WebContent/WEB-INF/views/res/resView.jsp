@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예약하기2</title>
+<title>공간상세보기</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/vendor/css/bootstrap.min.css">
 
 <link rel=" shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico">
@@ -20,6 +20,11 @@
 
 </head>
 <body>
+
+
+
+
+
     <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
@@ -179,6 +184,9 @@
     </div>
     <!-- /.container -->
 
+	<script language=javascript>
+		var spcNo = "<%= request.getParameter("spcNo") %>" ;
+	</script>
     <script src="<%=request.getContextPath()%>/vendor/js/jquery.min.js"></script>
     <script src="<%=request.getContextPath()%>/vendor/js/bootstrap.min.js"></script>
     <script src="<%=request.getContextPath()%>/vendor/js/moment.min.js"></script>
@@ -191,6 +199,8 @@
     <script src="<%=request.getContextPath()%>/js/fullCalendarViewEvent.js"></script>
     <script src="<%=request.getContextPath()%>/js/fullCalendarEditEvent.js"></script>
     <script src="<%=request.getContextPath()%>/js/fullCalendarEtcSetting.js"></script>
+
+
 
 
 </body>

@@ -11,7 +11,7 @@ MemberBusi memberBusiIn = (MemberBusi)session.getAttribute("memberBusiIn");
 int gn = member.getMemGradeName();
 String MemberGradeName = null;
 String RoleCheck="사업자가 아닙니다.";
- System.out.println("엠비 로그인 서wqeqwe블릿="+member.getMemGender());
+ //System.out.println("엠비 로그인 서wqeqwe블릿="+memberBusiIn.getMemBusiAddr());
 
 if("1".equals(member.getMemRole())){
 	RoleCheck="사업자입니다.";

@@ -54,6 +54,12 @@ public class Review implements Serializable{
 		this.reviewStar = reviewStar;
 		this.reviewContent = reviewContent;
 	}
+	public Review(int reviewNo, String reviewTitle, String reviewContent, int reviewStar) {
+		this.reviewNo = reviewNo;
+		this.reviewTitle = reviewTitle;
+		this.reviewStar = reviewStar;
+		this.reviewContent = reviewContent;
+	}
 	public int getReviewNo() {
 		return reviewNo;
 	}

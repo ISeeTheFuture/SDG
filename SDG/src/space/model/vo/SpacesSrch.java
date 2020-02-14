@@ -1,5 +1,6 @@
 package space.model.vo;
 
+import java.sql.Array;
 
 public class SpacesSrch {
 
@@ -8,32 +9,32 @@ public class SpacesSrch {
 	private String spcName;
 	
 	private int spcTypeNo;
-	private String spc_type_name;
+	private String spcTypeName;
 	
 	private int spcLocNo;
 	private String spcLocationName;
 	
 	private int spcPricePrice;
 	
-	private String spcImgRoute;
+	private String spcImgTitle;
 
 	public SpacesSrch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SpacesSrch(int spcDetNo, int spcNo, String spcName, int spcTypeNo, String spc_type_name, int spcLocNo,
-			String spcLocationName, int spcPricePrice, String spcImgRoute) {
+	public SpacesSrch(int spcDetNo, int spcNo, String spcName, int spcTypeNo, String spcTypeName, int spcLocNo,
+			String spcLocationName, int spcPricePrice, String spcImgTitle) {
 		super();
 		this.spcDetNo = spcDetNo;
 		this.spcNo = spcNo;
 		this.spcName = spcName;
 		this.spcTypeNo = spcTypeNo;
-		this.spc_type_name = spc_type_name;
+		this.spcTypeName = spcTypeName;
 		this.spcLocNo = spcLocNo;
 		this.spcLocationName = spcLocationName;
 		this.spcPricePrice = spcPricePrice;
-		this.spcImgRoute = spcImgRoute;
+		this.spcImgTitle = spcImgTitle;
 	}
 
 	public int getSpcDetNo() {
@@ -68,12 +69,12 @@ public class SpacesSrch {
 		this.spcTypeNo = spcTypeNo;
 	}
 
-	public String getSpc_type_name() {
-		return spc_type_name;
+	public String getSpcTypeName() {
+		return spcTypeName;
 	}
 
-	public void setSpc_type_name(String spc_type_name) {
-		this.spc_type_name = spc_type_name;
+	public void setSpcTypeName(String spcTypeName) {
+		this.spcTypeName = spcTypeName;
 	}
 
 	public int getSpcLocNo() {
@@ -100,21 +101,21 @@ public class SpacesSrch {
 		this.spcPricePrice = spcPricePrice;
 	}
 
-	public String getSpcImgRoute() {
-		return spcImgRoute;
+	public String getSpcImgTitle() {
+		return spcImgTitle;
 	}
 
-	public void setSpcImgRoute(String spcImgRoute) {
-		this.spcImgRoute = spcImgRoute;
+	public void setSpcImgTitle(String spcImgTitle) {
+		this.spcImgTitle = spcImgTitle;
 	}
 
 	@Override
 	public String toString() {
 		return "SpacesSrch [spcDetNo=" + spcDetNo + ", spcNo=" + spcNo + ", spcName=" + spcName + ", spcTypeNo="
-				+ spcTypeNo + ", spc_type_name=" + spc_type_name + ", spcLocNo=" + spcLocNo + ", spcLocationName="
-				+ spcLocationName + ", spcPricePrice=" + spcPricePrice + ", spcImgRoute=" + spcImgRoute + "]";
+				+ spcTypeNo + ", spcTypeName=" + spcTypeName + ", spcLocNo=" + spcLocNo + ", spcLocationName="
+				+ spcLocationName + ", spcPricePrice=" + spcPricePrice + ", spcImgTitle=" + spcImgTitle + "]";
 	}
-
+	
 	
 	
 }

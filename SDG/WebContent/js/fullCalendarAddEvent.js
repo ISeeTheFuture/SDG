@@ -18,6 +18,7 @@ var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 var viewBtnContainer = $('.modalBtnContainer-viewEvent');
 
 
+
 /* ****************
  *  새로운 일정 생성
  * ************** */
@@ -122,6 +123,7 @@ var newEvent = function (start, end, eventType) {
         var input3 = document.createElement('input');
         var input4 = document.createElement('input');
         var input5 = document.createElement('input');
+        var input6 = document.createElement('input');
         
         //set attribute (input)
         input1.setAttribute("type", "text");
@@ -139,8 +141,9 @@ var newEvent = function (start, end, eventType) {
         input5.setAttribute("type", "text");
         input5.setAttribute("name", "resContent");
         input5.setAttribute("value", eventData.description);
-        
-        
+        input6.setAttribute("type", "text");
+        input6.setAttribute("name", "spcNo");
+        input6.setAttribute("value", spcNo);
         
         //append input (to form)
         form.appendChild(input1);
@@ -148,6 +151,7 @@ var newEvent = function (start, end, eventType) {
         form.appendChild(input3);
         form.appendChild(input4);
         form.appendChild(input5);
+        form.appendChild(input6);
         
         //append form (to body)
         document.body.appendChild(form);

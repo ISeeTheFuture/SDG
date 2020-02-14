@@ -30,6 +30,8 @@ public class ReviewDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
 		//1.전송값 꺼내서 변수에 기록하기.
 		//String javax.servlet.ServletRequest.getParameter(String arg0)
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));

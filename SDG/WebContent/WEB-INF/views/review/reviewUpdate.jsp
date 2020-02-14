@@ -1,80 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="review.model.vo.*" %>
-<%
-	Review b = (Review)request.getAttribute("review");
-%>
-
-<script>
-function reviewValidate(){
-	var content = $("[name=content]").val();
-	//console.log(content.length)
-	if(content.trim().length==0){
-		alert("내용을 입력하세요");
-		return false;
-	}
-	return true;
-}
-function reviewView(){
-	history.go(-1);
-}
-</script>
-<section id="review-container">
-<h2>게시판 작성</h2>
-<form action="<%=request.getContextPath() %>/review/reviewUpdateEnd" 
-	  method="post" 
-	  enctype="multipart/form-data">
-  <input type="hidden" name="boardNo" value="<%=b.getReviewNo() %>" />
-  <table id="tbl-board-view">
-	<tr>
-		<th>제 목</th>
-		<td><input type="text" name="boardTitle" value="<%=b.getReviewTitle()%>" required></td>
-	</tr>
-	<tr>
-		<th>작성자</th>
-		<td>
-			<%-- <input type="text" name="boardWriter" value="<%=b.getBoardWriter()%>" readonly/> --%>
-		</td>
-	</tr>
-	<tr>
-		<th>첨부파일</th>
-		<td style="position:relative;">
-			<input type="file" name="upFile" >
-			<%-- <span id="fname"><%=b.getOriginalFileName()!=null?b.getOriginalFileName():"" %></span> --%>
-			<%-- 기존첨부파일 유지를 위해 기존파일명을 hidden으로 전송한다. --%>
-			<!-- <input type="hidden" name="oldOriginalFileName" -->
-			<%--        value="<%=b.getOriginalFileName()!=null?b.getOriginalFileName():"" %>" /> --%>
-			<!-- <input type="hidden" name="oldRenamedFileName" -->
-			       <%-- value="<%=b.getRenamedFileName()!=null?b.getRenamedFileName():"" %>" /> --%>
-			
-		</td>
-	</tr>
-	<tr>
-		<th>내 용</th>
-		<td><textarea rows="5" cols="50" name="reviewContent"><%=b.getReviewContent() %></textarea></td>
-	</tr>
-	<tr>
-		<th colspan="2">
-			<input type="submit" value="수정하기" onclick="return boardValidate();">
-			<input type="button" value="취소" onclick="reviewView();">
-		</th>
-	</tr>
-</table>
-</form>
-</section>
-<script>
-$(function(){
-	$("[name=upFile]").change(function(){
-		let fname = $(this).val(); 
-		//첨부파일이 있는 경우
-		if(fname != ""){
-			$("#fname").hide();
-		}
-		//첨부파일이 없는 경우
-		else {
-			$("#fname").show();
-		}
-	});
-});
-
-</script>
+    <%@page import="review.model.vo.Review"%>
+    <%@page import="member.model.vo.Member"%>
+    <%
+    Review review = (Review)request.getAttribute("review");
+    Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
+<title>사업자 정보 입력</title>
+</head>
+<body>
+	<form action="<%=request.getContextPath() %>/review/reviewUpdateEnd" method="post">
+	<label for="memId">아이디</label>
+	<input type="text"  name="memId" id="memId" value="<%=memberLoggedIn.getMemId() %>"  readonly><br>
+	<br>
+      <%-- <input type="hidden" name="reviewNo" id="reviewNo" value="<%=review.getReviewNo() %>" />
+      <br> --%>
+     <label for="reviewTitle">제목</label>
+      <input type="text" name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요." />
+      <br>
+     <label for="reviewContent">내용</label>
+      <input type="text" name="reviewContent" id="reviewContent" placeholder="내용을 입력하세요." />
+      <br>
+      <label for="reviewStar">별점 입력</label>
+      <input type="tel" placeholder="별점을 입력하세요" name="reviewStar" id="reviewStar" maxlength="11" required><br>
+      <br>
+      <input type='submit' value="전송" />
+      <input type="reset" value="취소">
+	</form>
+</body>
+</html>

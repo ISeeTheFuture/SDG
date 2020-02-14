@@ -19,7 +19,7 @@
 		<input type="text" id="memberId" name="memberId" value="<%=request.getAttribute("memberId")%>" readonly/>
 		<br />
 		<label for="spcNo">공간넘버</label>
-		<input type="text" id="spcNo" name="spcNo" value="1011" readonly/>
+		<input type="text" id="spcNo" name="spcNo" value="<%=request.getAttribute("spcNo")%>" readonly/>
 		<br />
 		<label for="resMany">인원</label>
 		<input type="text" id="resMany" name="resMany" value="<%=request.getAttribute("resMany")%>"/>

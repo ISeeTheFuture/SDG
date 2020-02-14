@@ -37,8 +37,9 @@ public class ReviewCommentInsertServlet extends HttpServlet {
 //		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		String memId = request.getParameter("memId");
 		String commentContent = request.getParameter("commentContent");
+		System.out.println("commentContent"+commentContent);
 		Review reviewNo = new ReviewService().selectOneReviewNo(memId);
-		
+		System.out.println("reviewNo="+reviewNo);
 		ReviewComment reviewComment = new ReviewComment(memId, reviewNo.getReviewNo(), commentContent);
 		System.out.println("REVEIW="+reviewComment);
 		
@@ -48,9 +49,10 @@ public class ReviewCommentInsertServlet extends HttpServlet {
 		
 		//3.view단처리: 댓글등록여부를 msg.jsp통해서 알림후, 
 		//    		   /board/boardView로 이동
+		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
-		String loc = "/";
-		
+		String loc = "/review/reviewList";
+
 		if(result > 0)
 			msg = "댓글 등록 성공!";
 		else 

@@ -106,7 +106,7 @@ var editEvent = function (event, element, view) {
                 resDesc: event.description
             },
             success: function (response) {
-                alert('수정되었습니다.')
+                alert('수정되었습니다.');
             }
         });
 
@@ -123,7 +123,7 @@ var editEvent = function (event, element, view) {
             type: "post",
             url: getContextPath()+"/res/resDeleteEnd",
             data: {
-                resGroupNo: event._id,
+                resGroupNo: event._id
             },
             success: function (response) {
                 alert('삭제되었습니다.');

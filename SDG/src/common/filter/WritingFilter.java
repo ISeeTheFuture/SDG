@@ -19,8 +19,8 @@ import member.model.vo.Memberblk;
  * Servlet Filter implementation class WritingFilter
  */
 @WebFilter(
-		urlPatterns = {
-		"/board/boardUpdateEnd"})
+//		servletNames= {"boardFormServlet"},
+urlPatterns = {	"/review/reviewForm"})
 public class WritingFilter implements Filter {
 
     /**
@@ -44,15 +44,17 @@ public class WritingFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 		HttpSession session = httpRequest.getSession();
 		Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
-		String reqMemberId = httpRequest.getParameter("memberId");
-	
+//		System.out.println("MEMBERLOGGEDIN"+memberLoggedIn);
+		String reqMemberId =memberLoggedIn.getMemId(); 
+//				httpRequest.getParameter("memberId");
+	System.out.println("알이큐멤버아이디"+reqMemberId);
 		
+		System.out.println("외않됀데?");
 		Memberblk MB= MemberService.IgnoreCheckselectOne(reqMemberId);
-		
-		String ignoreCheck =MB.getMem_memo();
-		boolean l = false;
-		
-		if(ignoreCheck!=null)l=true;
+	String ignoreCheck =MB.getMem_memo();
+	boolean l = false;
+	System.out.println("dㅇㄴㅁㄱㅈㄱㅂㅈㄷㅅㄷㅅㄷㅅ"+reqMemberId);
+	if(ignoreCheck!=null)l=true;
 	
 		
 		
