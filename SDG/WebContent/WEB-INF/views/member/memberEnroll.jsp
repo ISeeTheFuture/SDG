@@ -132,28 +132,28 @@ function checkIdDuplicate(){
     
     <div class="form-group input-group">
 		<div class="input-group-prepend">
-		    <span class="input-group-text"> 이름</i> </span>
+		    <span class="input-group-text"> 이름</span>
 		 </div>
         <input name="memberName" class="form-control" id="memberName" placeholder="이름 입력" type="text">
     </div> <!-- form-group// -->
     
     <div class="form-group input-group">
 		<div class="input-group-prepend">
-		    <span class="input-group-text">생년월일</i> </span>
+		    <span class="input-group-text">생년월일 </span>
 		 </div>
         <input name="birthDay" class="form-control" id="birthDay" placeholder="생년월일" type="date">
     </div> <!-- form-group// -->
     
     <div class="form-group input-group">
     	<div class="input-group-prepend">
-		    <span class="input-group-text">이메일</i> </span>
+		    <span class="input-group-text">이메일 </span>
 		 </div>
         <input name="email" class="form-control"  id="email" placeholder="abc@xyz.com" type="email">
     </div> <!-- form-group// -->
     
     <div class="form-group input-group">
     	<div class="input-group-prepend">
-		    <span class="input-group-text">전화번호</i> </span>
+		    <span class="input-group-text">전화번호 </span>
 		</div>
     	<input name="tel" class="form-control" id="phone" placeholder="(-없이)01012345678" type="text">
     </div> <!-- form-group// -->
@@ -161,7 +161,7 @@ function checkIdDuplicate(){
 	
     <div class="form-group input-group">
     	<div class="input-group-prepend">
-		    <span class="input-group-text">패스워드</i> </span>
+		    <span class="input-group-text">패스워드 </span>
 		</div>
         <input name="password" class="form-control" id="password_" placeholder="" type="password" required>
     </div> <!-- form-group// -->
