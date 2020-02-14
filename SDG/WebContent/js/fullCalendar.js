@@ -163,6 +163,8 @@ var calendar = $('#calendar').fullCalendar({
   /* ****************
    *  일정 받아옴 
    * ************** */
+ 
+  
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
@@ -170,8 +172,8 @@ var calendar = $('#calendar').fullCalendar({
       dataType: "json",
 //      url: "../data.json",
       data: {
-        // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
-    	  spcNo : 1011
+        // 날짜를 전달해 일정기간 데이터만 받아오기를 권장
+    	  spcNo : spcNo
       },
       success: function (response) {
         var fixedDate = response.map(function (array) {

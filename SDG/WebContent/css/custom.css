@@ -3,43 +3,67 @@
 @import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 .navbar-brand, h1, h2, h3, h4 {
-
-  font-family: 'Jeju Gothic';
-
+	font-family: 'Jeju Gothic';
 }
 
 h5 {
-
-  font-family: 'Jeju Gothic';
-
-  font-size: 18px;
-
+	font-family: 'Jeju Gothic';
+	font-size: 18px;
 }
 
 body {
-
-  font-family: 'Nanum Gothic';
-
+	font-family: 'Nanum Gothic';
 }
 
-.signIn{
-	position:absolute;
-	right:0;
-	margin-right:110px;
-}
-.signUp{
-	position:absolute;
-	right:0;
-	margin-right:30px;
+.search {
+	position: absolute;
+	left: 500px;
 }
 
-.memberInfo{
-	position:absolute;
-	right:0;
-	margin-right:110px;
+.btn-search {
+	background: #424242;
+	border-radius: 0;
+	color: #fff;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #1c1c1c;
 }
-.signOut{
-	position:absolute;
-	right:0;
-	margin-right:30px;
+
+.btn-search:link, .btn-search:visited {
+	color: #fff;
+}
+
+.btn-search:active, .btn-search:hover {
+	background: #1c1c1c;
+	color: #fff;
+}
+
+.signIn {
+	position: absolute;
+	right: 0;
+	margin-right: 110px;
+}
+
+.signUp {
+	position: absolute;
+	right: 0;
+	margin-right: 30px;
+}
+
+.spaceReg {
+	position: absolute;
+	right: 0;
+	margin-right: 210px;
+}
+
+.memberInfo {
+	position: absolute;
+	right: 0;
+	margin-right: 110px;
+}
+
+.signOut {
+	position: absolute;
+	right: 0;
+	margin-right: 30px;
 }

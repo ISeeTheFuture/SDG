@@ -49,8 +49,8 @@
         	  method="post"
         	  name="boardCommentFrm">
         	  <input type="hidden" name="reviewNo" value="<%=b.getReviewNo()%>"/>
-		  <button type="submit" id="btn-insert">게시글 삭제</button>
-        	   </form>
+		 	  <button type="submit" id="btn-insert">게시글 삭제</button>
+       	   </form>
         	   
         	   
         	   
@@ -62,11 +62,11 @@
 			<td><%= a.getCommentDate() %></td>
 			
 			
-			<form action="<%=request.getContextPath()%>/review/reviewCommentDelete"
-        	  method="post"
+		<form action="<%=request.getContextPath()%>/review/reviewCommentDelete"
+			  method="post"
         	  name="boardCommentFrm">
-       	  <input type="hidden" name="commentNo" value="<%=a.getCommentNo()%>"/>
-		  <button type="submit" id="btn-insert">댓글 삭제</button>
+       	 	  <input type="hidden" name="commentNo" value="<%=a.getCommentNo()%>"/>
+			  <button type="submit" id="btn-insert">댓글 삭제</button>
         </form> 
         
 				<% } %>	<!-- comment -->
@@ -84,14 +84,14 @@
             <textarea name="commentContent" cols="60" rows="3"></textarea>
             <button type="submit" id="btn-insert">등록</button>
         </form>
-        
+
+
 		<% } %><!-- 로그인되어있고 사업자일경우 답글쓰기 -->
 		</tr>
 		
 		<% } %><!-- review -->
 		
 		<tr>	
-	 
 		</tr>
 	</table>
 	<div id='pageBar'><%=pageBar %></div>
