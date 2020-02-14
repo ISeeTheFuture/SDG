@@ -34,11 +34,6 @@
 	</form>
 
 
-
-	<form action="<%=request.getContextPath()%>/space/spaceSrchList" method="GET">
-		<input type="text" name="spcSrch" id="spcSrch"/>
-		<input type="submit" value="검색">
-	</form>
 	<a href="<%=request.getContextPath()%>/res/resUpdate">내예약</a>
 
 	<%--membership의 role값이 1 (트루)인경우 사업자 정보 입력 페이지로 이동 가능하도록 함. --%>
