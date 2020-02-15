@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SpaceSrchListServlet
  */
-@WebServlet("/space/spaceSrchList")
-public class SpaceSrchListServlet extends HttpServlet {
+@WebServlet("/space/Galleria")
+public class GalleriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceSrchListServlet() {
+    public GalleriaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,9 @@ public class SpaceSrchListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("/WEB-INF/views/space/spaceSrchList.jsp").forward(request, response);
+		
+		
+		request.getRequestDispatcher("/WEB-INF/views/space/Galleria.jsp").forward(request, response);
 	}
 
 	/**
