@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="member.model.vo.Member"%>
+<%Member memberLoggedIn = (Member) session.getAttribute("memberLoggedIn");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +22,6 @@
 
 </head>
 <body>
-
-
-
-
-
     <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
@@ -68,7 +65,7 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-title">예약자ID</label>
                                 <input class="inputModal" type="text" name="edit-title" id="edit-title"
-                                    readonly value="testid" />
+                                    readonly value="<%=memberLoggedIn.getMemId()%>" />
                             </div>
                         </div>
                         <div class="row">

@@ -290,7 +290,7 @@ public class ResDAO {
 				rvTmp.setResTimeEnd(resTimeEnd);
 				
 				listTmp.add(rvTmp);
-				
+
 			}
 			int idx = 0;
 			for(int i = 0; i < listTmp.size(); i++) {

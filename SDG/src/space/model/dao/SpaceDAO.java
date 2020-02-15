@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import space.model.vo.SpacesTimeTable;
 import space.model.vo.Spaces;
+import space.model.vo.SpacesCttImg;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
@@ -400,6 +401,32 @@ public class SpaceDAO {
 		} 
 		
 		return spcNo;
+	}
+
+	public int insertCttImg(Connection conn, SpacesCttImg spaceCttimg) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertCttImg"); 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1,spaceCttimg.getSpcDetNo());
+			pstmt.setInt(2, spaceCttimg.getSpcNo());
+			pstmt.setString(3, spaceCttimg.getSpcCttImgTitle());
+			pstmt.setString(4, spaceCttimg.getSpcImgText());
+			pstmt.setString(5, spaceCttimg.getSpcCttOldTitle());
+			
+
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

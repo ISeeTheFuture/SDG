@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SpaceTimeTableServlet
+ * Servlet implementation class SpaceSrchListServlet
  */
-@WebServlet("/space/spaceTimeTable")
-public class SpaceTimeTableServlet extends HttpServlet {
+@WebServlet("/space/Galleria")
+public class GalleriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SpaceTimeTableServlet() {
+    public GalleriaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,12 +26,9 @@ public class SpaceTimeTableServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 인코딩 처리
-		request.setCharacterEncoding("utf-8");
 		
-		//4. 뷰단처리
-		request.getRequestDispatcher("/WEB-INF/views/space/spaceTimeTable.jsp")
-			   .forward(request, response);
+		
+		request.getRequestDispatcher("/WEB-INF/views/space/Galleria.jsp").forward(request, response);
 	}
 
 	/**

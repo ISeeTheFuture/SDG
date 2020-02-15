@@ -75,12 +75,15 @@ public class ResUpdateEndServlet extends HttpServlet {
 		resGrp.setMemId(memberId);
 		resGrp.setResTimeStart(resStart);
 		resGrp.setResTimeEnd(resEnd);
-		resGrp.setResMany(resMany);		
+		resGrp.setResMany(resMany);
+		res.setResMany(resMany);
 		res.setResContent(resDesc);
 		int resultRes =  new ResService().insertRes(res);		
 		if(resultRes > 0) System.out.println("예약 성공!");
 		resGrp.setResGroupNo(resultRes);
 		
+		System.out.println(res);
+		System.out.println(resGrp);
 		
 		Calendar cal = Calendar.getInstance();
 		List<ResGrp> list = new ArrayList<>();
@@ -92,7 +95,8 @@ public class ResUpdateEndServlet extends HttpServlet {
 			cal.add(Calendar.HOUR_OF_DAY, i);
 			java.util.Date utilDate = cal.getTime();
 			Timestamp input = new java.sql.Timestamp(utilDate.getTime());
-			
+			rg.setMemberId(memberId);
+			rg.setResMany(resMany);
 			rg.setResGroupNo(resGrp.getResGroupNo());
 			rg.setResTime(input);
 			list.add(rg);

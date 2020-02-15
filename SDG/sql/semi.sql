@@ -29,6 +29,7 @@ DROP TABLE spc_time_exp cascade constraints;
 DROP TABLE spc_opt_lst cascade constraints;
 DROP TABLE spc_opt cascade constraints;
 DROP TABLE spc_loc cascade constraints;
+DROP TABLE spc_ctt_img cascade constraints;
 
 --======================================================
 -- 시퀀스 모음
@@ -241,6 +242,14 @@ CREATE TABLE spc_opt (
 CREATE TABLE spc_loc (
 	spc_location_no	number		NOT NULL,
 	spc_location_name	varchar2(100)		NULL
+);
+
+CREATE TABLE spc_ctt_img (
+	spc_detail_no	number		NOT NULL,
+	spc_no	number		NOT NULL,
+	spc_img_title	varchar2(100)		NOT NULL,
+	spc_img_text	varchar2(4000)		NULL,
+	spc_img_old	varchar2(100)		NULL
 );
 
 --======================================================
@@ -474,6 +483,24 @@ REFERENCES spc_opt_lst (
 );
 
 
+ALTER TABLE spc_ctt_img ADD CONSTRAINT PK_SPC_CTT_IMG PRIMARY KEY (
+	spc_detail_no,
+	spc_no
+);
+
+ALTER TABLE spc_ctt_img ADD CONSTRAINT FK_spc_dtl_TO_spc_ctt_img_1 FOREIGN KEY (
+	spc_detail_no
+)
+REFERENCES spc_dtl (
+	spc_detail_no
+);
+ALTER TABLE spc_ctt_img ADD CONSTRAINT FK_spc_TO_spc_ctt_img_1 FOREIGN KEY (
+	spc_no
+)
+REFERENCES spc (
+	spc_no
+);
+
 
 --===================================
 --테스트 공간
@@ -536,6 +563,7 @@ select * from spc_price;
 select * from spc_loc;
 select * from spc_type;
 select * from spc_img;
+select * from spc_ctt_img;
 select * from spc S join spc_dtl D on S.spc_no=D.spc_no join spc_price P on D.spc_detail_no=P.spc_detail_no join spc_img I on D.spc_detail_no=I.spc_detail_no where spc_name like '%%' and SPC_TYPE_NO is not null and SPC_LOCATION_NO is not null;
 
 select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;

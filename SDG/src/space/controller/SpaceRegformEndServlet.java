@@ -15,6 +15,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 import common.MvcFileRenamePolicy;
 import space.model.service.SpaceService;
 import space.model.vo.Spaces;
+import space.model.vo.SpacesCttImg;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
@@ -61,8 +62,6 @@ public class SpaceRegformEndServlet extends HttpServlet {
 								   maxPostSize, 
 								   encoding, 
 								   fileRenamePolicy);
-		
-		
 		
 		
 //		String spcImgTitle = multiReq.getParameter(spcFileName);
@@ -132,19 +131,6 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		String [] spcImgTitles = multiReq.getParameterValues("spcImgTitle");
 		String spcImgRoute = "'"+saveDirectory;
 		String spcImgText = "설명";
-//		String spcFileName = multiReq.getFilesystemName("spcImgFile");
-//		String spcImgFileFullPath = saveDirectory +"/"+spcFileName;
-//		
-//		
-//		
-//		String spcImgTitle = multiReq.getParameter(spcFileName);
-//		String spcImgRoute = multiReq.getParameter(spcImgFileFullPath);
-		
-//		//사용자가 업로드한 파일명
-//		String originalFileName = multiReq.getOriginalFileName("spcImgFile");
-//		//실제 저장된 파일명
-//		String renamedFileName = multiReq.getFilesystemName("spcImgFile");
-		
 		
 		
 		String spcDay = "";
@@ -206,6 +192,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		//spcImg
 		
 		SpacesImg spaceimg = new SpacesImg(spcDtlNo, spcImgTitle, spcImgText,spcImgRoute, spcNo);
+//		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText, spcNo, spcCttOldTitle);
 		
 		result += new SpaceService().insertImg(spaceimg);
 		
@@ -222,6 +209,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 			msg = "공간 등록 실패!";
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 		}
+//		result += new SpaceService().insertCttImg(spaceCttimg);
 	}
 
 	/**
