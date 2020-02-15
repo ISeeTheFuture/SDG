@@ -2,7 +2,6 @@ package space.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,6 @@ import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
 import space.model.vo.SpacesTimeTable;
-import space.model.vo.SpacesImg;
 
 /**
  * Servlet implementation class SpaceRegformEndServlet
@@ -127,12 +125,13 @@ public class SpaceRegformEndServlet extends HttpServlet {
 //		String spcImgRoute = request.getParameter("spcImgRoute");
 		
 		//업로드 이미지 절대경로
-		
-		String spcImgTitle2 = multiReq.getFilesystemName("spcImgFile");
-
-		String spcImgTitle = "'"+spcImgTitle2+"'";
-		String spcImgRoute = "'"+saveDirectory +"/"+spcImgTitle2+"'";
-		String spcImgText = "'"+spcImgTitle2+"'";
+//		0215 getFileSystemName 코멘트 처리
+//		0215 getParmeterValues 으로 배열에 파일 이름들 받아옴
+//		0215 spcImgText 에 "설명" 으로 박아버림
+//		String spcImgTitle_ = multiReq.getFilesystemName("spcImgFile");
+		String [] spcImgTitles = multiReq.getParameterValues("spcImgTitle");
+		String spcImgRoute = "'"+saveDirectory;
+		String spcImgText = "설명";
 //		String spcFileName = multiReq.getFilesystemName("spcImgFile");
 //		String spcImgFileFullPath = saveDirectory +"/"+spcFileName;
 //		
@@ -152,6 +151,12 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		if(spcDays != null)
 			spcDay = String.join(",", spcDays);
+		
+		
+		String spcImgTitle = "";
+		if(spcImgTitles != null) {
+			spcImgTitle = String.join(",", spcImgTitles);
+		}
 		
 		Date spcDateStart_ = null;
 		if(!"".equals(spcDateStart))
@@ -202,13 +207,21 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		SpacesImg spaceimg = new SpacesImg(spcDtlNo, spcImgTitle, spcImgText,spcImgRoute, spcNo);
 		
-		System.out.println("타이틀"+spcImgTitle);
-		System.out.println("주소"+spcImgRoute);
-		System.out.println("detno"+spcDtlNo);
-		System.out.println("spcno"+spcNo);
-
 		result += new SpaceService().insertImg(spaceimg);
-
+		
+		String msg = "";
+		String loc = "/";
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		if(result == 4) {
+			msg = "공간 등록 성공!";
+			request.getRequestDispatcher("/WEB-INF/views/space/spaceView.jsp").forward(request, response);
+		} else { 
+			msg = "공간 등록 실패!";
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+		}
 	}
 
 	/**

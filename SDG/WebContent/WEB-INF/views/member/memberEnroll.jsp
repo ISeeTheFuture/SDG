@@ -193,7 +193,6 @@ function checkIdDuplicate(){
 	                                      
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block"> 가입  </button>
-        <button type="reset" class="btn btn-primary btn-block"> 취소  </button>
     </div> <!-- form-group// --> 
                  
 	<!--container end.//-->

@@ -1,6 +1,6 @@
 <%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
@@ -8,66 +8,252 @@
 <title>Insert title here</title>
 </head>
 
-<%Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn"); %>
+<%
+	Member memberLoggedIn = (Member) session.getAttribute("memberLoggedIn");
+%>
 <style>
-div{
-	position : relateive;
-	border :1px solid black;
+.outermulti {
+	width: 1100px;
+}
+
+.outeroffice {
+	width: 1100px;
+}
+
+.fieldmulti {
+	width: 1100px;
+}
+
+.fieloffice {
+	width: 1100px;
+}
+
+.multiroom {
+	display: inline-block;
+	width: 500px;
+	height: 300px;
+	margin: 20px;
+	font-size: 70px;
+	overflow: hidden;
+	text-align: center;
+	background-color: #E2E2E2;
+	border-radius: 40px/40px;
+}
+
+.officeroom {
+	margin: 20px;
+	font-size: 70px;
+	text-align: center;
+	display: inline-block;
+	border-radius: 40px/40px;
+	width: 500px;
+	height: 300px;
+	overflow: hidden;
+	background-color: #E2E2E2;
+}
+
+.selectouter {
+	display: block;
+	width: 1100px;
+	height: 340px;
+}
+
+.cat1 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat2 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat3 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat4 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat5 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat6 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat7 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat8 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat9 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.cat10 {
+	background-color: #E2E2E2;
+	border-radius: 20px/20px;
+	font-size: 24px;
+	text-align: center;
+	margin: 10px;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+}
+
+.officetext {
+	font-size: 50px;
 }
 </style>
-<!-- <script>
-$(function (){ $("#button").click(function (){ $("#divToggle").toggle(); }); });
 
-</script> -->
+<script>
+	$(function() {
+		$(".multiroom").click(function() {
+			$(".outermulti").css("display", "block");
+			$(".officeroom").css("display", "none");
+			$(".fieloffice").css("display", "none");
+			$(".multiroom").css("display", "none");
+			$(".selectouter").css("display", "none");
+			$(".fieldmulti").css("display", "block");
+		});
+	});
+
+	$(function() {
+		$(".officeroom").click(function() {
+			$(".outeroffice").css("display", "block");
+			$(".officeroom").css("display", "none");
+			$(".fieldmulti").css("display", "none");
+			$(".multiroom").css("display", "none");
+			$(".selectouter").css("display", "none");
+			$(".fieloffice").css("display", "block");
+		});
+	});
+</script>
+
+
+
 <body>
+	<h1>공간유형을 선택하세요</h1>
 
-	<fieldset>
-		<legend>공간유형</legend>
-		<div class="outer">
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=1&memberId=<%=memberLoggedIn.getMemId() %>'">회의실</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=2&memberId=<%=memberLoggedIn.getMemId() %>'">다목적홀</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=3&memberId=<%=memberLoggedIn.getMemId() %>'">레저시설</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=4&memberId=<%=memberLoggedIn.getMemId() %>'">파티룸</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=5&memberId=<%=memberLoggedIn.getMemId() %>'">공연장</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=6&memberId=<%=memberLoggedIn.getMemId() %>'">카페</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=7&memberId=<%=memberLoggedIn.getMemId() %>'">스터디룸</div>
+	<fieldset class="fieldmulti">
+		<legend class="officetext">모임장소</legend>
+		<div class="outermulti">
+			<div class="cat1"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=1&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />회의실
+			</div>
+			<div class="cat2"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=2&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />다목적홀
+			</div>
+			<div class="cat3"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=3&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />레저시설
+			</div>
+			<div class="cat4"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=4&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />파티룸
+			</div>
+			<div class="cat5"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=5&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />공연장
+			</div>
+			<div class="cat6"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=6&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />카페
+			</div>
+			<div class="cat7"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=7&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />스터디룸
+			</div>
 		</div>
 	</fieldset>
-	
-		<fieldset>
-		<legend>공유 오피스</legend>
-		<div class="outer">
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=8&memberId=<%=memberLoggedIn.getMemId() %>'">독립오피스</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=9&memberId=<%=memberLoggedIn.getMemId() %>'">코워킹오피스</div>
-		<div onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=10&memberId=<%=memberLoggedIn.getMemId() %>'">일하기좋은카페</div>
+	<br />
+	<br />
+	<fieldset class="fieloffice">
+		<legend class="officetext">공유 오피스</legend>
+		<div class="outeroffice">
+			<div class="cat8"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=8&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />독립오피스
+			</div>
+			<div class="cat9"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=9&memberId=<%=memberLoggedIn.getMemId()%>'">
+				<br />코워킹오피스
+			</div>
+			<div class="cat10"
+				onclick="location.href='<%=request.getContextPath()%>/space/spaceRegForm?cat=10&memberId=<%=memberLoggedIn.getMemId() %>'">
+				<br />워킹카페
+			</div>
 		</div>
 	</fieldset>
-
-
- <%-- <form action="<%=request.getContextPath()%>/space/spaceRegForm" method="GET">
-
-<label for="spaceType">사업자 유형</label>
-
-
-		<br />
-		<select name="cat" id="cat">
-			<option disabled selected value>모임 장소</option>
-			<option disabled>-------</option>
-			<option value="1">회의실</option>
-			<option value="2">다목적홀</option>
-			<option value="3">레저시절</option>
-			<option value="4">파티룸</option>
-			<option value="5">공연장</option>
-			<option value="6">카페</option>
-			<option value="7">스터디룸</option>
-			<option disabled>공유 오피스</option>
-			<option disabled>-------</option>
-			<option value="8">독립 오피스</option>
-			<option value="9">코워킹 오피스</option>
-			<option value="10">일하기 좋은 카페</option>
-		</select>
-		<button>다음</button>
-	</form> --%>
 
 </body>
 </html>
