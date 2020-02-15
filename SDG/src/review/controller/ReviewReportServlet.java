@@ -1,27 +1,23 @@
-package member.controller;
+package review.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
-
 /**
- * Servlet implementation class CheckIdDuplicateServlet
+ * Servlet implementation class ReviewReportServlet
  */
-@WebServlet("/member/checkIdDuplicate")
-public class CheckIdDuplicateServlet extends HttpServlet {
+@WebServlet("/review/reviewReport")
+public class ReviewReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckIdDuplicateServlet() {
+    public ReviewReportServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +26,17 @@ public class CheckIdDuplicateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.encoding
-		request.setCharacterEncoding("utf-8");
 		
-		//2.parameter handling
-		String memberId = request.getParameter("memberId");
+		request.setCharacterEncoding("UTF-8");
+
 		
-		//3.business logic
-		Member m = new MemberService().selectOne(memberId);
-		boolean isUsable = m==null?true:false;
 		
-		//4.view단처리
-		request.setAttribute("isUsable", isUsable);
+		request.getRequestDispatcher("/WEB-INF/views/review/reviewRpt.jsp")
+		   .forward(request, response);
 		
-		request.getRequestDispatcher("/WEB-INF/views/member/checkIdDuplicate.jsp")
-			   .forward(request, response);
-	
-	
+		
+		
+		
 	}
 
 	/**

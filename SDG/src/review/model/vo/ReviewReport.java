@@ -19,6 +19,14 @@ public class ReviewReport implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	
+	public ReviewReport(int reviewNo, String reviewReportReason) {
+		super();
+		this.reviewNo = reviewNo;
+		this.reviewReportReason = reviewReportReason;
+	}
 	public ReviewReport(int reviewReportNo, int reviewNo, String reviewReportReason, Date reviewReportDate) {
 		super();
 		this.reviewReportNo = reviewReportNo;

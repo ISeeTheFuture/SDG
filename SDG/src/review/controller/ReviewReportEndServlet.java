@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import review.model.service.ReviewService;
-import review.model.vo.Review;
-import review.model.vo.ReviewComment;
+import review.model.vo.ReviewReport;
 
 /**
- * 댓글삽입
+ * Servlet implementation class ReviewReportServlet
  */
-@WebServlet("/review/reviewCommentInsert")
-public class ReviewCommentInsertServlet extends HttpServlet {
+@WebServlet("/review/reviewRptEnd")
+public class ReviewReportEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewCommentInsertServlet() {
+    public ReviewReportEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,39 +30,35 @@ public class ReviewCommentInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
 		
-		//1.파라미터
-//		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		String memId = request.getParameter("memId");
-		String commentContent = request.getParameter("commentContent");
-		System.out.println("commentContent"+commentContent);
-		Review reviewNo = new ReviewService().selectOneReviewNo(memId);
-		System.out.println("reviewNo="+reviewNo);
-		ReviewComment reviewComment = new ReviewComment(memId, reviewNo.getReviewNo(), commentContent);
-		System.out.println("REVEIW="+reviewComment);
+		String reviewReportNo=request.getParameter("reviewNo");
+		System.out.println("리뷰넘버"+reviewReportNo);
+		String reviewReportReason=request.getParameter("reviewReportReason");
 		
-		//2.업무로직
-		int result = new ReviewService().insertReviewComment(reviewComment);
+		System.out.println("리뷰리즌"+reviewReportReason);
 		
 		
-		//3.view단처리: 댓글등록여부를 msg.jsp통해서 알림후, 
-		//    		   /board/boardView로 이동
-		String view = "/WEB-INF/views/common/msg.jsp";
+		int a = Integer.parseInt(reviewReportNo);
+		
+		ReviewReport RR= new ReviewReport(a, reviewReportReason);
+		//3. 업무로직
+		int result = new ReviewService().insertReviewReport(RR);
+		
+		//4. 뷰단처리
 		String msg = "";
-		String loc = "/review/reviewList";
-
+		String loc = "/";
+		
 		if(result > 0)
-			msg = "댓글 등록 성공!";
+			msg = "신고 등록 성공!";
 		else 
-			msg = "댓글 등록 실패!";
+			msg = "신고 등록 실패!";
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
+		
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 			   .forward(request, response);
-	
-	
 	}
 
 	/**
