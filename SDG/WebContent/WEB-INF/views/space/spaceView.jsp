@@ -22,7 +22,7 @@
         <hr>
 
 		<div id="resContainer">
-			<iframe src="<%=request.getContextPath()%>/res/resView?spcNo=<%=request.getParameter("spcNo")%>" width='750' height='700' frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>		
+			<iframe src="<%=request.getContextPath()%>/res/resView?spcNo=<%=request.getParameter("spcNo")%>&" width='750' height='700' frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>		
 		</div>
         <!-- Post Content -->
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
@@ -135,5 +135,5 @@
 		$("#resContainer").slideDown();
 		return true;	
   	});
-  
+  	window.name = "parentFrame"
   </script>
