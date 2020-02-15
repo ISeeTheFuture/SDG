@@ -38,6 +38,7 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/custom.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/galleria.css">
 <meta charset="UTF-8">
 <title>초특가 송대관</title>
 </head>
@@ -98,7 +99,7 @@
 		</ul>
 	</nav>
 
-		<div id="myModal" class="modal fade">
+	<div id="myModal" class="modal fade">
 		<div class="modal-dialog modal-login">
 			<div class="modal-content">
 				<form action="<%=request.getContextPath()%>/member/login"

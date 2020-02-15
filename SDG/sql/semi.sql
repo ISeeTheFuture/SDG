@@ -29,6 +29,7 @@ DROP TABLE spc_time_exp cascade constraints;
 DROP TABLE spc_opt_lst cascade constraints;
 DROP TABLE spc_opt cascade constraints;
 DROP TABLE spc_loc cascade constraints;
+DROP TABLE spc_ctt_img cascade constraints;
 
 --======================================================
 -- 시퀀스 모음
@@ -241,6 +242,14 @@ CREATE TABLE spc_opt (
 CREATE TABLE spc_loc (
 	spc_location_no	number		NOT NULL,
 	spc_location_name	varchar2(100)		NULL
+);
+
+CREATE TABLE spc_ctt_img (
+	spc_detail_no	number		NOT NULL,
+	spc_no	number		NOT NULL,
+	spc_img_title	varchar2(100)		NOT NULL,
+	spc_img_text	varchar2(4000)		NULL,
+	spc_img_old	varchar2(100)		NULL
 );
 
 --======================================================
@@ -473,6 +482,24 @@ REFERENCES spc_opt_lst (
 	spc_option_no
 );
 
+
+ALTER TABLE spc_ctt_img ADD CONSTRAINT PK_SPC_CTT_IMG PRIMARY KEY (
+	spc_detail_no,
+	spc_no
+);
+
+ALTER TABLE spc_ctt_img ADD CONSTRAINT FK_spc_dtl_TO_spc_ctt_img_1 FOREIGN KEY (
+	spc_detail_no
+)
+REFERENCES spc_dtl (
+	spc_detail_no
+);
+ALTER TABLE spc_ctt_img ADD CONSTRAINT FK_spc_TO_spc_ctt_img_1 FOREIGN KEY (
+	spc_no
+)
+REFERENCES spc (
+	spc_no
+);
 
 
 --===================================
