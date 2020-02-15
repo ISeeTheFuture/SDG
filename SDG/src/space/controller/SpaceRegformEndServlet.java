@@ -2,7 +2,6 @@ package space.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +15,12 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 import common.MvcFileRenamePolicy;
 import space.model.service.SpaceService;
 import space.model.vo.Spaces;
+import space.model.vo.SpacesCttImg;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
 import space.model.vo.SpacesTimeExp;
 import space.model.vo.SpacesTimeTable;
-import space.model.vo.SpacesImg;
 
 /**
  * Servlet implementation class SpaceRegformEndServlet
@@ -63,8 +62,6 @@ public class SpaceRegformEndServlet extends HttpServlet {
 								   maxPostSize, 
 								   encoding, 
 								   fileRenamePolicy);
-		
-		
 		
 		
 //		String spcImgTitle = multiReq.getParameter(spcFileName);
@@ -129,10 +126,14 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		//업로드 이미지 절대경로
 		
 		String spcImgTitle2 = multiReq.getFilesystemName("spcImgFile");
-
 		String spcImgTitle = "'"+spcImgTitle2+"'";
 		String spcImgRoute = "'"+saveDirectory +"/"+spcImgTitle2+"'";
 		String spcImgText = "'"+spcImgTitle2+"'";
+		
+		String spcCttTitle2 = multiReq.getFilesystemName("spcCttFile");
+		String spcCttTitle = "'"+spcImgTitle2+"'";
+		String spcCttOldTitle = "'"+spcImgTitle2+"'";
+		String spcCttText = "'"+spcImgTitle2+"'";
 //		String spcFileName = multiReq.getFilesystemName("spcImgFile");
 //		String spcImgFileFullPath = saveDirectory +"/"+spcFileName;
 //		
@@ -201,6 +202,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		//spcImg
 		
 		SpacesImg spaceimg = new SpacesImg(spcDtlNo, spcImgTitle, spcImgText,spcImgRoute, spcNo);
+		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText,spcNo, spcCttOldTitle);
 		
 		System.out.println("타이틀"+spcImgTitle);
 		System.out.println("주소"+spcImgRoute);
@@ -208,6 +210,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		System.out.println("spcno"+spcNo);
 
 		result += new SpaceService().insertImg(spaceimg);
+		result += new SpaceService().insertCttImg(spaceCttimg);
 
 	}
 

@@ -563,6 +563,7 @@ select * from spc_price;
 select * from spc_loc;
 select * from spc_type;
 select * from spc_img;
+select * from spc_ctt_img;
 select * from spc S join spc_dtl D on S.spc_no=D.spc_no join spc_price P on D.spc_detail_no=P.spc_detail_no join spc_img I on D.spc_detail_no=I.spc_detail_no where spc_name like '%%' and SPC_TYPE_NO is not null and SPC_LOCATION_NO is not null;
 
 select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;

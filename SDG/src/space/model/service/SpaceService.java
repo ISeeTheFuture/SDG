@@ -11,6 +11,7 @@ import java.util.List;
 
 import space.model.dao.SpaceDAO;
 import space.model.vo.Spaces;
+import space.model.vo.SpacesCttImg;
 import space.model.vo.SpacesDefault;
 import space.model.vo.SpacesImg;
 import space.model.vo.SpacesPrice;
@@ -147,6 +148,19 @@ public class SpaceService {
 	public int insertImg(SpacesImg spaceimg) {
 		Connection conn = getConnection();
 		int result = new SpaceDAO().insertImg(conn, spaceimg);
+
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int insertCttImg(SpacesCttImg spaceCttimg) {
+		Connection conn = getConnection();
+		int result = new SpaceDAO().insertCttImg(conn, spaceCttimg);
 
 		
 		if(result > 0) commit(conn);
