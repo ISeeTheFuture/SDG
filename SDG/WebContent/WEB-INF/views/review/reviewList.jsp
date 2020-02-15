@@ -106,6 +106,28 @@
 				</form> <%
  	}
  %>
+ 
+ <%
+ 	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
+ 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {
+ %>
+
+				<form action="<%=request.getContextPath()%>/review/reviewReport"
+					method="post" name="boardCommentFrm">
+					<input type="hidden" name="ReportId" value="<%=b.getMemId()%>" />
+					<%
+						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
+											|| "1" == memberLoggedIn.getMemAdmin()) {
+					%>
+					<button type="submit" id="btn-insert">게시글 작성자 신고</button>
+					<%
+						}
+					%>
+				</form> <%
+ 	}
+ %>
+ 
+ 
 			
 		</tr>
 
@@ -137,7 +159,7 @@
 
 
 
-			관리자인 경우 신고 삭제 관리 페이지로 이동.
+		<!-- 	관리자인 경우 신고 삭제 관리 페이지로 이동. -->
 			 	<%
 				if (memberLoggedIn != null && "1".equals(memberLoggedIn.getMemAdmin())) {
 			%>
@@ -145,15 +167,6 @@
 
 			<button
 				onclick="location.href='<%=request.getContextPath()%>/review/reviewRprtPrcss'">신고게시글확인</button>
-
-
-
-
-
-
-
-
-
 
 			<%
 				}

@@ -5,6 +5,7 @@
     pageEncoding="UTF-8"%>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 <%
+Member memberLoggedIn = (Member) session.getAttribute("memberLoggedIn");
 	Member member = (Member)request.getAttribute("member");
 MemberBusi memberBusiIn = (MemberBusi)session.getAttribute("memberBusiIn");
 int gn = member.getMemGradeName();
@@ -16,6 +17,8 @@ if("1".equals(member.getMemRole())){
 	RoleCheck="사업자입니다.";
 	
 	
+}else if ("1".equals(member.getMemRole())){
+	RoleCheck="사업자 등록 처리중 입니다.";
 }
 
 switch(gn){
@@ -170,13 +173,35 @@ function updatePassword(){
         <input type="button" onclick="deleteMember();" value="탈퇴"/>
 	</form>
 	
-	
-	
-	
-	<%-- <form>
-	<input type="button" onclick="<%=request.getContextPath()%>/member/applyRole?memberid=<%=member.getMemId() %>">사업자 신청</input>
-	</form> --%>
-	
-	<button onclick="location.href='<%=request.getContextPath()%>/member/applyRole?memberid=<%=member.getMemId()%>'">내정보보기</button>
+
+	<button onclick="location.href='<%=request.getContextPath()%>/member/applyRole?memberid=<%=member.getMemId()%>'">사업자 신청하기</button>
 </section>
 
+
+	<%--membership의 role값이 1 (트루)인경우 사업자 정보 입력 페이지로 이동 가능하도록 함. --%>
+<%-- 	<%
+		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
+	%>
+	
+	
+	<input type="button" value="사업자 등록용 페이지"
+		onclick="location.href='<%=request.getContextPath()%>/member/memberbusiupdate'" />
+
+	<%
+		}
+	%>
+ --%>
+
+ 
+ 
+ <%--membership의 role값이 1 (트루)인경우 사업자 정보 입력 페이지로 이동 가능하도록 함. --%>
+	<%
+		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
+	%>
+
+	<input type="button" value="사업장 등록용 페이지"
+		onclick="location.href='<%=request.getContextPath()%>/member/memberBusi'" />
+
+	<%
+		}
+	%>
