@@ -1,23 +1,28 @@
 package member.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.model.service.MemberService;
+import member.model.vo.Member;
+
 /**
- * Servlet implementation class memberTest
+ * Servlet implementation class MemberApplyMemberView
  */
-@WebServlet("/member/kimwonjae")
-public class memberTest extends HttpServlet {
+@WebServlet("/member/MemberApplyMemberView")
+public class MemberApplyMemberViewForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public memberTest() {
+	public MemberApplyMemberViewForm() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,24 +36,12 @@ public class memberTest extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-		
-		
-		
-		
-		
-		
-		String loc = "/";
+		List<Member> m = MemberService.FindApplyRoleupMember();
 
-		
-		
-		
-		request.setAttribute("loc", loc);
-		
-		
-		
-		
-		
-		request.getRequestDispatcher("/WEB-INF/views/board/kimwonjae.jsp").forward(request, response);
+		request.setAttribute("list", m);
+
+		request.getRequestDispatcher("/WEB-INF/views/member/ApplyMemberView.jsp").forward(request, response);
+
 	}
 
 	/**

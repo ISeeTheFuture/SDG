@@ -23,9 +23,9 @@
 	<input type="text"  name="memId" id="memId" value="<%=memberLoggedIn.getMemId() %>"  readonly><br>
 	<br>
 	
-	<!-- <label for="memBusiNo">사업자 번호</label>
-      <input type="text" name="memBusiNo" id="memBusiNo" placeholder="사업자 번호를 입력하세요." />
-      <br> -->
+	 <label for="memBusiNo">사업장 번호</label>
+      <input type="text" name="spc_no" id="spc_no" placeholder="사업장 번호를 입력하세요." />
+      <br> 
       
      <label for="reviewTitle">제목</label>
       <input type="text" name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요." />

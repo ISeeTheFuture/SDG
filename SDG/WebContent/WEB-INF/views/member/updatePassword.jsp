@@ -1,7 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="member.model.vo.Member" %>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,55 +25,37 @@ function fn_password_validate(){
 	
 	return true;	
 }
-
-function goBack(){
-	window.history.back();
-}
 </script>
 </head>
 <body>
-	<div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mt-3 text-center">비밀번호 수정</h4>
+	<div id="updatePassword-container">
 		<form name="updatePwdFrm" action="<%=request.getContextPath()%>/member/updatePasswordEnd" method="post" >
 			<input type="hidden" name="memberId" value="<%=request.getParameter("memberId")%>"/>
-			
-			
-			
-	<div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> 현재 비밀번호 </span>
-		 </div>
-        <input type="password" name="password" id="password" required>
-    </div> <!-- form-group// -->
-    
-    <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> 변경할 비밀번호 </span>
-		 </div>
-        <input type="password" name="password_new" id="password_new" required>
-    </div> <!-- form-group// -->
-    
-    <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> 비밀번호 확인 </span>
-		 </div>
-        <input type="password" id="password_chk" required><br>
-    </div> <!-- form-group// -->
-    
-    <div class="form-group">
-        <button onclick="return fn_password_validate();" class="btn btn-primary btn-block"> 변경  </button>
-    </div>
-    </form>
-    
-    <div class="form-group">
-        <button onclick="goBack();"class="btn btn-primary btn-block"> 닫기 </button>        
-    </div>
-    
-
-	</article>
+			<table>
+				<tr>
+					<th>현재 비밀번호</th>
+					<td><input type="password" name="password" id="password" required></td>
+				</tr>
+				<tr>
+					<th>변경할 비밀번호</th>
+					<td>
+						<input type="password" name="password_new" id="password_new" required>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호 확인</th>
+					<td>	
+						<input type="password" id="password_chk" required><br>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit"  value="변경" onclick="return fn_password_validate();"/>&nbsp;
+						<input type="button" onclick="self.close();" value="닫기" />						
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
-	
-	
 </body>
 </html>

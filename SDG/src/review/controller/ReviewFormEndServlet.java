@@ -2,11 +2,7 @@ package review.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,13 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import res.model.service.ResService;
-import res.model.vo.Res;
-import res.model.vo.ResGrp;
 import review.model.service.ReviewService;
 import review.model.vo.Review;
-import space.model.service.SpaceService;
-import space.model.vo.SpacesDefault;
 
 /**
  * 파일업로드
@@ -48,16 +39,18 @@ public class ReviewFormEndServlet extends HttpServlet {
 		//1. 파라미터 
 //		int resGroupNo = Integer.parseInt(request.getParameter("resGroupNo"));
 		String memId = request.getParameter("memId");
+		System.out.println("memId="+memId);
 		String reviewTitle = request.getParameter("reviewTitle");
 		
 		int reviewStar = Integer.parseInt(request.getParameter("reviewStar"));
 		String reviewContent = request.getParameter("reviewContent");
-		SpacesDefault comp = new SpaceService().selectOneComp(memId);
+		String comp = request.getParameter("spc_no"); 
+//				new SpaceService().selectOneComp(memId);
 		Date reviewDate = null;
 		
+		int a= Integer.parseInt(comp);
 		
-		
-		Review review = new Review(comp.getSpcNo(), memId, reviewTitle, reviewStar, reviewContent);
+		Review review = new Review(a, memId, reviewTitle, reviewStar, reviewContent);
 		int result =  new ReviewService().insertReview(review);
 		
 		//3.뷰단 처리
