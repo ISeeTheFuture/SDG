@@ -282,6 +282,14 @@ p.text-center {
 				</div>
 				<!-- form-group// -->
 
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<br /> <br /> <span class="input-group-text">소개용 자료 첨부</span> <br />
+						<input type="file" name="spcCttFile" id="spcCttFile"
+							accept=".jpg, .png" class="spcImgFile" multiple />
+					</div>
+				</div>
+				<!-- form-group// -->
 
 				<div class="form-group input-group">
 					<div class="input-group-prepend">

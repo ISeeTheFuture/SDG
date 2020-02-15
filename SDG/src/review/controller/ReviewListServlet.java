@@ -37,11 +37,9 @@ public class ReviewListServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//1.파라미터핸들링
-		/*
-		 * int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		 * List<ReviewComment> commentList = new
-		 * ReviewService().selectCommentList(reviewNo);
-		 */
+		
+		 
+		 
 
 		final int numPerPage = 5;//한페이지당 수
 		int cPage = 1;//요청페이지
@@ -58,12 +56,17 @@ public class ReviewListServlet extends HttpServlet {
 //		List<review> list = reviewService.selectreviewList();
 		List<Review> list = reviewService.selectReviewList(cPage, numPerPage);
 		
-		
-		for(int i=0;i<list.size();i++) {
-			int reviewNo = list.get(i).getReviewNo();
-		List<ReviewComment> commentList = reviewService.selectCommentList(reviewNo);
-		request.setAttribute("commentList", commentList);
-		}
+		/*
+		 * String memId = request.getParameter("memId"); 
+		 * Review review = new
+		 * ReviewService().selectOneReviewNo(memId);
+		 * 
+		 * ReviewComment reviewNo = new ReviewComment(review.getReviewNo());
+		 * 
+		 * System.out.println("reviewno="+reviewNo); 
+		 * List<ReviewComment> commentList =
+		 * new ReviewService().selectCommentList(reviewNo);
+		 */
 		
 //		System.out.println("commen="+commentList.get(0).getCommentContent());
 			
@@ -111,9 +114,7 @@ public class ReviewListServlet extends HttpServlet {
 
 		//3.뷰모델 처리
 		request.setAttribute("list", list);
-		
-		
-		
+		/* request.setAttribute("commentList", commentList); */
 		request.setAttribute("pageBar", pageBar);
 	
 		request.getRequestDispatcher("/WEB-INF/views/review/reviewList.jsp")

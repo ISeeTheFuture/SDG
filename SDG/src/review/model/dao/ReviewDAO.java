@@ -532,6 +532,217 @@ public class ReviewDAO {
 		
 		return list;
 	}
+
+
+
+
+
+
+	public List<ReviewComment> selectCommentList(Connection conn, Review reviewNo) {
+		List<ReviewComment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectCommentList");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성. 
+			pstmt = conn.prepareStatement(query);
+			
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				ReviewComment b = new ReviewComment();
+				//컬럼명은 대소문자 구분이 없다.
+				b.setMemId(rset.getString("mem_id"));
+				b.setCommentContent(rset.getString("comment_content"));
+				b.setCommentDate(rset.getDate("comment_date"));
+				list.add(b);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+
+
+
+	public Review selectOne(Connection conn, String memId) {
+		Review review = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneMemId");
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setString(1, memId);
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				review = new Review();
+				review.setReviewNo(rset.getInt("review_no"));
+				review.setReviewTitle(rset.getString("review_title"));
+				review.setMemId(rset.getString("mem_id"));
+				review.setReviewContent(rset.getString("reviw_content"));
+				review.setReviewDate(rset.getDate("review_date"));
+				review.setReviewReadcnt(rset.getInt("review_readcnt"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return review;
+	}
+
+
+
+	public List<ReviewComment> selectCommentList(Connection conn, ReviewComment reviewNo) {
+		List<ReviewComment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectCommentList");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성. 
+			pstmt = conn.prepareStatement(query);
+			
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				ReviewComment b = new ReviewComment();
+				//컬럼명은 대소문자 구분이 없다.
+				b.setMemId(rset.getString("mem_id"));
+				b.setCommentContent(rset.getString("comment_content"));
+				b.setCommentDate(rset.getDate("comment_date"));
+				list.add(b);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	public int insertReviewReport(Connection conn, ReviewReport reviewReport) {
+
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertReviewReport");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1,reviewReport.getReviewNo());
+			pstmt.setString(2, reviewReport.getReviewReportReason());
+
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+
+
+	public List<ReviewReport> ReviewReportSelectAll(Connection conn) {
+
+
+		List<ReviewReport> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectReviewReport");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성. 
+			pstmt = conn.prepareStatement(query);
+			
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			System.out.println(query);
+			System.out.println(rset);
+			while(rset.next()){
+				ReviewReport b = new ReviewReport();
+//				System.out.println("DAO에서 나오나? 넘버"+b.getReviewNo());
+				//컬럼명은 대소문자 구분이 없다.
+				b.setReviewNo(rset.getInt("review_no"));
+				b.setReviewReportDate(rset.getDate("review_report_date"));
+				b.setReviewReportNo(rset.getInt("review_report_no"));
+				b.setReviewReportReason(rset.getString("review_report_reason"));
+				list.add(b);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 

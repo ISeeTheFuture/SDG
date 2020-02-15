@@ -31,23 +31,20 @@ public class MemberUpdateServlet extends HttpServlet {
 		//2.전송값 꺼내서 변수에 기록하기.
 
 		
-		String memId = request.getParameter("mem_id");
+		String memId = request.getParameter("memberId");
 //		String password = Utils.getSha512(request.getParameter("password"));
 		String memPass = request.getParameter("mem_pass");
-		String memName = request.getParameter("mem_name");
+		String memName = request.getParameter("memberName");
 //		char mem_role = request.getParameter("mem_role");
 		//role,admin,point,gradename은 디폴트값으로 짚어넣을것.
-		String memGender = request.getParameter("mem_gender");
-		String memBirth = request.getParameter("mem_birth");//"2020-01-20" => java.sql.Date
+		String memGender = request.getParameter("gender");
+		String memBirth = request.getParameter("birthDay");//"2020-01-20" => java.sql.Date
 
-		String memEmail = request.getParameter("mem_email");
-		String memPhone = request.getParameter("mem_phone");
+		String memEmail = request.getParameter("email");
+		String memPhone = request.getParameter("phone");
 		String memAddr = request.getParameter("address");
 		
-		//태어난날 Date 변환
-		Date birthDay_ = null;
-		if(!"".equals(memBirth)) 
-			birthDay_ = Date.valueOf(memBirth);
+		
 		//gender int로 변환. 남캐는0 여캐는 1
 		int gender = 0;
 		if("M".equals(memGender)) {
@@ -57,47 +54,15 @@ public class MemberUpdateServlet extends HttpServlet {
 		}
 		
 		
-		Member member =  new Member(memId, memPass, memName, gender, birthDay_, memEmail, memPhone, memAddr);
-		
-		//Member member = new Member(memId, memPass, memName, 'F', 'F', 0, 0, gender, birthDay_, null, null, memEmail, memPhone, memAddr);
-		
-		
+		Member member =  new Member(memId, memPass, memName, gender, memEmail, memPhone, memAddr);
+
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//체크박스같은 경우 선택된 복수의 값이 배열로 전달된다.
-		//String[] javax.servlet.ServletRequest.getParameterValues(String arg0)
-		String[] hobbies = request.getParameterValues("hobby");
-		
-		String hobby = "";
-		//String java.lang.String.join(CharSequence delimiter, CharSequence... elements)
-		//파라미터로 전달한 문자열배열이 null이면, NullPointerException유발.
-		if(hobbies!=null) hobby = String.join(",", hobbies);
-
-		Date birthDay_2 = null;
-		if(!"".equals(memBirth)) birthDay_2 = Date.valueOf(memBirth);
-		
-//		Member member = new Member(memberId, null, memberName, memberRole, gender, birthDay_, email, phone, address, hobby, null);
-
-		System.out.println("입력한 회원정보 : "+member);
-		
 		//3.서비스로직호출
 		int result = new MemberService().updateMember(member);  
 
 		//4. 받은 결과에 따라 뷰페이지 내보내기
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
-		//javascript/html에서 사용할 url은 contextPath를 포함한다.
 		String loc = "/";
 
 		if(result>0){

@@ -156,13 +156,72 @@ public class ReviewService {
 
 	
 
-	public List<ReviewComment> selectCommentList(int reviewNo) {
+	
+
+	public Review selectOne(String memId) {
+		Connection conn = getConnection();
+		Review review = new ReviewDAO().selectOne(conn, memId);
+		close(conn);
+		return review;
+	}
+
+	
+	public List<ReviewComment> selectCommentList(ReviewComment reviewNo) {
 		Connection conn = getConnection();
 		List<ReviewComment> list
 			= new ReviewDAO().selectCommentList(conn, reviewNo);
 		close(conn);
 		return list;
 	}
+
+	
+
+	public int insertReviewReport(ReviewReport rR) {
+
+		
+		Connection conn = getConnection();
+		int result = new ReviewDAO().insertReviewReport(conn, rR);
+		
+		if(result>0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		
+		return result;
+		
+		
+		
+		
+		
+	
+	}
+
+	public static List<ReviewReport> ReviewReportSelectAll() {
+
+		
+		
+		
+		Connection conn = getConnection();
+		List<ReviewReport> list	= new ReviewDAO().ReviewReportSelectAll(conn);
+		close(conn);
+
+
+		
+		
+		
+		
+		
+		return list;
+		
+		
+		
+		
+		
+	
+	}
+
+	
 
 //	public int insertReviewRpt(ReviewReport reviewRpt) {
 //		Connection conn = getConnection();

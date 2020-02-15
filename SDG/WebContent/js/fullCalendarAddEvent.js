@@ -115,7 +115,7 @@ var newEvent = function (start, end, eventType) {
         form.name = 'newForm';
         form.method = 'post';
         form.action = getContextPath()+'/res/resInsert';
-//        form.target = '_blank'; // 이건 새창
+        form.target = 'parentFrame';
         
         //create element (input)
         var input1 = document.createElement('input');
