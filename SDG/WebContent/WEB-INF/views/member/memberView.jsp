@@ -47,9 +47,10 @@ function updateValidate(){
 
 function updatePassword(){
 	let url = "<%=request.getContextPath()%>/member/updatePassword?memberId=<%=member.getMemId()%>"
-	open(url, 
+/* 	open(url, 
 		 "updatePassword", 
-		 "left=500px, top=200px, width=480px, height=290px");
+		 "left=500px, top=200px, width=480px, height=290px"); */
+		 location.href=url;
 }
 
 </script>
@@ -95,9 +96,43 @@ function updatePassword(){
 		</div>
     	<input name="address" id="address" value="<%=member.getMemAddr() %>" required class="form-control" type="text">
     </div>
+    
+    <div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> 회원등급 </span>
+		 </div>
+        <input name="mem_id" id="mem_id" value="<%=MemberGradeName %>" readonly class="form-control" type="text">
+    </div> <!-- form-group// -->
+    
+    
+    <div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> 보유 포인트 </span>
+		 </div>
+        <input name="mem_id" id="mem_id" value="<%=member.getMemPoint() %>" readonly class="form-control" type="text">
+    </div>
+    
+    <div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> 사업자 등록 여부 </span>
+		 </div>
+        <input name="mem_id" id="mem_id" value="<%=RoleCheck %>" readonly class="form-control" type="text">
+    </div>
+    
+    
+                                                         
+    <div class="form-group">
+        <button onclick="updatePassword();" class="btn btn-primary btn-block"> 비밀번호 수정  </button>
+    </div>
+    
     <div class="form-group">
         <button onclick="updateMember();" class="btn btn-primary btn-block"> 수정  </button>
-    </div>                                                             
+    </div>
+        
+    <div class="form-group">
+        <button onclick="deleteMember();" class="btn btn-primary btn-block"> 탈퇴  </button>
+    </div>    
+    
 </form>
 </article>
 </div> 
