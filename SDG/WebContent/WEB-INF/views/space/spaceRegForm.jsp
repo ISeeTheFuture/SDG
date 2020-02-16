@@ -111,7 +111,23 @@
 		}
 
 		return true;
-	}
+	};
+	
+	$(document).ready(function(){
+		
+		 $("#spcImgFile").change(function () {
+			var fileInput = document.getElementById("spcImgFile");
+	        
+	        var files = fileInput.files;
+	        var file;
+	        
+	        for (var i = 0; i < files.length; i++) {
+	            
+	            file = files[i];
+				$("form>div:first-child").append("<input type='hidden' name='spcImgTitle' value='"+file.name+"'/>" );
+	     	}
+		 });
+	});
 </script>
 <style>
 .detinfo {
@@ -191,6 +207,7 @@ p.text-center {
 
 			<form onsubmit="return validate();"
 				action="<%=request.getContextPath()%>/space/spaceRegformEnd"
+
 				method="POST" enctype="multipart/form-data" class="card-body mx-auto">
 				<input type="hidden" name="cat" value="<%=cat %>" /> <input
 					type="hidden" name="memberId" value="<%=memberId %>" /> <input
@@ -219,6 +236,34 @@ p.text-center {
 					type="hidden" name="spcPriceDay" value="sat" /> <input
 					type="hidden" name="spcPriceDay" value="sun" /> <input
 					type="hidden" name="spcPricePer" value="1">
+=======
+				method="POST" enctype="multipart/form-data">
+				<div>
+					<input type="hidden" name="cat" value="<%=cat %>" /> 
+					<input type="hidden" name="memberId" value="<%=memberId %>" /> 
+					<input type="hidden" name="spcDay" value="mon"> 
+					<input type="hidden" name="spcDay" value="tue"> 
+					<input type="hidden" name="spcDay" value="wed"> 
+					<input type="hidden" name="spcDay" value="thu"> 
+					<input type="hidden" name="spcDay" value="fri"> 
+					<input type="hidden" name="spcDay" value="sat"> 
+					<input type="hidden" name="spcDay" value="sun"> 
+					<input type="hidden" name="spcDetHoliday" value="0" /> 
+					<input type="hidden" name="spcDetSharing" value="0" /> 
+					<input type="hidden" name="spcExcDate" id="spcExcDate" value="2020-02-12" />
+					<input type="hidden" name="spcExcStart" id="spcExcStart" value="0" />
+					<input type="hidden" name="spcExcEnd" id="spcExcEnd" value="0" />
+					<input type="hidden" name="spcDetName" id="spcDetName" value="기본요금">
+					<input type="hidden" name="spcPriceDay" value="mon" /> 
+					<input type="hidden" name="spcPriceDay" value="tue" /> 
+					<input type="hidden" name="spcPriceDay" value="wed" /> 
+					<input type="hidden" name="spcPriceDay" value="thu" /> 
+					<input type="hidden" name="spcPriceDay" value="fri" /> 
+					<input type="hidden" name="spcPriceDay" value="sat" /> 
+					<input type="hidden" name="spcPriceDay" value="sun" /> 
+					<input type="hidden" name="spcPricePer" value="1">
+				</div>
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 
 				<div id="preview"></div>
 				<div class="form-group input-group">
@@ -284,14 +329,6 @@ p.text-center {
 				</div>
 				<!-- form-group// -->
 
-				<div class="form-group input-group">
-					<div class="input-group-prepend">
-						<br /> <br /> <span class="input-group-text">소개용 자료 첨부</span> <br />
-						<input type="file" name="spcCttFile" id="spcCttFile"
-							accept=".jpg, .png" class="spcImgFile" multiple />
-					</div>
-				</div>
-				<!-- form-group// -->
 
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
@@ -376,7 +413,7 @@ p.text-center {
 					<input type="range" name="spcHourStart" id="spcHourStart" min="0"
 						max="24" step="1" class="border-0" value="12"
 						oninput="document.getElementById('value1').innerHTML=this.value;" />
-					<span class="font-weight-bold indigo-text ml-2 mt-1" id="value1"></span>
+					<span class="font-weight-bold indigo-text ml-2 mt-1" id="value1">12</span>
 				</div>
 
 
@@ -388,7 +425,7 @@ p.text-center {
 					<input type="range" name="spcHourEnd" id="spcHourEnd" min="0"
 						max="24" step="1" class="border-0" value="12"
 						oninput="document.getElementById('value2').innerHTML=this.value;" />
-					<span class="font-weight-bold indigo-text ml-2 mt-1" id="value2"></span>
+					<span class="font-weight-bold indigo-text ml-2 mt-1" id="value2">12</span>
 				</div>
 
 
@@ -406,69 +443,9 @@ p.text-center {
 			</form>
 		</article>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
 </body>
 <script>
+<<<<<<< HEAD
 
 $(document).ready(
 	    function() {
@@ -498,6 +475,8 @@ $(document).ready(
 	        } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
 	    }
 
+=======
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	$(document).ready(function() {
 		// 태그에 onchange를 부여한다.
 		$('#spcImgFile').change(function() {
