@@ -13,6 +13,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 import common.MvcFileRenamePolicy;
+import member.model.service.MemberService;
 import space.model.service.SpaceService;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesCttImg;
@@ -195,6 +196,7 @@ public class SpaceRegformEndServlet extends HttpServlet {
 //		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText, spcNo, spcCttOldTitle);
 		
 		result += new SpaceService().insertImg(spaceimg);
+<<<<<<< HEAD
 		
 		String msg = "";
 		String loc = "/";
@@ -210,6 +212,29 @@ public class SpaceRegformEndServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 		}
 //		result += new SpaceService().insertCttImg(spaceCttimg);
+=======
+		result += new SpaceService().insertCttImg(spaceCttimg);
+
+		
+		String view = "/WEB-INF/views/common/msg.jsp";
+		String msg = "";
+		//javascript/html에서 사용할 url은 contextPath를 포함한다.
+		String loc = "/";
+
+		if(result>0){
+			msg = "공간등록 완료되었습니다.";
+			
+		}
+		else {
+			msg = "공간등록 실패 하였습니다.";				
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher(view)
+			   .forward(request, response);
+>>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	}
 
 	/**

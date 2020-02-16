@@ -88,9 +88,13 @@
 			      	<a class="nav-link" href="<%=request.getContextPath() %>/member/memberEnroll">회원가입</a>
 			    </li>
 		    </div>
-		    <%
-		    }else if(memberLoggedIn != null){
-		    %>
+		    
+		    <div class="eMail">
+			    <li class="nav-item">
+			      	<a class="nav-link" href="<%=request.getContextPath() %>/email/Email">문의하기</a>
+			    </li>
+		    </div>		    
+		    <%}else if(memberLoggedIn != null){ %>
 		    
     		<%
     		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
