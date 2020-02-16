@@ -14,6 +14,7 @@
 	function validate() {
 		let subject = $('#subject').val();
 		let content = $('#content').val();
+		let answer = $('#answer').val();
 		let result = 1;
 		
 		if (subject == "") {
@@ -21,9 +22,15 @@
 			$("#subject").val("제목을 입력해주세요");
 			result = 0;
 			
-		} else if (content == "") {
+		} else if(content == "") {
 			$("#content").css("border", "3px solid red");
 			$("#content").val("내용을 입력해주세요");
+			result = 0;
+		}
+		
+		else if(answer == "") {
+			$("#answer").css("border", "3px solid red");
+			$("#answer").val("회신받을 Email 입력해주세요");
 			result = 0;
 		}
 			if (result == 0) {
@@ -94,7 +101,14 @@ p.text-center {
 					<div class="input-group-prepend">
 						<span class="input-group-text">내용</span>
 					</div>
-					<textarea name="content" id="content" class="form-control" style="width:350px; height:200px;" placeholder="회신받으실 메일 기입해주세요"/></textarea>
+					<textarea name="content" id="content" class="form-control" style="width:350px; height:200px;"/></textarea>
+				</div>
+				
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">회신받을 Email</span>
+					</div>
+					<input type="email" name="answer" id="answer" class="form-control" />
 				</div>
 				
 				<div class="form-group">

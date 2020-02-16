@@ -42,7 +42,12 @@ public class EmailEndServlet extends HttpServlet {
 		String to = request.getParameter("to");
 
 		String subject = request.getParameter("subject");
-		String content = request.getParameter("content");
+		String content2 = request.getParameter("content");
+		String answer = request.getParameter("answer");
+		
+		
+		String content = content2+"\n회산받을 Eamil : "+answer;
+		content = content.replace("\n", "<br>");
 
 
 		Properties p = new Properties();
@@ -92,6 +97,9 @@ public class EmailEndServlet extends HttpServlet {
 		if(result>0){
 			msg = "감사합니다.";
 			
+		}
+		else {
+			msg = "감사합니다.";
 		}
 
 		
