@@ -39,13 +39,14 @@ public class ReviewUpdateEndServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		
-		//1.parameter
-		//MultipartRequest를 사용한 경우, 
-		//기존 HttpServletRequest에서는 사용자입력값을 가져올수 없다.
+		
+		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+		System.out.println("reviewNo="+reviewNo);
 		String reviewTitle = request.getParameter("reviewTitle");
 		String reviewContent = request.getParameter("reviewContent");
 		int reviewStar = Integer.parseInt(request.getParameter("reviewStar"));
+		
 		//XSS공격 대비 태그기호 치환
 		//개행문자 \n => <br>
 		/*

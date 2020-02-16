@@ -9,6 +9,7 @@
     Review review = (Review)request.getAttribute("review");
     ReviewComment reviewComment = (ReviewComment)request.getAttribute("reviewComment");
     Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+    
     %>
 <!DOCTYPE html>
 <html>

@@ -35,7 +35,13 @@
       <br>
      
       <label for="reviewStar">별점 입력</label>
-      <input type="tel" placeholder="별점을 입력하세요" name="reviewStar" id="reviewStar" maxlength="11" required><br>
+      <select  name="reviewStar" id="reviewStar" maxlength="11" required>
+		    <option value="5">5</option>
+		    <option value="4">4</option>
+		    <option value="3">3</option>
+		    <option value="2">2</option>
+		    <option value="1">1</option>
+		</select>
       <br>
       
      <!--  <input type="hidden" name="memBusiAllow" id="memBusiAllow" value="N" /> -->

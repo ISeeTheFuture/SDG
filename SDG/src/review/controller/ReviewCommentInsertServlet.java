@@ -36,8 +36,10 @@ public class ReviewCommentInsertServlet extends HttpServlet {
 		//1.파라미터
 //		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		String memId = request.getParameter("memId");
+		System.out.println("memId="+memId);
 		String commentContent = request.getParameter("commentContent");
 		System.out.println("commentContent"+commentContent);
+		
 		Review reviewNo = new ReviewService().selectOneReviewNo(memId);
 		System.out.println("reviewNo="+reviewNo);
 		ReviewComment reviewComment = new ReviewComment(memId, reviewNo.getReviewNo(), commentContent);
@@ -62,7 +64,6 @@ public class ReviewCommentInsertServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 			   .forward(request, response);
-	
 	
 	}
 

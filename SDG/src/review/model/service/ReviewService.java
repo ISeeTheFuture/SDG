@@ -9,14 +9,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-
-import member.model.dao.MemberDAO;
 import review.model.dao.ReviewDAO;
 import review.model.vo.Review;
 import review.model.vo.ReviewComment;
 import review.model.vo.ReviewReport;
-import space.model.dao.SpaceDAO;
-import space.model.vo.SpacesDefault;
 
 
 /**
@@ -35,11 +31,11 @@ public class ReviewService {
 		return list;
 	}
 	
-	public int selectStarAvg(Review fieldNo) {
+	public int selectStarAvg(int fieldNo) {
 		Connection conn = getConnection();
-		int totalreviewCount = new ReviewDAO().selectStarAvg(conn, fieldNo);
+		int starAvg = new ReviewDAO().selectStarAvg(conn, fieldNo);
 		close(conn);
-		return totalreviewCount;
+		return starAvg;
 	}
 
 	public int insertReview(Review review) {
@@ -73,11 +69,11 @@ public class ReviewService {
 		return result;
 	}
 
-	public int selectReviewCount(Review fieldNo) {
+	public int selectReviewCount() {
 		Connection conn = getConnection();
-		int totalBoardCount = new ReviewDAO().selectReviewCount(conn);
+		int totalReviewCount = new ReviewDAO().selectReviewCount(conn);
 		close(conn);
-		return totalBoardCount;
+		return totalReviewCount;
 	}
 
 	public Review selectOneReviewNo(String memId) {
@@ -190,10 +186,7 @@ public class ReviewService {
 		
 		return result;
 		
-		
-		
-		
-		
+	
 	
 	}
 
@@ -207,21 +200,65 @@ public class ReviewService {
 		close(conn);
 
 
-		
-		
-		
-		
-		
 		return list;
-		
-		
-		
-		
-		
+	
 	
 	}
 
-	
+	public int updateReviewRcomd(int fieldNo) {
+		Connection conn = getConnection();
+		int rcomd = new ReviewDAO().updateReviewRcomd(conn, fieldNo);
+		close(conn);
+		return rcomd;
+	}
+
+	public Review selectOne(int fieldNo, boolean hasRead) {
+		Connection conn = getConnection();
+		int result = 0;
+		//조회수 증가
+		if(hasRead == false) {
+			result = new ReviewDAO().increaseReadCount(conn, fieldNo);
+		}
+		
+		Review review = new ReviewDAO().selectOne(conn, fieldNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		return review;
+	}
+
+	public List<ReviewComment> selectCommentList(int reviewNo) {
+		Connection conn = getConnection();
+		List<ReviewComment> list
+			= new ReviewDAO().selectCommentList(conn, reviewNo);
+		close(conn);
+		return list;
+	}
+
+	public Review updateReviewRcomd(int reviewNo, boolean hasRead) {
+		Connection conn = getConnection();
+		int result = 0;
+		//조회수 증가
+		if(hasRead == false) {
+			result = new ReviewDAO().updateReviewRcomd(conn, reviewNo);
+		}
+		Review review = new ReviewDAO().selectOne(conn, reviewNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		return review;
+	}
+
+	public Review selectOneFieldNo(int fieldNo) {
+		Connection conn = getConnection();
+		Review review = new ReviewDAO().selectOneFieldNo(conn, fieldNo);
+		close(conn);
+		return review;
+	}
+
 
 //	public int insertReviewRpt(ReviewReport reviewRpt) {
 //		Connection conn = getConnection();

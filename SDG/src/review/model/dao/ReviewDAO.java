@@ -92,21 +92,21 @@ public class ReviewDAO {
 		return totalMember;
 	}
 
-	public int selectStarAvg(Connection conn, Review fieldNo) {//별점 평균
+	public int selectStarAvg(Connection conn, int fieldNo) {//별점 평균
 		PreparedStatement pstmt = null;
-		int totalMember = 0;
+		int starAvg = 0;
 		ResultSet rset = null;
 		String query = prop.getProperty("selectStarAvg");
-		
 		try{
 			//미완성쿼리문을 가지고 객체생성. 
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fieldNo);
 			
 			//쿼리문실행
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()){
-				totalMember = rset.getInt("cnt");
+				starAvg = rset.getInt("AVG");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -114,8 +114,9 @@ public class ReviewDAO {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("totalMember="+totalMember);
-		return totalMember;
+		System.out.println("starAvg@ReviewDAO="+starAvg);
+		return starAvg;
+
 	}
 //	public int insertReviewRpt(Connection conn, ReviewReport reviewRpt) {
 //		int result = 0;
@@ -407,14 +408,14 @@ public class ReviewDAO {
 
 
 
-	public int increaseReadCount(Connection conn, int reviewNo) {
+	public int increaseReadCount(Connection conn, int fieldNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("increaseReadCount");
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, reviewNo);
+			pstmt.setInt(1, fieldNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -482,10 +483,12 @@ public class ReviewDAO {
 			while(rset.next()){
 				ReviewComment bc = new ReviewComment();
 				//컬럼명은 대소문자 구분이 없다.
+				bc.setReviewNo(rset.getInt("review_no"));
 				bc.setCommentNo(rset.getInt("comment_no"));
 				bc.setMemId(rset.getString("mem_id"));
 				bc.setCommentContent(rset.getString("comment_content"));
 				bc.setCommentDate(rset.getDate("comment_date"));
+				
 				list.add(bc);
 			}
 		}catch(Exception e){
@@ -706,7 +709,7 @@ public class ReviewDAO {
 			System.out.println(rset);
 			while(rset.next()){
 				ReviewReport b = new ReviewReport();
-//				System.out.println("DAO에서 나오나? 넘버"+b.getReviewNo());
+				System.out.println("DAO에서 나오나? 넘버"+b.getReviewNo());
 				//컬럼명은 대소문자 구분이 없다.
 				b.setReviewNo(rset.getInt("review_no"));
 				b.setReviewReportDate(rset.getDate("review_report_date"));
@@ -734,6 +737,95 @@ public class ReviewDAO {
 		
 		
 	}
+
+
+
+	public int selectBoardCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		int totalMember = 0;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectBoardCount");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성. 
+			pstmt = conn.prepareStatement(query);
+			
+			//쿼리문실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				totalMember = rset.getInt("cnt");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalMember;
+	}
+
+
+
+	public int updateReviewRcomd(Connection conn, int reviewNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateReviewRcomd");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reviewNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+
+	}
+
+
+
+	public Review selectOneFieldNo(Connection conn, int fieldNo) {
+		Review reviewNo = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectOneFieldNo");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setInt(1, fieldNo);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				reviewNo = new Review();
+				reviewNo.setReviewNo(rset.getInt("review_no"));
+				reviewNo.setMemId(rset.getString("mem_id"));
+				reviewNo.setReviewTitle(rset.getString("review_title"));
+				reviewNo.setReviewContent(rset.getString("review_content"));
+				reviewNo.setReviewDate(rset.getDate("review_date"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return reviewNo;
+
+	}
+
 	
 	
 	

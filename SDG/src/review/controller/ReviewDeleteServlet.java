@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import review.model.service.ReviewService;
+import review.model.vo.Review;
 
 /**
  * 게시글 삭제
@@ -35,8 +36,9 @@ public class ReviewDeleteServlet extends HttpServlet {
 		//1.전송값 꺼내서 변수에 기록하기.
 		//String javax.servlet.ServletRequest.getParameter(String arg0)
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-		
+		System.out.println("REVIEWON="+reviewNo);
 		//2.서비스로직호출
+		
 		int result = new ReviewService().deleteReview(reviewNo);
 		
 		//3. 받은 결과에 따라 뷰페이지 내보내기
