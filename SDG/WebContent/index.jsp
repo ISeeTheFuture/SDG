@@ -15,7 +15,10 @@
 		<button id="memberBusi">사업자 정보 입력</button>
 	</form>
 	<br>
-	
+	<form action="<%=request.getContextPath()%>/common/Logo"
+		method="GET">
+		<button id="memberBusi">로고</button>
+	</form>
 
 	<%
 		if (memberLoggedIn != null) {
@@ -32,7 +35,6 @@
 		<button id="reviewRpt">게시물 보기</button>
 	</form>
 
-
 	<a href="<%=request.getContextPath()%>/res/resUpdate">내예약</a>
 
 	<%
@@ -41,6 +43,7 @@
 	
 
 	<a href="<%=request.getContextPath()%>/member/kimwonjae">관리자용 페이지</a>
+	
 <%
 }
 %>
