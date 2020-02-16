@@ -224,20 +224,14 @@ function updatePassword(){
 				</div>
 
 
-				<%--membership의 role값이 1 (트루)인경우 사업자 정보 입력 페이지로 이동 가능하도록 함. --%>
-				<%
-					if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
-				%>
-				<div class="form-group">
+<%-- 				<div class="form-group">
 					<input class="btn btn-primary btn-block" onclick="location.href='<%=request.getContextPath()%>/member/applyRole?memberid=<%=member.getMemId()%>'" value="사업자 신청하기">
 				</div>
-
+ --%>
 				<div class="form-group">
-					<input class="btn btn-primary btn-block" onclick="location.href='<%=request.getContextPath()%>/member/memberBusi'" value="사업자 등록 페이지">
+					<input class="btn btn-primary btn-block" onclick="location.href='<%=request.getContextPath()%>/member/memberBusi?memberid=<%=member.getMemId()%>'" value="사업자 신청 사업장 등록 페이지">
 				</div>
-				<%
-					}
-				%>						
+									
 				</form>
 			</article>
 		</div>

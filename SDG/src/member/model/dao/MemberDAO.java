@@ -195,25 +195,49 @@ public class MemberDAO {
 	public int insertMemberBusi(Connection conn, MemberBusi memberBusi) {
 		int result = 0;
 		PreparedStatement pstmt = null;
+		
 		String query = prop.getProperty("UpdateMemberBusi");
-		System.out.println(query);
+		String query2 = prop.getProperty("insertMemberBusi");
+		System.out.println("나오냐?"+query2);
+
+		
+		
 		try {
+			pstmt = conn.prepareStatement(query2);
+			
+			pstmt.setString(1, memberBusi.getMemId());
+			
+			pstmt.setString(2, memberBusi.getMemBusiAddr());
+			pstmt.setString(3, memberBusi.getMemBusiPhone());
 
-			// 사업자 등록 할때, 이미 insert를 한번 처리 해서, update로 교정함 김원재 2020 02 12 17:00
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, memberBusi.getMemBusiAddr());
-			pstmt.setString(2, memberBusi.getMemBusiPhone());
-
-			pstmt.setString(3, memberBusi.getMemId());
 
 			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e1) {
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
+			e1.printStackTrace();
+		}finally {
 			close(pstmt);
 		}
-		System.out.println(result);
+//		
+//		
+//		try {
+//
+//
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, memberBusi.getMemBusiAddr());
+//			pstmt.setString(2, memberBusi.getMemBusiPhone());
+//
+//			pstmt.setString(3, memberBusi.getMemId());
+//
+//			result = pstmt.executeUpdate();
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		System.out.println(result);
 		return result;
 	}
 
