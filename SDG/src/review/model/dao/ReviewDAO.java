@@ -13,11 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-
 import review.model.vo.Review;
 import review.model.vo.ReviewComment;
 import review.model.vo.ReviewReport;
-import space.model.vo.SpacesDefault;
 
 public class ReviewDAO {
 
@@ -826,8 +824,71 @@ public class ReviewDAO {
 
 	}
 
-	
-	
+
+
+	public ReviewComment selectOneCommentNo(Connection conn, int commentNo) {
+		ReviewComment comment = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectOneCommentNo");
+		System.out.println("query="+query);
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setInt(1, commentNo);
+			
+			//3.실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				comment = new ReviewComment();
+				comment.setCommentNo(rset.getInt("comment_no"));
+				comment.setReviewNo(rset.getInt("review_no"));
+				comment.setMemId(rset.getString("mem_id"));
+				comment.setCommentType(rset.getInt("comment_type"));
+				comment.setCommentContent(rset.getString("comment_content"));
+				comment.setCommentDate(rset.getDate("comment_date"));
+				comment.setCommentRecommend(rset.getInt("comment_recommend"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return comment;
+
+	}
+
+
+
+	public int updateCommentReview(Connection conn, ReviewComment r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateCommentReview");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, r.getCommentContent());
+		
+			pstmt.setInt(2, r.getCommentNo());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	
