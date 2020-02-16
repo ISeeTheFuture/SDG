@@ -40,7 +40,7 @@ public class ReviewCommentUpdateServlet extends HttpServlet {
 		
 		//3.view
 		request.setAttribute("review", b);
-		request.getRequestDispatcher("/WEB-INF/views/review/reviewUpdate.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/review/reviewCommentUpdate.jsp")
 			   .forward(request, response);
 	}
 

@@ -847,7 +847,6 @@ public class ReviewDAO {
 				comment.setCommentNo(rset.getInt("comment_no"));
 				comment.setReviewNo(rset.getInt("review_no"));
 				comment.setMemId(rset.getString("mem_id"));
-				comment.setCommentType(rset.getInt("comment_type"));
 				comment.setCommentContent(rset.getString("comment_content"));
 				comment.setCommentDate(rset.getDate("comment_date"));
 				comment.setCommentRecommend(rset.getInt("comment_recommend"));

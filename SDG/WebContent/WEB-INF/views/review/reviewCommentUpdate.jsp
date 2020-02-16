@@ -6,8 +6,8 @@
 
     
     <%
-    ReviewComment review = (ReviewComment)request.getAttribute("reviewComment");
-    System.out.println(review);
+    ReviewComment reviewComment = (ReviewComment)request.getAttribute("reviewComment");
+    
     %>
 <script>
 function reviewCommentValidate(){
@@ -28,17 +28,17 @@ function reviewView(){
 <form action="<%=request.getContextPath() %>/review/reviewCommentUpdateEnd" 
 	  method="post" 
 	  >
-  <input type="hidden" name="commentNo" value="<%=review.getCommentNo() %>" />
+  <input type="hidden" name="commentNo" value="<%=reviewComment.getCommentNo() %>" />
   <table id="tbl-board-view">
 	<tr>
 		<th>작성자</th>
 		<td>
-			<input type="text" name="memId" value="<%=review.getMemId()%>" readonly/>
+			<input type="text" name="memId" value="<%=reviewComment.getMemId()%>" readonly/>
 		</td>
 	</tr>
 	<tr>
 		<th>내 용</th>
-		<td><input type="text" name="commentContent" value="<%=review.getCommentContent()%>" required></td>
+		<td><input type="text" name="commentContent" value="<%=reviewComment.getCommentContent()%>" required></td>
 	</tr>
 	
 	
