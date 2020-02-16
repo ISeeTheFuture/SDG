@@ -85,7 +85,7 @@ p.text-center {
 					<div class="input-group-prepend">
 						<span class="input-group-text"> 사업장 연락쳐 </span>
 					</div>
-						<input class="form-control" type="tel" placeholder="사업장 연락쳐를 입력하세요.(-없이)01012345678" name="memBusiPhone" id="memBusiPhone" maxlength="11" required>
+						<input class="form-control" type="tel" placeholder="(-없이)01012345678" name="memBusiPhone" id="memBusiPhone" maxlength="11" required>
 				</div>
 				
 				<div class="form-group">
@@ -95,6 +95,8 @@ p.text-center {
 				<div class="form-group">
 					<input class="btn btn-primary btn-block" type="reset" value="취소" />
 				</div>
+				
+				<input type="hidden" name="memBusiAllow" id="memBusiAllow" value="N" />
 				</form>
 				</article>
 				</div>

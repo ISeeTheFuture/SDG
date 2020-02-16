@@ -107,7 +107,7 @@ p.text-center {
     <div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> 변경할 비밀번호 </span>
-		 </div>ㄴ
+		 </div>
         <input type="password" name="password_new" id="password_new" class="form-control" required>
     </div> <!-- form-group// -->
     
