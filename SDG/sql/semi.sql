@@ -553,6 +553,8 @@ select * from review;
 select * from review_cmnt;
 INSERT INTO REVIEW_CMNT VALUES(SEQ_COMMENT_NO.NEXTVAL,'testid',2,0,'테스트용',DEFAULT,0,0);
 commit;
+
+select * from member_busi;
 select * from spc_type;
 select * from membership;
 select * from member_grd;
