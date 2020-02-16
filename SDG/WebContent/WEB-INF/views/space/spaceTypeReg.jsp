@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>ㄴ
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
