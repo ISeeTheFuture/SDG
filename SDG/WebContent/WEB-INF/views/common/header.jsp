@@ -115,6 +115,13 @@
 			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/memberView?memberId=<%=memberLoggedIn.getMemId()%>">내 정보 보기</a>
 			    </li>
 		    </div>
+		    
+		    <div class="eMail">
+			    <li class="nav-item">
+			      	<a class="nav-link" href="<%=request.getContextPath() %>/email/Email">문의하기</a>
+			    </li>
+		    </div>			    
+		    
 		    <div class="signOut">
 			    <li class="nav-item">
 			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/logout">로그 아웃</a>
