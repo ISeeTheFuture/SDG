@@ -55,6 +55,14 @@ public class MemberBusiEndServlet extends HttpServlet {
 				//3. 업무로직
 				int result = new MemberService().insertMemberBusi(memberBusi);
 				
+				
+				
+				
+//				String a = request.getParameter("memberid");
+				
+
+		 MemberService.ApplyRoleUp(memId);
+				
 				//4. 뷰단처리
 				String msg = "";
 				String loc = "/";

@@ -43,10 +43,7 @@ public class MemberApplyRole extends HttpServlet {
 		
 		String a = request.getParameter("memberid");
 		
-//		System.out.println("멤버아이디가 받아와지나?"+a);
-//		Member m = MemberService.selectOne(a);
-		
-		
+
 		int result = MemberService.ApplyRoleUp(a);
 		
 		
