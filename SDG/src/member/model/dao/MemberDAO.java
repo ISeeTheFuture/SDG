@@ -16,6 +16,7 @@ import java.util.Properties;
 import member.model.vo.Member;
 import member.model.vo.MemberBusi;
 import member.model.vo.Memberblk;
+import review.model.vo.ReviewReport;
 
 public class MemberDAO {
 
@@ -430,6 +431,52 @@ public class MemberDAO {
 		}
 
 		return result;
+	}
+
+	public List<Member> MemberSelectAll(Connection conn) {
+		List<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectAllMember");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성. 
+			pstmt = conn.prepareStatement(query);
+			
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			System.out.println(query);
+			System.out.println(rset);
+			while(rset.next()){
+				Member b = new Member();
+//				System.out.println("DAO에서 나오나? 넘버"+b.getReviewNo());
+				//컬럼명은 대소문자 구분이 없다.
+				b.setMemId(rset.getString("mem_id"));
+				b.setMemName(rset.getString("mem_name"));
+				b.setMemRole(rset.getString("mem_role"));
+				b.setMemAdmin(rset.getString("mem_admin"));
+				b.setMemPoint(rset.getInt("mem_point"));
+				b.setMemGender(rset.getInt("mem_gender"));
+				b.setMemEmail(rset.getString("mem_email"));
+				b.setMemPhone(rset.getString("mem_phone"));
+				b.setMemAddr(rset.getString("mem_addr"));
+				list.add(b);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+		
+		
+
+
 	}
 
 }

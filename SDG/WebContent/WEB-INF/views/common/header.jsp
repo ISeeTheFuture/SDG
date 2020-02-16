@@ -79,11 +79,21 @@
 			    </li>
 		    </div>
 		    <%}else if(memberLoggedIn != null){ %>
+		    
+		       
+      <%
+    if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
+ %>
+		    
+		    
 		    <div class="spaceReg">
 			    <li class="nav-item">
 			      	<a class="nav-link" href="<%=request.getContextPath() %>/space/spaceTypeReg?memberId=<%=memberLoggedIn.getMemId()%>">공간 등록</a>
 			    </li>
 		    </div>
+		    
+		    <%} %>
+		    
 		    <div class="memberInfo">
 			    <li class="nav-item">
 			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/memberView?memberId=<%=memberLoggedIn.getMemId()%>">내 정보 보기</a>

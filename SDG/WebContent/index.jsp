@@ -15,10 +15,7 @@
 		<button id="memberBusi">사업자 정보 입력</button>
 	</form>
 	<br>
-	<form action="<%=request.getContextPath()%>/review/reviewRpt"
-		method="GET">
-		<button id="reviewRpt">게시물신고</button>
-	</form>
+	
 
 	<%
 		if (memberLoggedIn != null) {
@@ -28,6 +25,8 @@
 	<%
 		}
 	%>
+	
+	
 	<form action="<%=request.getContextPath()%>/review/reviewList"
 		method="GET">
 		<button id="reviewRpt">게시물 보기</button>
@@ -36,15 +35,12 @@
 
 	<a href="<%=request.getContextPath()%>/res/resUpdate">내예약</a>
 
-	<%--membership의 role값이 1 (트루)인경우 사업자 정보 입력 페이지로 이동 가능하도록 함. --%>
 	<%
-		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
+		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
 	%>
+	
 
-	<input type="button" value="사업자 등록용 페이지"
-		onclick="location.href='<%=request.getContextPath()%>/member/memberbusiupdate'" />
-
-	<%
-		}
-	%>
-
+	<a href="<%=request.getContextPath()%>/member/kimwonjae">관리자용 페이지</a>
+<%
+}
+%>

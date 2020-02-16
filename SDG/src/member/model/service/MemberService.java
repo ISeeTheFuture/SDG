@@ -13,6 +13,8 @@ import member.model.dao.MemberDAO;
 import member.model.vo.Member;
 import member.model.vo.MemberBusi;
 import member.model.vo.Memberblk;
+import review.model.dao.ReviewDAO;
+import review.model.vo.ReviewReport;
 
 public class MemberService {
 
@@ -174,6 +176,19 @@ public class MemberService {
 		return result;
 		
 		
+		
+		
+	}
+
+	public static List<Member> memberSelectAll() {
+		
+		Connection conn = getConnection();
+		List<Member> list	= new MemberDAO().MemberSelectAll(conn);
+		close(conn);
+
+
+		
+		return list;
 		
 		
 	}

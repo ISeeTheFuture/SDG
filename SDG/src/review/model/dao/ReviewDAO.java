@@ -706,7 +706,7 @@ public class ReviewDAO {
 			System.out.println(rset);
 			while(rset.next()){
 				ReviewReport b = new ReviewReport();
-				System.out.println("DAO에서 나오나? 넘버"+b.getReviewNo());
+//				System.out.println("DAO에서 나오나? 넘버"+b.getReviewNo());
 				//컬럼명은 대소문자 구분이 없다.
 				b.setReviewNo(rset.getInt("review_no"));
 				b.setReviewReportDate(rset.getDate("review_report_date"));
