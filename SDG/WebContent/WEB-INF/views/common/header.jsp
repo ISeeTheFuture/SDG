@@ -79,6 +79,15 @@ margin:0;
     left: 10px;
     color: gray;
 }
+nav#nav.navbar.navbar-expand-sm.bg-dark.navbar-dark{
+background-color: yellow;
+}
+div.container{
+padding: 0;
+right:30px;
+width: 500px;
+position: absolute;
+}
 </style>
 <meta charset="UTF-8">
 <title>초특가 송대관</title>
@@ -86,17 +95,21 @@ margin:0;
 
 
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<nav id="nav" class="navbar navbar-expand-sm bg-dark navbar-dark">
+	
 		 <ul class="navbar-nav">
-  
-	    	
+   <li class="nav-item">
+   <link href="<%=request.getContextPath()%>/index">
+	    	<a class="nav-link" href="" method="GET">
             	<table>
        			 <tr>
             <td id="song">송</td>
             <td id="logo"><p id="cho">초!특가</p>대관<p></p></td>
        			 </tr>
     			</table>
-	      
+	      </a>
+	      </link>
+	      </li>
 		  	
 		    <li class="nav-item">
 		      	<a class="nav-link" href="#">Link</a>
@@ -157,6 +170,7 @@ margin:0;
 		    <%} %>
 		    
 		</ul>
+		
 	</nav>
 
 	<div id="myModal" class="modal fade">
