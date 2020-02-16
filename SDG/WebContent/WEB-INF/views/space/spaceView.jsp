@@ -18,11 +18,10 @@
         <hr>
 
         <!-- Preview Image -->
-		<iframe src="<%=request.getContextPath()%>/space/Galleria?spcImgs=<%=request.getAttribute("spcImgs")%>" width='700' height='400' frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
+		<iframe src="<%=request.getContextPath()%>/space/Galleria?spcImgs=<%=request.getAttribute("spcImgs")%>" width='720' height='440' frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
         <hr>
-
 		<div id="resContainer">
-			<iframe src="<%=request.getContextPath()%>/res/resView?spcNo=<%=request.getParameter("spcNo")%>&" width='750' height='700' frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>		
+			<iframe src="<%=request.getContextPath()%>/res/resView?spcNo=<%=request.getParameter("spcNo")%>" width='750' height='700' frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>		
 		</div>
         <!-- Post Content -->
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
@@ -105,10 +104,10 @@
 				<hr />
 				<h4>공간유형 : <%=request.getAttribute("spcType")%></h4>
 				<hr />
-				<h4>공간주소 : <%=request.getAttribute("spcAddr")%></h4>
+				<h5>공간주소 : <%=request.getAttribute("spcAddr")%></h4>
 				<hr />
-				<h4>예약시간 : 최소 <%=request.getAttribute("spcTimeMin")%> ~ 최대 <%=request.getAttribute("spcTimeMax")%></h4>
-				<h4>예약인원 : 최소 <%=request.getAttribute("spcManMin")%> ~ 최대 <%=request.getAttribute("spcManMax")%></h4>
+				<h5>예약시간 : 최소 <%=request.getAttribute("spcTimeMin")%>시간 ~ 최대 <%=request.getAttribute("spcTimeMax")%>시간</h4>
+				<h5>예약인원 : 최소 <%=request.getAttribute("spcManMin")%>명 ~ 최대 <%=request.getAttribute("spcManMax")%>명</h4>
 				<hr />
 				<h4>가격 : <%=request.getAttribute("spcPrice")%>원/시간(인)</h4>
 				<span class="input-group-btn">

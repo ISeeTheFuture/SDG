@@ -74,7 +74,6 @@
 				dataType: "json",
 				success: function(data) {
 					
-					console.log(data);
  					var SrchResult = "<h1>검색결과</h1>";
  					
  					$.each(data, function(idx, d){ // 배열 요소당 한번씩 콜백함수를 호출
@@ -85,7 +84,7 @@
 						SrchResult += "<h4>"+d.spcLocationName+"/"+d.spcTypeName+"</h4>";
 						SrchResult += "<h3>"+d.spcPricePrice+"</h3>";
 						SrchResult += "<input type='hidden' name='spcNo' class='spcNo' value="+d.spcNo+">";
-						SrchResult += "<input type='hidden' name='spcDetNo' class='spcDetNo' value="+d.spcDetNo+"><button type='submit' name='btnSubmit' value='임시버튼'></form></div>";
+						SrchResult += "<input type='hidden' name='spcDetNo' class='spcDetNo' value="+d.spcDetNo+"></form></div>";
 					});
 					$("#SrchResultList").html(SrchResult);
 				},
