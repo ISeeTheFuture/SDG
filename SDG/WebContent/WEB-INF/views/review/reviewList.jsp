@@ -92,7 +92,7 @@ int totalReviewCount = (int)request.getAttribute("totalReviewCount");
 
 
 				<form action="<%=request.getContextPath()%>/review/reviewUpdate"
-					method="post" name="boardCommentFrm">
+					method="post" name="">
 					<input type="hidden" name="reviewNo" value="<%=b.getReviewNo()%>" />
 					<%
 						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
@@ -112,7 +112,7 @@ int totalReviewCount = (int)request.getAttribute("totalReviewCount");
  %>
 
 				<form action="<%=request.getContextPath()%>/review/reviewDelete"
-					method="post" name="boardCommentFrm">
+					method="post" name="">
 					<input type="hidden" name="reviewNo" value="<%=b.getReviewNo()%>" />
 					<%
 						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
@@ -130,7 +130,7 @@ int totalReviewCount = (int)request.getAttribute("totalReviewCount");
  %>
 
 				<form action="<%=request.getContextPath()%>/review/reviewReport"
-					method="post" name="boardCommentFrm">
+					method="post" name="">
 					<input type="hidden" name="reviewNo" value="<%=b.getReviewNo()%>" />
 					<%
 						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
@@ -153,12 +153,62 @@ int totalReviewCount = (int)request.getAttribute("totalReviewCount");
 			if(b.getReviewNo() == c.getReviewNo()){
 			%>
 			<tr>
-			<td>
-			<%if("1" == memberLoggedIn.getMemRole()) %>
-			<% %>
-			</td>
-			<td>답글 <%=c.getCommentContent()%></td>
+			
+			<%-- <%if("1" == memberLoggedIn.getMemRole()) {%>
+			<td><%=c.getMemId()%></td>
+			<% }%> --%>
+		
+			<td><%=c.getCommentContent()%></td>
+			<td><%=c.getCommentDate() %></td>
 			</tr>
+			
+			
+		 	<tr>
+			<%
+ 	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
+ 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {//5
+ %>
+
+<td>
+				<form action="<%=request.getContextPath()%>/review/reviewCommentUpdate"
+					method="post" name="boardCommentFrm">
+					<input type="hidden" name="commentNo" value="<%=c.getCommentNo()%>" />
+					<%
+						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
+											|| "1" == memberLoggedIn.getMemAdmin()) {//6
+					%>
+					<button type="submit" id="btn-insert">답글 수정</button>
+					<%
+						}//6
+					%>
+				</form> 
+				</td>
+				<%} //5%> 
+				
+					
+ <%
+ 	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
+ 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {//7
+ %>
+<td>
+				<form action="<%=request.getContextPath()%>/review/reviewCommentDelete"
+					method="post" name="boardCommentFrm">
+					<input type="hidden" name="commentNo" value="<%=c.getCommentNo()%>" />
+					<%
+					System.out.println(c.getCommentNo());
+						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
+											|| "1" == memberLoggedIn.getMemAdmin()) {//8
+					%>
+					<button type="submit" id="btn-insert">답글 삭제</button>
+					<%
+						}//8
+					%>
+				</form>
+				</td> 
+				<%
+ 	}//7
+ %> 
+ </tr> 
 			
 			<%}%>
 			 <%} //3%>
