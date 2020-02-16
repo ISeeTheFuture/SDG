@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,7 +155,7 @@ p.text-center {
 
 	<%
 		String cat = request.getParameter("cat");
-		String memberId = request.getParameter("memberId");
+/* 		String memberId = request.getParameter("memberId"); */
 	%>
 
 	<link
@@ -189,7 +191,7 @@ p.text-center {
 
 			<form onsubmit="return validate();"
 				action="<%=request.getContextPath()%>/space/spaceRegformEnd"
-				method="POST" enctype="multipart/form-data">
+				method="POST" enctype="multipart/form-data" class="card-body mx-auto">
 				<input type="hidden" name="cat" value="<%=cat %>" /> <input
 					type="hidden" name="memberId" value="<%=memberId %>" /> <input
 					type="hidden" name="spcDay" value="mon"> <input
