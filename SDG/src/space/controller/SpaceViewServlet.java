@@ -45,7 +45,6 @@ public class SpaceViewServlet extends HttpServlet {
 		String spcType = new SpcViewService().selectSpcType(spcDtl.getSpcTypeNo());
 		SpacesCttImg spcCttImg = new SpcViewService().selectSpcCttImg(spcDtlNo); 
 
-		System.out.println(spcPrice.toString());
 		
 		request.setAttribute("spcTitle", spc.getSpcName());
 		request.setAttribute("spcLoc", spcLoc);
@@ -59,6 +58,7 @@ public class SpaceViewServlet extends HttpServlet {
 		request.setAttribute("spcManMax", spcDtl.getSpcCapMax());
 		request.setAttribute("spcPrice", spcPrice.getSpcPricePrice());
 		request.setAttribute("spcImgs", spcImg.getSpcImgTitle());
+		request.setAttribute("spcCttImgs", spcCttImg==null?"":spcCttImg.getSpcCttImgTitle());
 		
 		
 		

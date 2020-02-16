@@ -9,6 +9,11 @@ var editType = $('#edit-type');
 var editResMany = $('#edit-resMany');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
+var spcTimeMin = $('#spcTimeMin');
+var spcTimeMax = $('#spcTimeMax');
+var spcManMin = $('#spcManMin');
+var spcManMax = $('#spcManMax');
+
 
 var editResManyLabel = $('#edit-resMany-label');
 var editDescLabel = $('#edit-desc-label');
@@ -61,7 +66,7 @@ var newEvent = function (start, end, eventType) {
             description: editDesc.val(),
             type: editType.val(),
             resMany: editResMany.val(),
-            username: 'testid', // 꼭 세션에서 받아오도록 변경
+            username: editTitle.val(),
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
@@ -84,9 +89,25 @@ var newEvent = function (start, end, eventType) {
         	return false;
         }
         
+        var hourDiff = (new Date(eventData.end)-new Date(eventData.start))/(60*60*1000);
+        if(hourDiff < spcTimeMin.val()){
+        	alert("예약시간이 최소치 "+spcTimeMin.val()+"시간에 미달합니다.");
+        	return false;
+        }else if(hourDiff > spcTimeMax.val()){
+        	alert("예약시간이 최대치 "+spcTimeMax.val()+"시간을 초과하였습니다.");
+        	return false;
+        }
+        if(editResMany.val() < spcManMin.val()){
+        	alert("예약인원이 최소치 "+spcManMin.val()+"명에 미달합니다.");
+        	return false;
+        }else if(editResMany.val() > spcManMax.val()){
+        	alert("예약인원이 최대치 "+spcManMax.val()+"명을 초과하였습니다.");
+        	return false;
+        }
+        
 
         if (eventData.title === '') {
-            alert('일정명은 필수입니다.');
+            alert('잘못된 접근입니다.');
             return false;
         }
 

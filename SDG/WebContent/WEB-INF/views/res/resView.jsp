@@ -94,9 +94,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-resMany" id="edit-resMany-label">인원</label>
-                                <input class="inputModal" type="number" name="edit-resMany" id="edit-resMany" min="1" max="5">
+                                <input class="inputModal" type="number" name="edit-resMany" id="edit-resMany" min="<%=request.getAttribute("spcManMin")%>" max="<%=request.getAttribute("spcManMax")%>">
                             </div>
                         </div>
+                        <input type="hidden" id="spcManMin" value="<%=request.getAttribute("spcManMin")%>" />
+                        <input type="hidden" id="spcManMax" value="<%=request.getAttribute("spcManMax")%>" />
+                        <input type="hidden" id="spcTimeMin" value="<%=request.getAttribute("spcTimeMin")%>" />
+                        <input type="hidden" id="spcTimeMax" value="<%=request.getAttribute("spcTimeMax")%>" />
 <!--                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-color">색상</label>

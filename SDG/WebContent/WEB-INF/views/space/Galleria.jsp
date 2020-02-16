@@ -4,7 +4,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
         <script src="<%=request.getContextPath()%>/galleria/galleria.min.js"></script>
         <style>
-		    .galleria{ width: 700px; height: 400px; background: #000 }
+		    .galleria{ width: 720px; height: 440px; background: #000 }
 		</style>
     </head>
     <body>

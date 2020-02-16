@@ -546,6 +546,7 @@ INSERT INTO REVIEW VALUES(3,1,'testid',0,2,null,'WQE','QWE',null,20/02/11,DEFAUL
 
 INSERT INTO REVIEW_CMNT VALUES(1,'testid',3,0,0,DEFAULT,0,0);
 
+update membership set mem_role = 1 where mem_id='testid';
 commit;
 
 select * from review;

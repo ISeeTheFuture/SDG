@@ -467,7 +467,7 @@ p.text-center {
 	<br />
 </body>
 <script>
-<<<<<<< HEAD
+
 $(document).ready(
 	    function() {
 	        // 태그에 onchange를 부여한다.
@@ -495,7 +495,7 @@ $(document).ready(
 	            }
 	        } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
 	    }
-=======
+
 	$(document).ready(function() {
 		// 태그에 onchange를 부여한다.
 		$('#spcImgFile').change(function() {
@@ -523,7 +523,6 @@ $(document).ready(
 		} else
 			alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
 	}
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 </script>
 
 </html>
