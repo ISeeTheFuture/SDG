@@ -67,3 +67,41 @@ body {
 	right: 0;
 	margin-right: 30px;
 }
+
+/* 이 아래부터 로고용 css */
+#logo{
+	color : white;
+    font-size: 30px;
+    font-family: 'Black Han Sans', sans-serif;
+    position : relative;
+    box-sizing:inherit;
+    margin:0;
+    padding: 0;
+    border-radius: 0;
+    bottom: 0px;
+}
+#song{
+	color : rgb(80, 65, 163);
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 50px;
+	box-sizing:inherit;
+	position : relative;
+	margin:0;
+    padding: 0;
+    border-radius: 0;
+}
+#cho{
+	font-size: 10px;
+	/* font-family: 'Black Han Sans', sans-serif; */
+	position : relative;
+	box-sizing:inherit;
+	margin:0;
+    padding: 0;
+    border-radius: 0;
+    top: 10px;
+    left: 10px;
+    color: gray;
+}
+nav#nav.navbar.navbar-expand-sm.bg-dark.navbar-dark{
+	height:90px;
+}

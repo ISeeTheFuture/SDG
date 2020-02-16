@@ -41,76 +41,23 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/galleria.css">
 <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Yeon+Sung&display=swap" rel="stylesheet">
-<style>
-td#logo{
-color : white;
-	
-    font-size: 30px;
-    font-family: 'Black Han Sans', sans-serif;
-    
-    position : relative;
-    box-sizing:inherit;
-    margin:0;
-    padding: 0;
-    border-radius: 0;
-    bottom: 0px;
-}
-td#song{
-color : rgb(80, 65, 163);
-margin-bottom: 10px;
-font-family: 'Black Han Sans', sans-serif;
-font-size: 50px;
-box-sizing:inherit;
-position : relative;
-margin:0;
-    padding: 0;
-    border-radius: 0;
-}
-p#cho{
-    margin-top: 30px;
-font-size: 10px;
-/* font-family: 'Black Han Sans', sans-serif; */
-position : relative;
-box-sizing:inherit;
-margin:0;
-    padding: 0;
-    border-radius: 0;
-    top: 10px;
-    left: 10px;
-    color: gray;
-}
-nav#nav.navbar.navbar-expand-sm.bg-dark.navbar-dark{
-background-color: yellow;
-}
-div.container{
-padding: 0;
-right:30px;
-width: 500px;
-position: absolute;
-}
-</style>
+
 <meta charset="UTF-8">
 <title>초특가 송대관</title>
 </head>
-
-
 <body>
-	<nav id="nav" class="navbar navbar-expand-sm bg-dark navbar-dark">
-	
+	<nav id="nav" class="navbar navbar-expand-sm bg-dark navbar-dark">	
 		 <ul class="navbar-nav">
-   <li class="nav-item">
-   <link href="<%=request.getContextPath()%>/index">
-	    	<a class="nav-link" href="" method="GET">
-            	<table>
-       			 <tr>
-            <td id="song">송</td>
-            <td id="logo"><p id="cho">초!특가</p>대관<p></p></td>
-       			 </tr>
-    			</table>
-	      </a>
-	      </link>
-	      </li>
-		  	
+		   <li class="nav-item">
+		    	<a class="nav-link" href="<%=request.getContextPath()%>">
+	            	<table>
+	       				<tr>
+				            <td id="song">송</td>
+				            <td id="logo"><p id="cho">초!특가</p><p>대관</p></td>
+	       				</tr>
+	    			</table>
+		      	</a>
+	      	</li>
 		    <li class="nav-item">
 		      	<a class="nav-link" href="#">Link</a>
 		    </li>
@@ -141,12 +88,13 @@ position: absolute;
 			      	<a class="nav-link" href="<%=request.getContextPath() %>/member/memberEnroll">회원가입</a>
 			    </li>
 		    </div>
-		    <%}else if(memberLoggedIn != null){ %>
+		    <%
+		    }else if(memberLoggedIn != null){
+		    %>
 		    
-		       
-      <%
-    if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
- %>
+    		<%
+    		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
+    		%>
 		    
 		    
 		    <div class="spaceReg">
@@ -155,7 +103,7 @@ position: absolute;
 			    </li>
 		    </div>
 		    
-		    <%} %>
+		    		<%} %>
 		    
 		    <div class="memberInfo">
 			    <li class="nav-item">
