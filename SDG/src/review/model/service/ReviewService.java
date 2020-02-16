@@ -259,6 +259,30 @@ public class ReviewService {
 		return review;
 	}
 
+	public ReviewComment selectOneCommentNo(int commentNo) {
+		Connection conn = getConnection();
+		ReviewComment review = new ReviewDAO().selectOneCommentNo(conn, commentNo);
+		close(conn);
+		return review;
+	}
+
+	public int updateCommentReview(ReviewComment r) {
+		Connection conn = getConnection();
+		int result = new ReviewDAO().updateCommentReview(conn, r);
+
+		if(result > 0)
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
 
 //	public int insertReviewRpt(ReviewReport reviewRpt) {
 //		Connection conn = getConnection();

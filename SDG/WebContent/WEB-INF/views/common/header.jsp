@@ -39,15 +39,65 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/custom.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/galleria.css">
+<link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Yeon+Sung&display=swap" rel="stylesheet">
+<style>
+td#logo{
+color : white;
+	
+    font-size: 30px;
+    font-family: 'Black Han Sans', sans-serif;
+    
+    position : relative;
+    box-sizing:inherit;
+    margin:0;
+    padding: 0;
+    border-radius: 0;
+    bottom: 0px;
+}
+td#song{
+color : rgb(80, 65, 163);
+margin-bottom: 10px;
+font-family: 'Black Han Sans', sans-serif;
+font-size: 50px;
+box-sizing:inherit;
+position : relative;
+margin:0;
+    padding: 0;
+    border-radius: 0;
+}
+p#cho{
+    margin-top: 30px;
+font-size: 10px;
+/* font-family: 'Black Han Sans', sans-serif; */
+position : relative;
+box-sizing:inherit;
+margin:0;
+    padding: 0;
+    border-radius: 0;
+    top: 10px;
+    left: 10px;
+    color: gray;
+}
+</style>
 <meta charset="UTF-8">
 <title>초특가 송대관</title>
 </head>
+
+
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<ul class="navbar-nav">
-	    	<li class="nav-item active">
-	      	<a class="nav-link" href="#">Active</a>
-		  	</li>
+		 <ul class="navbar-nav">
+  
+	    	
+            	<table>
+       			 <tr>
+            <td id="song">송</td>
+            <td id="logo"><p id="cho">초!특가</p>대관<p></p></td>
+       			 </tr>
+    			</table>
+	      
+		  	
 		    <li class="nav-item">
 		      	<a class="nav-link" href="#">Link</a>
 		    </li>
