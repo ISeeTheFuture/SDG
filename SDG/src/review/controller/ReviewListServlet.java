@@ -52,7 +52,7 @@ public class ReviewListServlet extends HttpServlet {
 		
 		
 		//////////////공가안넘
-		int fieldNo = 42; //임의의 공간 no (spc_no)
+		int fieldNo = 1; //임의의 공간 no (spc_no) 42
 		
 		
 		

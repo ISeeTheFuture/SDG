@@ -4,13 +4,12 @@
 <%@page import="review.model.vo.Review"%>
 <%@page import="review.model.vo.ReviewComment"%>
 <%@page import="member.model.vo.Member"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="/WEB-INF/views/common/header.jsp" %>    
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	
 <%
-int totalReviewCount = (int)request.getAttribute("totalReviewCount");
+	int totalReviewCount = (int)request.getAttribute("totalReviewCount");
 	int avgStar = (int)request.getAttribute("AvgStar");
 	List<ReviewComment> commentList = (List<ReviewComment>) request.getAttribute("commentList");
 	List<Review> list = (List<Review>) request.getAttribute("list");

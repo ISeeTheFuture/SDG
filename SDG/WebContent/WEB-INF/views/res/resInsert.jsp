@@ -90,7 +90,10 @@
 		<br />
 
 		<hr />
-		
+		<div>
+			<h4>단가 : <%=request.getAttribute("spcPrice")%>/시간(인)</h4>
+			<h3 id="finalPrice">결제 예정 금액 : 총 원</h3>
+		</div>
 		<hr />
 		<input type="button" id="payReq" value="결제하기" onclick="return BootPay.request();"/>
 	</form>
