@@ -132,6 +132,10 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		String [] spcImgTitles = multiReq.getParameterValues("spcImgTitle");
 		String spcImgRoute = "'"+saveDirectory;
 		String spcImgText = "설명";
+
+		String [] spcCttTitles = multiReq.getParameterValues("spcImgTitle");
+		String spcCttOldTitle = "'"+saveDirectory;
+		String spcCttText = "설명";
 		
 		
 		String spcDay = "";
@@ -143,6 +147,10 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		String spcImgTitle = "";
 		if(spcImgTitles != null) {
 			spcImgTitle = String.join(",", spcImgTitles);
+		}
+		String spcCttTitle = "";
+		if(spcCttTitles != null) {
+			spcCttTitle = String.join(",", spcCttTitles);
 		}
 		
 		Date spcDateStart_ = null;
@@ -193,26 +201,10 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		//spcImg
 		
 		SpacesImg spaceimg = new SpacesImg(spcDtlNo, spcImgTitle, spcImgText,spcImgRoute, spcNo);
-//		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText, spcNo, spcCttOldTitle);
+		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText, spcNo, spcCttOldTitle);
+		
 		
 		result += new SpaceService().insertImg(spaceimg);
-<<<<<<< HEAD
-		
-		String msg = "";
-		String loc = "/";
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		
-		if(result == 4) {
-			msg = "공간 등록 성공!";
-			request.getRequestDispatcher("/WEB-INF/views/space/spaceView.jsp").forward(request, response);
-		} else { 
-			msg = "공간 등록 실패!";
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
-		}
-//		result += new SpaceService().insertCttImg(spaceCttimg);
-=======
 		result += new SpaceService().insertCttImg(spaceCttimg);
 
 		
@@ -234,7 +226,6 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(view)
 			   .forward(request, response);
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	}
 
 	/**
