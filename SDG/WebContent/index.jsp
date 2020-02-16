@@ -14,17 +14,13 @@
 		method="GET">
 		<button id="memberBusi">사업자 정보 입력</button>
 	</form>
-	<br>
-	<form action="<%=request.getContextPath()%>/common/Logo"
-		method="GET">
-		<button id="memberBusi">로고</button>
-	</form>
+
 
 	<%
 		if (memberLoggedIn != null) {
 	%>
-	<input type="button" value="이용후기 작성" id="btn-add"
-		onclick="location.href='<%=request.getContextPath()%>/review/reviewForm'" />
+	<input type="button" value="이용후기 작성" id="btn-add" onclick="location.href='<%=request.getContextPath()%>/review/reviewForm'" />
+	<a href="<%=request.getContextPath()%>/res/resMe">내예약</a>
 	<%
 		}
 	%>
@@ -35,7 +31,7 @@
 		<button id="reviewRpt">게시물 보기</button>
 	</form>
 
-	<a href="<%=request.getContextPath()%>/res/resUpdate">내예약</a>
+
 
 	<%
 		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
