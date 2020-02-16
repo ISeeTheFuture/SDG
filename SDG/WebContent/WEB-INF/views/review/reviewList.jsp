@@ -24,6 +24,44 @@
 	<input type="button" value="글쓰기" id="btn-add"
 		onclick="location.href='<%=request.getContextPath()%>/review/reviewForm'" />
 
+
+
+
+
+
+<form action="<%=request.getContextPath() %>/review/reviewFormEnd" method="post">
+	<label for="memId">아이디</label>
+	<input type="text"  name="memId" id="memId" value="<%=memberLoggedIn.getMemId() %>"  readonly><br>
+	<br>
+	
+	 <label for="memBusiNo">사업장 번호</label>
+      <input type="text" name="spc_no" id="spc_no" placeholder="사업장 번호를 입력하세요." />
+      <br> 
+      
+     <label for="reviewTitle">제목</label>
+      <input type="text" name="reviewTitle" id="reviewTitle" placeholder="제목을 입력하세요." />
+      <br>
+     <label for="reviewContent">내용</label>
+      <input type="text" name="reviewContent" id="reviewContent" placeholder="내용을 입력하세요." />
+      <br>
+     
+      <label for="reviewStar">별점 입력</label>
+      <select  name="reviewStar" id="reviewStar" maxlength="11" required>
+		    <option value="5">5</option>
+		    <option value="4">4</option>
+		    <option value="3">3</option>
+		    <option value="2">2</option>
+		    <option value="1">1</option>
+		</select>
+      <br>
+      
+     <!--  <input type="hidden" name="memBusiAllow" id="memBusiAllow" value="N" /> -->
+      <!--기본값 0으로  0일때 승인 거부 상태 , 관리자가 1로 update해야 승인됨 -->
+      
+      <input type='submit' value="전송" />
+      <input type="reset" value="취소">
+	
+	</form>
 	<%
 		}//1
 	%>
@@ -35,25 +73,15 @@
 	<%
 		}
 	%>
-		
 	
 	
 	
-
+	
+	
+	
 	<table id="tbl-board">
-	
-	<tr>
-	<td>
-	<div id='totalReviewCount'>개시물 개수<%=totalReviewCount %></div>
-	<div id='AvgStar'>평균 별점<%=avgStar %></div>
-	</td>
-	<%-- <div id='AvgStar'>추천수<%=reviewRcomd %></div> --%>
-	<%-- <input type="button" value="추천" id="btn-add"
-		onclick="location.href='<%=request.getContextPath()%>/review/reviewRcmd'" /> --%>
-	</tr>
-	
 		<tr>
-			<th>글 번호</th>
+			<th>번호</th>
 			<th>작성자</th>
 			<th>작성일</th>
 			<th>별점</th>
@@ -63,8 +91,10 @@
 		<tr>
 			<!-- review -->
 			<%
-				for (Review b : list) {//2
+				for (Review b : list) {
 			%>
+
+			<%-- <%=b.getMemId()%> --%>
 
 			<td><%=b.getReviewNo()%></td>
 			<td><%=b.getMemId()%></td>
@@ -72,165 +102,109 @@
 			<td><%=b.getReviewStar()%></td>
 			<td><%=b.getReviewContent()%></td>
 			<td><%=b.getReviewRecommend()%></td>
-			
-		</tr>
-		<tr>
 			<td>
-			<form>
-			<input type="button" value="게시글 추천" id="btn-add"
-		 onclick="location.href='<%=request.getContextPath()%>/review/reviewRecommend'" />
-			</form>
-			
 				<%
-					if (memberLoggedIn != null ) {//4
-				%> 
-				<%
+					if (memberLoggedIn != null ) {
+				%> <%
  	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
- 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {//5
+ 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {
  %>
 
 
 				<form action="<%=request.getContextPath()%>/review/reviewUpdate"
-					method="post" name="">
+					method="post" name="boardCommentFrm">
 					<input type="hidden" name="reviewNo" value="<%=b.getReviewNo()%>" />
 					<%
 						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
-											|| "1" == memberLoggedIn.getMemAdmin()) {//6
+											|| "1" == memberLoggedIn.getMemAdmin()) {
 					%>
 					<button type="submit" id="btn-insert">게시글 수정</button>
 					<%
-						}//6
+						}
 					%>
-				</form> 
-				<%} //5%> 
-				
-					
- <%
+				</form> <%
+ 	}
+ %> <%
  	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
- 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {//7
+ 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {
  %>
 
 				<form action="<%=request.getContextPath()%>/review/reviewDelete"
-					method="post" name="">
+					method="post" name="boardCommentFrm">
 					<input type="hidden" name="reviewNo" value="<%=b.getReviewNo()%>" />
 					<%
 						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
-											|| "1" == memberLoggedIn.getMemAdmin()) {//8
+											|| "1" == memberLoggedIn.getMemAdmin()) {
 					%>
 					<button type="submit" id="btn-insert">게시글 삭제</button>
 					<%
-						}//8
+						}
 					%>
 				</form> <%
- 	}//7
- %> 
- <%
- 	if (memberLoggedIn != null ) {//9
+ 	}
+ %> <%
+ 	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
+ 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {
  %>
 
 				<form action="<%=request.getContextPath()%>/review/reviewReport"
-					method="post" name="">
+					method="post" name="boardCommentFrm">
 					<input type="hidden" name="reviewNo" value="<%=b.getReviewNo()%>" />
 					<%
 						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
-											|| "1" == memberLoggedIn.getMemAdmin()) {//10
+											|| "1" == memberLoggedIn.getMemAdmin()) {
 					%>
 					<button type="submit" id="btn-insert">게시글 신고</button>
 					<%
-						}//10
+						}
 					%>
-					
-				</form> 
-				</td>
-				</tr>
-				<%
- 	}//9
+				</form> <%
+ 	}
  %>
- 	
-			<%
-				for (ReviewComment c : commentList) {//3
-			if(b.getReviewNo() == c.getReviewNo()){
-			%>
-			<tr>
 			
-			<%-- <%if("1" == memberLoggedIn.getMemRole()) {%>
-			<td><%=c.getMemId()%></td>
-			<% }%> --%>
-		
-			<td><%=c.getCommentContent()%></td>
-			<td><%=c.getCommentDate() %></td>
-			</tr>
-			
-			
-		 	<tr>
-			<%
- 	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
- 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {//5
- %>
+		</tr>
 
-<td>
-				<form action="<%=request.getContextPath()%>/review/reviewCommentUpdate"
-					method="post" name="boardCommentFrm">
-					<input type="hidden" name="commentNo" value="<%=c.getCommentNo()%>" />
-					<%
-						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
-											|| "1" == memberLoggedIn.getMemAdmin()) {//6
-					%>
-					<button type="submit" id="btn-insert">답글 수정</button>
-					<%
-						}//6
-					%>
-				</form> 
-				</td>
-				<%} //5%> 
-				
-					
- <%
- 	if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
- 					|| ("1".equals(memberLoggedIn.getMemAdmin()))) {//7
- %>
-<td>
-				<form action="<%=request.getContextPath()%>/review/reviewCommentDelete"
-					method="post" name="boardCommentFrm">
-					<input type="hidden" name="commentNo" value="<%=c.getCommentNo()%>" />
-					<%
-					System.out.println(c.getCommentNo());
-						if (memberLoggedIn != null && b.getMemId().equals(memberLoggedIn.getMemId())
-											|| "1" == memberLoggedIn.getMemAdmin()) {//8
-					%>
-					<button type="submit" id="btn-insert">답글 삭제</button>
-					<%
-						}//8
-					%>
-				</form>
-				</td> 
-				<%
- 	}//7
- %> 
- </tr> 
-			
-			<%}%>
-			 <%} //3%>
- 		<tr>
- 			<td>
-       	 <form action="<%=request.getContextPath()%>/review/reviewCommentInsert"
-        	  method="post"
-        	  name="reviewCommentFrm">
-        	<input type="hidden" name="reviewNo" value="<%=b.getReviewNo() %>" />
-        	<input type="hidden" name="memId" value="<%=memberLoggedIn.getMemId() %>"/>
-            <textarea name="commentContent" cols="60" rows="3"></textarea>
-      	      <button type="submit" id="btn-insert">등록</button>
-      	  </form>
-			</td>
-	</tr>
-			
-		<%}%>
-			<%
+
+
+		<tr>
+
+
+
+
+
+
+		</tr>
+
+
+
+
+
+
+
+
+		<%
 			}
-			%>
-			
+		%>
 
+
+
+		<tr>
+
+
+
+			<%
+				}
+			%>
+
+		</tr>
 	</table>
+	
+	
+	
+	
+	
+	
+	
 	
 	<div id='pageBar'><%=pageBar%></div>
 </section>
