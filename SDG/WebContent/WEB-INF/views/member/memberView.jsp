@@ -109,6 +109,22 @@ function updatePassword(){
 		 "left=500px, top=200px, width=480px, height=290px"); */
 		location.href=url;
 		 
+		 
+		 
+		 function deleteuser(){
+			 
+			 let url = "<%=request.getContextPath()%>/member/delteMember?memberId=<%=member.getMemId()%>"
+		
+				 		location.href=url; 
+			 
+
+			 
+			 
+		 }
+		 
+		 
+		 
+		 
 }
 </script>
 
@@ -220,7 +236,7 @@ function updatePassword(){
 				</div>
 
 				<div class="form-group">
-					<input class="btn btn-primary btn-block" onclick="updatePassword();" value="회원탈퇴">
+					<input class="btn btn-primary btn-block" onclick="location.href='<%=request.getContextPath()%>/member/deleteMember?memberid=<%=member.getMemId()%>'" value="회원탈퇴" >
 				</div>
 
 

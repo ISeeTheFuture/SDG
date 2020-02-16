@@ -503,4 +503,37 @@ public class MemberDAO {
 
 	}
 
+	public int deleteMember(Connection conn, String memId) {
+		
+		
+		
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("DeleteMember");
+		System.out.println(query);
+		try {
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, memId);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+		
+		
+		
+		
+		
+		
+		
+	}
+
 }
