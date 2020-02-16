@@ -1,31 +1,30 @@
 <%@page import="member.model.vo.Member"%>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>ㄴ
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 
-<%
-	Member memberLoggedIn = (Member) session.getAttribute("memberLoggedIn");
-%>
 <style>
 .outermulti {
-	width: 1100px;
+	width: 1200px;
 }
 
 .outeroffice {
-	width: 1100px;
+	width: 1200px;
 }
 
 .fieldmulti {
-	width: 1100px;
+	width: 1200px;
 }
 
 .fieloffice {
-	width: 1100px;
+	width: 1200px;
 }
 
 .multiroom {
@@ -196,11 +195,22 @@
 		});
 	});
 </script>
-
+<style>
+p.text-center {
+	font-size: 2em;
+}
+</style>
 
 
 <body>
-	<h1>공간유형을 선택하세요</h1>
+
+	<div class="container">
+		<br>
+		<p class="text-center">등록공간 유형을 선택하세요</p>
+		<hr>
+	</div>
+	
+
 
 	<fieldset class="fieldmulti">
 		<legend class="officetext">모임장소</legend>

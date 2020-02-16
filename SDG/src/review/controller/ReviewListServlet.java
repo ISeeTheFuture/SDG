@@ -1,6 +1,7 @@
 package review.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -98,8 +99,12 @@ public class ReviewListServlet extends HttpServlet {
 		//2.업무로직: review객체
 		/* Review review = new ReviewService().selectOne(fieldNo, hasRead); */
 		List<ReviewComment> commentList 
+		= new ArrayList<>();
+		if(reviewNo!=null) {
+//		List<ReviewComment>
+		commentList 
 			= new ReviewService().selectCommentList(reviewNo.getReviewNo());
-		
+		}
 		///////////조회수 끝/////////////
 		
 		

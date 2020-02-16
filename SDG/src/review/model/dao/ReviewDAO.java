@@ -479,7 +479,7 @@ public class ReviewDAO {
 			//쿼리문실행
 			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
 			rset = pstmt.executeQuery();
-			
+			System.out.println("rset은?+"+rset);
 			while(rset.next()){
 				ReviewComment bc = new ReviewComment();
 				//컬럼명은 대소문자 구분이 없다.
