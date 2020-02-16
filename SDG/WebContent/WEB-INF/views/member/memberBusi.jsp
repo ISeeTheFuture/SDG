@@ -93,7 +93,7 @@ p.text-center {
 				</div>
 
 				<div class="form-group">
-					<input class="btn btn-primary btn-block" type="reset" value="취소" />
+					<input class="btn btn-primary btn-block" type="reset" value="취소" onClick="history.go(-1)" />
 				</div>
 				
 				<input type="hidden" name="memBusiAllow" id="memBusiAllow" value="N" />

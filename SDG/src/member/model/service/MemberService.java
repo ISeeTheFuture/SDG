@@ -166,7 +166,7 @@ public class MemberService {
 		Connection conn = getConnection();
 		int result = new MemberDAO().PermitApplyRoleUp(conn, a);
 
-//		System.out.println("DAO까지 다녀오나?="+result);
+
 		if (result > 0)
 			commit(conn);
 		else
@@ -189,6 +189,30 @@ public class MemberService {
 
 		
 		return list;
+		
+		
+	}
+
+	public static int deleteMember(String memId) {
+
+
+		
+		
+		Connection conn = getConnection();
+		int result = new MemberDAO().deleteMember(conn, memId);
+
+
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+
+		return result;
+
+		
+		
+		
 		
 		
 	}
