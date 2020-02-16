@@ -78,6 +78,12 @@
 			      	<a class="nav-link" href="<%=request.getContextPath() %>/member/memberEnroll">회원가입</a>
 			    </li>
 		    </div>
+		    
+		    <div class="eMail">
+			    <li class="nav-item">
+			      	<a class="nav-link" href="<%=request.getContextPath() %>/email/Email">문의하기</a>
+			    </li>
+		    </div>		    
 		    <%}else if(memberLoggedIn != null){ %>
 		    
 		       
