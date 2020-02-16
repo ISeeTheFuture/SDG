@@ -124,35 +124,25 @@ public class SpaceRegformEndServlet extends HttpServlet {
 //		String spcImgRoute = request.getParameter("spcImgRoute");
 		
 		//업로드 이미지 절대경로
-		
-		String spcImgTitle2 = multiReq.getFilesystemName("spcImgFile");
-		String spcImgTitle = "'"+spcImgTitle2+"'";
-		String spcImgRoute = "'"+saveDirectory +"/"+spcImgTitle2+"'";
-		String spcImgText = "'"+spcImgTitle2+"'";
-		
-		String spcCttTitle2 = multiReq.getFilesystemName("spcCttFile");
-		String spcCttTitle = "'"+spcImgTitle2+"'";
-		String spcCttOldTitle = "'"+spcImgTitle2+"'";
-		String spcCttText = "'"+spcImgTitle2+"'";
-//		String spcFileName = multiReq.getFilesystemName("spcImgFile");
-//		String spcImgFileFullPath = saveDirectory +"/"+spcFileName;
-//		
-//		
-//		
-//		String spcImgTitle = multiReq.getParameter(spcFileName);
-//		String spcImgRoute = multiReq.getParameter(spcImgFileFullPath);
-		
-//		//사용자가 업로드한 파일명
-//		String originalFileName = multiReq.getOriginalFileName("spcImgFile");
-//		//실제 저장된 파일명
-//		String renamedFileName = multiReq.getFilesystemName("spcImgFile");
-		
+//		0215 getFileSystemName 코멘트 처리
+//		0215 getParmeterValues 으로 배열에 파일 이름들 받아옴
+//		0215 spcImgText 에 "설명" 으로 박아버림
+//		String spcImgTitle_ = multiReq.getFilesystemName("spcImgFile");
+		String [] spcImgTitles = multiReq.getParameterValues("spcImgTitle");
+		String spcImgRoute = "'"+saveDirectory;
+		String spcImgText = "설명";
 		
 		
 		String spcDay = "";
 		
 		if(spcDays != null)
 			spcDay = String.join(",", spcDays);
+		
+		
+		String spcImgTitle = "";
+		if(spcImgTitles != null) {
+			spcImgTitle = String.join(",", spcImgTitles);
+		}
 		
 		Date spcDateStart_ = null;
 		if(!"".equals(spcDateStart))
@@ -202,16 +192,24 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		//spcImg
 		
 		SpacesImg spaceimg = new SpacesImg(spcDtlNo, spcImgTitle, spcImgText,spcImgRoute, spcNo);
-		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText,spcNo, spcCttOldTitle);
+//		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText, spcNo, spcCttOldTitle);
 		
-		System.out.println("타이틀"+spcImgTitle);
-		System.out.println("주소"+spcImgRoute);
-		System.out.println("detno"+spcDtlNo);
-		System.out.println("spcno"+spcNo);
-
 		result += new SpaceService().insertImg(spaceimg);
-		result += new SpaceService().insertCttImg(spaceCttimg);
-
+		
+		String msg = "";
+		String loc = "/";
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		if(result == 4) {
+			msg = "공간 등록 성공!";
+			request.getRequestDispatcher("/WEB-INF/views/space/spaceView.jsp").forward(request, response);
+		} else { 
+			msg = "공간 등록 실패!";
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+		}
+//		result += new SpaceService().insertCttImg(spaceCttimg);
 	}
 
 	/**

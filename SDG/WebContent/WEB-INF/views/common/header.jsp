@@ -40,6 +40,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/galleria.css">
 <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Yeon+Sung&display=swap" rel="stylesheet">
 <style>
 td#logo{
@@ -83,10 +84,18 @@ nav#nav.navbar.navbar-expand-sm.bg-dark.navbar-dark{
 background-color: yellow;
 }
 div.container{
-padding: 0;
-right:30px;
-width: 500px;
-position: absolute;
+position:absolute; 
+
+top: 43px;
+     left:50%;
+    margin-top:-100px; margin-left:-300px; 
+    width:400px; height:200px; 
+}
+.input-group>.form-control{
+font-family: 'Noto Serif KR', serif;
+}
+a.nav-link{
+font-family: 'Noto Serif KR', serif;
 }
 </style>
 <meta charset="UTF-8">
@@ -111,19 +120,14 @@ position: absolute;
 	      </link>
 	      </li>
 		  	
-		    <li class="nav-item">
-		      	<a class="nav-link" href="#">Link</a>
-		    </li>
-		    <li class="nav-item">
-		      	<a class="nav-link" href="#">Link</a>
-		    </li>
+		   
 			<form action="<%=request.getContextPath()%>/space/spaceSrchList" method="GET">
 			    <div class="search">
 			    	<div class="container">
 						<div class="input-group">
-								<input type="text" name="spcSrch" id="spcSrch" class="form-control" placeholder="Search for...">
+								<input type="text" name="spcSrch" id="spcSrch" class="form-control" placeholder="지역 또는 공간유형을 검색해보세요!">
 		     					<span class="input-group-btn">
-		        					<button class="btn btn-search" type="submit"><i class="fa fa-search fa-fw"></i> Search</button>
+		        					<button class="btn btn-search" type="submit"><i class="fa fa-search fa-fw"></i> 찾기</button>
 		      					</span>
 			    		</div>
 			    	</div>
@@ -156,7 +160,11 @@ position: absolute;
 		    </div>
 		    
 		    <%} %>
-		    
+		     <div class="ㄴ">
+			    <li class="nav-item">
+			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/memberView?memberId=<%=memberLoggedIn.getMemId()%>">문의 하기</a>
+			    </li>
+		    </div>
 		    <div class="memberInfo">
 			    <li class="nav-item">
 			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/memberView?memberId=<%=memberLoggedIn.getMemId()%>">내 정보 보기</a>
