@@ -13,7 +13,6 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 import common.MvcFileRenamePolicy;
-import member.model.service.MemberService;
 import space.model.service.SpaceService;
 import space.model.vo.Spaces;
 import space.model.vo.SpacesCttImg;
@@ -129,11 +128,27 @@ public class SpaceRegformEndServlet extends HttpServlet {
 //		0215 getParmeterValues 으로 배열에 파일 이름들 받아옴
 //		0215 spcImgText 에 "설명" 으로 박아버림
 //		String spcImgTitle_ = multiReq.getFilesystemName("spcImgFile");
-		String [] spcImgTitles = multiReq.getParameterValues("spcImgTitle");
+		
+		
+		String [] spcImgTitles2 = multiReq.getParameterValues("spcImgTitle");
+		String [] spcCttTitles2 = multiReq.getParameterValues("spcCttImgTitle");
+		
+		int imgNum = spcImgTitles2.length + spcCttTitles2.length;
+		String[] spcImgSum = new SpaceService().selectImgSum(imgNum);
+		String [] spcImgTitles = new String[spcImgTitles2.length];
+		for(int i = 0; i < spcImgTitles2.length; i++) {
+			spcImgTitles[i] = spcImgSum[imgNum-i-1];
+		}
+		
+		
 		String spcImgRoute = "'"+saveDirectory;
 		String spcImgText = "설명";
-
-		String [] spcCttTitles = multiReq.getParameterValues("spcImgTitle");
+		
+		String [] spcCttTitles = new String[spcCttTitles2.length];
+		for(int i = 0; i < spcCttTitles2.length; i++) {
+			spcCttTitles[i] = spcImgSum[i];
+		}
+		
 		String spcCttOldTitle = "'"+saveDirectory;
 		String spcCttText = "설명";
 		
@@ -199,7 +214,6 @@ public class SpaceRegformEndServlet extends HttpServlet {
 		result += new SpaceService().insertPrice(spaceprice);
 		
 		//spcImg
-		
 		SpacesImg spaceimg = new SpacesImg(spcDtlNo, spcImgTitle, spcImgText,spcImgRoute, spcNo);
 		SpacesCttImg spaceCttimg = new SpacesCttImg(spcDtlNo, spcCttTitle, spcCttText, spcNo, spcCttOldTitle);
 		

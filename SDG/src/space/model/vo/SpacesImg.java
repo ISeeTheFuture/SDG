@@ -11,12 +11,11 @@ public class SpacesImg {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	//spaceRegFormEnd Servlet 에서 사용하는 파라미터 생성자
-	public SpacesImg(int spcDetNo, String spcImgTitle, String spcImgText,String spcImgRoute, int spcNo) {
+	public SpacesImg(int spcDetNo, String spcImgTitle, String spcImgText, String spcImgRoute, int spcNo) {
 		super();
 		this.spcDetNo = spcDetNo;
 		this.spcImgTitle = spcImgTitle;
-		this.spcImgTitle = spcImgText;
+		this.spcImgText = spcImgText;
 		this.spcImgRoute = spcImgRoute;
 		this.spcNo = spcNo;
 	}
@@ -50,6 +49,13 @@ public class SpacesImg {
 	public void setSpcNo(int spcNo) {
 		this.spcNo = spcNo;
 	}
-
+	@Override
+	public String toString() {
+		return "SpacesImg [spcDetNo=" + spcDetNo + ", spcImgTitle=" + spcImgTitle + ", spcImgText=" + spcImgText
+				+ ", spcImgRoute=" + spcImgRoute + ", spcNo=" + spcNo + "]";
+	}
+	
+	
+	
 	
 }

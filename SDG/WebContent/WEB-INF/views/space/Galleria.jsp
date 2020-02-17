@@ -18,10 +18,11 @@
             Galleria.run('.galleria');
         }());
         var imgArr = new Array();
-        var imgTitles = <%=request.getParameter("spcImgs")%>;
-        var imgSplit = imgTitles.split("''");
+        var imgTitles = "<%=request.getParameter("spcImgs")%>";
+        var imgSplit = imgTitles.split(",");
         for(var i in imgSplit){
         	var imgTag = "<img src=<%=request.getContextPath()%>/upload/"+imgSplit[i]+">";
+        	console.log(imgSplit[i]);
         	$("#divGall").append(imgTag);
         }
     </script>

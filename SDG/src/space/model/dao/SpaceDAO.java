@@ -322,7 +322,7 @@ public class SpaceDAO {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("insertImg"); 
-		
+		System.out.println(spaceimg.getSpcImgTitle());
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1,spaceimg.getSpcDetNo());
@@ -429,4 +429,52 @@ public class SpaceDAO {
 		return result;
 	}
 
+	public int insertImgTitle(Connection conn, String newName) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertImgTitle"); 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,newName);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public String[] selectImgSum(Connection conn, int imgNum) {
+		String[] spcImgSum = new String[imgNum];
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("selectImgSum");
+		
+		try {
+			//1.미완성쿼리객체 생성
+			pstmt = conn.prepareStatement(query);
+			//2.미완성쿼리 값대입
+			pstmt.setInt(1,imgNum);
+			rset = pstmt.executeQuery();
+			
+			//3.실행
+			int i = 0;
+			while(rset.next()) {
+				spcImgSum[i] = rset.getString("spc_img_title");
+				i++;
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		return spcImgSum;
+	}
 }

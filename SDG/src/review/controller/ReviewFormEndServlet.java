@@ -44,8 +44,7 @@ public class ReviewFormEndServlet extends HttpServlet {
 		
 		int reviewStar = Integer.parseInt(request.getParameter("reviewStar"));
 		String reviewContent = request.getParameter("reviewContent");
-		String comp = request.getParameter("spc_no"); 
-//				new SpaceService().selectOneComp(memId);
+		String comp = request.getParameter("spc_no");
 		Date reviewDate = null;
 		
 		int a= Integer.parseInt(comp);

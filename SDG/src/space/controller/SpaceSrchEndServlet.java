@@ -63,9 +63,15 @@ public class SpaceSrchEndServlet extends HttpServlet {
 			srchJson.put("spcLocationName", s.getSpcLocationName());
 			srchJson.put("spcPricePrice", s.getSpcPricePrice());
 			String tmp = s.getSpcImgTitle();
-			String[] tmpArr = tmp.split("'");
-			srchJson.put("spcImgTitle", tmpArr[1]);
-
+			System.out.println(tmp);
+			String[] tmpArr = null;
+			if(tmp!=null) {
+				tmpArr = tmp.split(",");
+				srchJson.put("spcImgTitle", tmpArr[0]);
+			}
+			else {
+				srchJson.put("spcImgTitle", null);
+			}
 			jsonArr.add(srchJson);
 		}
 //		System.out.println("확인"+jsonArr.toString());

@@ -2,9 +2,9 @@
 --관리자계정
 --========================
 --semi계정 생성
-create user semi identified by semi
+create user semisdg identified by semisdg
 default tablespace users;
-grant connect, resource to semi;
+grant connect, resource to semisdg;
 --========================
 --semi계정
 --========================
@@ -30,6 +30,7 @@ DROP TABLE spc_opt_lst cascade constraints;
 DROP TABLE spc_opt cascade constraints;
 DROP TABLE spc_loc cascade constraints;
 DROP TABLE spc_ctt_img cascade constraints;
+DROP TABLE spc_img_dual cascade constraints;
 
 --======================================================
 -- 시퀀스 모음
@@ -48,9 +49,15 @@ create SEQUENCE seq_spc_detail_no;
 create SEQUENCE seq_spc_price_no;
 create SEQUENCE seq_memberbusi_report_no;
 
+create SEQUENCE seq_spc_img_dual;
+
 --======================================================
 -- 여기서부터 테이블
 --======================================================
+CREATE TABLE spc_img_dual (
+    spc_no	number		NOT NULL,
+    spc_img_title   varchar2(4000)		NOT NULL
+);
 
 CREATE TABLE membership (
 	mem_id	varchar2(100)		NOT NULL,
@@ -149,7 +156,7 @@ CREATE TABLE spc_res (
 
 CREATE TABLE spc_img (
 	spc_detail_no	number		NOT NULL,
-	spc_img_title	varchar2(100)		NOT NULL,
+	spc_img_title	varchar2(2000)		NOT NULL,
 	spc_img_text	varchar2(4000)		NULL,
 	spc_img_route	varchar2(100)		NOT NULL,
 	spc_no	number		NOT NULL
@@ -247,7 +254,7 @@ CREATE TABLE spc_loc (
 CREATE TABLE spc_ctt_img (
 	spc_detail_no	number		NOT NULL,
 	spc_no	number		NOT NULL,
-	spc_img_title	varchar2(100)		NOT NULL,
+	spc_img_title	varchar2(2000)		NOT NULL,
 	spc_img_text	varchar2(4000)		NULL,
 	spc_img_old	varchar2(100)		NULL
 );
@@ -540,13 +547,13 @@ INSERT INTO SPC_TYPE VALUES(7,'스터디룸');
 INSERT INTO SPC_TYPE VALUES(8,'독립오피스');
 INSERT INTO SPC_TYPE VALUES(9,'코워킹오피스');
 INSERT INTO SPC_TYPE VALUES(10,'일하기좋은카페');
-INSERT INTO spc VALUES(1011,'testid',null, null, null, null, null);
 
 INSERT INTO REVIEW VALUES(3,1,'testid',0,2,null,'WQE','QWE',null,20/02/11,DEFAULT,0,0,0);
 
 INSERT INTO REVIEW_CMNT VALUES(1,'testid',3,0,0,DEFAULT,0,0);
 
 update membership set mem_role = 1 where mem_id='testid';
+update membership set mem_admin  = 1 where mem_id='admin';
 commit;
 
 select * from review;
@@ -568,7 +575,12 @@ select * from spc_loc;
 select * from spc_type;
 select * from spc_img;
 select * from spc_ctt_img;
+select * from spc_img_dual order by spc_no desc;
 select * from spc S join spc_dtl D on S.spc_no=D.spc_no join spc_price P on D.spc_detail_no=P.spc_detail_no join spc_img I on D.spc_detail_no=I.spc_detail_no where spc_name like '%%' and SPC_TYPE_NO is not null and SPC_LOCATION_NO is not null;
+
+
+select * from (select * from spc_img_dual D order by spc_no desc) where rownum <= 4;
+
 
 select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;
 SELECT * FROM SPC_RES R JOIN SPC_RES_GRP G ON R.RES_GROUP_NO = G.RES_GROUP_NO WHERE R.RES_GROUP_NO = 62 ORDER BY RES_TIME;

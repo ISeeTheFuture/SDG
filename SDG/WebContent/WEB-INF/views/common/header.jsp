@@ -39,98 +39,66 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/custom.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/galleria.css">
-<link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Yeon+Sung&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>초특가 송대관</title>
 </head>
 <body>
-	<nav id="nav" class="navbar navbar-expand-sm bg-dark navbar-dark">	
-		 <ul class="navbar-nav">
-		   <li class="nav-item">
-		    	<a class="nav-link" href="<%=request.getContextPath()%>">
-	            	<table>
-	       				<tr>
-				            <td id="song">송</td>
-				            <td id="logo"><p id="cho">초!특가</p><p>대관</p></td>
-	       				</tr>
-	    			</table>
-		      	</a>
-	      	</li>
-		    <li class="nav-item">
-		      	<a class="nav-link" href="#">Link</a>
-		    </li>
-		    <li class="nav-item">
-		      	<a class="nav-link" href="#">Link</a>
-		    </li>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a href="<%=request.getContextPath() %>/"><img style="height:37px;"src="<%=request.getContextPath() %>/images/logo.png" alt="" /></a>
+			</li>
+	    	<li class="nav-item">
 			<form action="<%=request.getContextPath()%>/space/spaceSrchList" method="GET">
 			    <div class="search">
 			    	<div class="container">
 						<div class="input-group">
-								<input type="text" name="spcSrch" id="spcSrch" class="form-control" placeholder="지역 또는 공간유형을 검색해보세요!">
-		     					<span class="input-group-btn">
-		        					<button class="btn btn-search" type="submit"><i class="fa fa-search fa-fw"></i> 찾기</button>
-		      					</span>
+							<input type="text" name="spcSrch" id="spcSrch" class="form-control" placeholder="Search for...">
+	     					<span class="input-group-btn">
+	        					<button class="btn btn-search" type="submit"><i class="fa fa-search fa-fw"></i> Search</button>
+	      					</span>
 			    		</div>
 			    	</div>
 			    </div>
       		</form>
 		    
 		    <% if(memberLoggedIn == null){ %>
-		    <div class="signIn">
-			    <li class="nav-item">
-			      	<a class="nav-link" href="#myModal" data-toggle="modal">로그인</a>
-			    </li>
-		    </div>
-		    <div class="signUp">
-			    <li class="nav-item">
-			      	<a class="nav-link" href="<%=request.getContextPath() %>/member/memberEnroll">회원가입</a>
-			    </li>
-		    </div>
-		    
-		    <div class="eMail">
-			    <li class="nav-item">
-			      	<a class="nav-link" href="<%=request.getContextPath() %>/email/Email">문의하기</a>
-			    </li>
-		    </div>		    
+		    <li class="nav-item">
+		      	<a class="nav-link" href="#myModal" data-toggle="modal">로그인</a>
+		    </li>
+		    <li class="nav-item">
+		      	<a class="nav-link" href="<%=request.getContextPath() %>/member/memberEnroll">회원가입</a>
+		    </li>
+		    <li class="nav-item">
+		      	<a class="nav-link" href="<%=request.getContextPath() %>/email/Email">문의하기</a>
+		    </li>
 		    <%}else if(memberLoggedIn != null){ %>
-		    
-    		<%
-    		if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemRole()))) {
-    		%>
-		    
-		    
-		    <div class="spaceReg">
-			    <li class="nav-item">
-			      	<a class="nav-link" href="<%=request.getContextPath() %>/space/spaceTypeReg?memberId=<%=memberLoggedIn.getMemId()%>">공간 등록</a>
-			    </li>
-		    </div>
-		    
-		    		<%} %>
-		    
-
-		    <div class="memberInfo">
-			    <li class="nav-item">
-			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/memberView?memberId=<%=memberLoggedIn.getMemId()%>">내 정보 보기</a>
-			    </li>
-		    </div>
-		    
-		    <div class="eMail">
-			    <li class="nav-item">
-			      	<a class="nav-link" href="<%=request.getContextPath() %>/email/Email">문의하기</a>
-			    </li>
-		    </div>			    
-		    
-		    <div class="signOut">
-			    <li class="nav-item">
-			      	<a class="nav-link" href="<%=request.getContextPath()%>/member/logout">로그 아웃</a>
-			    </li>
-		    </div>
+		    <li class="nav-item">
+		      	<a class="nav-link" href="<%=request.getContextPath() %>/space/spaceTypeReg?memberId=<%=memberLoggedIn.getMemId()%>">공간 등록</a>
+		    </li>
+		    <li class="nav-item">
+		      	<a class="nav-link" href="<%=request.getContextPath() %>/email/Email">문의하기</a>
+		    </li>
+	    	<li class="nav-item">
+	    		<a class="nav-link" href="<%=request.getContextPath()%>/res/resMe">내 예약</a>
+	    	</li>
+		    <li class="nav-item">
+		      	<a class="nav-link" href="<%=request.getContextPath()%>/member/memberView?memberId=<%=memberLoggedIn.getMemId()%>">내 정보 보기</a>
+		    </li>
+		    <li class="nav-item">
+		      	<a class="nav-link" href="<%=request.getContextPath()%>/member/logout">로그 아웃</a>
+		    </li>
 		    <%} %>
-		    
+			<%
+				if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
+				%>
+			<li class="nav-item">
+				<a class="nav-link" href="<%=request.getContextPath()%>/member/kimwonjae">관리자용 페이지</a>
+			</li>
+			<%
+			}
+			%>
 		</ul>
-		
 	</nav>
 
 	<div id="myModal" class="modal fade">

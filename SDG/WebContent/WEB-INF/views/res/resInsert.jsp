@@ -1,103 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.2.min.js" type="application/javascript"></script>
 	
-	<form action="<%=request.getContextPath()%>/res/resForm" method="post">		
-		<input type="hidden" id="resGroupNo" name="resGroupNo" value="1" readonly/>
-		<input type="hidden" id="spcNo" name="spcNo" value="<%=request.getAttribute("spcNo")%>" readonly/>
-		<label for="memberId">아이디</label>
-		<input type="text" id="memberId" name="memberId" value="<%=request.getAttribute("memberId")%>" readonly/>
-		<br />
-		<label for="resMany">인원</label>
-		<input type="number" id="resMany" name="resMany" value="<%=request.getAttribute("resMany")%>" min="<%=request.getAttribute("spcManMin")%>" max="<%=request.getAttribute("spcManMax")%>"/>
-		<br />
-		<label for="resName">신청자명</label>
-		<input type="text" id="resName" name="resName" value="<%=memberLoggedIn.getMemName()%>"/>
-		<br />
-		<label for="resPhone">연락처</label>
-		<input type="text" id="resPhone" name="resPhone" value="<%=memberLoggedIn.getMemPhone()%>"/>
-		<br />
-		<label for="resEmail">이메일</label>
-		<input type="text" id="resEmail" name="resEmail" value="<%=memberLoggedIn.getMemEmail()%>"/>
-		<br />
-		<label for="resAddr">주소</label>
-		<input type="text" id="resAddr" name="resAddr" value="<%=memberLoggedIn.getMemAddr()%>"/>
-		<br />
-		<label for="resStartDate">시작날짜</label>
-		<input type="date" id="resStartDate" name="resStartDate" value="<%=request.getAttribute("resStartDate")%>"/>
-		<label for="resStartTime">시작시간</label>
-		<select name="resStartTime" id="resStartTime">
-			<option value="00">00시</option>
-			<option value="01">01시</option>
-			<option value="02">02시</option>
-			<option value="03">03시</option>
-			<option value="04">04시</option>
-			<option value="05">05시</option>
-			<option value="06">06시</option>
-			<option value="07">07시</option>
-			<option value="08">08시</option>
-			<option value="09">09시</option>
-			<option value="10">10시</option>
-			<option value="11">11시</option>
-			<option value="12">12시</option>
-			<option value="13">13시</option>
-			<option value="14">14시</option>
-			<option value="15">15시</option>
-			<option value="16">16시</option>
-			<option value="17">17시</option>
-			<option value="18">18시</option>
-			<option value="19">19시</option>
-			<option value="20">20시</option>
-			<option value="21">21시</option>
-			<option value="22">22시</option>
-			<option value="23">23시</option>
-		</select>
-		<br />
-		<label for="resEndDate">종료시간</label>
-		<input type="date" id="resEndDate" name="resEndDate" value="<%=request.getAttribute("resEndDate")%>"/>
-		<label for="resEndTime">종료시간</label>
-		<select name="resEndTime" id="resEndTime">
-			<option value="00">00시</option>
-			<option value="01">01시</option>
-			<option value="02">02시</option>
-			<option value="03">03시</option>
-			<option value="04">04시</option>
-			<option value="05">05시</option>
-			<option value="06">06시</option>
-			<option value="07">07시</option>
-			<option value="08">08시</option>
-			<option value="09">09시</option>
-			<option value="10">10시</option>
-			<option value="11">11시</option>
-			<option value="12">12시</option>
-			<option value="13">13시</option>
-			<option value="14">14시</option>
-			<option value="15">15시</option>
-			<option value="16">16시</option>
-			<option value="17">17시</option>
-			<option value="18">18시</option>
-			<option value="19">19시</option>
-			<option value="20">20시</option>
-			<option value="21">21시</option>
-			<option value="22">22시</option>
-			<option value="23">23시</option>
-		</select>
-		<br />
-		<label for="resContent">요청사항</label>
-		<textarea name="resContent" id="resContent" cols="30" rows="10" ><%=request.getAttribute("resContent")%></textarea>
-		<br />
-
+	<div class="container">
+		<br>
+		<h1>결제하기</h>
 		<hr />
-		<div>
-			<h4>단가 : <%=request.getAttribute("spcPrice")%>/시간(인)</h4>
-			<h3 id="finalPrice">결제 예정 금액 : 총 원</h3>
-		</div>
-		<hr />
-		<input type="button" id="payReq" value="결제하기" onclick="return BootPay.request();"/>
-	</form>
+	</div>
 
+	
+	
+	<div class="card bg-light">
+		<article class="card-body mx-auto" style="max-width: 400px;">
+			<form action="<%=request.getContextPath()%>/res/resForm" method="post" class="card-body mx-auto">		
+				<input type="hidden" id="resGroupNo" name="resGroupNo" value="1" readonly/>
+				<input type="hidden" id="spcNo" name="spcNo" value="<%=request.getAttribute("spcNo")%>" readonly/>
+				<label for="memberId" class="control-label">아이디</label>
+				<input type="text" id="memberId" name="memberId" value="<%=request.getAttribute("memberId")%>" class="form-control" readonly/>
+				<label for="resMany" class="control-label">인원</label>
+				<input type="number" class="form-control" id="resMany" name="resMany" value="<%=request.getAttribute("resMany")%>" min="<%=request.getAttribute("spcManMin")%>" max="<%=request.getAttribute("spcManMax")%>"/>
+				<label for="resName" class="control-label">신청자명</label>
+				<input type="text" class="form-control" id="resName" name="resName" value="<%=memberLoggedIn.getMemName()%>"/>
+				<label for="resPhone" class="control-label">연락처</label>
+				<input type="text" class="form-control" id="resPhone" name="resPhone" value="<%=memberLoggedIn.getMemPhone()%>"/>
+				<label for="resEmail" class="control-label">이메일</label>
+				<input type="text" class="form-control" id="resEmail" name="resEmail" value="<%=memberLoggedIn.getMemEmail()%>"/>
+				<label for="resAddr" class="control-label">주소</label>
+				<input type="text" class="form-control" id="resAddr" name="resAddr" value="<%=memberLoggedIn.getMemAddr()%>"/>
+				<label for="resStartDate" class="control-label">시작날짜</label>
+				<input type="date" class="form-control" id="resStartDate" name="resStartDate" value="<%=request.getAttribute("resStartDate")%>"/>
+				<label for="resStartTime" class="control-label">시작시간</label>
+				<select class="form-control" name="resStartTime" id="resStartTime">
+					<option value="00">00시</option>
+					<option value="01">01시</option>
+					<option value="02">02시</option>
+					<option value="03">03시</option>
+					<option value="04">04시</option>
+					<option value="05">05시</option>
+					<option value="06">06시</option>
+					<option value="07">07시</option>
+					<option value="08">08시</option>
+					<option value="09">09시</option>
+					<option value="10">10시</option>
+					<option value="11">11시</option>
+					<option value="12">12시</option>
+					<option value="13">13시</option>
+					<option value="14">14시</option>
+					<option value="15">15시</option>
+					<option value="16">16시</option>
+					<option value="17">17시</option>
+					<option value="18">18시</option>
+					<option value="19">19시</option>
+					<option value="20">20시</option>
+					<option value="21">21시</option>
+					<option value="22">22시</option>
+					<option value="23">23시</option>
+				</select>
+				<label for="resEndDate" class="control-label">종료시간</label>
+				<input class="form-control" type="date" id="resEndDate" name="resEndDate" value="<%=request.getAttribute("resEndDate")%>"/>
+				<label for="resEndTime" class="control-label">종료시간</label>
+				<select class="form-control" name="resEndTime" id="resEndTime">
+					<option value="00">00시</option>
+					<option value="01">01시</option>
+					<option value="02">02시</option>
+					<option value="03">03시</option>
+					<option value="04">04시</option>
+					<option value="05">05시</option>
+					<option value="06">06시</option>
+					<option value="07">07시</option>
+					<option value="08">08시</option>
+					<option value="09">09시</option>
+					<option value="10">10시</option>
+					<option value="11">11시</option>
+					<option value="12">12시</option>
+					<option value="13">13시</option>
+					<option value="14">14시</option>
+					<option value="15">15시</option>
+					<option value="16">16시</option>
+					<option value="17">17시</option>
+					<option value="18">18시</option>
+					<option value="19">19시</option>
+					<option value="20">20시</option>
+					<option value="21">21시</option>
+					<option value="22">22시</option>
+					<option value="23">23시</option>
+				</select>
+				<label for="resContent" class="control-label">요청사항</label>
+				<textarea class="form-control" name="resContent" id="resContent" cols="30" rows="10" ><%=request.getAttribute("resContent")%></textarea>
+		
+				<hr />
+				<div>
+					<h4>단가 : <%=request.getAttribute("spcPrice")%>/시간(인)</h4>
+					<div id="finalPrice">
+					
+					</div>
+				</div>
+				<hr />
+				<input type="button" id="payReq" value="결제하기" class="btn btn-secondary btn-lg" onclick="return BootPay.request();"/>
+			</form>
+		</article>
+	</div>
 
 <script>
 $("#resStartTime").val("<%=request.getAttribute("resStartTime")%>").attr("selected", "selected");
@@ -109,6 +113,53 @@ var endDate = new Date($("#resEndDate").val());
 var endTime = endDate.setHours(endDate.getHours()+$("#resEndTime").val());
 var diffTime = (endTime-startTime)/(60*60*1000);
 var finalPrice = diffTime * $("#resMany").val() * <%=request.getAttribute("spcPrice")%>;
+
+$("#finalPrice").html("<h3>총 결제금액"+finalPrice+"원</h3>");
+$("#resMany").change(function(){
+	startDate = new Date($("#resStartDate").val());
+	startTime = startDate.setHours(startDate.getHours()+$("#resStartTime").val());
+	endTime = endDate.setHours(endDate.getHours()+$("#resEndTime").val());
+	endDate = new Date($("#resEndDate").val());
+	diffTime = (endTime-startTime)/(60*60*1000);
+	finalPrice = diffTime * $("#resMany").val() * <%=request.getAttribute("spcPrice")%>;
+	$("#finalPrice").html("<h3>총 결제금액"+finalPrice+"원</h3>");
+});
+$("#resStartDate").change(function(){
+	startDate = new Date($("#resStartDate").val());
+	startTime = startDate.setHours(startDate.getHours()+$("#resStartTime").val());
+	endTime = endDate.setHours(endDate.getHours()+$("#resEndTime").val());
+	endDate = new Date($("#resEndDate").val());
+	diffTime = (endTime-startTime)/(60*60*1000);
+	finalPrice = diffTime * $("#resMany").val() * <%=request.getAttribute("spcPrice")%>;
+	$("#finalPrice").html("<h3>총 결제금액"+finalPrice+"원</h3>");
+});
+$("#resStartTime").change(function(){
+	startDate = new Date($("#resStartDate").val());
+	startTime = startDate.setHours(startDate.getHours()+$("#resStartTime").val());
+	endTime = endDate.setHours(endDate.getHours()+$("#resEndTime").val());
+	endDate = new Date($("#resEndDate").val());
+	diffTime = (endTime-startTime)/(60*60*1000);
+	finalPrice = diffTime * $("#resMany").val() * <%=request.getAttribute("spcPrice")%>;
+	$("#finalPrice").html("<h3>총 결제금액"+finalPrice+"원</h3>");
+});
+$("#resEndDate").change(function(){
+	startDate = new Date($("#resStartDate").val());
+	startTime = startDate.setHours(startDate.getHours()+$("#resStartTime").val());
+	endTime = endDate.setHours(endDate.getHours()+$("#resEndTime").val());
+	endDate = new Date($("#resEndDate").val());
+	diffTime = (endTime-startTime)/(60*60*1000);
+	finalPrice = diffTime * $("#resMany").val() * <%=request.getAttribute("spcPrice")%>;
+	$("#finalPrice").html("<h3>총 결제금액"+finalPrice+"원</h3>");
+});
+$("#resEndTime").change(function(){
+	startDate = new Date($("#resStartDate").val());
+	startTime = startDate.setHours(startDate.getHours()+$("#resStartTime").val());
+	endTime = endDate.setHours(endDate.getHours()+$("#resEndTime").val());
+	endDate = new Date($("#resEndDate").val());
+	diffTime = (endTime-startTime)/(60*60*1000);
+	finalPrice = diffTime * $("#resMany").val() * <%=request.getAttribute("spcPrice")%>;
+	$("#finalPrice").html("<h3>총 결제금액"+finalPrice+"원</h3>");
+});
 
 $("#payReq").click(function(){
 	if($("#resMany").val() < <%=request.getAttribute("spcManMin")%>){
@@ -204,3 +255,4 @@ $("#payReq").click(function(){
 
 
 </script>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>

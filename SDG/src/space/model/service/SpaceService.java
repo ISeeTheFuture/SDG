@@ -171,4 +171,24 @@ public class SpaceService {
 		return result;
 	}
 
+	public int insertImgTitle(String newName) {
+		Connection conn = getConnection();
+		int result = new SpaceDAO().insertImgTitle(conn, newName);
+
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public String[] selectImgSum(int imgNum) {
+		Connection conn = getConnection();
+		String[] spcImgSum = new SpaceDAO().selectImgSum(conn, imgNum);
+		close(conn);
+		return spcImgSum;
+	}
+	
 }

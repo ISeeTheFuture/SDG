@@ -124,7 +124,19 @@
 	        for (var i = 0; i < files.length; i++) {
 	            
 	            file = files[i];
-				$("form>div:first-child").append("<input type='hidden' name='spcImgTitle' value='"+file.name+"'/>" );
+				$("#divDiv").append("<input type='hidden' name='spcImgTitle' value='"+file.name+"'/>");
+	     	}
+		 });
+		 $("#spcCttImgFile").change(function () {
+			var fileInput = document.getElementById("spcCttImgFile");
+	        
+	        var files = fileInput.files;
+	        var file;
+	        
+	        for (var i = 0; i < files.length; i++) {
+	            
+	            file = files[i];
+				$("#divDiv").append("<input type='hidden' name='spcCttImgTitle' value='"+file.name+"'/>");
 	     	}
 		 });
 	});
@@ -210,7 +222,7 @@ p.text-center {
 
 				method="POST" enctype="multipart/form-data" class="card-body mx-auto">
 				<input type="hidden" name="cat" value="<%=cat %>" /> <input
-					type="hidden" name="memberId" value="<%=memberId %>" /> <input
+					type="hidden" name="memberId" value="<%=memberLoggedIn.getMemId()%>" /> <input
 					type="hidden" name="spcDay" value="mon"> <input
 					type="hidden" name="spcDay" value="tue"> <input
 					type="hidden" name="spcDay" value="wed"> <input
@@ -236,11 +248,10 @@ p.text-center {
 					type="hidden" name="spcPriceDay" value="sat" /> <input
 					type="hidden" name="spcPriceDay" value="sun" /> <input
 					type="hidden" name="spcPricePer" value="1">
-=======
-				method="POST" enctype="multipart/form-data">
-				<div>
+
+				<div id="divDiv">
 					<input type="hidden" name="cat" value="<%=cat %>" /> 
-					<input type="hidden" name="memberId" value="<%=memberId %>" /> 
+					<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemId()%>" /> 
 					<input type="hidden" name="spcDay" value="mon"> 
 					<input type="hidden" name="spcDay" value="tue"> 
 					<input type="hidden" name="spcDay" value="wed"> 
@@ -263,7 +274,6 @@ p.text-center {
 					<input type="hidden" name="spcPriceDay" value="sun" /> 
 					<input type="hidden" name="spcPricePer" value="1">
 				</div>
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 
 				<div id="preview"></div>
 				<div class="form-group input-group">
@@ -328,7 +338,15 @@ p.text-center {
 					<textarea name="spcContent" id="spcContent" class="form-control" /></textarea>
 				</div>
 				<!-- form-group// -->
-
+				
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
+						<br /> <br /> <span class="input-group-text">소개용 자료 첨부</span> <br />
+						<input type="file" name="spcCttImgFile" id="spcCttImgFile"
+							accept=".jpg, .png" class="spcCttImgFile" multiple />
+					</div>
+				</div>
+				<!-- form-group// -->
 
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
@@ -445,38 +463,7 @@ p.text-center {
 	</div>
 </body>
 <script>
-<<<<<<< HEAD
 
-$(document).ready(
-	    function() {
-	        // 태그에 onchange를 부여한다.
-	        $('.spcImgFile').change(function() {
-	                addPreview($(this)); //preview form 추가하기
-	        });
-	    });
-	    // image preview 기능 구현
-	    // input = file object[]
-	    function addPreview(input) {
-	        if (input[0].files) {
-	            //파일 선택이 여러개였을 시의 대응
-	            for (var fileIndex = 0 ; fileIndex < input[0].files.length ; fileIndex++) {
-	                var file = input[0].files[fileIndex];
-	                var reader = new FileReader();
-	                reader.onload = function (img) {
-	                    //div id="preview" 내에 동적코드추가.
-	                    //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
-	                    $("#preview").append(
-	                        "<img src=\"" + img.target.result + "\"\"/>"
-	                    );
-	                    $("#preview").css("display","block");
-	                };
-	                reader.readAsDataURL(file);
-	            }
-	        } else alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
-	    }
-
-=======
->>>>>>> branch 'master' of https://github.com/ISeeTheFuture/SDG.git
 	$(document).ready(function() {
 		// 태그에 onchange를 부여한다.
 		$('#spcImgFile').change(function() {
