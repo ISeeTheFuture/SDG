@@ -84,29 +84,21 @@
 				dataType: "json",
 				success: function(data) {
 					
- 					var SrchResult = "<div class='row'><div class='row'>";
+ 					var srchResult = "<div class='row'><div class='row'>";
  					
  					$.each(data, function(idx, d){ // 배열 요소당 한번씩 콜백함수를 호출
  						var tmp = "<%=request.getContextPath()%>/upload/"+d.spcImgTitle;
  						var act = "<%=request.getContextPath()%>/space/spaceView";
- 						SrchResult += "<div class='srchContent col-lg-4 col-md-6 mb-4' name='srchContent"+d.spcDetNo+"'><form method='post' action="+act+" id='srchContent"+d.spcDetNo+"'><div class='card h-100'><img class='card-img-top' src="+tmp+" alt='' width='700px' height='300px'>";
- 						SrchResult += "<div class='card-body'><h4 class='card-title'>"+d.spcName+"</h4>";
- 						SrchResult += "<h5>"+d.spcPricePrice+"원/시간(인)</h5>";
- 						SrchResult += "<p class='card-text'>"+d.spcLocationName+"/"+d.spcTypeName+"</p></div>";
- 						SrchResult += "<div class='card-footer'><small class='text-muted'>&#9733; &#9733; &#9733; &#9733; &#9734;</small>";
- 						SrchResult += "<input type='hidden' name='spcNo' class='spcNo' value="+d.spcNo+">";
-						SrchResult += "<input type='hidden' name='spcDetNo' class='spcDetNo' value="+d.spcDetNo+"></form></div></div></div>";
-/* 						SrchResult += "<div width='400px' height='260px' name='srchContent"+d.spcDetNo+"' class='srchContent'><form method='post' action="+act+" id='srchContent"+d.spcDetNo+"'><img src="+tmp+" alt='' srcset='' width='400px' height='230px'>";
- 						SrchResult += "<h1>"+d.spcName+"</h1>";
-						SrchResult += "<h3>"+d.spcPricePrice+"</h3>";
-						SrchResult += "<h4>"+d.spcLocationName+"/"+d.spcTypeName+"</h4>";
-						SrchResult += "<input type='hidden' name='spcNo' class='spcNo' value="+d.spcNo+">";
-						SrchResult += "<input type='hidden' name='spcDetNo' class='spcDetNo' value="+d.spcDetNo+"></form></div>"; */
-						
-						
+ 						srchResult += "<div class='srchContent col-lg-4 col-md-6 mb-4' name='srchContent"+d.spcDetNo+"'><form method='post' action="+act+" id='srchContent"+d.spcDetNo+"'><div class='card h-100'><img class='card-img-top' src="+tmp+" alt='' width='700px' height='300px'>";
+ 						srchResult += "<div class='card-body'><h4 class='card-title'>"+d.spcName+"</h4>";
+ 						srchResult += "<h5>"+d.spcPricePrice+"원/시간(인)</h5>";
+ 						srchResult += "<p class='card-text'>"+d.spcLocationName+"/"+d.spcTypeName+"</p></div>";
+ 						srchResult += "<div class='card-footer'><small class='text-muted'>&#9733; &#9733; &#9733; &#9733; &#9734;</small>";
+ 						srchResult += "<input type='hidden' name='spcNo' class='spcNo' value="+d.spcNo+">";
+						srchResult += "<input type='hidden' name='spcDetNo' class='spcDetNo' value="+d.spcDetNo+"></form></div></div></div>";	
 					});
- 					SrchResult += "</div></div>"
-					$("#SrchResultList").html(SrchResult);
+ 					srchResult += "</div></div>";
+					$("#SrchResultList").html(srchResult);
 				},
 				error: (x,s,e) => {
 					//x : xhr

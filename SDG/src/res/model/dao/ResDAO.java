@@ -17,6 +17,7 @@ import java.util.Properties;
 
 import res.model.vo.Res;
 import res.model.vo.ResGrp;
+import res.model.vo.ResMeView;
 import res.model.vo.ResView;
 
 public class ResDAO {
@@ -252,7 +253,7 @@ public class ResDAO {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("list@ResDAO : "+list.toString());
+//		System.out.println("list@ResDAO : "+list.toString());
 		return list;
 	}
 
@@ -404,6 +405,80 @@ public class ResDAO {
 		}
 		
 		return res;
+	}
+
+	public List<ResMeView> selectResMeView(Connection conn, String memId) {
+		List<ResMeView> list = new ArrayList<>();
+		List<ResMeView> listTmp = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectResMeView");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memId);
+			rset = pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				ResMeView rvTmp = new ResMeView();
+				rvTmp.setResGroupNo(rset.getInt("res_group_no"));
+				rvTmp.setMemId(rset.getString("mem_id"));
+				rvTmp.setResMany(rset.getInt("res_many"));
+				rvTmp.setResName(rset.getString("res_name"));
+				rvTmp.setResNo(rset.getInt("res_no"));
+				rvTmp.setResCancle(rset.getInt("res_cancle"));
+
+				Timestamp resTimeStart = rset.getTimestamp("res_time");
+				rvTmp.setResTimeStart(resTimeStart);
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeInMillis(resTimeStart.getTime());
+				cal.add(Calendar.SECOND, 3600);
+				
+				Timestamp resTimeEnd = new Timestamp(cal.getTime().getTime()); 
+				rvTmp.setResTimeEnd(resTimeEnd);
+				
+				rvTmp.setSpcPrice(rset.getInt("spc_price_price"));
+				rvTmp.setSpcName(rset.getString("spc_name"));
+				
+				String tmpImgs = rset.getString("spc_img_title");
+				String[] tmpImg = tmpImgs.split("'");
+				rvTmp.setSpcImgTitle(tmpImg[1]);
+				
+				rvTmp.setSpcNo(rset.getInt("spc_no"));
+				rvTmp.setSpcDtlNo(rset.getInt("spc_detail_no"));
+				
+				listTmp.add(rvTmp);
+				
+			}
+			int idx = 0;
+			
+			for(int i = 0; i < listTmp.size(); i++) {
+				if(i == 0) {
+					list.add(listTmp.get(i));
+				}
+				else if(list.get(idx).getResGroupNo()==listTmp.get(i).getResGroupNo()) {
+					ResMeView tmp = new ResMeView();
+					tmp = list.get(idx);
+					tmp.setResTimeEnd(listTmp.get(i).getResTimeEnd());
+					list.set(idx, tmp);
+				}
+				else {
+					list.add(listTmp.get(i));
+					idx++;
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("resMeViewlist@ResDAO : "+list.toString());
+		return list;
 	}
 		
 

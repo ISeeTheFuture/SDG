@@ -7,6 +7,7 @@ import java.util.List;
 import res.model.dao.ResDAO;
 import res.model.vo.Res;
 import res.model.vo.ResGrp;
+import res.model.vo.ResMeView;
 import res.model.vo.ResView;
 
 public class ResService {
@@ -96,6 +97,15 @@ public class ResService {
 		
 		
 		return res;
+	}
+
+
+	public List<ResMeView> selectResMeView(String memId) {
+		Connection conn = getConnection();
+		List<ResMeView> result = new ResDAO().selectResMeView(conn, memId);
+		
+		close(conn);
+		return result;
 	}
 
 }

@@ -170,7 +170,7 @@ var calendar = $('#calendar').fullCalendar({
       dataType: "json",
 //      url: "../data.json",
       data: {
-        memberId : editTitle.val()
+        memberId : $("#edit-title").val()
       },
       success: function (response) {
         var fixedDate = response.map(function (array) {

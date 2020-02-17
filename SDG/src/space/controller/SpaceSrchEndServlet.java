@@ -2,9 +2,7 @@ package space.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.sql.Array;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import space.model.service.SpaceService;
 import space.model.service.SrchService;
 import space.model.vo.SpacesSrch;
 
@@ -66,7 +63,8 @@ public class SpaceSrchEndServlet extends HttpServlet {
 			srchJson.put("spcLocationName", s.getSpcLocationName());
 			srchJson.put("spcPricePrice", s.getSpcPricePrice());
 			String tmp = s.getSpcImgTitle();
-			srchJson.put("spcImgTitle", tmp.substring(1, tmp.length()-1));
+			String[] tmpArr = tmp.split("'");
+			srchJson.put("spcImgTitle", tmpArr[1]);
 
 			jsonArr.add(srchJson);
 		}

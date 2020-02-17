@@ -45,7 +45,10 @@ var editEvent = function (event, element, view) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
-        
+        if (new Date(editStart.val()) < new Date()) {
+            alert('이미 지난 예약을 변경할 수 없습니다.');
+            return false;
+        }
         
         if(new Date(editStart.val()).getMinutes() !== 0 || new Date(editEnd.val()).getMinutes() !== 0 || editStart.val() == editEnd.val()){
         	alert('예약은 1시간 단위만 가능합니다.');
@@ -61,6 +64,7 @@ var editEvent = function (event, element, view) {
             alert('일정명은 필수입니다.')
             return false;
         }
+        
 
         var statusAllDay;
         var startDate;
