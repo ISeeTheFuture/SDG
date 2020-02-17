@@ -572,3 +572,5 @@ select * from spc S join spc_dtl D on S.spc_no=D.spc_no join spc_price P on D.sp
 
 select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no ORDER BY res_no;
 SELECT * FROM SPC_RES R JOIN SPC_RES_GRP G ON R.RES_GROUP_NO = G.RES_GROUP_NO WHERE R.RES_GROUP_NO = 62 ORDER BY RES_TIME;
+
+select * from spc_res R join spc_res_grp G on R.res_group_no = G.res_group_no join spc S on R.spc_no = S.spc_no join spc_dtl D on R.spc_no = D.spc_no join spc_price P on D.spc_detail_no = P.spc_detail_no join spc_img I on D.spc_detail_no = I.spc_detail_no where R.mem_id = 'testid' ORDER BY res_no;
