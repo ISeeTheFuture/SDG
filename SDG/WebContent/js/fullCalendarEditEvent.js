@@ -94,8 +94,6 @@ var editEvent = function (event, element, view) {
         event.description = editDesc.val();
 
         $("#calendar").fullCalendar('updateEvent', event);
-
-//        console.log(event.end);
         //일정 업데이트
         $.ajax({
             type: "post",
@@ -110,16 +108,15 @@ var editEvent = function (event, element, view) {
                 resDesc: event.description
             },
             success: function (response) {
-                alert('수정되었습니다.');
             }
         });
-
+        window.location.reload();
     });
 
     // 삭제버튼
     $('#deleteEvent').on('click', function () {
         $('#deleteEvent').unbind();
-        $("#calendar").fullCalendar('removeEvents', [event._id]);
+        $("#calendar").fullCalendar('removeEvents', event._id);
         eventModal.modal('hide');
 
         //삭제시
@@ -130,7 +127,6 @@ var editEvent = function (event, element, view) {
                 resGroupNo: event._id
             },
             success: function (response) {
-                alert('삭제되었습니다.');
             }
         });
     });

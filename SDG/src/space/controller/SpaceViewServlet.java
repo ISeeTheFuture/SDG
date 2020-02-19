@@ -58,8 +58,7 @@ public class SpaceViewServlet extends HttpServlet {
 		request.setAttribute("spcManMax", spcDtl.getSpcCapMax());
 		request.setAttribute("spcPrice", spcPrice.getSpcPricePrice());
 		request.setAttribute("spcImgs", spcImg.getSpcImgTitle());
-		request.setAttribute("spcCttImgs", spcCttImg==null?"":spcCttImg.getSpcCttImgTitle());
-		
+		request.setAttribute("spcCttImgs", spcCttImg.getSpcCttImgTitle());
 		
 		
 		request.getRequestDispatcher("/WEB-INF/views/space/spaceView.jsp").forward(request, response);

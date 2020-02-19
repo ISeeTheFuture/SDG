@@ -82,7 +82,7 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		if(result > 0)
 			msg = "회원가입 성공!";
 		else 
-			msg = "회원가입 실패!";
+			msg = "회원가입 실패! 아이디 중복값을 확인하세요!";
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

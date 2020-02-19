@@ -2,7 +2,7 @@
 <%@page import="member.model.vo.Member"%>
 <%@page import="java.util.*"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
@@ -235,9 +235,10 @@ function updatePassword(){
 					<input class="btn btn-primary btn-block" onclick="updatePassword();" value="비밀번호 변경">
 				</div>
 
-				<div class="form-group">
+			<%-- 	<div class="form-group">
 					<input class="btn btn-primary btn-block" onclick="location.href='<%=request.getContextPath()%>/member/deleteMember?memberid=<%=member.getMemId()%>'" value="회원탈퇴" >
-				</div>
+				</div> --%>
+
 
 
 <%-- 				<div class="form-group">
@@ -251,6 +252,7 @@ function updatePassword(){
 				</form>
 			</article>
 		</div>
+		<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
 		  
 <%-- 		  
 		   membership의 role값이 1 (트루)인경우 사업자 정보 입력 페이지로 이동 가능하도록 함.

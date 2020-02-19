@@ -48,7 +48,7 @@ public class ResDeleteEndServlet extends HttpServlet {
 		if(resultResDelete>0) System.out.println("예약 삭제 성공");
 		
 
-
+		
 	}
 
 	/**

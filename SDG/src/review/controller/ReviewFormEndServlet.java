@@ -44,7 +44,7 @@ public class ReviewFormEndServlet extends HttpServlet {
 		
 		int reviewStar = Integer.parseInt(request.getParameter("reviewStar"));
 		String reviewContent = request.getParameter("reviewContent");
-		String comp = request.getParameter("spc_no");
+		String comp = request.getParameter("spcNo");
 		Date reviewDate = null;
 		
 		int a= Integer.parseInt(comp);
@@ -55,7 +55,7 @@ public class ReviewFormEndServlet extends HttpServlet {
 		//3.뷰단 처리
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
-		String loc = "/review/reviewList";
+		String loc = "/review/reviewList?spcNo="+comp;
 		
 		if(result > 0)
 			msg = "게시물 등록 성공!";

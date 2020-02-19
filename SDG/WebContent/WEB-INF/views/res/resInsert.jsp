@@ -14,7 +14,7 @@
 	
 	<div class="card bg-light">
 		<article class="card-body mx-auto" style="max-width: 400px;">
-			<form action="<%=request.getContextPath()%>/res/resForm" method="post" class="card-body mx-auto">		
+			<form action="<%=request.getContextPath()%>/res/resForm" method="post" class="card-body mx-auto" id="payCheck">		
 				<input type="hidden" id="resGroupNo" name="resGroupNo" value="1" readonly/>
 				<input type="hidden" id="spcNo" name="spcNo" value="<%=request.getAttribute("spcNo")%>" readonly/>
 				<label for="memberId" class="control-label">아이디</label>
@@ -161,6 +161,10 @@ $("#resEndTime").change(function(){
 	$("#finalPrice").html("<h3>총 결제금액"+finalPrice+"원</h3>");
 });
 
+
+
+
+
 $("#payReq").click(function(){
 	if($("#resMany").val() < <%=request.getAttribute("spcManMin")%>){
     	alert('예약인원이 최소치 <%=request.getAttribute("spcManMin")%>명에 미달합니다.');
@@ -248,10 +252,12 @@ $("#payReq").click(function(){
 	}).done(function (data) {
 		//결제가 정상적으로 완료되면 수행됩니다
 		//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
+		$("#payCheck").submit();
 		return true
 		console.log(data);
 	});
 })
+
 
 
 </script>

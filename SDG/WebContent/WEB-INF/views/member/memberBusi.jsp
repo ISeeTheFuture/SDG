@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
+
     <%@page import="member.model.vo.Member"%>
     <%
     Member member = (Member)request.getAttribute("member");
@@ -129,6 +129,6 @@ p.text-center {
 	
 	</form> --%>
 </body>
-
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
 
 </html>

@@ -103,7 +103,7 @@ public class ResFormServlet extends HttpServlet {
 			System.out.println("예약그룹 실패!");			
 		}
 		
-		request.getRequestDispatcher("/res/resUpdate").forward(request, response);
+		request.getRequestDispatcher("/res/resResult").forward(request, response);
 	}
 
 	/**

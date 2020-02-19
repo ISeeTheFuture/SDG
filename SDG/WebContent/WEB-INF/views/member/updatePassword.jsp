@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
+
 <%@ page import="member.model.vo.Member" %>
 <!DOCTYPE html>
 <html>
@@ -131,4 +131,5 @@ p.text-center {
 	</article>
 	</div>
 </body>
+	<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
 </html>

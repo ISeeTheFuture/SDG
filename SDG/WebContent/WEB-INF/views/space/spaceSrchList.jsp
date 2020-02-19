@@ -89,7 +89,7 @@
  					$.each(data, function(idx, d){ // 배열 요소당 한번씩 콜백함수를 호출
  						var tmp = "<%=request.getContextPath()%>/upload/"+d.spcImgTitle;
  						var act = "<%=request.getContextPath()%>/space/spaceView";
- 						srchResult += "<div class='srchContent col-lg-4 col-md-6 mb-4' name='srchContent"+d.spcDetNo+"'><form method='post' action="+act+" id='srchContent"+d.spcDetNo+"'><div class='card h-100'><img class='card-img-top' src="+tmp+" alt='' width='700px' height='300px'>";
+ 						srchResult += "<div class='srchContent col-lg-4 col-md-6 mb-4' name='srchContent"+d.spcDetNo+"'><form method='get' action="+act+" id='srchContent"+d.spcDetNo+"'><div class='card h-100'><img class='card-img-top' src="+tmp+" alt='' width='700px' height='300px'>";
  						srchResult += "<div class='card-body'><h4 class='card-title'>"+d.spcName+"</h4>";
  						srchResult += "<h5>"+d.spcPricePrice+"원/시간(인)</h5>";
  						srchResult += "<p class='card-text'>"+d.spcLocationName+"/"+d.spcTypeName+"</p></div>";

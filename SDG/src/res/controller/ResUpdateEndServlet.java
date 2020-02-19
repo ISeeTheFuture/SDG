@@ -59,12 +59,6 @@ public class ResUpdateEndServlet extends HttpServlet {
 		
 		ResView resGrp = new ResService().selectResOneGrp(resGroupNo);
 		Res res = new ResService().selectResOne(resGroupNo);
-//		System.out.println(resGroupNo);
-//		System.out.println(memberId);
-//		System.out.println(resStart);
-//		System.out.println(resEnd);
-//		System.out.println(resMany);
-//		System.out.println(resDesc);
 		
 		int resultGrpDelete = new ResService().deleteResOneGrp(resGroupNo);
 		if(resultGrpDelete>0) System.out.println("예약그룹 삭제 성공");
@@ -105,6 +99,7 @@ public class ResUpdateEndServlet extends HttpServlet {
 		int resultResGrp = new ResService().insertResGrp(list);
 		
 		if(resultResGrp > 0) System.out.println("예약그룹 성공!");
+		
 		
 
 	}

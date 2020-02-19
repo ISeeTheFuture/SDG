@@ -97,10 +97,10 @@ var newEvent = function (start, end, eventType) {
         	alert("예약시간이 최대치 "+spcTimeMax.val()+"시간을 초과하였습니다.");
         	return false;
         }
-        if(editResMany.val() < spcManMin.val()){
+        if(editResMany.val()-spcManMin.val() < 0){
         	alert("예약인원이 최소치 "+spcManMin.val()+"명에 미달합니다.");
         	return false;
-        }else if(editResMany.val() > spcManMax.val()){
+        }else if(editResMany.val()-spcManMax.val() > 0){
         	alert("예약인원이 최대치 "+spcManMax.val()+"명을 초과하였습니다.");
         	return false;
         }
@@ -130,54 +130,49 @@ var newEvent = function (start, end, eventType) {
 
         //새로운 예약 저장 페이지로 이동
         
-        //create element (form)
+        //폼 태그 생성
         var form = document.createElement('form');
-        //set attribute (form)
+        //폼 속성 set attribute
         form.name = 'newForm';
         form.method = 'post';
         form.action = getContextPath()+'/res/resInsert';
-        form.target = 'parentFrame';
-        
-        //create element (input)
+        form.target = 'parentFrame';        
+        //input 태그 생성
         var input1 = document.createElement('input');
         var input2 = document.createElement('input');
         var input3 = document.createElement('input');
         var input4 = document.createElement('input');
         var input5 = document.createElement('input');
         var input6 = document.createElement('input');
-        
-        //set attribute (input)
-        input1.setAttribute("type", "text");
+        //input태그에 set attribute
+        input1.setAttribute("type", "hidden");
         input1.setAttribute("name", "memberId");
         input1.setAttribute("value", eventData.title);
-        input2.setAttribute("type", "text");
+        input2.setAttribute("type", "hidden");
         input2.setAttribute("name", "resMany");
         input2.setAttribute("value", eventData.resMany);        
-        input3.setAttribute("type", "text");
+        input3.setAttribute("type", "hidden");
         input3.setAttribute("name", "startTime");
         input3.setAttribute("value", eventData.start);
-        input4.setAttribute("type", "text");
+        input4.setAttribute("type", "hidden");
         input4.setAttribute("name", "endTime");
         input4.setAttribute("value", eventData.end);
-        input5.setAttribute("type", "text");
+        input5.setAttribute("type", "hidden");
         input5.setAttribute("name", "resContent");
         input5.setAttribute("value", eventData.description);
-        input6.setAttribute("type", "text");
+        input6.setAttribute("type", "hidden");
         input6.setAttribute("name", "spcNo");
         input6.setAttribute("value", spcNo);
-        
-        //append input (to form)
+        //완성된 input 태그를 form에 append
         form.appendChild(input1);
         form.appendChild(input2);
         form.appendChild(input3);
         form.appendChild(input4);
         form.appendChild(input5);
         form.appendChild(input6);
-        
-        //append form (to body)
+        //form 태그
         document.body.appendChild(form);
-
-        // submit form
+        // form 제출
         form.submit();
         
         

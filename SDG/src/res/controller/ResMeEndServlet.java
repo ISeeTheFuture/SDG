@@ -40,8 +40,7 @@ public class ResMeEndServlet extends HttpServlet {
 		String memId = request.getParameter("memberId");
 		List<ResMeView> list = new ResService().selectResMeView(memId);	
 		JSONArray jsonArr = new JSONArray();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
 		for(ResMeView r : list) {
 			JSONObject resMeView = new JSONObject();
 			resMeView.put("resGroupNo", r.getResGroupNo());
@@ -52,7 +51,7 @@ public class ResMeEndServlet extends HttpServlet {
 			resMeView.put("resCancle", r.getResCancle());
 			resMeView.put("resTimeStart", sdf.format(r.getResTimeStart()));
 			resMeView.put("resTimeEnd", sdf.format(r.getResTimeEnd()));
-			resMeView.put("spcPrice", r.getSpcPrice());
+			resMeView.put("spcPrice", r.getSpcPrice()*r.getResMany()*(r.getResTimeEnd().getTime()-r.getResTimeStart().getTime())/1000/60/60);
 			resMeView.put("spcName", r.getSpcName());
 			resMeView.put("spcImgTitle", r.getSpcImgTitle());
 			resMeView.put("spcNo", r.getSpcNo());

@@ -17,13 +17,9 @@
  
         <!--Image-->
          	 
-        <div class="view overlay z-depth-1-half" style="heigth:130px; weight:86.66px;" ><!--style="heigth:130px; weight:86.66px;"  -->
-         
-           <img src="<%=request.getContextPath() %>/images/footer.png" 
-          class="img-fluid"
-          style="left:100px;"
-            alt=""> 
-         </div>
+        <div class="footer-copyright text-center py-3" style="heigth:130px; weight:86.66px;" ><!--style="heigth:130px; weight:86.66px;"  -->
+          <img src="<%=request.getContextPath() %>/images/footer.png" class="img-fluid" style="left:100px;" alt=""> 
+        </div>
 
 </footer>
 <!-- Footer -->

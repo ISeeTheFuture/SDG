@@ -141,7 +141,7 @@ input#memId {
 
 
 			<input type="hidden" value="<%=request.getParameter("spcNo")%>"
-				name="fieldNo" id="fieldNo" placeholder="사업장 번호 입력.">
+				name="spcNo" id="spcNo" placeholder="사업장 번호 입력.">
 
 
 
@@ -150,8 +150,8 @@ input#memId {
 				<div class="input-group-prepend">
 					<span class="input-group-text">내용</span>
 				</div>
-				<textarea name="reviewContent" class="form-control" rows="5"
-					name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
+				<textarea name="reviewTitle" class="form-control" rows="5"
+					id="reviewTitle" placeholder="내용을 입력해 주세요"></textarea>
 			</div>
 			<!-- form-group// -->
 			<div class="form-group"></div>
@@ -332,7 +332,7 @@ div.rbox_info_base {
 
 					<div id="content" class="col" style="padding-top: 10px;">
 
-						<%=b.getReviewContent()%>
+						<%=b.getReviewTitle()%>
 					</div>
 
 					<div id="date" class="col" style="padding-top: 10px;">

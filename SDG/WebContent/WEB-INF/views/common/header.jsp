@@ -39,6 +39,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/custom.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/galleria.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>초특가 송대관</title>
 </head>
@@ -89,15 +90,18 @@
 		      	<a class="nav-link" href="<%=request.getContextPath()%>/member/logout">로그 아웃</a>
 		    </li>
 		    <%} %>
-			<%
-				if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
-				%>
-			<li class="nav-item">
-				<a class="nav-link" href="<%=request.getContextPath()%>/member/kimwonjae">관리자용 페이지</a>
-			</li>
-			<%
-			}
-			%>
+		    
+		     
+         <%
+            if (memberLoggedIn != null && ("1".equals(memberLoggedIn.getMemAdmin()))) {
+            %>
+         <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/member/adminPage">관리자용 페이지</a>
+         </li>
+         <%
+         }
+         %>
+		    
 		</ul>
 	</nav>
 
@@ -129,7 +133,14 @@
 					  				   id="saveId" <%=saveIdChecked ? "checked" : ""%>> Remember me</label>
 						<input type="submit" class="btn btn-primary pull-right" value="Login">
 					</div>
+					
+					
 				</form>
+				
+				
+				
 			</div>
 		</div>
+		
+		
 	</div> 

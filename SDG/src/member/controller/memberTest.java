@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class memberTest
  */
-@WebServlet("/member/kimwonjae")
+@WebServlet("/member/adminPage")
 public class memberTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +48,7 @@ public class memberTest extends HttpServlet {
 		
 		
 		
-		request.getRequestDispatcher("/WEB-INF/views/board/kimwonjae.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/board/adminPage.jsp").forward(request, response);
 	}
 
 	/**

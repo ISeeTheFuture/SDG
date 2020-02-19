@@ -56,8 +56,8 @@ public class MemberLoginServlet extends HttpServlet {
 		//memberRole체크..
 		
 		MemberBusi MB = null;
-		System.out.println("m.getRole는?"+m.getMemRole());
-		if("1".equals(m.getMemRole())) {
+//		System.out.println("m.getRole는?"+m.getMemRole());
+			if(m!=null&&"1".equals(m.getMemRole())) {
 		
 			 MB = new MemberService().selectOneMEmberBusi(memberId);
 		

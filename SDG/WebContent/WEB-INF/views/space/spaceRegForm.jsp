@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>	
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 <style>
 #preview {
 	display: none;
@@ -54,7 +50,7 @@
 
 		if (spcDetSize == "") {
 			$("#spcDetSize").css("border", "3px solid red");
-			$('#spcDetSize').val(100);
+			$('#spcDetSize').val(3);
 			result = 0;
 		}
 
@@ -66,25 +62,25 @@
 
 		if (spcManMin == "") {
 			$("#spcManMin").css("border", "3px solid red");
-			$('#spcManMin').val(100);
+			$('#spcManMin').val(1);
 			result = 0;
 		}
 
 		if (spcManMax == "") {
 			$("#spcManMax").css("border", "3px solid red");
-			$('#spcManMax').val(100);
+			$('#spcManMax').val(10);
 			result = 0;
 		}
 
 		if (spcTimeMin == "") {
 			$("#spcTimeMin").css("border", "3px solid red");
-			$('#spcTimeMin').val(100);
+			$('#spcTimeMin').val(1);
 			result = 0;
 		}
 
 		if (spcTimeMax == "") {
 			$("#spcTimeMax").css("border", "3px solid red");
-			$('#spcTimeMax').val(100);
+			$('#spcTimeMax').val(48);
 			result = 0;
 		}
 
@@ -96,7 +92,7 @@
 
 		if (spcDateEnd == "") {
 			$("#spcDateEnd").css("border", "3px solid red");
-			$('#spcDateEnd').val('2020-02-15');
+			$('#spcDateEnd').val('2021-02-15');
 			result = 0;
 		}
 
@@ -493,4 +489,4 @@ p.text-center {
 	}
 </script>
 
-</html>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>	

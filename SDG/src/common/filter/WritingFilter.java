@@ -20,15 +20,19 @@ import member.model.vo.Memberblk;
  */
 @WebFilter(
 //		servletNames= {"boardFormServlet"},
-urlPatterns = {	"/review/reviewForm"})
+		urlPatterns = { "/space/spaceSrchList", "/space/spaceTypeReg"}
+		
+		
+		
+		)
 public class WritingFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public WritingFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public WritingFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -40,34 +44,39 @@ public class WritingFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpRequest = (HttpServletRequest)request;
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession();
-		Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+		Member memberLoggedIn = (Member) session.getAttribute("memberLoggedIn");
 //		System.out.println("MEMBERLOGGEDIN"+memberLoggedIn);
-		String reqMemberId =memberLoggedIn.getMemId(); 
+		
+		
+		if(memberLoggedIn!=null) {
+		String reqMemberId = memberLoggedIn.getMemId();
 //				httpRequest.getParameter("memberId");
-	System.out.println("알이큐멤버아이디"+reqMemberId);
+		/*
+		 * System.out.println("알이큐멤버아이디"+reqMemberId);
+		 * 
+		 * System.out.println("외않됀데?");
+		 */
+		Memberblk MB = MemberService.IgnoreCheckselectOne(reqMemberId);
+		String ignoreCheck = MB.getMem_memo();
+		boolean l = false;
 		
-		System.out.println("외않됀데?");
-		Memberblk MB= MemberService.IgnoreCheckselectOne(reqMemberId);
-	String ignoreCheck =MB.getMem_memo();
-	boolean l = false;
-	System.out.println("dㅇㄴㅁㄱㅈㄱㅂㅈㄷㅅㄷㅅㄷㅅ"+reqMemberId);
-	if(ignoreCheck!=null)l=true;
-	
-		
-		
-		
-		if(l) {
-			request.setAttribute("msg", "글쓰기벤 당하셨습니다 사유="+ignoreCheck+"차단해제일자"+MB.getBlock_comment());
+		if (ignoreCheck != null)
+			l = true;
+
+		if (l) {
+			request.setAttribute("msg", "벤 당하셨습니다 사유=" + ignoreCheck + "차단해제일자" + MB.getBlock_comment());
 			request.setAttribute("loc", "/");
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
-					.forward(httpRequest, response);
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(httpRequest, response);
 			return;
 		}
 		// pass the request along the filter chain
 
+		
+		}
 		chain.doFilter(request, response);
 	}
 

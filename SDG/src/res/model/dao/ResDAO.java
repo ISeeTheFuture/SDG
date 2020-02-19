@@ -444,8 +444,8 @@ public class ResDAO {
 				rvTmp.setSpcName(rset.getString("spc_name"));
 				
 				String tmpImgs = rset.getString("spc_img_title");
-				String[] tmpImg = tmpImgs.split("'");
-				rvTmp.setSpcImgTitle(tmpImg[1]);
+				String[] tmpImg = tmpImgs.split(",");
+				rvTmp.setSpcImgTitle(tmpImg[0]);
 				
 				rvTmp.setSpcNo(rset.getInt("spc_no"));
 				rvTmp.setSpcDtlNo(rset.getInt("spc_detail_no"));
