@@ -56,7 +56,7 @@ button,input,textarea{font:inherit}.app{max-width:900px;margin:auto;padding:18px
   <section id="addView" class="hidden">
     <div class="card">
       <div class="section-title"><h2>Add a New Word</h2><button class="btn ghost" data-home>BACK</button></div>
-      <p class="hint">Add as many words as you like. Your first word each day completes the daily mission and earns +5 XP.</p>
+      <p class="hint">Add as many words as you like and earn +5 XP for each new word. Your first word each day completes the daily mission.</p>
       <form id="wordForm">
         <div class="form-row"><label>English Word</label><input class="field" id="wordInput" autocomplete="off" placeholder="e.g. abandon" required></div>
         <div class="form-row"><label>Chinese Meaning(s)</label><textarea class="field" id="meaningInput" placeholder="One or more meanings, separated by / or new lines.&#10;e.g. 放弃 / 抛弃" required></textarea><div class="hint">Simplified Chinese is recommended.</div></div>
@@ -209,10 +209,10 @@ $('#wordForm').onsubmit=async e=>{
     const missionCompleted=(data.words||[]).some(x=>x.addedDate===addedDate);
     data.words=data.words||[];
     data.words.push({id:uid(),word,meanings,example,addedAt:new Date().toISOString(),addedDate,correct:0,wrong:0});
-    if(!missionCompleted) data.xp=(data.xp||0)+5;
+    data.xp=(data.xp||0)+5;
     await saveUser(data); currentData=data;
     $('#formMsg').innerHTML=missionCompleted
-      ? '<div class="msg good">Saved! Keep adding more words.</div>'
+      ? '<div class="msg good">Saved! +5 XP. Keep adding more words.</div>'
       : '<div class="msg good">Saved! Daily mission completed. +5 XP. You can add more words!</div>';
     e.target.reset(); await refresh();
   }catch(err){$('#formMsg').innerHTML=`<div class="msg bad">${esc(err.message)}</div>`;}
