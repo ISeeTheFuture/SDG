@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dennis & Yura Vocabulary</title>
+<style>
+:root{--bg:#0b1020;--card:#141b31;--card2:#1a2340;--text:#f7f9ff;--muted:#9eabc7;--accent:#7c9cff;--good:#57d38c;--warn:#ffc857;--bad:#ff7a90;--line:#2a3557}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1020,#111936 55%,#0b1020);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}.app{max-width:900px;margin:auto;padding:18px 16px 44px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.brand{font-weight:900;letter-spacing:.04em}.profile{display:flex;gap:8px}.pill,.btn{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:10px 14px;cursor:pointer}.pill.active{background:var(--accent);color:#081126;border-color:transparent;font-weight:800}.btn{font-weight:800}.btn.primary{background:var(--accent);color:#081126;border-color:transparent}.btn.good{background:var(--good);color:#07180f;border-color:transparent}.btn.ghost{background:transparent}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat,.card{background:rgba(20,27,49,.92);border:1px solid var(--line);border-radius:20px}.stat{padding:14px}.stat b{display:block;font-size:1.35rem;margin-top:4px}.stat span{color:var(--muted);font-size:.83rem}.card{padding:18px;margin-top:12px}.hero{padding:20px}.hero h1{margin:0 0 6px;font-size:clamp(1.8rem,6vw,3rem)}.muted{color:var(--muted)}.mission{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:14px;padding:14px;border-radius:16px;background:#0e1630}.mission.done{outline:1px solid var(--good)}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px}.section-title h2{margin:0}.form-row{display:grid;gap:8px;margin-top:12px}.form-row label{font-weight:700}.field{width:100%;border:1px solid var(--line);background:#0e1630;color:var(--text);border-radius:14px;padding:12px 13px;outline:none}.field:focus{border-color:var(--accent)}textarea.field{min-height:90px;resize:vertical}.hint{font-size:.82rem;color:var(--muted)}.hidden{display:none!important}.msg{margin-top:10px;padding:10px 12px;border-radius:12px;background:#0e1630}.msg.good{color:var(--good)}.msg.bad{color:var(--bad)}.word-list{display:grid;gap:10px;margin-top:12px}.word{display:flex;justify-content:space-between;gap:14px;padding:14px;background:#0e1630;border:1px solid var(--line);border-radius:16px}.word h3{margin:0 0 5px;font-size:1.15rem}.meaning{color:#dfe6ff}.meta{font-size:.8rem;color:var(--muted);margin-top:6px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:.72rem;font-weight:800}.learning{background:#3b2030;color:#ff9eb0}.familiar{background:#3b3215;color:#ffd873}.mastered{background:#163828;color:#7fe3a8}.speaker{background:transparent;border:0;color:var(--accent);font-size:1.2rem;cursor:pointer}.quiz-box{padding:18px;background:#0e1630;border-radius:18px;margin-top:12px}.quiz-q{font-size:1.35rem;font-weight:900;line-height:1.35}.options{display:grid;gap:9px;margin-top:14px}.option{width:100%;text-align:left;border:1px solid var(--line);background:var(--card2);color:var(--text);padding:13px;border-radius:14px;cursor:pointer}.option.correct{border-color:var(--good);background:#153426}.option.wrong{border-color:var(--bad);background:#3a1b27}.progress{height:8px;background:#0b1020;border-radius:999px;overflow:hidden;margin-top:10px}.progress>div{height:100%;background:var(--accent)}.leader{display:grid;grid-template-columns:1fr 1fr;gap:10px}.leader>div{padding:14px;background:#0e1630;border-radius:15px}.weak{margin:8px 0 0;padding-left:20px;color:#dfe6ff}.footer{margin-top:22px;text-align:center;color:var(--muted);font-size:.78rem}
+@media(max-width:650px){.grid{grid-template-columns:1fr 1fr}.actions{grid-template-columns:1fr}.top{align-items:flex-start}.profile{flex-wrap:wrap;justify-content:flex-end}.word{align-items:flex-start}.leader{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="brand">VOCAB QUEST</div>
+    <div class="profile">
+      <button class="pill" data-user="DENNIS">DENNIS</button>
+      <button class="pill" data-user="YURA">YURA</button>
+    </div>
+  </div>
+
+  <section id="homeView">
+    <div class="card hero">
+      <div class="muted" id="greeting">Choose your profile</div>
+      <h1 id="heroName">Dennis & Yura</h1>
+      <div class="grid">
+        <div class="stat"><span>XP</span><b id="xp">0</b></div>
+        <div class="stat"><span>Level</span><b id="level">1</b></div>
+        <div class="stat"><span>Day Streak</span><b id="streak">0</b></div>
+        <div class="stat"><span>Words</span><b id="wordCount">0</b></div>
+      </div>
+      <div class="mission" id="mission">
+        <div><b>Today's Mission</b><div class="muted" id="missionText">Add one new word and one or more Chinese meanings.</div></div>
+        <div id="missionMark">○</div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" data-open="add">ADD A WORD</button>
+        <button class="btn good" data-open="quiz">START QUIZ</button>
+        <button class="btn" data-open="words">MY WORDS</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title"><h2>Leaderboard</h2><span class="muted">Friendly competition</span></div>
+      <div class="leader" id="leaderboard"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title"><h2>Words to Review</h2><span class="muted">Missed words appear more often in quizzes.</span></div>
+      <ul class="weak" id="weakList"><li>No quiz history yet.</li></ul>
+    </div>
+  </section>
+
+  <section id="addView" class="hidden">
+    <div class="card">
+      <div class="section-title"><h2>Add a New Word</h2><button class="btn ghost" data-home>BACK</button></div>
+      <form id="wordForm">
+        <div class="form-row"><label>English Word</label><input class="field" id="wordInput" autocomplete="off" placeholder="e.g. abandon" required></div>
+        <div class="form-row"><label>Chinese Meaning(s)</label><textarea class="field" id="meaningInput" placeholder="One or more meanings, separated by / or new lines.&#10;e.g. 放弃 / 抛弃" required></textarea><div class="hint">Simplified Chinese is recommended.</div></div>
+        <div class="form-row"><label>Example Sentence <span class="muted">(optional)</span></label><textarea class="field" id="exampleInput" placeholder="e.g. He abandoned the old car."></textarea></div>
+        <div class="form-row"><button class="btn primary" type="submit">SAVE WORD</button></div>
+        <div id="formMsg"></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="wordsView" class="hidden">
+    <div class="card">
+      <div class="section-title"><h2>My Words</h2><button class="btn ghost" data-home>BACK</button></div>
+      <input class="field" id="searchInput" placeholder="Search words or meanings">
+      <div class="word-list" id="wordList"></div>
+    </div>
+  </section>
+
+  <section id="quizView" class="hidden">
+    <div class="card">
+      <div class="section-title"><h2>Quiz</h2><button class="btn ghost" data-home>EXIT</button></div>
+      <div id="quizStart">
+        <p class="muted">Questions use only words you have added. Weak words are weighted more heavily.</p>
+        <button class="btn good" id="beginQuiz">BEGIN 5-QUESTION QUIZ</button>
+      </div>
+      <div id="quizPlay" class="hidden">
+        <div class="progress"><div id="quizProgress"></div></div>
+        <div class="quiz-box">
+          <div class="muted" id="quizType"></div>
+          <div class="quiz-q" id="quizQuestion"></div>
+          <div class="options" id="quizOptions"></div>
+          <div id="quizFeedback" class="msg hidden"></div>
+          <button class="btn primary hidden" id="nextQuestion" style="margin-top:12px">NEXT</button>
+        </div>
+      </div>
+      <div id="quizDone" class="hidden"></div>
+    </div>
+  </section>
+
+  <div class="footer">Shared online progress • Designed for Dennis & Yura</div>
+</div>
+<script>
+const STORE_BASE='https://mantledb.sh/v2';
+const NS='dy-vocab-9f31d7c0-5a4d-4de8-b5a6-c3a9c8e2f641';
+const USERS=['DENNIS','YURA'];
+let currentUser=null, currentData=null, quiz=[], quizIndex=0, quizScore=0, answered=false;
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai'}).format(new Date());
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(16).slice(2);
+const pathFor=u=>u.toLowerCase();
+
+function blank(u){return {user:u,xp:0,words:[],quizTaken:0,lastQuizAt:null};}
+async function loadUser(u){
+  try{
+    const r=await fetch(`${STORE_BASE}/${NS}/${pathFor(u)}`,{cache:'no-store'});
+    if(r.ok) return await r.json();
+    const d=blank(u); await saveUser(d); return d;
+  }catch(e){throw new Error('Could not reach the shared storage service. Please try again.');}
+}
+async function saveUser(data){
+  const r=await fetch(`${STORE_BASE}/${NS}/${pathFor(data.user)}`,{
+    method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)
+  });
+  if(!r.ok) throw new Error('Could not save progress.');
+}
+async function fresh(){currentData=await loadUser(currentUser);return currentData;}
+
+function mastery(w){
+  const a=(w.correct||0)+(w.wrong||0);
+  const rate=a?((w.correct||0)/a):0;
+  if(a>=5&&rate>=.8)return 'mastered';
+  if(a>=2&&rate>=.5)return 'familiar';
+  return 'learning';
+}
+function streak(words){
+  const dates=[...new Set(words.map(w=>w.addedDate))].sort().reverse();
+  if(!dates.length)return 0;
+  let s=0, d=new Date(today()+'T00:00:00+08:00');
+  for(let i=0;i<400;i++){
+    const ds=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai'}).format(d);
+    if(dates.includes(ds)){s++;d.setDate(d.getDate()-1);}
+    else if(i===0){d.setDate(d.getDate()-1);}
+    else break;
+  }
+  return s;
+}
+function level(xp){return Math.floor((xp||0)/100)+1;}
+function speak(text){if(!('speechSynthesis'in window))return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.85;speechSynthesis.speak(u);}
+
+async function selectUser(u){
+  currentUser=u; $$('.pill').forEach(b=>b.classList.toggle('active',b.dataset.user===u));
+  $('#greeting').textContent='Welcome back,';
+  $('#heroName').textContent=u[0]+u.slice(1).toLowerCase()+'!';
+  await refresh();
+}
+async function refresh(){
+  if(!currentUser)return;
+  try{
+    await fresh();
+    const w=currentData.words||[];
+    $('#xp').textContent=currentData.xp||0;
+    $('#level').textContent=level(currentData.xp||0);
+    $('#streak').textContent=streak(w);
+    $('#wordCount').textContent=w.length;
+    const done=w.some(x=>x.addedDate===today());
+    $('#mission').classList.toggle('done',done);
+    $('#missionMark').textContent=done?'✓':'○';
+    $('#missionText').textContent=done?'Daily word completed. Nice work!':'Add one new word and one or more Chinese meanings.';
+    const weak=[...w].filter(x=>(x.correct||0)+(x.wrong||0)>0).sort((a,b)=>{
+      const ar=(a.correct||0)/Math.max(1,(a.correct||0)+(a.wrong||0));
+      const br=(b.correct||0)/Math.max(1,(b.correct||0)+(b.wrong||0));
+      return ar-br;
+    }).slice(0,5);
+    $('#weakList').innerHTML=weak.length?weak.map(x=>`<li><b>${esc(x.word)}</b> — ${Math.round(100*(x.correct||0)/Math.max(1,(x.correct||0)+(x.wrong||0)))}% correct</li>`).join(''):'<li>No quiz history yet.</li>';
+    await renderLeaderboard();
+  }catch(e){alert(e.message);}
+}
+async function renderLeaderboard(){
+  const cards=[];
+  for(const u of USERS){
+    const d=u===currentUser?currentData:await loadUser(u);
+    cards.push(`<div><b>${u[0]+u.slice(1).toLowerCase()}</b><div class="muted">Level ${level(d.xp||0)} • ${(d.words||[]).length} words</div><div style="font-size:1.3rem;font-weight:900;margin-top:5px">${d.xp||0} XP</div></div>`);
+  }
+  $('#leaderboard').innerHTML=cards.join('');
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function show(view){
+  ['homeView','addView','wordsView','quizView'].forEach(id=>$('#'+id).classList.add('hidden'));
+  $('#'+view+'View').classList.remove('hidden');
+  if(view==='words')renderWords();
+  if(view==='quiz'){resetQuizUI();}
+}
+$$('.pill').forEach(b=>b.onclick=()=>selectUser(b.dataset.user));
+$$('[data-home]').forEach(b=>b.onclick=()=>show('home'));
+$$('[data-open]').forEach(b=>b.onclick=()=>{if(!currentUser)return alert('Choose Dennis or Yura first.');show(b.dataset.open);});
+
+$('#wordForm').onsubmit=async e=>{
+  e.preventDefault(); if(!currentUser)return;
+  $('#formMsg').innerHTML='';
+  try{
+    const data=await loadUser(currentUser);
+    const word=$('#wordInput').value.trim().toLowerCase();
+    const meanings=$('#meaningInput').value.split(/\n|\/|;/).map(x=>x.trim()).filter(Boolean);
+    const example=$('#exampleInput').value.trim();
+    if(!word||!meanings.length)throw new Error('Please enter an English word and at least one Chinese meaning.');
+    if((data.words||[]).some(x=>x.word.toLowerCase()===word))throw new Error('You already added this word.');
+    if((data.words||[]).some(x=>x.addedDate===today()))throw new Error("Today's word is already complete. Come back tomorrow for the next daily word.");
+    data.words=data.words||[];
+    data.words.push({id:uid(),word,meanings,example,addedAt:new Date().toISOString(),addedDate:today(),correct:0,wrong:0});
+    data.xp=(data.xp||0)+5;
+    await saveUser(data); currentData=data;
+    $('#formMsg').innerHTML='<div class="msg good">Saved! +5 XP for today\'s word.</div>';
+    e.target.reset(); await refresh();
+  }catch(err){$('#formMsg').innerHTML=`<div class="msg bad">${esc(err.message)}</div>`;}
+};
+
+$('#searchInput').oninput=renderWords;
+function renderWords(){
+  if(!currentData)return;
+  const q=$('#searchInput').value.trim().toLowerCase();
+  const words=[...(currentData.words||[])].reverse().filter(w=>(w.word+' '+w.meanings.join(' ')).toLowerCase().includes(q));
+  $('#wordList').innerHTML=words.length?words.map(w=>{
+    const m=mastery(w), attempts=(w.correct||0)+(w.wrong||0);
+    return `<div class="word"><div><h3>${esc(w.word)} <button class="speaker" onclick="speak('${esc(w.word).replace(/'/g,"\\'")}')">🔊</button></h3><div class="meaning">${w.meanings.map(esc).join(' / ')}</div>${w.example?`<div class="meta">“${esc(w.example)}”</div>`:''}<div class="meta">${attempts} quiz attempts • ${w.correct||0} correct</div></div><div><span class="tag ${m}">${m.toUpperCase()}</span></div></div>`;
+  }).join(''):'<div class="muted" style="padding:14px 0">No words yet.</div>';
+}
+
+function resetQuizUI(){
+  $('#quizStart').classList.remove('hidden');$('#quizPlay').classList.add('hidden');$('#quizDone').classList.add('hidden');
+}
+$('#beginQuiz').onclick=async()=>{
+  await fresh();
+  const words=currentData.words||[];
+  if(!words.length)return alert('Add at least one word first.');
+  quiz=makeQuiz(words,5);quizIndex=0;quizScore=0;
+  $('#quizStart').classList.add('hidden');$('#quizPlay').classList.remove('hidden');showQuestion();
+};
+function weightedPick(words){
+  const pool=[]; words.forEach(w=>{const misses=w.wrong||0, hits=w.correct||0; const weight=Math.min(6,1+misses*2+Math.max(0,2-hits));for(let i=0;i<weight;i++)pool.push(w);});
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function makeQuiz(words,count){
+  const out=[];
+  for(let i=0;i<count;i++){
+    const w=weightedPick(words), modes=['en-cn','cn-en','spell'];
+    let mode=modes[Math.floor(Math.random()*modes.length)];
+    if(words.length<4&&mode!=='spell')mode='spell';
+    out.push({w,mode});
+  }return out;
+}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5);}
+function showQuestion(){
+  answered=false;$('#nextQuestion').classList.add('hidden');$('#quizFeedback').classList.add('hidden');$('#quizFeedback').textContent='';
+  const item=quiz[quizIndex],w=item.w,words=currentData.words||[];
+  $('#quizProgress').style.width=((quizIndex)/quiz.length*100)+'%';
+  const box=$('#quizOptions');box.innerHTML='';
+  if(item.mode==='en-cn'){
+    $('#quizType').textContent='Choose the Chinese meaning';
+    $('#quizQuestion').innerHTML=`${esc(w.word)} <button class="speaker" onclick="speak('${esc(w.word).replace(/'/g,"\\'")}')">🔊</button>`;
+    const others=shuffle(words.filter(x=>x.id!==w.id)).slice(0,3).map(x=>x.meanings.join(' / '));
+    const correct=w.meanings.join(' / '); shuffle([correct,...others]).forEach(x=>addOption(x,x===correct));
+  }else if(item.mode==='cn-en'){
+    $('#quizType').textContent='Choose the English word';
+    $('#quizQuestion').textContent=w.meanings.join(' / ');
+    const others=shuffle(words.filter(x=>x.id!==w.id)).slice(0,3).map(x=>x.word);
+    shuffle([w.word,...others]).forEach(x=>addOption(x,x===w.word));
+  }else{
+    $('#quizType').textContent='Type the English word';
+    $('#quizQuestion').textContent=w.meanings.join(' / ');
+    box.innerHTML=`<input class="field" id="spellAnswer" autocomplete="off" placeholder="Type the word"><button class="btn primary" id="checkSpell" style="margin-top:9px">CHECK</button>`;
+    $('#checkSpell').onclick=()=>{if(answered)return;const v=$('#spellAnswer').value.trim().toLowerCase();finishAnswer(v===w.word.toLowerCase(),w.word);};
+  }
+}
+function addOption(label,isCorrect){
+  const b=document.createElement('button');b.className='option';b.textContent=label;b.onclick=()=>{if(answered)return;finishAnswer(isCorrect,quiz[quizIndex].w.word,b);};$('#quizOptions').appendChild(b);
+}
+async function finishAnswer(ok,answer,clicked){
+  answered=true; const item=quiz[quizIndex],id=item.w.id;
+  if(clicked){clicked.classList.add(ok?'correct':'wrong'); if(!ok){[...$('#quizOptions').children].forEach(b=>{if((item.mode==='en-cn'&&b.textContent===item.w.meanings.join(' / '))||(item.mode==='cn-en'&&b.textContent===item.w.word))b.classList.add('correct');});}}
+  const data=await loadUser(currentUser),w=data.words.find(x=>x.id===id);
+  if(w){if(ok){w.correct=(w.correct||0)+1;data.xp=(data.xp||0)+10;quizScore++;}else w.wrong=(w.wrong||0)+1;}
+  data.quizTaken=(data.quizTaken||0)+1;data.lastQuizAt=new Date().toISOString();
+  await saveUser(data);currentData=data;
+  const f=$('#quizFeedback');f.classList.remove('hidden');f.className='msg '+(ok?'good':'bad');f.textContent=ok?'Correct! +10 XP':'Not quite. The answer is: '+answer;
+  $('#nextQuestion').classList.remove('hidden');
+}
+$('#nextQuestion').onclick=()=>{quizIndex++;if(quizIndex>=quiz.length)finishQuiz();else showQuestion();};
+async function finishQuiz(){
+  $('#quizPlay').classList.add('hidden');const d=$('#quizDone');d.classList.remove('hidden');
+  const pct=Math.round(100*quizScore/quiz.length);
+  d.innerHTML=`<div class="quiz-box"><div class="muted">Quiz Complete</div><div style="font-size:2.2rem;font-weight:900;margin:5px 0">${quizScore}/${quiz.length}</div><div class="muted">${pct}% correct • ${quizScore*10} XP earned</div><button class="btn good" style="margin-top:14px" onclick="resetQuizUI()">TRY AGAIN</button><button class="btn" style="margin-top:14px;margin-left:8px" onclick="show('home');refresh()">HOME</button></div>`;
+  await refresh();
+}
+selectUser('DENNIS');
+</script>
+</body>
+</html>
