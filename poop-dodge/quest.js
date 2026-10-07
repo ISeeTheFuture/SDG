@@ -1,0 +1,27 @@
+
+'use strict';
+window.Quest=(()=>{
+const BASE='https://mantledb.sh/v2',NS='dy-vocab-9f31d7c0-5a4d-4de8-b5a6-c3a9c8e2f641';
+const USERS=['DENNIS','YURA','PARENT'];
+const HOME='https://dennis-yura-vocab.onrender.com/',GAME='https://dennis-yura-poop-dodge.onrender.com/';
+const day=(at=Date.now())=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai'}).format(new Date(at));
+const uid=()=>crypto.randomUUID();
+async function api(path,method='GET',body){const c=new AbortController(),timer=setTimeout(()=>c.abort(),12000);try{const r=await fetch(BASE+'/'+NS+'/'+path,{method,cache:'no-store',signal:c.signal,...(body===undefined?{}:{headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})});if(method==='GET'&&r.status===404)return null;if(!r.ok)throw Error('Could not '+(method==='GET'?'load':'save')+' shared progress. Please try again.');return method==='GET'?await r.json():true;}finally{clearTimeout(timer)}}
+const lock=(user,fn)=>navigator.locks?navigator.locks.request('quest-'+user,fn):fn();
+async function load(user){if(!USERS.includes(user))throw Error('Choose a valid profile.');return await api(user.toLowerCase())||{user,xp:0,words:[],quizTaken:0};}
+function init(data){if(!Number.isFinite(data.rewardBaseXp))data.rewardBaseXp=data.xp||0;data.words=data.words||[];return data;}
+async function update(user,fn){return lock(user,async()=>{const data=init(await load(user));await fn(data);await api(user.toLowerCase(),'POST',data);return data;});}
+function correctToday(w,date=day()){return w.dailyDate===date?(w.dailyCorrect||0):0;}
+function eligible(words,date=day()){return words.filter(w=>correctToday(w,date)<3);}
+function weight(w,now=Date.now()){const created=Date.parse(w.addedAt||w.addedDate)||now;const age=Math.max(0,(now-created)/86400000);const reviewed=Date.parse(w.lastReviewedAt||w.addedAt||w.addedDate)||now;const gap=Math.max(0,(now-reviewed)/86400000);return (age>=30?2:age>=7?1.5:1)*(1+Math.min(gap,30)/15)*(1+Math.min(w.wrong||0,5)/5);}
+function shuffle(list){const a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function pick(words,count,now=Date.now()){const pool=[...words],out=[];while(pool.length&&out.length<count){const weights=pool.map(w=>weight(w,now));let n=Math.random()*weights.reduce((a,b)=>a+b,0),i=0;while(i<weights.length-1&&n>=weights[i])n-=weights[i++];out.push(pool.splice(i,1)[0]);}return shuffle(out);}
+function seconds(mode,word){return mode==='spell'?(word.length>=10?30:25):15;}
+function reward(data,ledger={},date=day()){const earned=Math.max(0,(data.xp||0)-(data.rewardBaseXp??data.xp??0));const granted=Math.floor(earned/100)*3;const remaining=Math.max(0,granted-(ledger.spent||0));const used=ledger.day===date?(ledger.usedToday||0):0;return {earned,progress:earned%100,remaining,available:Math.min(6,remaining),used,canPlay:remaining>0&&used<6};}
+async function ledger(user){return await api('games-'+user.toLowerCase())||{spent:0,day:day(),usedToday:0};}
+async function auth(user,token){if(!USERS.includes(user)||!token)throw Error('Please sign in from the learning app.');const s=await api('session-'+user.toLowerCase());if(!s||s.token!==token||s.expires<Date.now())throw Error('Your session expired. Please sign in again.');return s;}
+async function login(user,pin){const pins={DENNIS:'0828',YURA:'0607',PARENT:'12340728'};if(pin!==pins[user])throw Error('Incorrect '+(user==='PARENT'?'password.':'PIN.'));await update(user,()=>{});const session={user,token:uid(),expires:Date.now()+86400000};await api('session-'+user.toLowerCase(),'POST',session);return session;}
+async function status(user,token){await auth(user,token);const l=await ledger(user);return {...reward(init(await load(user)),l),lastStart:l.lastStart};}
+async function start(user,token,id=uid()){return lock(user,async()=>{await auth(user,token);const data=init(await load(user)),l=await ledger(user),r=reward(data,l);if(l.lastStart===id)return {id,...r,lastStart:id};if(r.used>=6)throw Error('Daily limit reached. Come back tomorrow!');if(!r.remaining)throw Error('Earn 100 XP to unlock 3 plays.');await api('games-'+user.toLowerCase(),'POST',{spent:(l.spent||0)+1,day:day(),usedToday:r.used+1,lastStart:id});return {id,...reward(data,{spent:(l.spent||0)+1,day:day(),usedToday:r.used+1})};});}
+return {BASE,NS,USERS,HOME,GAME,day,uid,api,load,update,init,correctToday,eligible,weight,shuffle,pick,seconds,reward,ledger,auth,login,status,start};
+})();
