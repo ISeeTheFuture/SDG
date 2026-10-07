@@ -19,13 +19,22 @@ function draw(){ctx.clearRect(0,0,300,400);ctx.fillStyle='#48443f';ctx.font='14p
 function frame(now){const dt=Math.min((now-last)/1000||0,.04);last=now;if(state==='running'){clock+=dt;elapsed+=dt;const axis=Number(keys.has('ArrowRight'))-Number(keys.has('ArrowLeft'));if(pointer===null){walkDirection=axis;x+=axis*145*dt}else if(now-lastTouch>100)walkDirection=0;x=Math.max(8,Math.min(292,x));const level=Math.min(elapsed/30,5);spawn+=dt;while(spawn>=Math.max(.14,.55-level*.07)){spawn-=Math.max(.14,.55-level*.07);items.push({x:12+Math.random()*276,y:-18,speed:70+level*18+Math.random()*35})}for(const p of items){p.y+=p.speed*dt;if(collides(p)){die();break}if(p.y>410&&!p.passed){p.passed=true;score++}}items=items.filter(p=>p.y<420)}draw();requestAnimationFrame(frame)}
 window.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,button')&&e.code!=='Space')return;if(e.target.matches('input,textarea'))return;if(e.code==='Space'){e.preventDefault();if(e.repeat)return;if(state==='running')pause();else if(state==='paused')resume();else if(state==='ready'&&!$('gameView').classList.contains('hidden'))startGame()}if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();if(state==='running')keys.add(e.key)}});
 window.addEventListener('keyup',e=>keys.delete(e.key));window.addEventListener('blur',pause);document.addEventListener('visibilitychange',()=>{if(document.hidden)pause()});
-function moveTouch(e){const rect=canvas.getBoundingClientRect(),next=Math.max(8,Math.min(292,(e.clientX-rect.left)/rect.width*300));walkDirection=Math.sign(next-x);x=next;lastTouch=performance.now()}
-canvas.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'||!['running','paused'].includes(state)||pointer!==null)return;e.preventDefault();resume();pointer=e.pointerId;canvas.setPointerCapture(e.pointerId);moveTouch(e)});
-canvas.addEventListener('pointermove',e=>{if(e.pointerId===pointer&&state==='running')moveTouch(e)});
-function release(e){if(e.pointerId===pointer)pause()}
-canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);canvas.addEventListener('lostpointercapture',release);
-// The pause layer must pass a new touch into the playfield, without moving on a mouse click.
-$('pauseOverlay').addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'||e.target.closest('button'))return;e.preventDefault();resume();pointer=e.pointerId;canvas.setPointerCapture(e.pointerId);moveTouch(e)});
+const playfield=canvas.parentElement;
+let touchOffset=0;
+function touchX(e){const rect=canvas.getBoundingClientRect();return (e.clientX-rect.left)/rect.width*300}
+function moveTouch(e){const next=Math.max(8,Math.min(292,touchX(e)+touchOffset));walkDirection=Math.sign(next-x);x=next;lastTouch=performance.now()}
+function beginTouch(e){if(e.pointerType==='mouse'||!['running','paused'].includes(state)||pointer!==null||e.target.closest('button,input'))return;e.preventDefault();pointer=e.pointerId;touchOffset=x-touchX(e);try{playfield.setPointerCapture(e.pointerId)}catch{}resume();lastTouch=performance.now()}
+function release(e){if(e.pointerId===pointer){e.preventDefault?.();pause()}}
+if('PointerEvent' in window){
+playfield.addEventListener('pointerdown',beginTouch);
+playfield.addEventListener('pointermove',e=>{if(e.pointerId===pointer&&state==='running'){e.preventDefault();moveTouch(e)}});
+for(const name of ['pointerup','pointercancel','lostpointercapture'])playfield.addEventListener(name,release);
+window.addEventListener('pointerup',release);window.addEventListener('pointercancel',release);
+}else{
+playfield.addEventListener('touchstart',e=>{if(pointer!==null||!e.changedTouches.length)return;const t=e.changedTouches[0];beginTouch({pointerId:t.identifier,pointerType:'touch',clientX:t.clientX,target:e.target,preventDefault:()=>e.preventDefault()})},{passive:false});
+playfield.addEventListener('touchmove',e=>{const t=Array.from(e.changedTouches).find(t=>t.identifier===pointer);if(t&&state==='running'){e.preventDefault();moveTouch(t)}},{passive:false});
+for(const name of ['touchend','touchcancel'])window.addEventListener(name,e=>{if(Array.from(e.changedTouches).some(t=>t.identifier===pointer))release({pointerId:pointer,preventDefault:()=>e.preventDefault()})},{passive:false});
+}
 $('start').onclick=startGame;$('resume').onclick=resume;$('skip').onclick=startGame;$('playAgain').onclick=startGame;
 function renderRanking(rows){const body=$('ranking');body.replaceChildren();rows.forEach((r,i)=>{const tr=document.createElement('tr');tr.classList.toggle('you',r.id===latestId);for(const text of [String(i+1),r.name,String(r.score)]){const td=document.createElement('td');td.textContent=text;tr.append(td)}if(r.id===latestId){const mark=document.createElement('small');mark.textContent='YOU';tr.children[1].append(mark)}body.append(tr)});if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.className='empty';td.textContent='No scores yet. Be the first!';tr.append(td);body.append(tr)}$('rankNote').textContent=latestId&&!rows.some(r=>r.id===latestId)?'Your score was saved. Keep playing to reach the top 10.':''}
 async function showLeaderboard(rows){pause();$('gameView').classList.add('hidden');$('leaderView').classList.remove('hidden');$('back').classList.toggle('hidden',!['ready','paused'].includes(state));$('leaderError').textContent='';if(rows){renderRanking(rows);return}$('rankNote').textContent='Loading scores...';try{renderRanking(await loadScores())}catch(e){$('rankNote').textContent='';$('leaderError').textContent=e.message}}
