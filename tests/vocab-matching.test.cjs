@@ -1,0 +1,21 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const dir=require('node:path').resolve(__dirname,'../dennis-yura-vocab')+require('node:path').sep;
+const context=vm.createContext({window:{},navigator:{},crypto:require('node:crypto').webcrypto,Intl,Date,Math,AbortController,setTimeout,clearTimeout,fetch:()=>{throw Error('Unexpected network')}});
+vm.runInContext(fs.readFileSync(dir+'quest.js','utf8'),context);
+const Q=context.window.Quest,date=Q.day();
+const word={id:'w1',word:'credible',meanings:['可信的'],correct:4,wrong:2,dailyDate:date,dailyCorrect:2};
+const data={xp:140,rewardBaseXp:80,words:[word],quizTaken:6,lastQuizAt:'previous',other:{preserve:true}};
+const attempt={id:'classic',wordId:'w1',ok:true,hinted:false,date,at:'2026-10-09T12:00:00Z'};
+Q.recordAnswer(data,attempt);assert.equal(data.xp,150);assert.equal(word.dailyCorrect,3);assert.equal(word.correct,5);
+Q.recordAnswer(data,attempt);assert.equal(data.xp,150);assert.equal(data.quizTaken,7);
+for(const mode of ['connect','memory']){Q.recordAnswer(data,{...attempt,id:mode});assert.equal(data.xp,150);assert.equal(data.answers[mode].award,0);}
+Q.recordAnswer(data,{...attempt,id:'wrong',ok:false});assert.equal(word.wrong,3);assert.equal(data.xp,150);
+Q.recordAnswer(data,{...attempt,id:'tomorrow',date:'2099-01-01'});assert.equal(data.xp,160);assert.equal(word.dailyCorrect,1);
+Q.recordAnswer(data,{...attempt,id:'hint',date:'2099-01-01',hinted:true});assert.equal(data.xp,160);assert.equal(word.dailyCorrect,1);assert.equal(data.rewardBaseXp,80);assert.deepEqual(data.other,{preserve:true});
+assert.throws(()=>Q.recordAnswer(data,{...attempt,id:'deleted',wordId:'missing'}),/no longer available/);
+context.Q=Q;context.$=()=>({});
+vm.runInContext(fs.readFileSync(dir+'matching.js','utf8'),context);
+const M=context.window.MatchPractice;
+const pool=[{id:'a',word:'one',meanings:['一']},{id:'b',word:'two',meanings:['二']},{id:'c',word:'one',meanings:['另一个']},{id:'d',word:'different',meanings:['一']},{id:'e',word:'empty',meanings:[]}];
+assert.equal(M.pairPool(pool).length,2);assert.equal(M.choosePairs(pool,8).length,2);assert.equal(M.choosePairs([],4).length,0);assert.equal(M.choosePairs(pool,1).length,1);
+console.log('PASS: shared XP caps, retry idempotency, wrong answers, hints, next-day reset, data preservation, distinct meanings, and small matching pools.');
