@@ -3,15 +3,26 @@
 (() => {
 const $=id=>document.getElementById(id), T=window.THREE;
 if(!T){showError('The game could not load. Please refresh the page.');return;}
+// A CPU projection fallback also supports browsers without a WebGL context.
+class CanvasRenderer {
+constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});if(!this.ctx)throw new Error('No graphics context');this.ratio=1;this.view=new T.Matrix4();this.mvp=new T.Matrix4();this.modelView=new T.Matrix4();this.normal=new T.Matrix3();this.color=new T.Color();this.light=new T.Vector3(-.5,.8,.25).normalize();this.n=new T.Vector3();this.cache=new WeakMap();}
+setPixelRatio(r){this.ratio=Math.min(r,1.25);}
+setSize(w,h){this.canvas.width=Math.round(w*this.ratio);this.canvas.height=Math.round(h*this.ratio);this.w=this.canvas.width;this.h=this.canvas.height;}
+render(scene,camera){const ctx=this.ctx,w=this.w,h=this.h;if(!w)return;const gradient=ctx.createLinearGradient(0,0,0,h);gradient.addColorStop(0,'#4dc9ee');gradient.addColorStop(.68,'#b7e9de');gradient.addColorStop(1,'#c7ead7');ctx.fillStyle=gradient;ctx.fillRect(0,0,w,h);scene.updateMatrixWorld();camera.updateMatrixWorld();this.view.copy(camera.matrixWorldInverse);const draw=[];
+scene.traverseVisible(o=>{if(!o.isMesh)return;const g=o.geometry,pos=g.attributes.position,idx=g.index,vc=g.attributes.color,normal=g.attributes.normal,m=o.material;if(!pos||Array.isArray(m))return;this.modelView.multiplyMatrices(this.view,o.matrixWorld);this.mvp.multiplyMatrices(camera.projectionMatrix,this.modelView);this.normal.getNormalMatrix(o.matrixWorld);const e=this.mvp.elements,ve=this.modelView.elements,p=pos.array;let data=this.cache.get(g);if(!data){data={screen:new Float32Array(pos.count*3)};this.cache.set(g,data);}const s=data.screen;
+for(let i=0;i<pos.count;i++){const k=i*3,x=p[k],y=p[k+1],z=p[k+2],cw=e[3]*x+e[7]*y+e[11]*z+e[15];s[k]=(e[0]*x+e[4]*y+e[8]*z+e[12])/cw*w*.5+w*.5;s[k+1]=-(e[1]*x+e[5]*y+e[9]*z+e[13])/cw*h*.5+h*.5;s[k+2]=-(ve[2]*x+ve[6]*y+ve[10]*z+ve[14]);}
+const count=idx?idx.count:pos.count;for(let j=0;j<count;j+=3){const ia=idx?idx.array[j]:j,ib=idx?idx.array[j+1]:j+1,ic=idx?idx.array[j+2]:j+2,a=ia*3,b=ib*3,c=ic*3;if(s[a+2]<.4||s[b+2]<.4||s[c+2]<.4)continue;const ax=s[a],ay=s[a+1],bx=s[b],by=s[b+1],cx=s[c],cy=s[c+1];if((bx-ax)*(cy-ay)-(by-ay)*(cx-ax)>=0)continue;if(Math.max(ax,bx,cx)<0||Math.min(ax,bx,cx)>w||Math.max(ay,by,cy)<0||Math.min(ay,by,cy)>h)continue;const depth=(s[a+2]+s[b+2]+s[c+2])/3;if(depth>650)continue;this.color.copy(m.color);if(vc)this.color.setRGB(vc.getX(ia),vc.getY(ia),vc.getZ(ia));let lit=1;if(normal){this.n.fromBufferAttribute(normal,ia).applyMatrix3(this.normal).normalize();lit=.7+Math.max(0,this.n.dot(this.light))*.45;}this.color.multiplyScalar(lit);if(m.emissive)this.color.addScaledColor?this.color.addScaledColor(m.emissive,.2):this.color.add(m.emissive.clone().multiplyScalar(.2));const fog=T.MathUtils.smoothstep(depth,90,540);this.color.lerp(scene.fog.color,fog);draw.push({ax,ay,bx,by,cx,cy,depth,color:this.color.getStyle(T.SRGBColorSpace),alpha:m.transparent?m.opacity:1});}});
+draw.sort((a,b)=>b.depth-a.depth);for(const f of draw){ctx.globalAlpha=f.alpha;ctx.fillStyle=f.color;ctx.beginPath();ctx.moveTo(f.ax,f.ay);ctx.lineTo(f.bx,f.by);ctx.lineTo(f.cx,f.cy);ctx.closePath();ctx.fill();}ctx.globalAlpha=1;}
+}
 let renderer;
-try{renderer=new T.WebGLRenderer({canvas:$('world'),antialias:true,alpha:false,powerPreference:'high-performance'});}catch(e){showError('This browser could not start 3D graphics. Please open the game in Chrome or Safari.');return;}
+try{renderer=new T.WebGLRenderer({canvas:$('world'),antialias:true,alpha:false,powerPreference:'high-performance'});}catch(e){try{renderer=new CanvasRenderer($('world'));}catch(err){showError('This browser could not start graphics. Please open the game in Chrome or Safari.');return;}}
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.65));renderer.outputColorSpace=T.SRGBColorSpace;
 const scene=new T.Scene();scene.background=new T.Color('#73d7ed');scene.fog=new T.Fog('#b7e9de',90,540);
 const camera=new T.PerspectiveCamera(60,1,.1,700);
 scene.add(new T.HemisphereLight('#eafaff','#5a8240',2.0));
 const sun=new T.DirectionalLight('#fff8d8',2.15);sun.position.set(-80,110,30);scene.add(sun);
 const materialCache=new Map();function mat(color,emissive){const key=color+':'+emissive;if(!materialCache.has(key))materialCache.set(key,new T.MeshStandardMaterial({color,flatShading:true,roughness:.82,metalness:0,emissive:emissive||0,emissiveIntensity:emissive?.7:0}));return materialCache.get(key);}
-const boxgeo=new T.BoxGeometry(1,1,1), spheregeo=new T.IcosahedronGeometry(1,1), conegeo=new T.ConeGeometry(1,1,5);
+const boxgeo=new T.BoxGeometry(1,1,1), spheregeo=new T.IcosahedronGeometry(1,0), conegeo=new T.ConeGeometry(1,1,5);
 function mesh(geo,color,x=0,y=0,z=0,sx=1,sy=1,sz=1,parent=scene){const m=new T.Mesh(geo,typeof color==='string'?mat(color):color);m.position.set(x,y,z);m.scale.set(sx,sy,sz);parent.add(m);return m;}
 const plane=new T.Group();scene.add(plane);plane.position.set(0,11,0);
 mesh(spheregeo,'#147bd1',0,0,0,.85,.75,2.1,plane);
