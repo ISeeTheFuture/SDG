@@ -13,7 +13,7 @@
 .memory-content.meaning-content{font-size:25px;line-height:1.4}
 .memory-board .memory-matched{font-size:11px;color:#235833;margin:0}
 @media(max-width:370px){.memory-board{gap:9px}.memory-board .match-card{padding:14px 9px}.memory-content{font-size:25px}.memory-content.meaning-content{font-size:23px}}
-</style></head><body><main class="app">
+.memory-board.shuffling{position:relative;isolation:isolate}.memory-board.shuffling .match-card{box-shadow:0 5px 14px #172d3b22}.memory-board .match-card{backface-visibility:hidden;transform-origin:center}</style></head><body><main class="app">
 <header class="top"><div><div class="brand">Dennis & Yura</div><div class="sub">ENGLISH VOCABULARY</div></div><button id="signOut" class="link hidden">Switch profile</button></header>
 <section id="profilesView" class="login"><h1>Who is learning today?</h1><p class="muted">Choose your profile to get started.</p><div class="profile-grid"><button class="profile-card" data-profile="DENNIS"><span class="avatar" aria-hidden="true">D</span><br>Dennis</button><button class="profile-card yura" data-profile="YURA"><span class="avatar" aria-hidden="true">Y</span><br>Yura</button></div></section>
 <section id="pinView" class="login hidden"><button id="pinBack" class="link">← Switch profile</button><div class="pin-box"><h1 id="pinGreeting">Hi, Dennis!</h1><p id="pinCaption" class="muted">Enter your 4-digit PIN.</p><div id="pinDots" class="pin-dots"></div><div id="keypad" class="keypad"></div><div id="loginError" class="error" role="alert"></div></div></section>
