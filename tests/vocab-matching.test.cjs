@@ -13,6 +13,9 @@ Q.recordAnswer(data,{...attempt,id:'wrong',ok:false});assert.equal(word.wrong,3)
 Q.recordAnswer(data,{...attempt,id:'tomorrow',date:'2099-01-01'});assert.equal(data.xp,160);assert.equal(word.dailyCorrect,1);
 Q.recordAnswer(data,{...attempt,id:'hint',date:'2099-01-01',hinted:true});assert.equal(data.xp,160);assert.equal(word.dailyCorrect,1);assert.equal(data.rewardBaseXp,80);assert.deepEqual(data.other,{preserve:true});
 assert.throws(()=>Q.recordAnswer(data,{...attempt,id:'deleted',wordId:'missing'}),/no longer available/);
+const historyData={xp:0,words:[{id:'w1',word:'one',meanings:['一']}],answers:{legacy:{ok:true,award:10,at:attempt.at}}};
+for(let i=0;i<105;i++)Q.recordAnswer(historyData,{...attempt,id:'history-'+i});
+assert.equal(historyData.learningHistory.length,106);assert.equal(historyData.learningHistory[1].wordId,'w1');assert.equal(historyData.answers['history-0'],undefined);const savedXp=historyData.xp,savedCount=historyData.quizTaken;Q.recordAnswer(historyData,{...attempt,id:'history-0'});assert.equal(historyData.xp,savedXp);assert.equal(historyData.quizTaken,savedCount);assert.equal(historyData.learningHistory[0].id,'legacy');
 context.Q=Q;context.$=()=>({});
 vm.runInContext(fs.readFileSync(dir+'matching.js','utf8'),context);
 const M=context.window.MatchPractice;
