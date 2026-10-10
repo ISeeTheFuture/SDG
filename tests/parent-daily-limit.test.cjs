@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+(async()=>{for(const file of ['dennis-yura-vocab/quest.js','alpine-reward/quest.js','photo-puzzle/quest.js']){
+const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai'}).format(new Date());
+const parent={xp:100,rewardBaseXp:0,words:[{word:'unchanged'}]},db={parent:structuredClone(parent),dennis:{xp:1000,rewardBaseXp:0,words:[]},'session-parent':{token:'p',expires:Date.now()+100000},'session-dennis':{token:'d',expires:Date.now()+100000},'games-parent':{spent:-100,day:date,usedToday:6,manualPlayCredits:[{amount:100}],flightPlayedAt:'existing'},'games-dennis':{spent:6,day:date,usedToday:6}};
+const ctx=vm.createContext({window:{},navigator:{},Date,Intl,Math,crypto:require('crypto').webcrypto,AbortController,setTimeout,clearTimeout,fetch:async(url,opt={})=>{const key=url.split('/').at(-1);if(opt.method==='POST'){db[key]=JSON.parse(opt.body);return {ok:true};}return {ok:!!db[key],status:db[key]?200:404,json:async()=>structuredClone(db[key])};}});vm.runInContext(fs.readFileSync(file,'utf8'),ctx);const Q=ctx.window.Quest;
+assert.equal((await Q.status('PARENT','p')).available,103);assert.equal((await Q.status('PARENT','p')).unlimitedDaily,true);
+await Q.start('PARENT','p','poop1');assert.equal(db['games-parent'].usedToday,7);await Q.start('PARENT','p','flight1','flight');await Q.start('PARENT','p','puzzle1','puzzle');assert.equal(db['games-parent'].usedToday,9);assert.equal((await Q.status('PARENT','p')).remaining,100);assert.deepEqual(db.parent,parent);assert.deepEqual(db['games-parent'].manualPlayCredits,[{amount:100}]);assert.equal(db['games-parent'].flightPlayedAt,'existing');
+await assert.rejects(Q.start('DENNIS','d','blocked'),/Daily limit/);assert.equal((await Q.status('DENNIS','d')).available,0);
+db['games-parent'].spent=3;assert.equal((await Q.status('PARENT','p')).canPlay,false);await assert.rejects(Q.start('PARENT','p','empty'),/Earn/);
+}console.log('PASS: Parents can play after 6 daily starts in every game, banked plays still decrement, child limit and all learning records preserved.');})().catch(e=>{console.error(e);process.exitCode=1});

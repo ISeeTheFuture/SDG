@@ -18,9 +18,9 @@ function ui(){
  if(paused)return;
  $('start').innerHTML=starting?'Starting flight…':kind==='menu'?"LET'S FLY <span>1 play ↗</span>":'Try again <span>1 play ↗</span>';
  if(!ready){$('quotaTitle').textContent='Sign in from the learning app';$('quotaMessage').textContent='Open Vocab to choose your profile and earn plays.';return;}
- if(quota.used>=6&&!recovered){$('quotaTitle').textContent='All 6 plays used today';$('quotaMessage').textContent='Come back tomorrow. Your '+quota.remaining+' remaining plays are saved.';$('quotaRule').textContent='Daily plays are shared with Poop Dodge.';}
+ if(!quota.unlimitedDaily&&quota.used>=6&&!recovered){$('quotaTitle').textContent='All 6 plays used today';$('quotaMessage').textContent='Come back tomorrow. Your '+quota.remaining+' remaining plays are saved.';$('quotaRule').textContent='Daily plays are shared with Poop Dodge.';}
  else if(!quota.remaining&&!recovered){$('quotaTitle').textContent='No plays left';$('quotaMessage').textContent='Learn more words and earn more plays. Then come back for another flight!';$('quotaRule').textContent='Earn 100 XP to unlock 3 more plays.';}
- else{$('quotaTitle').textContent=quota.available+' plays left';$('quotaMessage').textContent=kind==='menu'?'Both games share your earned plays.':'You can fly again!';$('quotaRule').textContent='One play is used when your next flight starts.';}
+ else{$('quotaTitle').textContent=quota.available+' plays left';$('quotaMessage').textContent=kind==='menu'?'All games share your earned plays.':'You can fly again!';$('quotaRule').textContent=quota.unlimitedDaily?'Parents: no daily limit. One play per flight.':'One play is used when your next flight starts.';}
 }
 async function check(){const id=++checkId;try{if(!session)throw Error('Please sign in from the learning app.');const result=await Q.status(session.user,session.token);if(id!==checkId)return;quota=result;ready=true;$('rewardError').textContent='';}catch(e){if(id!==checkId)return;ready=false;$('rewardError').textContent=e.message;}ui();}
 function menu(next){kind=next;if(next!=='paused'){$('tag').textContent='ALPINE SKY RUN';$('title').innerHTML=next==='won'?'Flight complete':'Game over';const n=session?.user==='PARENT'?'Parent':session?.user==='YURA'?'Yura':'Dennis';$('description').textContent='Nice flight, '+n+'!';}ui();if(next!=='paused')void check();}
