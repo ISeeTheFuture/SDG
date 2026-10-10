@@ -39,7 +39,7 @@ function render(){
   }
   const percent=Math.round(edges/(rows*(cols-1)+cols*(rows-1))*100);
   $('moves').textContent=moves;$('time').textContent=clock(seconds());$('percent').textContent=percent+'%';$('bar').style.width=percent+'%';
-  $('undo').disabled=!history.length;$('hint').disabled=won;$('board').setAttribute('aria-label',`${cols} columns, ${rows} rows. Drag pieces or tap two positions.`);
+  $('undo').disabled=!history.length;$('board').setAttribute('aria-label',`${cols} columns, ${rows} rows. Drag pieces or tap two positions.`);
   paint();
 }
 function paint(){
@@ -124,12 +124,6 @@ $('board').addEventListener('keydown',e=>{
   }
 });
 $('undo').onclick=()=>{if(!history.length)return;const prev=history.pop();board=prev.board;moves=prev.moves;selected=null;won=false;startClock();render();save();$('caption').textContent='Last move undone.';};
-$('hint').onclick=()=>{
-  if(won)return;
-  const p=board.findIndex((home,i)=>home!==i),home=board[p];
-  applyMove(groupAt(p),home%cols-p%cols,Math.floor(home/cols)-Math.floor(p/cols));
-  if(!won)$('caption').textContent='A hint moved one group into place.';
-};
 $('reference').onclick=()=>{$('photoDialog').showModal();};$('closePhoto').onclick=()=>{$('photoDialog').close();};
 function requestReset(c,r){if(rewardBusy)return;pendingReset=[c,r];$('confirmDialog').showModal();}
 $('difficulty').onchange=()=>{const [c,r]=$('difficulty').value.split(',').map(Number);$('difficulty').value=cols+','+rows;requestReset(c,r);};
