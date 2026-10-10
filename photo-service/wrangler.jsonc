@@ -1,0 +1,9 @@
+{
+  "name": "vocab-puzzle-photos",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-10",
+  "account_id": "0025e464b14b200b848426047b534b02",
+  "workers_dev": true,
+  "ratelimits": [{"name":"REQUEST_LIMIT","namespace_id":"1001","simple":{"limit":60,"period":60}}],
+  "r2_buckets": [{"binding":"PHOTOS","bucket_name":"vocab-puzzle-photos"}]
+}
