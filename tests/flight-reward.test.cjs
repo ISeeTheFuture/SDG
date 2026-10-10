@@ -2,6 +2,13 @@ const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 const db={dennis:{xp:300,rewardBaseXp:0,words:[{id:'a'}]},yura:{xp:100,rewardBaseXp:0,words:[]},'session-dennis':{token:'d',expires:Date.now()+86400000},'session-yura':{token:'y',expires:Date.now()+86400000}};let lose=false;
 function context(file){const ctx=vm.createContext({window:{},navigator:{},Date,Intl,Math,crypto:require('crypto').webcrypto,AbortController,setTimeout,clearTimeout,fetch:async(url,opt={})=>{const key=url.split('/').at(-1);if(opt.method==='POST'){db[key]=JSON.parse(opt.body);if(lose){lose=false;throw Error('Lost response');}return {ok:true};}return {ok:true,status:db[key]?200:404,json:async()=>structuredClone(db[key])};}});vm.runInContext(fs.readFileSync(file,'utf8'),ctx);return ctx.window.Quest;}
 (async()=>{const Q=context('dennis-yura-vocab/quest.js'),poop=context('alpine-reward/quest.js'),original=structuredClone(db.dennis);
+const date=Q.day(),bank={xp:1020,rewardBaseXp:0};
+assert.equal(Q.reward(bank,{spent:7,usedToday:2,day:date}).available,4);
+assert.equal(Q.reward(bank,{spent:8,usedToday:3,day:date}).available,3);
+assert.equal(Q.reward(bank,{spent:11,usedToday:6,day:date}).available,0);
+assert.equal(Q.reward(bank,{spent:11,usedToday:6,day:'2000-01-01'}).available,6);
+assert.equal(Q.reward({xp:100,rewardBaseXp:0},{spent:2,usedToday:1,day:date}).available,1);
+assert.equal(Q.reward({xp:100,rewardBaseXp:0},{spent:3,usedToday:1,day:date}).available,0);
 await Q.start('DENNIS','d','f1','flight');const stamp=db['games-dennis'].flightPlayedAt;assert.ok(stamp);assert.equal(db['games-yura'],undefined);assert.deepEqual(db.dennis,original);
 await Q.start('DENNIS','d','f1','flight');assert.equal(db['games-dennis'].spent,1);await poop.start('DENNIS','d','p1');assert.equal(db['games-dennis'].spent,2);assert.equal(db['games-dennis'].flightPlayedAt,stamp);
 lose=true;await assert.rejects(Q.start('DENNIS','d','f2','flight'));await Q.start('DENNIS','d','f2','flight');assert.equal(db['games-dennis'].spent,3);
